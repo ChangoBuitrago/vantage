@@ -263,7 +263,7 @@ export default function StefanKudoke() {
             
             {/* Title */}
             <div className="text-center mb-6">
-              <p className="text-sm text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider">The Digital Strategy</p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider">The Fair Strategy</p>
               <h2 className="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Digital Passport</span></h2>
               <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">100% control, zero cost, perpetual revenue — maintaining independence and self-sustainability</p>
             </div>
