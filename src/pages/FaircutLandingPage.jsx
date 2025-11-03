@@ -5,7 +5,7 @@ export default function FaircutLandingPage() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 6; // 6 sections: Hero, Solution, Calculator, Partnership, Benefits, CTA
+  const totalSections = 7; // Hero, Problem, Solution, Benefits, Calculator, Partnership, CTA
   
   const [sliderValues, setSliderValues] = useState({
     avgItemPrice: 3000,
@@ -17,11 +17,9 @@ export default function FaircutLandingPage() {
   
   const [calculatedRevenue, setCalculatedRevenue] = useState(0);
   const [totalResellerProfit, setTotalResellerProfit] = useState(0);
-  const [resaleCount, setResaleCount] = useState(0);
 
   // Effect to ensure page starts at the top on load
   useEffect(() => {
-    // Reset scroll position and current section on component mount
     setCurrentSection(0);
     
     const forceScrollToTop = () => {
@@ -32,10 +30,7 @@ export default function FaircutLandingPage() {
       window.scrollTo(0, 0);
     };
 
-    // Force scroll immediately
     forceScrollToTop();
-    
-    // Force scroll again after a short delay to ensure it sticks
     const timeoutId = setTimeout(forceScrollToTop, 100);
     
     return () => clearTimeout(timeoutId);
@@ -63,7 +58,6 @@ export default function FaircutLandingPage() {
           targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Timeout to prevent rapid scrolling
         setTimeout(() => {
           isScrollingRef.current = false;
         }, 800);
@@ -79,7 +73,6 @@ export default function FaircutLandingPage() {
     const container = containerRef.current;
     if (!container) return;
 
-    // Ensure we start at the top
     container.scrollTop = 0;
     setCurrentSection(0);
 
@@ -94,15 +87,14 @@ export default function FaircutLandingPage() {
           }
         });
       },
-      { threshold: 0.6 } // Higher threshold to be more precise
+      { threshold: 0.6 }
     );
 
-    // Wait longer before starting observation to ensure page is fully loaded
     const timeoutId = setTimeout(() => {
       Array.from(container.children).forEach((child) => {
         observer.observe(child);
       });
-    }, 500); // Increased delay
+    }, 500);
 
     return () => {
       clearTimeout(timeoutId);
@@ -158,16 +150,6 @@ export default function FaircutLandingPage() {
     }).format(value);
   };
 
-  // Format currency compact for display
-  const formatCurrencyCompact = (value) => {
-    if (value >= 1000000) {
-      return `$${(value / 1000000).toFixed(0)}M`;
-    } else if (value >= 1000) {
-      return `$${(value / 1000).toFixed(0)}K`;
-    }
-    return formatCurrency(value);
-  };
-
   // Calculate revenue based on slider values
   const calculateRevenue = () => {
     const { avgItemPrice, itemsSold, resaleMarkup, royaltyRate, lifetimeResales } = sliderValues;
@@ -180,15 +162,10 @@ export default function FaircutLandingPage() {
 
     const profitPerResale = avgItemPrice * (resaleMarkup / 100);
     const totalResales = itemsSold * lifetimeResales;
-
-    // This is the total profit generated in the secondary market
     const totalMarketProfit = profitPerResale * totalResales;
     setTotalResellerProfit(totalMarketProfit);
 
-    // This is the royalty pool created from that profit
     const totalRoyaltyGenerated = totalMarketProfit * (royaltyRate / 100);
-
-    // The creator's 50% share of that royalty pool
     const creatorShare = totalRoyaltyGenerated * 0.50;
     setCalculatedRevenue(creatorShare);
   };
@@ -205,7 +182,6 @@ export default function FaircutLandingPage() {
       [key]: parseInt(value)
     }));
   };
-
 
   return (
     <>
@@ -231,7 +207,7 @@ export default function FaircutLandingPage() {
         ))}
       </div>
       
-      {/* --- FAIRCUT LOGO (MOVED HERE) --- */}
+      {/* Faircut Logo */}
       <div className="fixed top-6 left-6 z-50">
         <div className="text-3xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
           Faircut
@@ -256,14 +232,46 @@ export default function FaircutLandingPage() {
           </div>
         </section>
 
+        {/* --- PROBLEM SECTION --- */}
+        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 px-6 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950">
+          <div className="w-full max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-black text-center text-gray-900 dark:text-white mb-3 tracking-tighter">The Resale Market Problem</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 text-center mb-16 max-w-3xl mx-auto">
+              Every creator faces the same three challenges in the secondary market
+            </p>
+            
+            <div className="flex flex-col md:flex-row justify-center gap-8">
+              <div className="text-center flex-1">
+                <p className="text-2xl mb-3"><span className="font-bold text-red-600 dark:text-red-400">"Lost Revenue"</span></p>
+                <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Your creations generate massive profits when resold. Resellers capture it all. You get $0.
+                </p>
+              </div>
+              <div className="text-center flex-1">
+                <p className="text-2xl mb-3"><span className="font-bold text-red-600 dark:text-red-400">"Trust Issues"</span></p>
+                <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Secondary buyers face authenticity concerns, warranty gaps, and condition uncertainties without your involvement.
+                </p>
+              </div>
+              <div className="text-center flex-1">
+                <p className="text-2xl mb-3"><span className="font-bold text-red-600 dark:text-red-400">"Disconnected Community"</span></p>
+                <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                  You have no connection to secondary market owners, missing opportunities to build lasting relationships.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* --- SOLUTION SECTION --- */}
-        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 px-6 bg-white dark:bg-black">
+        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 px-6 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950">
           <div className="w-full max-w-5xl mx-auto text-center">
             <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">Unlock Royalties from Every Resale</h2>
-            <p className="text-lg md:text-xl text-gray-700 dark:text-slate-100/80 leading-relaxed mb-8 max-w-3xl mx-auto">
-              Faircut gives every product you create a new revenue stream. We attach a digital ownership certificate to each item you sell, creating an immutable link that ensures resellers pay you a royalty on every future resale.
+            <p className="text-lg md:text-xl text-gray-700 dark:text-slate-100/80 leading-relaxed mb-12 max-w-3xl mx-auto">
+              Faircut attaches a digital passport to each item you create. This immutable link ensures resellers automatically pay you a royalty on every future resale—forever.
             </p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 text-gray-900 dark:text-white">
+            
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 text-gray-900 dark:text-white mb-12">
                 <div className="w-60 h-52">
                     <div className="flex flex-col items-center text-center p-6 bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl h-full justify-center">
                         <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/50 text-amber-500 rounded-full flex items-center justify-center mb-3">
@@ -272,7 +280,7 @@ export default function FaircutLandingPage() {
                           </svg>
                         </div>
                         <h3 className="font-bold text-lg">Your Product</h3>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">A  product is sold.</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Item is created and sold</p>
                     </div>
                 </div>
                 <div className="w-16 h-1 bg-gray-200 dark:bg-gray-700 md:w-16 md:h-1 rotate-90 md:rotate-0"></div>
@@ -280,11 +288,11 @@ export default function FaircutLandingPage() {
                      <div className="flex flex-col items-center text-center p-6 bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl h-full justify-center">
                         <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/50 text-amber-500 rounded-full flex items-center justify-center mb-3">
                           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                           </svg>
                         </div>
-                        <h3 className="font-bold text-lg">Revenue Engine</h3>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Enable perpetual royalties from resales.</p>
+                        <h3 className="font-bold text-lg">Digital Passport Attached</h3>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Royalty system enabled forever</p>
                     </div>
                 </div>
                 <div className="w-16 h-1 bg-gray-200 dark:bg-gray-700 md:w-16 md:h-1 rotate-90 md:rotate-0"></div>
@@ -295,20 +303,59 @@ export default function FaircutLandingPage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         </div>
-                        <h3 className="font-bold text-lg">Resale & Royalty</h3>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Resellers pay your royalty on every resale.</p>
+                        <h3 className="font-bold text-lg">Automatic Royalties</h3>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">You earn on every resale</p>
                     </div>
                 </div>
+            </div>
+
+            {/* Before/After Comparison */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              <div className="bg-red-50/50 dark:bg-red-900/10 rounded-2xl p-6 border-2 border-red-300 dark:border-red-700">
+                <h3 className="text-lg font-bold text-red-600 dark:text-red-400 mb-4">Without Faircut</h3>
+                <div className="space-y-3 text-left">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">Your share of resales:</span>
+                    <span className="font-bold text-xl text-gray-900 dark:text-white">$0</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">reseller profit:</span>
+                    <span className="font-bold text-xl text-red-600 dark:text-red-400">100%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">Community connection:</span>
+                    <span className="font-bold text-xl text-gray-900 dark:text-white">None</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-amber-50/50 dark:bg-amber-900/10 rounded-2xl p-6 border-2 border-amber-300 dark:border-amber-700">
+                <h3 className="text-lg font-bold text-amber-600 dark:text-amber-400 mb-4">With Faircut</h3>
+                <div className="space-y-3 text-left">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">Your royalty share:</span>
+                    <span className="font-bold text-xl text-amber-600 dark:text-amber-400">15-90%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">Perpetual revenue:</span>
+                    <span className="font-bold text-xl text-amber-600 dark:text-amber-400">Forever</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">Community connection:</span>
+                    <span className="font-bold text-xl text-amber-600 dark:text-amber-400">Direct</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* --- BENEFITS SECTION --- */}
-        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 bg-white dark:bg-black px-6">
+        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 px-6">
           <div className="w-full max-w-5xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">Strengthening Your Brand</h2>
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">Transform Your Secondary Market</h2>
             <p className="text-lg md:text-xl text-gray-700 dark:text-slate-100/80 leading-relaxed mb-12 max-w-3xl mx-auto">
-              Strengthen your brand and forge a true community.
+              Turn every resale into revenue, trust, and community
             </p>
 
             {/* Benefits Grid */}
@@ -322,29 +369,29 @@ export default function FaircutLandingPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-                  Perpetual Royalties
+                  Perpetual Revenue Stream
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                  Generate 100% margin profit from items you sold years ago. A perpetual revenue stream from your existing creations.
+                  Finally capture your fair share of resale profits. Generate 100% margin revenue from items you sold years ago—forever.
                 </p>
               </div>
 
-              {/* Digital Ownership Tracking */}
+              {/* Trust & Authenticity */}
               <div className="bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl p-8 h-full">
                 <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/50 text-amber-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-                  Digital Ownership Tracking
+                  Trust & Authenticity
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                  Track ownership through digital certificates. When resales happen, the certificate system enables royalty collection through the Faircut platform.
+                  Every item has verified authenticity, complete ownership history, and maintained warranties. Build trust with every buyer.
                 </p>
               </div>
 
-              {/* Direct to Community */}
+              {/* Connected Community */}
               <div className="bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl p-8 h-full">
                 <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/50 text-amber-500 rounded-full flex items-center justify-center mb-6 mx-auto">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -352,10 +399,10 @@ export default function FaircutLandingPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
-                  Direct to Community
+                  Connected Community
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                  Connect directly with your most passionate collectors and fans. Turn anonymous secondary market owners into an engaged community you can market to and build relationships with.
+                  Transform anonymous secondary buyers into an engaged community you can market to and build lasting relationships with.
                 </p>
               </div>
             </div>
@@ -511,7 +558,7 @@ export default function FaircutLandingPage() {
         </section>
 
         {/* --- PARTNERSHIP AGREEMENT SECTION --- */}
-        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 bg-white dark:bg-black px-6">
+        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 px-6">
             <div className="w-full max-w-5xl mx-auto text-center">
                 <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-4 tracking-tighter">Risk-Free Terms</h2>
                 <p className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300 mb-12">We believe in perfect alignment. We only succeed when you do.</p>
@@ -525,7 +572,7 @@ export default function FaircutLandingPage() {
                     <div className="bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl p-8 h-full">
                         <div className="text-4xl font-bold text-amber-500 mb-2">$0</div>
                         <h3 className="text-lg font-semibold mb-2">Monthly Cost</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">Certificate issuance & management included.</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Digital passport issuance & management included.</p>
                     </div>
                     <div className="bg-slate-100/50 dark:bg-slate-800/50 rounded-2xl p-8 h-full">
                         <div className="text-4xl font-bold text-amber-500 mb-2">You Set</div>
@@ -542,7 +589,6 @@ export default function FaircutLandingPage() {
             </div>
         </section>
 
-
         {/* --- CTA SECTION --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center py-20 pb-32 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 px-6">
           <div className="w-full max-w-5xl mx-auto text-center">
@@ -551,7 +597,7 @@ export default function FaircutLandingPage() {
             </h2>
             
             <p className="text-lg md:text-xl text-gray-700 dark:text-slate-100/80 leading-relaxed mb-12 max-w-3xl mx-auto">
-              Stop leaving money on the table. Join the brands turning every resale into revenue.
+              Stop leaving money on the table. Join the creators turning every resale into revenue.
             </p>
 
             <button 
@@ -564,7 +610,7 @@ export default function FaircutLandingPage() {
         </section>
       </div>
 
-      {/* Footer - Absolutely positioned to document */}
+      {/* Footer */}
       <div className="fixed bottom-6 left-0 right-0 text-center z-50">
         <div className="w-full max-w-6xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6 mb-3">
@@ -620,3 +666,4 @@ export default function FaircutLandingPage() {
     </>
   );
 }
+

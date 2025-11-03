@@ -75,8 +75,11 @@ npm run dev
 faircut-demo/
 ├── src/
 │   ├── pages/
-│   │   ├── FaircutLandingPage.jsx   # Main landing page component
-│   │   └── Landing.jsx              # Alternative landing page
+│   │   ├── FaircutLandingPage.jsx   # Main landing page
+│   │   ├── Landing.jsx              # Story/business slides presentation
+│   │   ├── ManuelEmch.jsx           # Manuel Emch napkin strategy
+│   │   ├── StefanKudoke.jsx         # Stefan Kudoke napkin strategy
+│   │   └── PatrikSjogren.jsx        # Patrik Sjögren napkin strategy
 │   ├── components/
 │   │   ├── BusinessSlides.jsx       # Business-focused slides
 │   │   ├── DarkModeToggle.jsx      # Dark mode toggle component
