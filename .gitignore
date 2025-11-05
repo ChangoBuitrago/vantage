@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Private outreach messages
+# Private outreach messages and leads
 outreach-messages.md
+leads.md
