@@ -4,8 +4,8 @@ A modern, interactive landing page showcasing how Faircut enables brands to earn
 
 ## 🔗 Links
 
-- **🌐 Live Demo:** [https://changobuitrago.github.io/faircut-demo/](https://changobuitrago.github.io/faircut-demo/)
-- **📦 Repository:** [https://github.com/ChangoBuitrago/faircut-demo](https://github.com/ChangoBuitrago/faircut-demo)
+- **🌐 Live Demo:** [https://changobuitrago.github.io/faircut/](https://changobuitrago.github.io/faircut/)
+- **📦 Repository:** [https://github.com/ChangoBuitrago/faircut](https://github.com/ChangoBuitrago/faircut)
 
 ## 🎯 What is This?
 
@@ -72,7 +72,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-faircut-demo/
+faircut/
 ├── src/
 │   ├── pages/
 │   │   ├── FaircutLandingPage.jsx   # Main landing page
