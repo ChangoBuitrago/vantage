@@ -1,6 +1,10 @@
 import React from 'react';
 import { Search, Mail, Inbox, Star, Archive, Trash2, ChevronLeft, Tag, MoreVertical } from 'lucide-react';
 
+// Import images
+import mountainBg from '/mountain-bg.jpg';
+import instagramIcon from '/instagram-icon.png';
+
 export default function ResellerStep2({ setCurrentStep }) {
   return (
     <div style={{backgroundColor: '#f6f8fc', fontFamily: "'Google Sans', Roboto, Arial, sans-serif", height: '100vh', width: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0}}>
@@ -134,24 +138,25 @@ export default function ResellerStep2({ setCurrentStep }) {
               </div>
 
               {/* Email Body - Louis Erard Content with Background */}
-              <div style={{width: '100%', minHeight: '100vh', position: 'relative', backgroundColor: '#000000'}}>
+              <div style={{width: '100%', minHeight: '100vh', position: 'relative', backgroundColor: '#0f0f0f'}}>
                 {/* Background Image */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage: 'url(/mountain-bg.png)',
-                  backgroundSize: 'contain',
-                  backgroundPosition: 'center top',
-                  backgroundRepeat: 'no-repeat',
-                  opacity: 1,
-                  zIndex: 0
-                }}></div>
+                <img 
+                  src={mountainBg} 
+                  alt="Mountain Background"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'contain',
+                    objectPosition: 'center top',
+                    zIndex: 0
+                  }}
+                />
                 
                 {/* Content Overlay */}
-                <div style={{position: 'relative', zIndex: 1, background: 'linear-gradient(180deg, rgba(15,15,15,0.20) 0%, rgba(15,15,15,0.35) 50%, rgba(15,15,15,0.60) 100%)', minHeight: '100vh', padding: '0'}}>
+                <div style={{position: 'relative', zIndex: 1, background: 'linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.45) 100%)', minHeight: '100vh', padding: '0'}}>
                   {/* Welcome Header with Logo */}
                   <div style={{textAlign: 'center', paddingTop: '60px', paddingBottom: '40px'}}>
                     <div style={{fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '28px', fontWeight: 300, letterSpacing: '6px', color: 'rgba(255,255,255,0.9)', marginBottom: '12px', textShadow: '0 2px 20px rgba(0,0,0,0.5)'}}>
@@ -238,7 +243,7 @@ export default function ResellerStep2({ setCurrentStep }) {
                       <div style={{width: '100%', textAlign: 'center'}}>
                         <a href="#" style={{display: 'inline-block'}}>
                           <img 
-                            src="/instagram-icon.png" 
+                            src={instagramIcon} 
                             alt="Instagram" 
                             style={{width: '30px', height: '30px', display: 'block', filter: 'drop-shadow(0 2px 10px rgba(0,0,0,0.8))'}}
                             onError={(e) => { e.target.style.display = 'none'; }}
