@@ -303,9 +303,9 @@ export default function DemoReseller() {
 
               {/* Product Page Content */}
               <div className="max-w-[120rem] mx-auto px-6 lg:px-12 py-12">
-                <div className="flex flex-col lg:flex-row gap-12">
+                <div className="flex flex-col lg:flex-row gap-12 justify-center items-start">
                   {/* Product Image */}
-                  <div className="w-full lg:w-[65%] flex justify-center lg:justify-end">
+                  <div className="lg:w-auto flex justify-center lg:justify-end">
                     <div className="w-full max-w-[715px] rounded-3xl overflow-hidden bg-white p-6" style={{backgroundColor: '#fafafa'}}>
                       <img
                         src="https://www.louiserard.com/cdn/shop/files/85358TT01.BTT83-_1.webp?v=1718639401&width=900"
@@ -321,8 +321,8 @@ export default function DemoReseller() {
                   </div>
 
                   {/* Product Details */}
-                  <div className="w-full lg:w-[35%]">
-                    <div className="max-w-md w-full">
+                  <div className="lg:w-auto">
+                    <div className="max-w-md">
                       {/* Breadcrumb */}
                       <div className="mb-6">
                         <p className="text-xs uppercase tracking-[0.15em]" style={{fontFamily: 'Assistant, sans-serif', fontWeight: 300, color: 'rgba(0, 0, 0, 0.6)'}}>Noirmont X</p>
