@@ -4,6 +4,9 @@ import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, E
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
   const [expandedHistory, setExpandedHistory] = useState({});
+  const [expandedRoyalties, setExpandedRoyalties] = useState(false);
+  const [expandedServiceLog, setExpandedServiceLog] = useState(false);
+  const [expandedCommunity, setExpandedCommunity] = useState(false);
 
   const toggleHistory = (index) => {
     setExpandedHistory(prev => ({
@@ -227,112 +230,145 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Dynamic Royalties */}
               <div className="mb-3">
-                <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
-                  <div className="flex items-start gap-3 mb-3">
-                    <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5" />
-                    <div className="flex-1">
-                      <p className="font-semibold text-gray-900 dark:text-white mb-1">Dynamic Resale Royalties</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                <div className="bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
+                  <button
+                    onClick={() => setExpandedRoyalties(!expandedRoyalties)}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
+                  >
+                    <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="font-semibold text-gray-900 dark:text-white">Dynamic Resale Royalties</p>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedRoyalties ? 'rotate-180' : ''}`} />
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                         Time-based royalty percentages automatically enforced on resale profits
                       </p>
-                      <div className="space-y-2">
-                        <div className={`flex items-center justify-between p-2 rounded ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-100 dark:bg-purple-900/40' : 'bg-white dark:bg-slate-800/50'}`}>
-                          <span className="text-sm text-gray-600 dark:text-gray-400">Year 1 (First 12 months)</span>
-                          <span className={`font-mono font-bold ${activeRoyaltyTier === 'Year 1' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>90%</span>
+                    </div>
+                  </button>
+
+                  {expandedRoyalties && (
+                    <div className="px-4 pb-4 border-t border-purple-200 dark:border-purple-700">
+                      <div className="pt-4 space-y-2">
+                        <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 1 (First 12 months)</span>
+                          <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 1' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>90%</span>
                         </div>
-                        <div className={`flex items-center justify-between p-2 rounded ${activeRoyaltyTier === 'Year 2' ? 'bg-purple-100 dark:bg-purple-900/40' : 'bg-white dark:bg-slate-800/50'}`}>
-                          <span className="text-sm text-gray-600 dark:text-gray-400">Year 2 (12-24 months)</span>
-                          <span className={`font-mono font-bold ${activeRoyaltyTier === 'Year 2' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>60%</span>
+                        <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 2' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 2 (12-24 months)</span>
+                          <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 2' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>60%</span>
                         </div>
-                        <div className={`flex items-center justify-between p-2 rounded ${activeRoyaltyTier === 'Year 3+' ? 'bg-purple-100 dark:bg-purple-900/40' : 'bg-white dark:bg-slate-800/50'}`}>
-                          <span className="text-sm text-gray-600 dark:text-gray-400">Year 3+ (After 24 months)</span>
-                          <span className={`font-mono font-bold ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>15%</span>
+                        <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 3+' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 3+ (After 24 months)</span>
+                          <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>15%</span>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
 
               {/* Service Log */}
               <div className="mb-3">
-                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-                  <div className="flex items-start gap-3 mb-3">
-                    <Wrench className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" />
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
-                        <span className="text-sm font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
+                <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-lg overflow-hidden hover:border-green-400 dark:hover:border-green-500 transition-all duration-300">
+                  <button
+                    onClick={() => setExpandedServiceLog(!expandedServiceLog)}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+                  >
+                    <Wrench className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
+                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedServiceLog ? 'rotate-180' : ''}`} />
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                        Complete maintenance and service history verified by authorized service centers. All records are immutably stored on the blockchain.
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Complete maintenance and service history verified by authorized service centers
                       </p>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                    </div>
+                  </button>
+
+                  {expandedServiceLog && (
+                    <div className="px-4 pb-4 border-t border-green-200 dark:border-green-700">
+                      <div className="pt-4 space-y-2">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">Last Service</span>
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Last Service</span>
                           </div>
                           <span className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</span>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">Service Center</span>
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Service Center</span>
                           </div>
                           <span className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard SA</span>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">Next Service Due</span>
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Next Service Due</span>
                           </div>
                           <span className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(nextServiceDueTimestamp)}</span>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
 
               {/* Community Access */}
               <div className="mb-3">
-                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-                  <div className="flex items-start gap-3 mb-3">
-                    <Users className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" />
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
-                        <span className="text-sm font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
+                <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-lg overflow-hidden hover:border-green-400 dark:hover:border-green-500 transition-all duration-300">
+                  <button
+                    onClick={() => setExpandedCommunity(!expandedCommunity)}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+                  >
+                    <Users className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
+                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedCommunity ? 'rotate-180' : ''}`} />
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                        Exclusive access to the Louis Erard owners community, events, and special offers. Connect with fellow collectors and enjoy brand perks.
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Exclusive access to the Louis Erard owners community, events, and special offers
                       </p>
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                    </div>
+                  </button>
+
+                  {expandedCommunity && (
+                    <div className="px-4 pb-4 border-t border-green-200 dark:border-green-700">
+                      <div className="pt-4 space-y-2">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
                           <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">Owner Forums</span>
+                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Owner Forums</span>
                           </div>
                           <span className="text-sm font-semibold text-green-600 dark:text-green-400">Active</span>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">Exclusive Events</span>
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Exclusive Events</span>
                           </div>
                           <span className="text-sm font-semibold text-green-600 dark:text-green-400">Invited</span>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm text-gray-700 dark:text-gray-300">Early Access Sales</span>
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Early Access Sales</span>
                           </div>
                           <span className="text-sm font-semibold text-green-600 dark:text-green-400">Enabled</span>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
