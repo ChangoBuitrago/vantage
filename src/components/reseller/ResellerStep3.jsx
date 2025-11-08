@@ -418,7 +418,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                             entry.type === 'creation' 
                               ? 'ring-2 ring-blue-300 dark:ring-blue-600' 
                               : 'ring-2 ring-purple-300 dark:ring-purple-600'
-                          } ring-offset-2`}></div>
+                          }`}></div>
                         </div>
 
                         {/* Card content on the right */}
