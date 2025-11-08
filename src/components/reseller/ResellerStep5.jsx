@@ -31,7 +31,7 @@ export default function ResellerStep5({ setCurrentStep }) {
           <p className="text-gray-600 dark:text-gray-400 mt-2">Validate smart rules and confirm royalty payment</p>
         </div>
 
-        {/* Transfer Summary Card */}
+        {/* Watch Summary Card */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-lg mb-6">
           {/* Watch Header */}
           <div className="bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-800 dark:via-slate-900 dark:to-black p-6">
@@ -49,74 +49,6 @@ export default function ResellerStep5({ setCurrentStep }) {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white">Louis Erard x Alain Silberstein</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Le Régulateur Blanc Edition #042</p>
               </div>
-            </div>
-          </div>
-          
-          {/* Transfer Details */}
-          <div className="p-6">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <Tag className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              Set Your Sale Price
-            </h3>
-            
-            {/* Sale Price Input */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Resale Price (CHF)
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <DollarSign className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  type="number"
-                  value={salePrice}
-                  onChange={(e) => setSalePrice(e.target.value)}
-                  className={`w-full pl-12 pr-20 py-3 bg-slate-50 dark:bg-slate-800 border-2 rounded-lg text-lg font-bold text-gray-900 dark:text-white focus:ring-2 outline-none transition-all ${
-                    isBelowBase 
-                      ? 'border-amber-400 dark:border-amber-600 focus:border-amber-500 focus:ring-amber-500/20'
-                      : isAboveBase
-                      ? 'border-green-400 dark:border-green-600 focus:border-green-500 focus:ring-green-500/20'
-                      : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
-                  }`}
-                  placeholder="6500"
-                  min="0"
-                  step="100"
-                />
-                <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-                  <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">CHF</span>
-                </div>
-              </div>
-              
-              {/* Validation Messages */}
-              {isPriceValid && (
-                <div className="mt-2">
-                  {isBelowBase && (
-                    <div className="flex items-start gap-2 p-2 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
-                      <Shield className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
-                      <p className="text-xs text-amber-700 dark:text-amber-300">
-                        <span className="font-semibold">Below base price.</span> No royalty applies when selling below CHF {basePurchasePrice.toLocaleString()}.
-                      </p>
-                    </div>
-                  )}
-                  {isAtBase && (
-                    <div className="flex items-start gap-2 p-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                      <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                      <p className="text-xs text-blue-700 dark:text-blue-300">
-                        <span className="font-semibold">At base price.</span> No profit, no royalty applies.
-                      </p>
-                    </div>
-                  )}
-                  {isAboveBase && (
-                    <div className="flex items-start gap-2 p-2 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-                      <Check className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                      <p className="text-xs text-green-700 dark:text-green-300">
-                        <span className="font-semibold">Valid resale price.</span> {royaltyRate * 100}% royalty applies to profit above base price.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -158,7 +90,75 @@ export default function ResellerStep5({ setCurrentStep }) {
           </div>
         </div>
 
-        {/* Creator Royalty Payment */}
+        {/* Set Your Sale Price */}
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <Tag className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+            Set Your Sale Price
+          </h3>
+          
+          {/* Sale Price Input */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Resale Price (CHF)
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <DollarSign className="w-5 h-5 text-gray-400" />
+              </div>
+              <input
+                type="number"
+                value={salePrice}
+                onChange={(e) => setSalePrice(e.target.value)}
+                className={`w-full pl-12 pr-20 py-3 bg-slate-50 dark:bg-slate-800 border-2 rounded-lg text-lg font-bold text-gray-900 dark:text-white focus:ring-2 outline-none transition-all ${
+                  isBelowBase 
+                    ? 'border-amber-400 dark:border-amber-600 focus:border-amber-500 focus:ring-amber-500/20'
+                    : isAboveBase
+                    ? 'border-green-400 dark:border-green-600 focus:border-green-500 focus:ring-green-500/20'
+                    : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
+                }`}
+                placeholder="6500"
+                min="0"
+                step="100"
+              />
+              <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">CHF</span>
+              </div>
+            </div>
+            
+            {/* Validation Messages */}
+            {isPriceValid && (
+              <div className="mt-2">
+                {isBelowBase && (
+                  <div className="flex items-start gap-2 p-2 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+                    <Shield className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+                    <p className="text-xs text-amber-700 dark:text-amber-300">
+                      <span className="font-semibold">Below base price.</span> No royalty applies when selling below CHF {basePurchasePrice.toLocaleString()}.
+                    </p>
+                  </div>
+                )}
+                {isAtBase && (
+                  <div className="flex items-start gap-2 p-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                    <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                    <p className="text-xs text-blue-700 dark:text-blue-300">
+                      <span className="font-semibold">At base price.</span> No profit, no royalty applies.
+                    </p>
+                  </div>
+                )}
+                {isAboveBase && (
+                  <div className="flex items-start gap-2 p-2 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                    <Check className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                    <p className="text-xs text-green-700 dark:text-green-300">
+                      <span className="font-semibold">Valid resale price.</span> {royaltyRate * 100}% royalty applies to profit above base price.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Creator Royalty Calculation */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
             <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400" />
@@ -250,11 +250,16 @@ export default function ResellerStep5({ setCurrentStep }) {
 
         {/* Action Button */}
         <button
-          onClick={() => setCurrentStep(5)}
-          className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+          onClick={() => isPriceValid && setCurrentStep(5)}
+          disabled={!isPriceValid}
+          className={`w-full flex items-center justify-center gap-2 text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 ${
+            isPriceValid
+              ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl cursor-pointer'
+              : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed opacity-60'
+          }`}
         >
           <Send className="w-5 h-5" />
-          Pay Royalty & Complete Transfer
+          {isAboveBase ? 'Pay Royalty & Complete Transfer' : 'Complete Transfer'}
         </button>
       </div>
     </div>

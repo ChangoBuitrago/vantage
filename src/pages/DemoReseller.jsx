@@ -220,9 +220,6 @@ export default function DemoReseller() {
             </button>
             <button className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
               <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-              {currentStep === 4 && (
-                <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-              )}
             </button>
             <div className="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-gray-700">
               <div className="text-right hidden sm:block">
