@@ -150,65 +150,111 @@ export default function ResellerStep5({ setCurrentStep }) {
             )}
           </div>
           
-          {isPriceValid && (
-            <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-4">
-              <div className="space-y-2">
-                <div className="flex items-center gap-3 p-2.5 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center">
-                    <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div className="flex-1 min-w-0 flex items-center justify-between">
-                    <p className="text-xs text-blue-700 dark:text-blue-300 font-semibold">Minimum Resale Price</p>
-                    <p className="text-sm font-bold text-blue-700 dark:text-blue-300">CHF {basePurchasePrice.toLocaleString()}</p>
-                  </div>
+          <div className={`rounded-lg p-4 mb-4 transition-all ${
+            isPriceValid 
+              ? 'bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800'
+              : 'bg-gray-50 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-600 opacity-60'
+          }`}>
+            <div className="space-y-2">
+              <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${
+                isPriceValid 
+                  ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800'
+                  : 'bg-gray-100 dark:bg-gray-700/50 border-gray-300 dark:border-gray-600'
+              }`}>
+                <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
+                  isPriceValid 
+                    ? 'bg-blue-100 dark:bg-blue-900/50'
+                    : 'bg-gray-200 dark:bg-gray-600'
+                }`}>
+                  <Shield className={`w-4 h-4 ${
+                    isPriceValid 
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-gray-500 dark:text-gray-400'
+                  }`} />
                 </div>
-                <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                    <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                  </div>
-                  <div className="flex-1 min-w-0 flex items-center justify-between">
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Your Sale Price</p>
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF {salePriceNum.toLocaleString()}</p>
-                  </div>
+                <div className="flex-1 min-w-0 flex items-center justify-between">
+                  <p className={`text-xs font-semibold ${
+                    isPriceValid 
+                      ? 'text-blue-700 dark:text-blue-300'
+                      : 'text-gray-500 dark:text-gray-400'
+                  }`}>Minimum Resale Price</p>
+                  <p className={`text-sm font-bold ${
+                    isPriceValid 
+                      ? 'text-blue-700 dark:text-blue-300'
+                      : 'text-gray-500 dark:text-gray-400'
+                  }`}>CHF {basePurchasePrice.toLocaleString()}</p>
                 </div>
-                <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                    <Percent className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                  </div>
-                  <div className="flex-1 min-w-0 flex items-center justify-between">
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Royalty Rate (Year 1)</p>
-                    <p className="text-sm font-semibold text-purple-600 dark:text-purple-400">
-                      {Math.round(royaltyRate * 100)}%
-                    </p>
-                  </div>
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                  <Tag className={`w-4 h-4 ${isPriceValid ? 'text-gray-600 dark:text-gray-400' : 'text-gray-400 dark:text-gray-500'}`} />
                 </div>
-                <div className="flex items-center gap-3 p-2.5 bg-purple-100 dark:bg-purple-900/30 rounded-lg border-2 border-purple-400 dark:border-purple-600">
-                  <div className="flex-shrink-0 w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-                    <Tag className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0 flex items-center justify-between">
-                    <p className="text-xs font-semibold text-purple-700 dark:text-purple-300">
-                      Royalty Due to Brand
-                    </p>
-                    <p className="text-base font-bold text-purple-600 dark:text-purple-400">
-                      CHF {Math.round(royaltyAmount).toLocaleString()}
-                    </p>
-                  </div>
+                <div className="flex-1 min-w-0 flex items-center justify-between">
+                  <p className={`text-xs ${isPriceValid ? 'text-gray-500 dark:text-gray-400' : 'text-gray-400 dark:text-gray-500'}`}>Your Sale Price</p>
+                  <p className={`text-sm font-semibold ${isPriceValid ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}>CHF {salePriceNum.toLocaleString()}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                  <Percent className={`w-4 h-4 ${isPriceValid ? 'text-purple-600 dark:text-purple-400' : 'text-gray-400 dark:text-gray-500'}`} />
+                </div>
+                <div className="flex-1 min-w-0 flex items-center justify-between">
+                  <p className={`text-xs ${isPriceValid ? 'text-gray-500 dark:text-gray-400' : 'text-gray-400 dark:text-gray-500'}`}>Royalty Rate (Year 1)</p>
+                  <p className={`text-sm font-semibold ${isPriceValid ? 'text-purple-600 dark:text-purple-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                    {Math.round(royaltyRate * 100)}%
+                  </p>
+                </div>
+              </div>
+              <div className={`flex items-center gap-3 p-2.5 rounded-lg border-2 ${
+                isPriceValid 
+                  ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600'
+                  : 'bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600'
+              }`}>
+                <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
+                  isPriceValid ? 'bg-purple-500' : 'bg-gray-400 dark:bg-gray-500'
+                }`}>
+                  <Tag className="w-4 h-4 text-white" />
+                </div>
+                <div className="flex-1 min-w-0 flex items-center justify-between">
+                  <p className={`text-xs font-semibold ${
+                    isPriceValid 
+                      ? 'text-purple-700 dark:text-purple-300'
+                      : 'text-gray-500 dark:text-gray-400'
+                  }`}>
+                    Royalty Due to Brand
+                  </p>
+                  <p className={`text-base font-bold ${
+                    isPriceValid 
+                      ? 'text-purple-600 dark:text-purple-400'
+                      : 'text-gray-500 dark:text-gray-400'
+                  }`}>
+                    CHF {Math.round(royaltyAmount).toLocaleString()}
+                  </p>
                 </div>
               </div>
             </div>
-          )}
+          </div>
           
-          {isPriceValid && (
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
-              <div className="flex items-start gap-2">
-                <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                <p className="text-xs text-gray-600 dark:text-gray-400">
-                  Royalty is automatically calculated based on smart rules. Payment is required to complete the transfer.
-                </p>
-              </div>
+          <div className={`rounded-lg p-3 ${
+            isPriceValid 
+              ? 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'
+              : 'bg-gray-50 dark:bg-gray-800/50 border border-gray-300 dark:border-gray-600 opacity-60'
+          }`}>
+            <div className="flex items-start gap-2">
+              <Shield className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
+                isPriceValid 
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`} />
+              <p className={`text-xs ${
+                isPriceValid 
+                  ? 'text-gray-600 dark:text-gray-400'
+                  : 'text-gray-500 dark:text-gray-400'
+              }`}>
+                Royalty is automatically calculated based on smart rules. Payment is required to complete the transfer.
+              </p>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Action Button */}
