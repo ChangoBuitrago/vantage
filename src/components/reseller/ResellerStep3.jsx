@@ -46,11 +46,10 @@ export default function ResellerStep3({ setCurrentStep }) {
       date: watchMintTimestamp,
       location: 'Le Noirmont, Switzerland',
       details: {
-        action: 'Watch Created & Minted',
+        action: 'Watch Created & Certified',
         collection: 'Le Régulateur x Alain Silberstein',
         certification: 'Swiss Made Certificate',
-        warranty: '3 Years International Warranty',
-        blockchainTx: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb'
+        warranty: '3 Years International Warranty'
       }
     },
     {
@@ -65,8 +64,7 @@ export default function ResellerStep3({ setCurrentStep }) {
         seller: 'Louis Erard Authorized Dealer',
         dealerLocation: 'Bucherer New York',
         paymentMethod: 'Credit Card',
-        certificateIssued: 'Digital Passport NFT',
-        blockchainTx: '0x8f3e92Bc9a456789def012345678abcd9e876543'
+        certificateIssued: 'Digital Passport'
       }
     }
   ];
@@ -380,7 +378,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ownership History & Traceability</h4>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Complete provenance chain from creation to current ownership, immutably recorded on the blockchain.
+                Complete provenance chain from creation to current ownership, digitally verified and tracked.
               </p>
 
               <div className="space-y-3">
@@ -466,15 +464,6 @@ export default function ResellerStep3({ setCurrentStep }) {
                                   </div>
                                 ))}
                               </div>
-                              
-                              {entry.details.blockchainTx && (
-                                <div className="flex items-center gap-2 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                                  <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
-                                  <p className="text-xs text-blue-700 dark:text-blue-300">
-                                    🔗 <strong>Blockchain Verified:</strong> All transaction details are permanently recorded and publicly verifiable
-                                  </p>
-                                </div>
-                              )}
                             </div>
                           </div>
                         )}
@@ -491,7 +480,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                   <div>
                     <h5 className="font-bold text-gray-900 dark:text-white mb-1">Full Transparency & Provenance</h5>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Every ownership transfer, service record, and modification is permanently recorded on the blockchain, 
+                      Every ownership transfer, service record, and modification is permanently recorded and verified, 
                       ensuring complete transparency and authenticity verification for future owners.
                     </p>
                   </div>
