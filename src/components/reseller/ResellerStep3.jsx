@@ -113,7 +113,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                 </p>
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                    <Shield className="w-4 h-4 text-green-600 dark:text-green-400" />
                     <span className="text-sm font-semibold text-gray-900 dark:text-white">Verified Authentic</span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
