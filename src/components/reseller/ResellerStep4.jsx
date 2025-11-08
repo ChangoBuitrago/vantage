@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ChevronRight, RefreshCw, ArrowRight, Shield, Percent, Users } from 'lucide-react';
+import { Home, RefreshCw, ArrowRight, Shield, Percent, Users } from 'lucide-react';
 
 export default function ResellerStep4({ setCurrentStep }) {
   return (
@@ -9,7 +9,6 @@ export default function ResellerStep4({ setCurrentStep }) {
         <div className="mb-6">
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
             <Home className="w-4 h-4" />
-            <ChevronRight className="w-4 h-4" />
             <span>My Passports</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">My Passports</h1>
