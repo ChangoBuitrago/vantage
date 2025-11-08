@@ -1,7 +1,22 @@
-import React from 'react';
-import { Home, ChevronRight, Shield, Percent, Send, Tag, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, Store, DollarSign } from 'lucide-react';
 
 export default function ResellerStep5({ setCurrentStep }) {
+  const [salePrice, setSalePrice] = useState('6500');
+  const [selectedMarket, setSelectedMarket] = useState('chrono24');
+  
+  const basePurchasePrice = 3000;
+  const royaltyRate = 0.90; // 90% for Year 1
+  const salePriceNum = parseFloat(salePrice) || 0;
+  const royaltyAmount = Math.max(0, (salePriceNum - basePurchasePrice) * royaltyRate);
+  
+  const markets = [
+    { id: 'chrono24', name: 'Chrono24', icon: '🌐' },
+    { id: 'ebay', name: 'eBay', icon: '🛒' },
+    { id: 'private', name: 'Private Sale', icon: '🤝' },
+    { id: 'other', name: 'Other Platform', icon: '📱' }
+  ];
+
   return (
     <div className="px-6 py-8">
       <div className="max-w-5xl mx-auto">
@@ -42,15 +57,58 @@ export default function ResellerStep5({ setCurrentStep }) {
           {/* Transfer Details */}
           <div className="p-6">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <Send className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              Transfer Details
+              <Store className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              Set Your Resale Details
             </h3>
-            <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-              <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Sale Price</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">CHF 6,500</p>
+            
+            {/* Secondary Market Selection */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Secondary Market Platform
+              </label>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                {markets.map((market) => (
+                  <button
+                    key={market.id}
+                    onClick={() => setSelectedMarket(market.id)}
+                    className={`p-3 rounded-lg border-2 transition-all duration-200 ${
+                      selectedMarket === market.id
+                        ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300'
+                        : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:border-purple-300 dark:hover:border-purple-700'
+                    }`}
+                  >
+                    <div className="text-2xl mb-1">{market.icon}</div>
+                    <div className="text-xs font-semibold">{market.name}</div>
+                  </button>
+                ))}
               </div>
+            </div>
+            
+            {/* Sale Price Input */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Your Asking Price (CHF)
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <DollarSign className="w-5 h-5 text-gray-400" />
+                </div>
+                <input
+                  type="number"
+                  value={salePrice}
+                  onChange={(e) => setSalePrice(e.target.value)}
+                  className="w-full pl-12 pr-20 py-3 bg-slate-50 dark:bg-slate-800 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-lg font-bold text-gray-900 dark:text-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all"
+                  placeholder="6500"
+                  min="0"
+                  step="100"
+                />
+                <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                  <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">CHF</span>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                Enter the price you want to list on {markets.find(m => m.id === selectedMarket)?.name}
+              </p>
             </div>
           </div>
         </div>
@@ -99,7 +157,7 @@ export default function ResellerStep5({ setCurrentStep }) {
             Creator Royalty Payment
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Dynamic royalty enforced: 90% of resale value for transfers within the first year
+            Dynamic royalty enforced: {Math.round(royaltyRate * 100)}% of profit above base price for transfers within the first year
           </p>
           
           <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-4">
@@ -110,7 +168,16 @@ export default function ResellerStep5({ setCurrentStep }) {
                 </div>
                 <div className="flex-1 min-w-0 flex items-center justify-between">
                   <p className="text-xs text-gray-500 dark:text-gray-400">Base Resale Price</p>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 3,000</p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF {basePurchasePrice.toLocaleString()}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                  <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                </div>
+                <div className="flex-1 min-w-0 flex items-center justify-between">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">Your Sale Price</p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF {salePriceNum.toLocaleString()}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -119,7 +186,7 @@ export default function ResellerStep5({ setCurrentStep }) {
                 </div>
                 <div className="flex-1 min-w-0 flex items-center justify-between">
                   <p className="text-xs text-gray-500 dark:text-gray-400">Royalty Rate (Year 1)</p>
-                  <p className="text-sm font-semibold text-purple-600 dark:text-purple-400">90%</p>
+                  <p className="text-sm font-semibold text-purple-600 dark:text-purple-400">{Math.round(royaltyRate * 100)}%</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-2.5 bg-purple-100 dark:bg-purple-900/30 rounded-lg border-2 border-purple-400 dark:border-purple-600">
@@ -128,7 +195,7 @@ export default function ResellerStep5({ setCurrentStep }) {
                 </div>
                 <div className="flex-1 min-w-0 flex items-center justify-between">
                   <p className="text-xs text-purple-700 dark:text-purple-300 font-semibold">Royalty Due to Brand</p>
-                  <p className="text-base font-bold text-purple-600 dark:text-purple-400">CHF 3,150</p>
+                  <p className="text-base font-bold text-purple-600 dark:text-purple-400">CHF {Math.round(royaltyAmount).toLocaleString()}</p>
                 </div>
               </div>
             </div>
