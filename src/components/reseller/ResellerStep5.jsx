@@ -239,10 +239,7 @@ export default function ResellerStep5({ setCurrentStep }) {
             <div className="flex items-start gap-2">
               <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
               <p className="text-xs text-gray-600 dark:text-gray-400">
-                {isAboveBase 
-                  ? 'Royalty is automatically calculated based on smart rules. Payment is required to complete the transfer.'
-                  : 'No royalty payment required when sale price is at or below the base resale price.'
-                }
+                Royalty is automatically calculated based on smart rules. Payment is required to complete the transfer.
               </p>
             </div>
           </div>
