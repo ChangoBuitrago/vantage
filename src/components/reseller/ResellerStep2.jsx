@@ -188,7 +188,7 @@ export default function ResellerStep2({ setCurrentStep }) {
 
                     {/* Quote Section */}
                     <div style={{marginBottom: '32px', fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '22px', fontStyle: 'italic', fontWeight: 400, lineHeight: '1.5', textAlign: 'center', color: 'rgb(255,255,255)', textShadow: '0 3px 20px rgba(0,0,0,0.9), 0 1px 6px rgba(0,0,0,0.7)'}}>
-                      "A passion for <span style={{color: 'rgb(120,200,255)', fontWeight: 500}}>limitless creativity</span> in the world of traditional Swiss watchmaking."
+                      "A passion for <span style={{color: 'rgb(33,150,243)', fontWeight: 500}}>limitless creativity</span> in the world of traditional Swiss watchmaking."
                     </div>
 
                     {/* Brand Message */}
