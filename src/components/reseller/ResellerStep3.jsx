@@ -188,15 +188,6 @@ export default function ResellerStep3({ setCurrentStep }) {
                   <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
                 </div>
               </div>
-
-              {/* Purchase Price */}
-              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <span className="text-lg mt-0.5">💰</span>
-                <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Purchase Price</p>
-                  <p className="text-base font-bold text-gray-900 dark:text-white">CHF 3,000</p>
-                </div>
-              </div>
             </div>
 
             {/* Smart Rules */}
