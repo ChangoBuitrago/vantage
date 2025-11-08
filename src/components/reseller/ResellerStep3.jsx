@@ -389,55 +389,47 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Unified Provenance Chain Container */}
               <div className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900/50 dark:to-blue-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
-                <div className="relative">
+                <div className="relative pl-8">
+                  {/* Vertical line connecting all avatars */}
+                  <div className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-blue-400/40 via-purple-400/40 to-blue-400/40 dark:from-blue-500/40 dark:via-purple-500/40 dark:to-blue-500/40"></div>
+                  
                   {ownershipHistory.map((entry, index) => {
                     const isExpanded = expandedHistory[index];
                     const isLast = index === ownershipHistory.length - 1;
                     
                     return (
-                      <div key={index} className="relative">
-                        {/* Minimal gradient line connector */}
-                        {!isLast && (
-                          <div className="absolute left-6 top-16 bottom-[-8px] w-px bg-gradient-to-b from-blue-400/60 via-purple-400/60 to-transparent dark:from-blue-500/60 dark:via-purple-500/60"></div>
-                        )}
-                        
-                        <div className={`relative ${!isLast ? 'mb-6' : ''}`}>
+                      <div key={index} className={`relative flex gap-6 ${!isLast ? 'mb-8' : ''}`}>
+                        {/* Avatar on the left */}
+                        <div className="relative flex-shrink-0 z-10">
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                            entry.type === 'creation' 
+                              ? 'bg-blue-500 shadow-lg shadow-blue-500/50' 
+                              : 'bg-purple-500 shadow-lg shadow-purple-500/50'
+                          }`}>
+                            {entry.type === 'creation' ? (
+                              <Building2 className="w-6 h-6 text-white" />
+                            ) : (
+                              <User className="w-6 h-6 text-white" />
+                            )}
+                          </div>
+                          {/* Outer ring effect */}
+                          <div className={`absolute inset-0 rounded-full ${
+                            entry.type === 'creation' 
+                              ? 'ring-2 ring-blue-300 dark:ring-blue-600' 
+                              : 'ring-2 ring-purple-300 dark:ring-purple-600'
+                          } ring-offset-2`}></div>
+                        </div>
+
+                        {/* Card content on the right */}
+                        <div className="flex-1">
                           <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
-                            {/* Minimal horizontal connector from timeline to card */}
-                            <div className={`absolute left-0 top-6 w-6 h-px bg-gradient-to-r ${
-                              entry.type === 'creation' 
-                                ? 'from-blue-400/60 to-transparent' 
-                                : 'from-purple-400/60 to-transparent'
-                            }`}></div>
-                            
                             {/* Header - Always Visible */}
                             <button
                               onClick={() => toggleHistory(index)}
-                              className="w-full p-4 flex items-start gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                              className="w-full p-4 text-left hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                             >
-                              {/* Icon with ring */}
-                              <div className="relative flex-shrink-0">
-                                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                                  entry.type === 'creation' 
-                                    ? 'bg-blue-500 shadow-lg shadow-blue-500/50' 
-                                    : 'bg-purple-500 shadow-lg shadow-purple-500/50'
-                                }`}>
-                                  {entry.type === 'creation' ? (
-                                    <Building2 className="w-6 h-6 text-white" />
-                                  ) : (
-                                    <User className="w-6 h-6 text-white" />
-                                  )}
-                                </div>
-                                {/* Outer ring effect */}
-                                <div className={`absolute inset-0 rounded-full ${
-                                  entry.type === 'creation' 
-                                    ? 'ring-2 ring-blue-300 dark:ring-blue-600' 
-                                    : 'ring-2 ring-purple-300 dark:ring-purple-600'
-                                } ring-offset-2`}></div>
-                              </div>
-
                               {/* Main Info */}
-                              <div className="flex-1 text-left">
+                              <div className="flex-1">
                                 <div className="flex items-start justify-between gap-2 mb-1">
                                   <div>
                                     <h5 className="font-bold text-gray-900 dark:text-white text-lg">{entry.entity}</h5>
