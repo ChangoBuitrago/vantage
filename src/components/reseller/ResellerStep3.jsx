@@ -81,7 +81,7 @@ export default function ResellerStep3({ setCurrentStep }) {
             <ChevronRight className="w-4 h-4" />
             <span>My Passports</span>
             <ChevronRight className="w-4 h-4" />
-            <span>Details</span>
+            <span>Le Régulateur Blanc</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Digital Passport</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-2">Verified ownership, automated royalties, lifetime benefits</p>
