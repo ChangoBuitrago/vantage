@@ -387,96 +387,109 @@ export default function ResellerStep3({ setCurrentStep }) {
                 Complete provenance chain from creation to current ownership, digitally verified and tracked.
               </p>
 
-              <div className="space-y-3">
-                {ownershipHistory.map((entry, index) => {
-                  const isExpanded = expandedHistory[index];
-                  const isLast = index === ownershipHistory.length - 1;
-                  
-                  return (
-                    <div key={index} className="relative">
-                      {/* Timeline connector */}
-                      {!isLast && (
-                        <div className="absolute left-6 top-14 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 to-purple-400 dark:from-blue-500 dark:to-purple-500"></div>
-                      )}
-                      
-                      <div className="bg-white dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300">
-                        {/* Header - Always Visible */}
-                        <button
-                          onClick={() => toggleHistory(index)}
-                          className="w-full p-4 flex items-start gap-4 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors"
-                        >
-                          {/* Icon */}
-                          <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${
-                            entry.type === 'creation' 
-                              ? 'bg-blue-100 dark:bg-blue-900/30' 
-                              : 'bg-purple-100 dark:bg-purple-900/30'
-                          }`}>
-                            {entry.type === 'creation' ? (
-                              <Building2 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                            ) : (
-                              <User className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+              {/* Unified Provenance Chain Container */}
+              <div className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900/50 dark:to-blue-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+                <div className="relative">
+                  {ownershipHistory.map((entry, index) => {
+                    const isExpanded = expandedHistory[index];
+                    const isLast = index === ownershipHistory.length - 1;
+                    
+                    return (
+                      <div key={index} className="relative">
+                        {/* Timeline connector - more prominent */}
+                        {!isLast && (
+                          <div className="absolute left-6 top-20 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 rounded-full shadow-lg"></div>
+                        )}
+                        
+                        <div className={`relative ${!isLast ? 'mb-4' : ''}`}>
+                          <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                            {/* Header - Always Visible */}
+                            <button
+                              onClick={() => toggleHistory(index)}
+                              className="w-full p-4 flex items-start gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                            >
+                              {/* Icon with ring */}
+                              <div className="relative flex-shrink-0">
+                                <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                                  entry.type === 'creation' 
+                                    ? 'bg-blue-500 shadow-lg shadow-blue-500/50' 
+                                    : 'bg-purple-500 shadow-lg shadow-purple-500/50'
+                                }`}>
+                                  {entry.type === 'creation' ? (
+                                    <Building2 className="w-6 h-6 text-white" />
+                                  ) : (
+                                    <User className="w-6 h-6 text-white" />
+                                  )}
+                                </div>
+                                {/* Outer ring effect */}
+                                <div className={`absolute inset-0 rounded-full ${
+                                  entry.type === 'creation' 
+                                    ? 'ring-2 ring-blue-300 dark:ring-blue-600' 
+                                    : 'ring-2 ring-purple-300 dark:ring-purple-600'
+                                } ring-offset-2`}></div>
+                              </div>
+
+                              {/* Main Info */}
+                              <div className="flex-1 text-left">
+                                <div className="flex items-start justify-between gap-2 mb-1">
+                                  <div>
+                                    <h5 className="font-bold text-gray-900 dark:text-white text-lg">{entry.entity}</h5>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">{entry.entityType}</p>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    {entry.type === 'purchase' && (
+                                      <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-xs font-bold shadow-lg">
+                                        Current Owner
+                                      </span>
+                                    )}
+                                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                                  </div>
+                                </div>
+                                
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                  <div className="flex items-center gap-1">
+                                    <Calendar className="w-4 h-4" />
+                                    <span>{formatDate(entry.date)}</span>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <MapPin className="w-4 h-4" />
+                                    <span>{entry.location}</span>
+                                  </div>
+                                  {entry.price && (
+                                    <div className="flex items-center gap-1">
+                                      <CreditCard className="w-4 h-4" />
+                                      <span className="font-semibold text-green-600 dark:text-green-400">{entry.price}</span>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            </button>
+
+                            {/* Expandable Details */}
+                            {isExpanded && (
+                              <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                                <div className="pt-4 space-y-3">
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {Object.entries(entry.details).map(([key, value]) => (
+                                      <div key={key} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
+                                          {key.replace(/([A-Z])/g, ' $1').trim()}
+                                        </p>
+                                        <p className="text-sm font-semibold text-gray-900 dark:text-white break-all">
+                                          {value}
+                                        </p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
                             )}
                           </div>
-
-                          {/* Main Info */}
-                          <div className="flex-1 text-left">
-                            <div className="flex items-start justify-between gap-2 mb-1">
-                              <div>
-                                <h5 className="font-bold text-gray-900 dark:text-white text-lg">{entry.entity}</h5>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">{entry.entityType}</p>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                {entry.type === 'purchase' && (
-                                  <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-xs font-bold">
-                                    Current Owner
-                                  </span>
-                                )}
-                                <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-                              </div>
-                            </div>
-                            
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 dark:text-gray-400 mt-2">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="w-4 h-4" />
-                                <span>{formatDate(entry.date)}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <MapPin className="w-4 h-4" />
-                                <span>{entry.location}</span>
-                              </div>
-                              {entry.price && (
-                                <div className="flex items-center gap-1">
-                                  <CreditCard className="w-4 h-4" />
-                                  <span className="font-semibold text-green-600 dark:text-green-400">{entry.price}</span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </button>
-
-                        {/* Expandable Details */}
-                        {isExpanded && (
-                          <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-900/50">
-                            <div className="pt-4 space-y-3">
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {Object.entries(entry.details).map(([key, value]) => (
-                                  <div key={key} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
-                                      {key.replace(/([A-Z])/g, ' $1').trim()}
-                                    </p>
-                                    <p className="text-sm font-semibold text-gray-900 dark:text-white break-all">
-                                      {value}
-                                    </p>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
 
               {/* Traceability Info */}
