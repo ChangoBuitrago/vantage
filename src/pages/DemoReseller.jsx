@@ -11,6 +11,7 @@ import ResellerStep3 from '../components/reseller/ResellerStep3';
 import ResellerStep4 from '../components/reseller/ResellerStep4';
 import ResellerStep5 from '../components/reseller/ResellerStep5';
 import ResellerStep6 from '../components/reseller/ResellerStep6';
+import ResellerStep7 from '../components/reseller/ResellerStep7';
 
 export default function DemoReseller() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function DemoReseller() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
 
-  const totalSteps = 7; // Step 0: Louis Erard product, Step 1: Order confirmation, Step 2: Email, Step 3-6: Faircut platform
+  const totalSteps = 8; // Step 0: Louis Erard product, Step 1: Order confirmation, Step 2: Email, Step 3-7: Faircut platform
 
   // Reset on mount
   useEffect(() => {
@@ -33,8 +34,8 @@ export default function DemoReseller() {
 
   const navItems = [
     { icon: Home, label: 'Dashboard', active: false },
-    { icon: Package, label: 'My Passports', active: currentStep === 3 },
-    { icon: RefreshCw, label: 'Transfers', active: currentStep >= 4 && currentStep <= 5 },
+    { icon: Package, label: 'My Passports', active: currentStep === 3 || currentStep === 4 },
+    { icon: RefreshCw, label: 'Transfers', active: currentStep >= 5 && currentStep <= 6 },
     { icon: DollarSign, label: 'Earnings', active: false },
     { icon: Settings, label: 'Settings', active: false },
   ];
@@ -49,7 +50,7 @@ export default function DemoReseller() {
     setTimeout(() => {
       setShowSuccessModal(false);
       setShowSuccessToast(true);
-      setCurrentStep(6);
+      setCurrentStep(7);
       setTimeout(() => setShowSuccessToast(false), 3000);
     }, 2000);
   };
@@ -60,10 +61,11 @@ export default function DemoReseller() {
     { step: 0, emoji: '🛒', label: 'Browse Product' },
     { step: 1, emoji: '✅', label: 'Order Placed' },
     { step: 2, emoji: '📧', label: 'Email Received' },
-    { step: 3, emoji: '💰', label: 'Watch Sold' },
-    { step: 4, emoji: '📋', label: 'Review Rules' },
-    { step: 5, emoji: '💳', label: 'Pay Royalty' },
-    { step: 6, emoji: '🎉', label: 'Complete' },
+    { step: 3, emoji: '🎫', label: 'View Passport' },
+    { step: 4, emoji: '💰', label: 'Watch Sold' },
+    { step: 5, emoji: '📋', label: 'Review Rules' },
+    { step: 6, emoji: '💳', label: 'Pay Royalty' },
+    { step: 7, emoji: '🎉', label: 'Complete' },
   ];
 
   return (
@@ -228,7 +230,7 @@ export default function DemoReseller() {
             </button>
             <button className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
               <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-              {currentStep === 3 && (
+              {currentStep === 4 && (
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
               )}
             </button>
@@ -284,17 +286,20 @@ export default function DemoReseller() {
           {/* Step 2: Email - Digital Passport Received */}
           {currentStep === 2 && <ResellerStep2 setCurrentStep={setCurrentStep} />}
 
-          {/* Step 3: Watch Sold - Transfer Notification (INSIDE FAIRCUT) */}
+          {/* Step 3: Digital Passport View (INSIDE FAIRCUT) */}
           {currentStep === 3 && <ResellerStep3 setCurrentStep={setCurrentStep} />}
 
-          {/* Step 4: Review Transfer & Creator Rules */}
+          {/* Step 4: Watch Sold - Transfer Notification */}
           {currentStep === 4 && <ResellerStep4 setCurrentStep={setCurrentStep} />}
 
-          {/* Step 5: Pay Royalty & Complete Transfer */}
-          {currentStep === 5 && <ResellerStep5 handlePayRoyalty={handlePayRoyalty} />}
+          {/* Step 5: Review Transfer & Creator Rules */}
+          {currentStep === 5 && <ResellerStep5 setCurrentStep={setCurrentStep} />}
 
-          {/* Step 6: Demo Complete */}
-          {currentStep === 6 && <ResellerStep6 navigate={navigate} />}
+          {/* Step 6: Pay Royalty & Complete Transfer */}
+          {currentStep === 6 && <ResellerStep6 handlePayRoyalty={handlePayRoyalty} />}
+
+          {/* Step 7: Demo Complete */}
+          {currentStep === 7 && <ResellerStep7 navigate={navigate} />}
 
         </main>
       </div>
