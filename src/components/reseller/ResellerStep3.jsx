@@ -125,7 +125,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <button
-                    onClick={() => setCurrentStep(5)}
+                    onClick={() => setCurrentStep(4)}
                     className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
                   >
                     <Send className="w-5 h-5" />
