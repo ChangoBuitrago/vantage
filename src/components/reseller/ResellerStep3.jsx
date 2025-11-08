@@ -117,10 +117,6 @@ export default function ResellerStep3({ setCurrentStep }) {
                     <span className="text-sm font-semibold text-gray-900 dark:text-white">Verified Authentic</span>
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <Award className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white">Dynamic Royalty</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Package className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                     <span className="text-sm font-semibold text-gray-900 dark:text-white">1st Owner</span>
                   </div>
