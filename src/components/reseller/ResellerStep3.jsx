@@ -36,168 +36,230 @@ export default function ResellerStep3({ setCurrentStep }) {
         </div>
 
         {/* Digital Passport Card */}
-        <div className="bg-gradient-to-br from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 rounded-xl shadow-lg border-2 border-purple-200 dark:border-purple-800 overflow-hidden mb-6">
-          {/* Header with Brand and Badge */}
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 px-6 py-4 border-b border-purple-200 dark:border-purple-800">
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="text-sm uppercase tracking-widest text-purple-700 dark:text-purple-400 font-bold">Louis Erard</span>
-                <h3 className="text-lg font-bold tracking-tight text-gray-900 dark:text-white mt-0.5">Le Régulateur x Alain Silberstein</h3>
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-lg mb-6">
+          {/* Hero Section with Watch Image */}
+          <div className="relative bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-800 dark:via-slate-900 dark:to-black p-12">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              {/* Watch Image */}
+              <div className="w-64 h-64 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl flex items-center justify-center flex-shrink-0 border-4 border-white dark:border-slate-700 overflow-hidden p-4">
+                <img
+                  src="https://www.louiserard.com/cdn/shop/files/85358TT01.BTT83-_1.webp?v=1718639401&width=900"
+                  alt="Le Régulateur Blanc Louis Erard x Alain Silberstein"
+                  className="w-full h-full object-contain"
+                  onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }}
+                />
+                <span className="text-8xl" style={{display: 'none'}}>⌚</span>
               </div>
-              <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-4 py-2 rounded-full text-sm font-semibold border border-green-300 dark:border-green-700">
-                <Check className="w-4 h-4" />
-                Verified
+              
+              {/* Watch Info */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-semibold mb-4">
+                  <Check className="w-4 h-4" />
+                  Authenticated
+                </div>
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
+                  Louis Erard x Alain Silberstein
+                </h2>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
+                  Le Régulateur Blanc Edition
+                </p>
+                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white">Verified Authentic</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <Award className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white">Dynamic Royalty</span>
+                  </div>
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <Package className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white">1st Owner</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          
-          {/* Main Content Flex Container */}
-          <div className="flex flex-col lg:flex-row gap-6 p-6 items-start">
-            {/* Left Column: Core Info + Rules */}
-            <div className="flex-1 space-y-4">
-              
-              {/* Watch Details & Image */}
-              <div className="flex gap-6 items-start">
-                {/* Details Block */}
-                <div className="space-y-3 text-sm flex-1">
-                  <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-purple-600 dark:text-purple-500 flex-shrink-0"/>
-                    <span className="text-gray-500 dark:text-gray-400">Owner:</span>
-                    <span className="font-semibold text-gray-900 dark:text-white">Maria Smith</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-purple-600 dark:text-purple-500 flex-shrink-0"/>
-                    <span className="text-gray-500 dark:text-gray-400">Ref:</span>
-                    <span className="font-mono font-semibold text-gray-900 dark:text-white">85358TT01.BTT83</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Edit3 className="w-4 h-4 text-purple-600 dark:text-purple-500 flex-shrink-0"/>
-                    <span className="text-gray-500 dark:text-gray-400">Edition:</span>
-                    <span className="font-semibold text-gray-900 dark:text-white">#042 / 178</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Tag className="w-4 h-4 text-purple-600 dark:text-purple-500 flex-shrink-0"/>
-                    <span className="text-gray-500 dark:text-gray-400">Serial:</span>
-                    <span className="font-mono font-semibold text-gray-900 dark:text-white">LE-AS-2024-042</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-purple-600 dark:text-purple-500 flex-shrink-0"/>
-                    <span className="text-gray-500 dark:text-gray-400">Issued:</span>
-                    <span className="font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</span>
-                  </div>
-                </div>
-                {/* Watch Image */}
-                <div className="w-32 h-auto flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-900 p-3 border-2 border-purple-200 dark:border-purple-800 shadow-md">
-                  <img
-                    src="https://www.louiserard.com/cdn/shop/files/85358TT01.BTT83-_1.webp?v=1718639401&width=900"
-                    alt="Watch"
-                    className="max-w-full h-auto object-contain"
-                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/96x120/e2e8f0/cbd5e1?text=Watch'; }}
-                  />
+
+          {/* Passport Details */}
+          <div className="p-8">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+              <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              Passport Details
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              {/* Owner */}
+              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Users className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Current Owner</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">Maria Smith</p>
                 </div>
               </div>
 
-              {/* Smart Rules Display */}
-              <div className="pt-3 mt-3 border-t-2 border-gray-200 dark:border-gray-700 space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-0.5 h-4 bg-purple-500 dark:bg-purple-600 rounded-full"></div>
-                  <p className="text-xs text-gray-900 dark:text-white uppercase tracking-wider font-bold">Smart Rules</p>
+              {/* Reference */}
+              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <FileText className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Reference</p>
+                  <p className="text-lg font-mono font-bold text-gray-900 dark:text-white">85358TT01.BTT83</p>
                 </div>
-                
-                {/* Base Resale Price */}
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center gap-2">
-                    <Baseline className="w-4 h-4 text-purple-600 dark:text-purple-500 flex-shrink-0"/>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Base Resale Price</span>
-                  </div>
-                  <span className="font-mono text-sm tabular-nums font-bold text-gray-900 dark:text-white">CHF {formatNumber(3000)}</span>
+              </div>
+
+              {/* Edition Number */}
+              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Edit3 className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Edition Number</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">#042 / 178</p>
                 </div>
-                
-                {/* Transfer Lock Rule Display */}
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center gap-2">
-                    <Clock className={`w-4 h-4 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-500' : 'text-purple-600 dark:text-purple-500'}`}/>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Transfer Lock</span>
+              </div>
+
+              {/* Serial Number */}
+              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Tag className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Serial Number</p>
+                  <p className="text-lg font-mono font-bold text-gray-900 dark:text-white">LE-AS-2024-042</p>
+                </div>
+              </div>
+
+              {/* Issue Date */}
+              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Calendar className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Issue Date</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
+                </div>
+              </div>
+
+              {/* Purchase Price */}
+              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-xl mt-0.5">💰</span>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Purchase Price</p>
+                  <p className="text-lg font-bold text-gray-900 dark:text-white">CHF 3,000</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Authenticity Verification */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-6 mb-6">
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Authenticity Verification</h4>
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                <div className="flex items-start gap-3 mb-3">
+                  <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Blockchain Certificate</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                      This digital passport is immutably recorded on the blockchain, ensuring permanent proof of authenticity and ownership history.
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <code className="text-xs bg-white dark:bg-slate-900 px-2 py-1 rounded font-mono text-gray-700 dark:text-gray-300">
+                        0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
+                      </code>
+                      <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
+                        <ExternalLink className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
-                  <span className={`text-sm font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'}`}>
-                    {isTransferLockActive ? 'Active' : formatDate(transferLockEndDateTimestamp)}
+                </div>
+              </div>
+            </div>
+
+            {/* Smart Rules */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Smart Rules</h4>
+              
+              {/* Base Resale Price */}
+              <div className="mb-3">
+                <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center gap-3">
+                    <Baseline className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Minimum price for royalty calculation</p>
+                    </div>
+                  </div>
+                  <span className="font-mono text-lg font-bold text-gray-900 dark:text-white">CHF {formatNumber(3000)}</span>
+                </div>
+              </div>
+
+              {/* Transfer Lock */}
+              <div className="mb-3">
+                <div className={`flex items-center justify-between p-4 rounded-lg border ${isTransferLockActive ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800' : 'bg-slate-50 dark:bg-slate-800/50 border-gray-200 dark:border-gray-700'}`}>
+                  <div className="flex items-center gap-3">
+                    <Clock className={`w-5 h-5 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-purple-600 dark:text-purple-400'}`} />
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {isTransferLockActive ? `Active until ${formatDate(transferLockEndDateTimestamp)}` : 'No longer active'}
+                      </p>
+                    </div>
+                  </div>
+                  <span className={`text-lg font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'}`}>
+                    {isTransferLockActive ? 'Active' : 'Inactive'}
                   </span>
                 </div>
-                
-                {/* Royalty Rules Display */}
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2">
-                      <Percent className={`w-4 h-4 flex-shrink-0 ${activeRoyaltyTier === 'Year 1' ? 'text-purple-600 dark:text-purple-500' : 'text-gray-500 dark:text-gray-400'}`}/>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Year 1 Royalty</span>
+              </div>
+
+              {/* Dynamic Royalties */}
+              <div className="mb-3">
+                <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+                  <div className="flex items-start gap-3 mb-3">
+                    <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5" />
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900 dark:text-white mb-1">Dynamic Resale Royalties</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        Time-based royalty percentages automatically enforced on resale profits
+                      </p>
+                      <div className="space-y-2">
+                        <div className={`flex items-center justify-between p-2 rounded ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-100 dark:bg-purple-900/40' : 'bg-white dark:bg-slate-800/50'}`}>
+                          <span className="text-sm text-gray-600 dark:text-gray-400">Year 1 (First 12 months)</span>
+                          <span className={`font-mono font-bold ${activeRoyaltyTier === 'Year 1' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>90%</span>
+                        </div>
+                        <div className={`flex items-center justify-between p-2 rounded ${activeRoyaltyTier === 'Year 2' ? 'bg-purple-100 dark:bg-purple-900/40' : 'bg-white dark:bg-slate-800/50'}`}>
+                          <span className="text-sm text-gray-600 dark:text-gray-400">Year 2 (12-24 months)</span>
+                          <span className={`font-mono font-bold ${activeRoyaltyTier === 'Year 2' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>60%</span>
+                        </div>
+                        <div className={`flex items-center justify-between p-2 rounded ${activeRoyaltyTier === 'Year 3+' ? 'bg-purple-100 dark:bg-purple-900/40' : 'bg-white dark:bg-slate-800/50'}`}>
+                          <span className="text-sm text-gray-600 dark:text-gray-400">Year 3+ (After 24 months)</span>
+                          <span className={`font-mono font-bold ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-900 dark:text-white'}`}>15%</span>
+                        </div>
+                      </div>
                     </div>
-                    <span className={`font-mono text-sm font-bold ${activeRoyaltyTier === 'Year 1' ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-600'}`}>90%</span>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2">
-                      <Percent className={`w-4 h-4 flex-shrink-0 ${activeRoyaltyTier === 'Year 2' ? 'text-purple-600 dark:text-purple-500' : 'text-gray-500 dark:text-gray-400'}`}/>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Year 2 Royalty</span>
-                    </div>
-                    <span className={`font-mono text-sm font-bold ${activeRoyaltyTier === 'Year 2' ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-600'}`}>60%</span>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <div className="flex items-center gap-2">
-                      <Percent className={`w-4 h-4 flex-shrink-0 ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-600 dark:text-purple-500' : 'text-gray-500 dark:text-gray-400'}`}/>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Year 3+ Royalty</span>
-                    </div>
-                    <span className={`font-mono text-sm font-bold ${activeRoyaltyTier === 'Year 3+' ? 'text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-600'}`}>15%</span>
-                  </div>
-                </div>
-                
-                {/* Service Log Status */}
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center gap-2">
-                    <Wrench className={`w-4 h-4 flex-shrink-0 ${serviceLogStatus === "Verified" ? 'text-green-600 dark:text-green-500' : 'text-purple-600 dark:text-purple-500'}`}/>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Service Log</span>
-                  </div>
-                  <span className={`text-sm font-bold ${serviceLogStatus === "Verified" ? 'text-green-600 dark:text-green-400' : 'text-gray-900 dark:text-white'}`}>{serviceLogStatus}</span>
-                </div>
-                
-                {/* Community Access Status */}
-                <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center gap-2">
-                    <Users className={`w-4 h-4 flex-shrink-0 ${communityAccessStatus === "Enabled" ? 'text-green-600 dark:text-green-500' : 'text-purple-600 dark:text-purple-500'}`}/>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Community Access</span>
-                  </div>
-                  <span className={`text-sm font-bold ${communityAccessStatus === "Enabled" ? 'text-green-600 dark:text-green-400' : 'text-gray-900 dark:text-white'}`}>{communityAccessStatus}</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Smart Rules & Benefits Tiles */}
-        <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-800">
-          <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest font-medium text-center">Smart Rules & Benefits</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            {/* Anti-Flipping Rules */}
-            <div className="p-4 bg-gray-100 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col items-center">
-              <Clock className="w-6 h-6 mx-auto mb-2 text-purple-600 dark:text-purple-500"/>
-              <p className="text-sm font-medium mb-2">Anti-Flipping Rules</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 flex-grow">Implement transfer locks (e.g., first 6 months) to discourage immediate speculation.</p>
-            </div>
-            {/* Dynamic Royalties */}
-            <div className="p-4 bg-gray-100 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col items-center">
-              <Percent className="w-6 h-6 mx-auto mb-2 text-purple-600 dark:text-purple-500"/>
-              <p className="text-sm font-medium mb-2">Dynamic Royalties</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 flex-grow">Automated time-based royalties on every resale, ensuring perpetual revenue stream for the brand.</p>
-            </div>
-            {/* Service History */}
-            <div className="p-4 bg-gray-100 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col items-center">
-              <Wrench className="w-6 h-6 mx-auto mb-2 text-purple-600 dark:text-purple-500"/>
-              <p className="text-sm font-medium mb-2">Verified Service Log</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 flex-grow">Build trust & value: only official centers can update the immutable service history.</p>
-            </div>
-            {/* Owner Perks & Community */}
-            <div className="p-4 bg-gray-100 dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700 h-full flex flex-col items-center">
-              <Users className="w-6 h-6 mx-auto mb-2 text-purple-600 dark:text-purple-500"/>
-              <p className="text-sm font-medium mb-2">Connected Community</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 flex-grow">Connect owners, offer perks, discounts & early access throughout ownership.</p>
+              {/* Service Log */}
+              <div className="mb-3">
+                <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                  <div className="flex items-center gap-3">
+                    <Wrench className="w-5 h-5 text-green-600 dark:text-green-400" />
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Immutable service history verification</p>
+                    </div>
+                  </div>
+                  <span className="text-lg font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
+                </div>
+              </div>
+
+              {/* Community Access */}
+              <div className="mb-3">
+                <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                  <div className="flex items-center gap-3">
+                    <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
+                    <div>
+                      <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Exclusive owner perks and benefits</p>
+                    </div>
+                  </div>
+                  <span className="text-lg font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
