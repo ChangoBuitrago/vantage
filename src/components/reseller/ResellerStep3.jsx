@@ -389,10 +389,7 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Unified Provenance Chain Container */}
               <div className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900/50 dark:to-blue-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
-                <div className="relative pl-8">
-                  {/* Vertical line connecting all avatars */}
-                  <div className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-blue-400/40 via-purple-400/40 to-blue-400/40 dark:from-blue-500/40 dark:via-purple-500/40 dark:to-blue-500/40"></div>
-                  
+                <div className="relative">
                   {ownershipHistory.map((entry, index) => {
                     const isExpanded = expandedHistory[index];
                     const isLast = index === ownershipHistory.length - 1;
@@ -400,7 +397,11 @@ export default function ResellerStep3({ setCurrentStep }) {
                     return (
                       <div key={index} className={`relative flex gap-6 ${!isLast ? 'mb-8' : ''}`}>
                         {/* Avatar on the left */}
-                        <div className="relative flex-shrink-0 z-10">
+                        <div className="relative flex-shrink-0">
+                          {/* Vertical line connecting avatars */}
+                          {!isLast && (
+                            <div className="absolute left-1/2 top-12 bottom-[-32px] w-px bg-gradient-to-b from-blue-400/60 via-purple-400/60 to-blue-400/60 dark:from-blue-500/60 dark:via-purple-500/60 dark:to-blue-500/60 -translate-x-1/2"></div>
+                          )}
                           <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                             entry.type === 'creation' 
                               ? 'bg-blue-500 shadow-lg shadow-blue-500/50' 
