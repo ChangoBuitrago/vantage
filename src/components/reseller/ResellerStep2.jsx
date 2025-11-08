@@ -129,7 +129,6 @@ export default function ResellerStep2({ setCurrentStep }) {
                       <div style={{display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px'}}>
                         <span style={{fontSize: '14px', fontWeight: 500, color: '#202124'}}>Louis Erard</span>
                         <span style={{fontSize: '14px', color: '#5f6368'}}>&lt;info@louiserard.com&gt;</span>
-                        <a href="#" style={{fontSize: '13px', color: '#1a73e8', textDecoration: 'none', marginLeft: '8px'}}>Unsubscribe</a>
                       </div>
                       <div style={{fontSize: '12px', color: '#5f6368'}}>to me</div>
                     </div>
