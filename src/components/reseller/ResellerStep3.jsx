@@ -128,64 +128,64 @@ export default function ResellerStep3({ setCurrentStep }) {
           </div>
 
           {/* Passport Details */}
-          <div className="p-8">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+          <div className="p-6">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               Passport Details
             </h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
               {/* Owner */}
-              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <Users className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Users className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Current Owner</p>
-                  <p className="text-lg font-bold text-gray-900 dark:text-white">Maria Smith</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Current Owner</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white">Maria Smith</p>
                 </div>
               </div>
 
               {/* Reference */}
-              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <FileText className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <FileText className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Reference</p>
-                  <p className="text-lg font-mono font-bold text-gray-900 dark:text-white">85358TT01.BTT83</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Reference</p>
+                  <p className="text-base font-mono font-bold text-gray-900 dark:text-white">85358TT01.BTT83</p>
                 </div>
               </div>
 
               {/* Edition Number */}
-              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <Edit3 className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Edit3 className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Edition Number</p>
-                  <p className="text-lg font-bold text-gray-900 dark:text-white">#042 / 178</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Edition Number</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white">#042 / 178</p>
                 </div>
               </div>
 
               {/* Serial Number */}
-              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <Tag className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Serial Number</p>
-                  <p className="text-lg font-mono font-bold text-gray-900 dark:text-white">LE-AS-2024-042</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Serial Number</p>
+                  <p className="text-base font-mono font-bold text-gray-900 dark:text-white">LE-AS-2024-042</p>
                 </div>
               </div>
 
               {/* Issue Date */}
-              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <Calendar className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Issue Date</p>
-                  <p className="text-lg font-bold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Issue Date</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
                 </div>
               </div>
 
               {/* Purchase Price */}
-              <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <span className="text-xl mt-0.5">💰</span>
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-lg mt-0.5">💰</span>
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Purchase Price</p>
-                  <p className="text-lg font-bold text-gray-900 dark:text-white">CHF 3,000</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Purchase Price</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white">CHF 3,000</p>
                 </div>
               </div>
             </div>
