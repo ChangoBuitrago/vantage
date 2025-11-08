@@ -414,7 +414,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                             )}
                           </div>
                           {/* Outer ring effect */}
-                          <div className={`absolute inset-0 rounded-full ${
+                          <div className={`absolute top-0 left-0 w-12 h-12 rounded-full ${
                             entry.type === 'creation' 
                               ? 'ring-2 ring-blue-300 dark:ring-blue-600' 
                               : 'ring-2 ring-purple-300 dark:ring-purple-600'
