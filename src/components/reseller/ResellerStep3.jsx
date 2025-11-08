@@ -433,36 +433,27 @@ export default function ResellerStep3({ setCurrentStep }) {
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <MessageSquare className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <div>
-                              <p className="text-xs text-gray-500 dark:text-gray-400">Owner Forums</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">Active</p>
-                            </div>
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Owner Forums</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Active</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Ticket className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <div>
-                              <p className="text-xs text-gray-500 dark:text-gray-400">Exclusive Events</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">Invited</p>
-                            </div>
-                            <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded">2 upcoming</span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Exclusive Events</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Invited</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <ShoppingBag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <div>
-                              <p className="text-xs text-gray-500 dark:text-gray-400">Early Access Sales</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">Enabled</p>
-                            </div>
-                            <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded">Priority</span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Early Access Sales</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Enabled</p>
                           </div>
                         </div>
                       </div>
