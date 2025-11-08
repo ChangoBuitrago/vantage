@@ -375,7 +375,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <CheckCircle className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Last Service</p>
                             <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
                           </div>
@@ -384,7 +384,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Building className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Service Center</p>
                             <p className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard SA</p>
                           </div>
@@ -393,7 +393,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Clock className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Next Service Due</p>
                             <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(nextServiceDueTimestamp)}</p>
                           </div>
@@ -433,27 +433,27 @@ export default function ResellerStep3({ setCurrentStep }) {
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <MessageSquare className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Owner Forums</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Active</p>
+                            <p className="text-sm font-semibold text-green-600 dark:text-green-400">Active</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Ticket className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Exclusive Events</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Invited</p>
+                            <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">Invited</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <ShoppingBag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Early Access Sales</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Enabled</p>
+                            <p className="text-sm font-semibold text-purple-600 dark:text-purple-400">Enabled</p>
                           </div>
                         </div>
                       </div>
