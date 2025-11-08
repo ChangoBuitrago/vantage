@@ -144,6 +144,15 @@ export default function ResellerStep3({ setCurrentStep }) {
                 </div>
               </div>
 
+              {/* Location */}
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <MapPin className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Location</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white">New York, USA</p>
+                </div>
+              </div>
+
               {/* Reference */}
               <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <FileText className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
