@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, Building2, User, MapPin, CreditCard } from 'lucide-react';
+import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, Building2, User, MapPin, CreditCard, Settings } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
@@ -192,7 +192,10 @@ export default function ResellerStep3({ setCurrentStep }) {
 
             {/* Smart Rules */}
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
-              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Smart Rules</h4>
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <Settings className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                Smart Rules
+              </h4>
               
               {/* Base Resale Price */}
               <div className="mb-3">
@@ -236,7 +239,10 @@ export default function ResellerStep3({ setCurrentStep }) {
                     <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
                       <div className="flex items-center justify-between gap-2">
-                        <p className="font-semibold text-gray-900 dark:text-white">Dynamic Resale Royalties</p>
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold text-gray-900 dark:text-white">Dynamic Resale Royalties</p>
+                          <span className="text-sm font-bold text-purple-600 dark:text-purple-400">90%</span>
+                        </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedRoyalties ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -371,11 +377,11 @@ export default function ResellerStep3({ setCurrentStep }) {
               </div>
             </div>
 
-            {/* Ownership History & Traceability */}
+            {/* Ownership History */}
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6 mb-6">
               <div className="flex items-center gap-3 mb-4">
                 <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ownership History & Traceability</h4>
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ownership History</h4>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                 Complete provenance chain from creation to current ownership, digitally verified and tracked.
