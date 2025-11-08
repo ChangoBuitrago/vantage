@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, Building2, User, MapPin, CreditCard, Settings } from 'lucide-react';
+import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
@@ -398,7 +398,13 @@ export default function ResellerStep3({ setCurrentStep }) {
                       <div key={index} className="relative">
                         {/* Timeline connector - more prominent */}
                         {!isLast && (
-                          <div className="absolute left-6 top-20 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 rounded-full shadow-lg"></div>
+                          <>
+                            <div className="absolute left-6 top-20 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 rounded-full shadow-lg"></div>
+                            {/* Flow arrow between entries */}
+                            <div className="absolute left-3.5 bottom-[-12px] z-10 flex items-center justify-center w-7 h-7 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full shadow-lg animate-pulse">
+                              <ArrowDown className="w-4 h-4 text-white" />
+                            </div>
+                          </>
                         )}
                         
                         <div className={`relative ${!isLast ? 'mb-4' : ''}`}>
@@ -427,6 +433,12 @@ export default function ResellerStep3({ setCurrentStep }) {
                                     ? 'ring-2 ring-blue-300 dark:ring-blue-600' 
                                     : 'ring-2 ring-purple-300 dark:ring-purple-600'
                                 } ring-offset-2`}></div>
+                                {/* Connection node to timeline */}
+                                <div className={`absolute -left-3 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full ${
+                                  entry.type === 'creation' 
+                                    ? 'bg-blue-500 ring-2 ring-blue-300 dark:ring-blue-600' 
+                                    : 'bg-purple-500 ring-2 ring-purple-300 dark:ring-purple-600'
+                                } ring-offset-1 shadow-md`}></div>
                               </div>
 
                               {/* Main Info */}
