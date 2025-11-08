@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings } from 'lucide-react';
+import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings, CheckCircle, Building, MessageSquare, Ticket, ShoppingBag } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
@@ -370,27 +370,33 @@ export default function ResellerStep3({ setCurrentStep }) {
 
                   {expandedServiceLog && (
                     <div className="px-4 pb-4 border-t border-green-200 dark:border-green-700">
-                      <div className="pt-4 space-y-2">
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Last Service</span>
+                      <div className="pt-4 space-y-3">
+                        <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg border border-green-200 dark:border-green-700">
+                          <div className="flex-shrink-0 w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                            <CheckCircle className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</span>
+                          <div className="flex-1">
+                            <p className="text-xs font-medium text-green-600 dark:text-green-400 mb-1">LAST SERVICE</p>
+                            <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Service Center</span>
+                        <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg border border-blue-200 dark:border-blue-700">
+                          <div className="flex-shrink-0 w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                            <Building className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard SA</span>
+                          <div className="flex-1">
+                            <p className="text-xs font-medium text-blue-600 dark:text-blue-400 mb-1">SERVICE CENTER</p>
+                            <p className="text-base font-bold text-gray-900 dark:text-white">Louis Erard SA</p>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Next Service Due</span>
+                        <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg border border-amber-200 dark:border-amber-700">
+                          <div className="flex-shrink-0 w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
+                            <Clock className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(nextServiceDueTimestamp)}</span>
+                          <div className="flex-1">
+                            <p className="text-xs font-medium text-amber-600 dark:text-amber-400 mb-1">NEXT SERVICE DUE</p>
+                            <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(nextServiceDueTimestamp)}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -422,27 +428,44 @@ export default function ResellerStep3({ setCurrentStep }) {
 
                   {expandedCommunity && (
                     <div className="px-4 pb-4 border-t border-green-200 dark:border-green-700">
-                      <div className="pt-4 space-y-2">
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Owner Forums</span>
+                      <div className="pt-4 space-y-3">
+                        <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
+                          <div className="flex-shrink-0 w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+                            <MessageSquare className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-sm font-semibold text-green-600 dark:text-green-400">Active</span>
+                          <div className="flex-1">
+                            <p className="text-xs font-medium text-purple-600 dark:text-purple-400 mb-1">OWNER FORUMS</p>
+                            <div className="flex items-center gap-2">
+                              <p className="text-base font-bold text-gray-900 dark:text-white">Active</p>
+                              <div className="flex items-center gap-1">
+                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Exclusive Events</span>
+                        <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20 rounded-lg border border-indigo-200 dark:border-indigo-700">
+                          <div className="flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center">
+                            <Ticket className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-sm font-semibold text-green-600 dark:text-green-400">Invited</span>
+                          <div className="flex-1">
+                            <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400 mb-1">EXCLUSIVE EVENTS</p>
+                            <div className="flex items-center gap-2">
+                              <p className="text-base font-bold text-gray-900 dark:text-white">Invited</p>
+                              <span className="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-full">2 upcoming</span>
+                            </div>
+                          </div>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded-lg border-2 border-green-200 dark:border-green-700">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Early Access Sales</span>
+                        <div className="flex items-start gap-3 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-lg border border-emerald-200 dark:border-emerald-700">
+                          <div className="flex-shrink-0 w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center">
+                            <ShoppingBag className="w-5 h-5 text-white" />
                           </div>
-                          <span className="text-sm font-semibold text-green-600 dark:text-green-400">Enabled</span>
+                          <div className="flex-1">
+                            <p className="text-xs font-medium text-emerald-600 dark:text-emerald-400 mb-1">EARLY ACCESS SALES</p>
+                            <div className="flex items-center gap-2">
+                              <p className="text-base font-bold text-gray-900 dark:text-white">Enabled</p>
+                              <span className="px-2 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-xs font-semibold rounded-full">Priority</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
