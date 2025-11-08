@@ -150,15 +150,6 @@ export default function ResellerStep3({ setCurrentStep }) {
             </div>
           </div>
         </div>
-
-        {/* Info Message */}
-        <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-6 text-center">
-          <p className="text-gray-600 dark:text-gray-400">
-            🎉 <strong>Congratulations!</strong> Your watch is now part of your authenticated collection. 
-            <br />
-            <span className="text-sm">This passport will remain yours until you decide to transfer it.</span>
-          </p>
-        </div>
       </div>
     </div>
   );
