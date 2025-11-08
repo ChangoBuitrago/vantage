@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings, CheckCircle, Building, MessageSquare, Ticket, ShoppingBag } from 'lucide-react';
+import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings, CheckCircle, Building, MessageSquare, Ticket, ShoppingBag, Send, AlertTriangle } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
@@ -111,15 +111,33 @@ export default function ResellerStep3({ setCurrentStep }) {
                 <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
                   Le Régulateur Blanc Edition
                 </p>
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-6">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <Shield className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Verified Authentic</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <Package className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">1st Owner</span>
+                  </div>
+                </div>
+                
+                {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                  <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <Shield className="w-4 h-4 text-green-600 dark:text-green-400" />
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white">Verified Authentic</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <Package className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-                    <span className="text-sm font-semibold text-gray-900 dark:text-white">1st Owner</span>
-                  </div>
+                  <button
+                    onClick={() => setCurrentStep(5)}
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    <Send className="w-5 h-5" />
+                    Transfer Ownership
+                  </button>
+                  <button
+                    onClick={() => alert('Report Stolen: This feature will allow you to report your watch as stolen, which will flag it in the system and prevent any future transfers.')}
+                    className="flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg font-semibold border-2 border-red-600 dark:border-red-400 transition-all duration-200"
+                  >
+                    <AlertTriangle className="w-5 h-5" />
+                    Report Stolen
+                  </button>
                 </div>
               </div>
             </div>
