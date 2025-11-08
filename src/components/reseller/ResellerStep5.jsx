@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, Store, DollarSign } from 'lucide-react';
+import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, DollarSign } from 'lucide-react';
 
 export default function ResellerStep5({ setCurrentStep }) {
   const [salePrice, setSalePrice] = useState('6500');
-  const [selectedMarket, setSelectedMarket] = useState('chrono24');
   
   const basePurchasePrice = 3000;
   const royaltyRate = 0.90; // 90% for Year 1
   const salePriceNum = parseFloat(salePrice) || 0;
   const royaltyAmount = Math.max(0, (salePriceNum - basePurchasePrice) * royaltyRate);
-  
-  const markets = [
-    { id: 'chrono24', name: 'Chrono24', icon: '🌐' },
-    { id: 'ebay', name: 'eBay', icon: '🛒' },
-    { id: 'private', name: 'Private Sale', icon: '🤝' },
-    { id: 'other', name: 'Other Platform', icon: '📱' }
-  ];
 
   return (
     <div className="px-6 py-8">
@@ -57,37 +49,14 @@ export default function ResellerStep5({ setCurrentStep }) {
           {/* Transfer Details */}
           <div className="p-6">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <Store className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              Set Your Resale Details
+              <Tag className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              Set Your Sale Price
             </h3>
-            
-            {/* Secondary Market Selection */}
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Secondary Market Platform
-              </label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                {markets.map((market) => (
-                  <button
-                    key={market.id}
-                    onClick={() => setSelectedMarket(market.id)}
-                    className={`p-3 rounded-lg border-2 transition-all duration-200 ${
-                      selectedMarket === market.id
-                        ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300'
-                        : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:border-purple-300 dark:hover:border-purple-700'
-                    }`}
-                  >
-                    <div className="text-2xl mb-1">{market.icon}</div>
-                    <div className="text-xs font-semibold">{market.name}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
             
             {/* Sale Price Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Your Asking Price (CHF)
+                Resale Price (CHF)
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -107,7 +76,7 @@ export default function ResellerStep5({ setCurrentStep }) {
                 </div>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                Enter the price you want to list on {markets.find(m => m.id === selectedMarket)?.name}
+                Enter your asking price for this watch
               </p>
             </div>
           </div>
