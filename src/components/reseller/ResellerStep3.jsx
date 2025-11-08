@@ -373,7 +373,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                       <div className="pt-3 space-y-2">
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
+                            <CheckCircle className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Last Service</p>
