@@ -262,7 +262,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        {isTransferLockActive ? `Resale available from ${formatDate(transferLockEndDateTimestamp)}` : 'Ready for resale anytime'}
+                        {isTransferLockActive ? `Transfer available from ${formatDate(transferLockEndDateTimestamp)}` : 'Ready for transfer anytime'}
                       </p>
                     </div>
                   </button>
@@ -278,7 +278,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                             {isTransferLockActive 
                               ? 'A 6-month waiting period helps protect the brand and ensures authentic collector ownership.' 
-                              : 'The waiting period is complete. You can now resell this watch anytime.'}
+                              : 'The waiting period is complete. You can now transfer this watch anytime.'}
                           </p>
                           <div className="space-y-2">
                             <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
