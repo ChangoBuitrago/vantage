@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ChevronRight, Shield, Calendar, Hash, ExternalLink, Check, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users } from 'lucide-react';
+import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
   // Helper functions
@@ -53,10 +53,6 @@ export default function ResellerStep3({ setCurrentStep }) {
               
               {/* Watch Info */}
               <div className="flex-1 text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm font-semibold mb-4">
-                  <Check className="w-4 h-4" />
-                  Authenticated
-                </div>
                 <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
                   Louis Erard x Alain Silberstein
                 </h2>
@@ -144,30 +140,6 @@ export default function ResellerStep3({ setCurrentStep }) {
               </div>
             </div>
 
-            {/* Authenticity Verification */}
-            <div className="border-t border-gray-200 dark:border-gray-800 pt-6 mb-6">
-              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Authenticity Verification</h4>
-              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                <div className="flex items-start gap-3 mb-3">
-                  <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
-                  <div className="flex-1">
-                    <p className="font-semibold text-gray-900 dark:text-white mb-1">Blockchain Certificate</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                      This digital passport is immutably recorded on the blockchain, ensuring permanent proof of authenticity and ownership history.
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <code className="text-xs bg-white dark:bg-slate-900 px-2 py-1 rounded font-mono text-gray-700 dark:text-gray-300">
-                        0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
-                      </code>
-                      <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
-                        <ExternalLink className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Smart Rules */}
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Smart Rules</h4>
@@ -235,29 +207,83 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Service Log */}
               <div className="mb-3">
-                <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                  <div className="flex items-center gap-3">
-                    <Wrench className="w-5 h-5 text-green-600 dark:text-green-400" />
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Immutable service history verification</p>
+                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                  <div className="flex items-start gap-3 mb-3">
+                    <Wrench className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        Complete maintenance and service history verified by authorized service centers. All records are immutably stored on the blockchain.
+                      </p>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">Last Service</span>
+                          </div>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-white">15 Oct 2024</span>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">Service Center</span>
+                          </div>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard SA</span>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">Next Service Due</span>
+                          </div>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-white">Oct 2027</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <span className="text-lg font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
                 </div>
               </div>
 
               {/* Community Access */}
               <div className="mb-3">
-                <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-                  <div className="flex items-center gap-3">
-                    <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Exclusive owner perks and benefits</p>
+                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
+                  <div className="flex items-start gap-3 mb-3">
+                    <Users className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        Exclusive access to the Louis Erard owners community, events, and special offers. Connect with fellow collectors and enjoy brand perks.
+                      </p>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">Owner Forums</span>
+                          </div>
+                          <span className="text-sm font-semibold text-green-600 dark:text-green-400">Active</span>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">Exclusive Events</span>
+                          </div>
+                          <span className="text-sm font-semibold text-green-600 dark:text-green-400">Invited</span>
+                        </div>
+                        <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className="text-sm text-gray-700 dark:text-gray-300">Early Access Sales</span>
+                          </div>
+                          <span className="text-sm font-semibold text-green-600 dark:text-green-400">Enabled</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <span className="text-lg font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
                 </div>
               </div>
             </div>
