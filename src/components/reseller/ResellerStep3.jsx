@@ -1,7 +1,16 @@
-import React from 'react';
-import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, Building2, User, MapPin, CreditCard } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
+  // State for expandable sections
+  const [expandedHistory, setExpandedHistory] = useState({});
+
+  const toggleHistory = (index) => {
+    setExpandedHistory(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
   // Helper functions
   const formatDate = (timestamp) => {
     return new Date(timestamp).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -24,6 +33,40 @@ export default function ResellerStep3({ setCurrentStep }) {
   const activeRoyaltyTier = 'Year 1';
   const serviceLogStatus = "Verified";
   const communityAccessStatus = "Enabled";
+
+  // Ownership History Data
+  const ownershipHistory = [
+    {
+      type: 'creation',
+      entity: 'Louis Erard SA',
+      entityType: 'Manufacturer',
+      date: watchMintTimestamp,
+      location: 'Le Noirmont, Switzerland',
+      details: {
+        action: 'Watch Created & Minted',
+        collection: 'Le Régulateur x Alain Silberstein',
+        certification: 'Swiss Made Certificate',
+        warranty: '3 Years International Warranty',
+        blockchainTx: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb'
+      }
+    },
+    {
+      type: 'purchase',
+      entity: 'Maria Smith',
+      entityType: 'Owner',
+      date: watchMintTimestamp,
+      location: 'New York, USA',
+      price: '3,500 CHF',
+      details: {
+        action: 'First Purchase',
+        seller: 'Louis Erard Authorized Dealer',
+        dealerLocation: 'Bucherer New York',
+        paymentMethod: 'Credit Card',
+        certificateIssued: 'Digital Passport NFT',
+        blockchainTx: '0x8f3e92Bc9a456789def012345678abcd9e876543'
+      }
+    }
+  ];
 
   return (
     <div className="px-6 py-8">
@@ -289,6 +332,132 @@ export default function ResellerStep3({ setCurrentStep }) {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Ownership History & Traceability */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-6 mb-6">
+              <div className="flex items-center gap-3 mb-4">
+                <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ownership History & Traceability</h4>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                Complete provenance chain from creation to current ownership, immutably recorded on the blockchain.
+              </p>
+
+              <div className="space-y-3">
+                {ownershipHistory.map((entry, index) => {
+                  const isExpanded = expandedHistory[index];
+                  const isLast = index === ownershipHistory.length - 1;
+                  
+                  return (
+                    <div key={index} className="relative">
+                      {/* Timeline connector */}
+                      {!isLast && (
+                        <div className="absolute left-6 top-14 bottom-0 w-0.5 bg-gradient-to-b from-blue-400 to-purple-400 dark:from-blue-500 dark:to-purple-500"></div>
+                      )}
+                      
+                      <div className="bg-white dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300">
+                        {/* Header - Always Visible */}
+                        <button
+                          onClick={() => toggleHistory(index)}
+                          className="w-full p-4 flex items-start gap-4 hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors"
+                        >
+                          {/* Icon */}
+                          <div className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${
+                            entry.type === 'creation' 
+                              ? 'bg-blue-100 dark:bg-blue-900/30' 
+                              : 'bg-purple-100 dark:bg-purple-900/30'
+                          }`}>
+                            {entry.type === 'creation' ? (
+                              <Building2 className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                            ) : (
+                              <User className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                            )}
+                          </div>
+
+                          {/* Main Info */}
+                          <div className="flex-1 text-left">
+                            <div className="flex items-start justify-between gap-2 mb-1">
+                              <div>
+                                <h5 className="font-bold text-gray-900 dark:text-white text-lg">{entry.entity}</h5>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">{entry.entityType}</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                {entry.type === 'purchase' && (
+                                  <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-xs font-bold">
+                                    Current Owner
+                                  </span>
+                                )}
+                                <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                              </div>
+                            </div>
+                            
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 dark:text-gray-400 mt-2">
+                              <div className="flex items-center gap-1">
+                                <Calendar className="w-4 h-4" />
+                                <span>{formatDate(entry.date)}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-4 h-4" />
+                                <span>{entry.location}</span>
+                              </div>
+                              {entry.price && (
+                                <div className="flex items-center gap-1">
+                                  <CreditCard className="w-4 h-4" />
+                                  <span className="font-semibold text-green-600 dark:text-green-400">{entry.price}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </button>
+
+                        {/* Expandable Details */}
+                        {isExpanded && (
+                          <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-slate-900/50">
+                            <div className="pt-4 space-y-3">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {Object.entries(entry.details).map(([key, value]) => (
+                                  <div key={key} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
+                                      {key.replace(/([A-Z])/g, ' $1').trim()}
+                                    </p>
+                                    <p className="text-sm font-semibold text-gray-900 dark:text-white break-all">
+                                      {value}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                              
+                              {entry.details.blockchainTx && (
+                                <div className="flex items-center gap-2 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                                  <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                                  <p className="text-xs text-blue-700 dark:text-blue-300">
+                                    🔗 <strong>Blockchain Verified:</strong> All transaction details are permanently recorded and publicly verifiable
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Traceability Info */}
+              <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
+                <div className="flex items-start gap-3">
+                  <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h5 className="font-bold text-gray-900 dark:text-white mb-1">Full Transparency & Provenance</h5>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Every ownership transfer, service record, and modification is permanently recorded on the blockchain, 
+                      ensuring complete transparency and authenticity verification for future owners.
+                    </p>
                   </div>
                 </div>
               </div>
