@@ -218,15 +218,18 @@ export default function ResellerStep3({ setCurrentStep }) {
                   </button>
 
                   {expandedBasePrice && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700">
-                      <div className="pt-4">
-                        <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border-2 border-purple-200 dark:border-purple-700">
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                            Royalties are calculated on profits above this base price. The creator receives a percentage based on how long you've owned the watch.
-                          </p>
-                          <div className="flex items-center justify-between p-3 bg-purple-50 dark:bg-purple-900/20 rounded">
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Original Purchase Price</span>
-                            <span className="font-mono font-bold text-lg text-purple-600 dark:text-purple-400">CHF 3,000</span>
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                      <div className="pt-3">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
+                          Royalties are calculated on profits above this base price. The creator receives a percentage based on how long you've owned the watch.
+                        </p>
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Original Purchase Price</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 3,000</p>
                           </div>
                         </div>
                       </div>
@@ -268,32 +271,39 @@ export default function ResellerStep3({ setCurrentStep }) {
                   </button>
 
                   {expandedTransferLock && (
-                    <div className={`px-4 pb-4 border-t ${isTransferLockActive ? 'border-red-200 dark:border-red-700' : 'border-gray-200 dark:border-gray-700'}`}>
-                      <div className="pt-4">
-                        <div className={`rounded-lg p-4 border-2 ${
-                          isTransferLockActive 
-                            ? 'bg-white dark:bg-slate-800 border-red-200 dark:border-red-700' 
-                            : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'
-                        }`}>
-                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                            {isTransferLockActive 
-                              ? 'A 6-month waiting period helps protect the brand and ensures authentic collector ownership.' 
-                              : 'The waiting period is complete. You can now transfer this watch anytime.'}
-                          </p>
-                          <div className="space-y-2">
-                            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
-                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Lock Period</span>
-                              <span className="font-bold text-sm text-gray-900 dark:text-white">6 months</span>
+                    <div className={`px-4 pb-4 border-t ${isTransferLockActive ? 'border-red-200 dark:border-red-700' : 'border-gray-200 dark:border-gray-700'} bg-slate-50 dark:bg-slate-900/50`}>
+                      <div className="pt-3">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
+                          {isTransferLockActive 
+                            ? 'A 6-month waiting period helps protect the brand and ensures authentic collector ownership.' 
+                            : 'The waiting period is complete. You can now transfer this watch anytime.'}
+                        </p>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                              <Clock className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                             </div>
-                            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
-                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Start Date</span>
-                              <span className="font-bold text-sm text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</span>
+                            <div className="flex-1 min-w-0 flex items-center justify-between">
+                              <p className="text-xs text-gray-500 dark:text-gray-400">Lock Period</p>
+                              <p className="text-sm font-semibold text-gray-900 dark:text-white">6 months</p>
                             </div>
-                            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
-                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">End Date</span>
-                              <span className={`font-bold text-sm ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
-                                {formatDate(transferLockEndDateTimestamp)}
-                              </span>
+                          </div>
+                          <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                              <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                            </div>
+                            <div className="flex-1 min-w-0 flex items-center justify-between">
+                              <p className="text-xs text-gray-500 dark:text-gray-400">Start Date</p>
+                              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                              <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                            </div>
+                            <div className="flex-1 min-w-0 flex items-center justify-between">
+                              <p className="text-xs text-gray-500 dark:text-gray-400">End Date</p>
+                              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(transferLockEndDateTimestamp)}</p>
                             </div>
                           </div>
                         </div>
@@ -326,19 +336,34 @@ export default function ResellerStep3({ setCurrentStep }) {
                   </button>
 
                   {expandedRoyalties && (
-                    <div className="px-4 pb-4 border-t border-purple-200 dark:border-purple-700">
-                      <div className="pt-4 space-y-2">
-                        <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 1 (0-12 months)</span>
-                          <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 1' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>90%</span>
+                    <div className="px-4 pb-4 border-t border-purple-200 dark:border-purple-700 bg-slate-50 dark:bg-slate-900/50">
+                      <div className="pt-3 space-y-2">
+                        <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600' : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'}`}>
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Percent className={`w-4 h-4 ${activeRoyaltyTier === 'Year 1' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`} />
+                          </div>
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Year 1 (0-12 months)</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">90%</p>
+                          </div>
                         </div>
-                        <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 2' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 2 (13-24 months)</span>
-                          <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 2' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>60%</span>
+                        <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${activeRoyaltyTier === 'Year 2' ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600' : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'}`}>
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Percent className={`w-4 h-4 ${activeRoyaltyTier === 'Year 2' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`} />
+                          </div>
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Year 2 (13-24 months)</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">60%</p>
+                          </div>
                         </div>
-                        <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 3+' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 3+ (25+ months)</span>
-                          <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>15%</span>
+                        <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${activeRoyaltyTier === 'Year 3+' ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600' : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'}`}>
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Percent className={`w-4 h-4 ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`} />
+                          </div>
+                          <div className="flex-1 min-w-0 flex items-center justify-between">
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Year 3+ (25+ months)</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">15%</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -435,7 +460,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           </div>
                           <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Owner Forums</p>
-                            <p className="text-sm font-semibold text-green-600 dark:text-green-400">Active</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Active</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -444,7 +469,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           </div>
                           <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Exclusive Events</p>
-                            <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">Invited</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Invited</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -453,7 +478,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           </div>
                           <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Early Access Sales</p>
-                            <p className="text-sm font-semibold text-purple-600 dark:text-purple-400">Enabled</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Enabled</p>
                           </div>
                         </div>
                       </div>
@@ -465,42 +490,42 @@ export default function ResellerStep3({ setCurrentStep }) {
 
             {/* Ownership History */}
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6 mb-6">
-              <div className="flex items-center gap-3 mb-4">
-                <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              <div className="flex items-center gap-3 mb-3">
+                <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ownership History</h4>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                 Full verified history from manufacturer to you
               </p>
 
               {/* Unified Provenance Chain Container */}
-              <div className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900/50 dark:to-blue-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div className="bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900/50 dark:to-blue-900/20 rounded-xl p-4 border-2 border-blue-200 dark:border-blue-800">
                 <div className="relative">
                   {ownershipHistory.map((entry, index) => {
                     const isExpanded = expandedHistory[index];
                     const isLast = index === ownershipHistory.length - 1;
                     
                     return (
-                      <div key={index} className={`relative flex gap-6 ${!isLast ? 'mb-8' : ''}`}>
+                      <div key={index} className={`relative flex gap-4 ${!isLast ? 'mb-5' : ''}`}>
                         {/* Avatar on the left */}
                         <div className="relative flex-shrink-0">
                           {/* Vertical line connecting avatars */}
                           {!isLast && (
-                            <div className="absolute left-1/2 top-12 bottom-[-32px] w-px bg-gradient-to-b from-blue-400/60 via-purple-400/60 to-blue-400/60 dark:from-blue-500/60 dark:via-purple-500/60 dark:to-blue-500/60 -translate-x-1/2"></div>
+                            <div className="absolute left-1/2 top-10 bottom-[-20px] w-px bg-gradient-to-b from-blue-400/60 via-purple-400/60 to-blue-400/60 dark:from-blue-500/60 dark:via-purple-500/60 dark:to-blue-500/60 -translate-x-1/2"></div>
                           )}
-                          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                             entry.type === 'creation' 
                               ? 'bg-blue-500 shadow-lg shadow-blue-500/50' 
                               : 'bg-purple-500 shadow-lg shadow-purple-500/50'
                           }`}>
                             {entry.type === 'creation' ? (
-                              <Building2 className="w-6 h-6 text-white" />
+                              <Building2 className="w-5 h-5 text-white" />
                             ) : (
-                              <User className="w-6 h-6 text-white" />
+                              <User className="w-5 h-5 text-white" />
                             )}
                           </div>
                           {/* Outer ring effect */}
-                          <div className={`absolute top-0 left-0 w-12 h-12 rounded-full ${
+                          <div className={`absolute top-0 left-0 w-10 h-10 rounded-full ${
                             entry.type === 'creation' 
                               ? 'ring-2 ring-blue-300 dark:ring-blue-600' 
                               : 'ring-2 ring-purple-300 dark:ring-purple-600'
@@ -509,36 +534,36 @@ export default function ResellerStep3({ setCurrentStep }) {
 
                         {/* Card content on the right */}
                         <div className="flex-1">
-                          <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                          <div className="bg-white dark:bg-slate-800 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 dark:border-gray-700">
                             {/* Header - Always Visible */}
                             <button
                               onClick={() => toggleHistory(index)}
-                              className="w-full p-4 text-left hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                              className="w-full p-3 text-left hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                             >
                               {/* Main Info */}
                               <div className="flex-1">
                                 <div className="flex items-start justify-between gap-2 mb-1">
                                   <div>
-                                    <h5 className="font-bold text-gray-900 dark:text-white text-lg">{entry.entity}</h5>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">{entry.entityType}</p>
+                                    <h5 className="font-bold text-gray-900 dark:text-white text-base">{entry.entity}</h5>
+                                    <p className="text-xs text-gray-500 dark:text-gray-400">{entry.entityType}</p>
                                   </div>
                                   <div className="flex items-center gap-2">
                                     {entry.type === 'purchase' && (
-                                      <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-xs font-bold shadow-lg">
+                                      <span className="px-2 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-xs font-bold">
                                         Current Owner
                                       </span>
                                     )}
-                                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                                    <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
                                   </div>
                                 </div>
                                 
-                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-600 dark:text-gray-400 mt-1.5">
                                   <div className="flex items-center gap-1">
-                                    <Calendar className="w-4 h-4" />
+                                    <Calendar className="w-3.5 h-3.5" />
                                     <span>{formatDate(entry.date)}</span>
                                   </div>
                                   <div className="flex items-center gap-1">
-                                    <MapPin className="w-4 h-4" />
+                                    <MapPin className="w-3.5 h-3.5" />
                                     <span>{entry.location}</span>
                                   </div>
                                 </div>
@@ -547,12 +572,12 @@ export default function ResellerStep3({ setCurrentStep }) {
 
                             {/* Expandable Details */}
                             {isExpanded && (
-                              <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                                <div className="pt-4 space-y-3">
-                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              <div className="px-3 pb-3 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                                <div className="pt-3 space-y-2">
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                     {Object.entries(entry.details).map(([key, value]) => (
-                                      <div key={key} className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
-                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide">
+                                      <div key={key} className="bg-white dark:bg-slate-800 rounded-lg p-2.5 border border-gray-200 dark:border-gray-700">
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5 uppercase tracking-wide">
                                           {key.replace(/([A-Z])/g, ' $1').trim()}
                                         </p>
                                         <p className="text-sm font-semibold text-gray-900 dark:text-white break-all">
@@ -569,19 +594,6 @@ export default function ResellerStep3({ setCurrentStep }) {
                       </div>
                     );
                   })}
-                </div>
-              </div>
-
-              {/* Traceability Info */}
-              <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
-                <div className="flex items-start gap-3">
-                  <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h5 className="font-bold text-gray-900 dark:text-white mb-1">Verified Authenticity</h5>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      All ownership transfers, service records, and watch modifications are permanently recorded and verified for complete transparency.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
