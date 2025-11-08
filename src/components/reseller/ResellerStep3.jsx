@@ -4,6 +4,8 @@ import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, E
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
   const [expandedHistory, setExpandedHistory] = useState({});
+  const [expandedBasePrice, setExpandedBasePrice] = useState(false);
+  const [expandedTransferLock, setExpandedTransferLock] = useState(false);
   const [expandedRoyalties, setExpandedRoyalties] = useState(false);
   const [expandedServiceLog, setExpandedServiceLog] = useState(false);
   const [expandedCommunity, setExpandedCommunity] = useState(false);
@@ -199,33 +201,109 @@ export default function ResellerStep3({ setCurrentStep }) {
               
               {/* Base Resale Price */}
               <div className="mb-3">
-                <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <div className="flex items-center gap-3">
-                    <Baseline className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Minimum price for royalty calculation</p>
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
+                  <button
+                    onClick={() => setExpandedBasePrice(!expandedBasePrice)}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                  >
+                    <Baseline className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
+                          <span className="font-mono text-sm font-bold text-purple-600 dark:text-purple-400">CHF {formatNumber(3000)}</span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Minimum price for royalty calculation
+                      </p>
                     </div>
-                  </div>
-                  <span className="font-mono text-lg font-bold text-gray-900 dark:text-white">CHF {formatNumber(3000)}</span>
+                  </button>
+
+                  {expandedBasePrice && (
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700">
+                      <div className="pt-4">
+                        <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border-2 border-purple-200 dark:border-purple-700">
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                            The base resale price is the minimum amount used to calculate royalty payments. Any profit above this price will be subject to the dynamic royalty percentages.
+                          </p>
+                          <div className="flex items-center justify-between p-3 bg-purple-50 dark:bg-purple-900/20 rounded">
+                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Original Purchase Price</span>
+                            <span className="font-mono font-bold text-lg text-purple-600 dark:text-purple-400">CHF 3,000</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Transfer Lock */}
               <div className="mb-3">
-                <div className={`flex items-center justify-between p-4 rounded-lg border ${isTransferLockActive ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800' : 'bg-slate-50 dark:bg-slate-800/50 border-gray-200 dark:border-gray-700'}`}>
-                  <div className="flex items-center gap-3">
-                    <Clock className={`w-5 h-5 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-purple-600 dark:text-purple-400'}`} />
-                    <div>
-                      <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {isTransferLockActive ? `Active until ${formatDate(transferLockEndDateTimestamp)}` : 'No longer active'}
+                <div className={`border-2 rounded-lg overflow-hidden transition-all duration-300 ${
+                  isTransferLockActive 
+                    ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 hover:border-red-400' 
+                    : 'bg-slate-50 dark:bg-slate-800/50 border-gray-200 dark:border-gray-700 hover:border-purple-400'
+                }`}>
+                  <button
+                    onClick={() => setExpandedTransferLock(!expandedTransferLock)}
+                    className={`w-full p-4 flex items-start gap-3 transition-colors ${
+                      isTransferLockActive 
+                        ? 'hover:bg-red-100 dark:hover:bg-red-900/30' 
+                        : 'hover:bg-slate-100 dark:hover:bg-slate-700/50'
+                    }`}
+                  >
+                    <Clock className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-purple-600 dark:text-purple-400'}`} />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
+                          <span className={`text-sm font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'}`}>
+                            {isTransferLockActive ? 'Active' : 'Inactive'}
+                          </span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        {isTransferLockActive ? `Prevents resale until ${formatDate(transferLockEndDateTimestamp)}` : 'No restrictions on resale'}
                       </p>
                     </div>
-                  </div>
-                  <span className={`text-lg font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white'}`}>
-                    {isTransferLockActive ? 'Active' : 'Inactive'}
-                  </span>
+                  </button>
+
+                  {expandedTransferLock && (
+                    <div className={`px-4 pb-4 border-t ${isTransferLockActive ? 'border-red-200 dark:border-red-700' : 'border-gray-200 dark:border-gray-700'}`}>
+                      <div className="pt-4">
+                        <div className={`rounded-lg p-4 border-2 ${
+                          isTransferLockActive 
+                            ? 'bg-white dark:bg-slate-800 border-red-200 dark:border-red-700' 
+                            : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'
+                        }`}>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                            {isTransferLockActive 
+                              ? 'The transfer lock prevents resale of this watch for the first 6 months after purchase to discourage flipping and protect brand value.' 
+                              : 'The transfer lock period has expired. You are now free to resell this watch at any time.'}
+                          </p>
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Lock Period</span>
+                              <span className="font-bold text-sm text-gray-900 dark:text-white">6 months</span>
+                            </div>
+                            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Start Date</span>
+                              <span className="font-bold text-sm text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</span>
+                            </div>
+                            <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">End Date</span>
+                              <span className={`font-bold text-sm ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
+                                {formatDate(transferLockEndDateTimestamp)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
