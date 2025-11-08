@@ -10,7 +10,8 @@ export default function ResellerStep5({ setCurrentStep }) {
   const royaltyAmount = salePriceNum * royaltyRate;
   
   // Validation states
-  const isPriceValid = salePriceNum > 0;
+  const isPriceValid = salePriceNum >= basePurchasePrice;
+  const isBelowBase = salePriceNum > 0 && salePriceNum < basePurchasePrice;
 
   return (
     <div className="px-6 py-8">
@@ -110,9 +111,15 @@ export default function ResellerStep5({ setCurrentStep }) {
                 type="number"
                 value={salePrice}
                 onChange={(e) => setSalePrice(e.target.value)}
-                className="w-full pl-12 pr-20 py-3 bg-slate-50 dark:bg-slate-800 border-2 border-purple-400 dark:border-purple-600 rounded-lg text-lg font-bold text-gray-900 dark:text-white focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all"
+                className={`w-full pl-12 pr-20 py-3 bg-slate-50 dark:bg-slate-800 border-2 rounded-lg text-lg font-bold text-gray-900 dark:text-white focus:ring-2 outline-none transition-all ${
+                  isBelowBase
+                    ? 'border-red-400 dark:border-red-600 focus:border-red-500 focus:ring-red-500/20'
+                    : isPriceValid
+                    ? 'border-purple-400 dark:border-purple-600 focus:border-purple-500 focus:ring-purple-500/20'
+                    : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
+                }`}
                 placeholder="6500"
-                min="0"
+                min={basePurchasePrice}
                 step="100"
               />
               <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
@@ -120,7 +127,17 @@ export default function ResellerStep5({ setCurrentStep }) {
               </div>
             </div>
             
-            {/* Info Message */}
+            {/* Validation Messages */}
+            {isBelowBase && (
+              <div className="mt-2">
+                <div className="flex items-start gap-2 p-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                  <Shield className="w-4 h-4 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-red-700 dark:text-red-300">
+                    <span className="font-semibold">Below minimum price.</span> The minimum resale price is CHF {basePurchasePrice.toLocaleString()}. This rule protects brand value.
+                  </p>
+                </div>
+              </div>
+            )}
             {isPriceValid && (
               <div className="mt-2">
                 <div className="flex items-start gap-2 p-2 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg">
@@ -135,13 +152,13 @@ export default function ResellerStep5({ setCurrentStep }) {
           
           <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-4">
             <div className="space-y-2">
-              <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                  <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+              <div className="flex items-center gap-3 p-2.5 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div className="flex-1 min-w-0 flex items-center justify-between">
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Base Resale Price</p>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF {basePurchasePrice.toLocaleString()}</p>
+                  <p className="text-xs text-blue-700 dark:text-blue-300 font-semibold">Minimum Resale Price</p>
+                  <p className="text-sm font-bold text-blue-700 dark:text-blue-300">CHF {basePurchasePrice.toLocaleString()}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
