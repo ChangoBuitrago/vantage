@@ -60,13 +60,13 @@ export default function ResellerStep3({ setCurrentStep }) {
       entityType: 'Owner',
       date: watchMintTimestamp,
       location: 'New York, USA',
-      price: '3,500 CHF',
       details: {
         action: 'First Purchase',
         seller: 'Louis Erard Authorized Dealer',
         dealerLocation: 'Bucherer New York',
         paymentMethod: 'Credit Card',
-        certificateIssued: 'Digital Passport'
+        certificateIssued: 'Digital Passport',
+        purchasePrice: '3,500 CHF'
       }
     }
   ];
@@ -533,12 +533,6 @@ export default function ResellerStep3({ setCurrentStep }) {
                                     <MapPin className="w-4 h-4" />
                                     <span>{entry.location}</span>
                                   </div>
-                                  {entry.price && (
-                                    <div className="flex items-center gap-1">
-                                      <CreditCard className="w-4 h-4" />
-                                      <span className="font-semibold text-green-600 dark:text-green-400">{entry.price}</span>
-                                    </div>
-                                  )}
                                 </div>
                               </div>
                             </button>
