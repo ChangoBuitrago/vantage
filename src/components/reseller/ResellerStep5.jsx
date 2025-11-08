@@ -7,7 +7,7 @@ export default function ResellerStep5({ setCurrentStep }) {
   const basePurchasePrice = 3000;
   const royaltyRate = 0.90; // 90% for Year 1
   const salePriceNum = parseFloat(salePrice) || 0;
-  const royaltyAmount = salePriceNum * royaltyRate;
+  const royaltyAmount = salePriceNum >= basePurchasePrice ? salePriceNum * royaltyRate : 0;
   
   // Validation states
   const isPriceValid = salePriceNum >= basePurchasePrice;
