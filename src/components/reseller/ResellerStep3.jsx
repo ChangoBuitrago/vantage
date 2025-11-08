@@ -12,8 +12,14 @@ export default function ResellerStep3({ setCurrentStep }) {
   };
 
   // Passport data
-  const watchMintTimestamp = new Date('2024-10-15').getTime();
-  const transferLockEndDateTimestamp = new Date('2025-04-15').getTime(); // 6 months after purchase
+  const today = new Date();
+  const watchMintTimestamp = today.getTime();
+  const sixMonthsLater = new Date(today);
+  sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);
+  const transferLockEndDateTimestamp = sixMonthsLater.getTime(); // 6 months after purchase
+  const threeYearsLater = new Date(today);
+  threeYearsLater.setFullYear(threeYearsLater.getFullYear() + 3);
+  const nextServiceDueTimestamp = threeYearsLater.getTime(); // 3 years after issue
   const isTransferLockActive = Date.now() < transferLockEndDateTimestamp;
   const activeRoyaltyTier = 'Year 1';
   const serviceLogStatus = "Verified";
@@ -224,7 +230,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                             <span className="text-sm text-gray-700 dark:text-gray-300">Last Service</span>
                           </div>
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">15 Oct 2024</span>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</span>
                         </div>
                         <div className="flex items-center justify-between p-3 bg-white dark:bg-slate-800/50 rounded">
                           <div className="flex items-center gap-2">
@@ -238,7 +244,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                             <span className="text-sm text-gray-700 dark:text-gray-300">Next Service Due</span>
                           </div>
-                          <span className="text-sm font-semibold text-gray-900 dark:text-white">Oct 2027</span>
+                          <span className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(nextServiceDueTimestamp)}</span>
                         </div>
                       </div>
                     </div>
