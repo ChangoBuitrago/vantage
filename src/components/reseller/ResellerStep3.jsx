@@ -84,7 +84,7 @@ export default function ResellerStep3({ setCurrentStep }) {
             <span>Details</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Digital Passport</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Smart rules, immutable records, perpetual revenues—connected communities</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Verified ownership, automated royalties, lifetime benefits</p>
         </div>
 
         {/* Digital Passport Card */}
@@ -216,7 +216,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Minimum price for royalty calculation
+                        Minimum resale value for calculating creator royalties
                       </p>
                     </div>
                   </button>
@@ -226,7 +226,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                       <div className="pt-4">
                         <div className="bg-white dark:bg-slate-800 rounded-lg p-4 border-2 border-purple-200 dark:border-purple-700">
                           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                            The base resale price is the minimum amount used to calculate royalty payments. Any profit above this price will be subject to the dynamic royalty percentages.
+                            Royalties are calculated on profits above this base price. The creator receives a percentage based on how long you've owned the watch.
                           </p>
                           <div className="flex items-center justify-between p-3 bg-purple-50 dark:bg-purple-900/20 rounded">
                             <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Original Purchase Price</span>
@@ -266,7 +266,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        {isTransferLockActive ? `Prevents resale until ${formatDate(transferLockEndDateTimestamp)}` : 'No restrictions on resale'}
+                        {isTransferLockActive ? `Resale available from ${formatDate(transferLockEndDateTimestamp)}` : 'Ready for resale anytime'}
                       </p>
                     </div>
                   </button>
@@ -281,8 +281,8 @@ export default function ResellerStep3({ setCurrentStep }) {
                         }`}>
                           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
                             {isTransferLockActive 
-                              ? 'The transfer lock prevents resale of this watch for the first 6 months after purchase to discourage flipping and protect brand value.' 
-                              : 'The transfer lock period has expired. You are now free to resell this watch at any time.'}
+                              ? 'A 6-month waiting period helps protect the brand and ensures authentic collector ownership.' 
+                              : 'The waiting period is complete. You can now resell this watch anytime.'}
                           </p>
                           <div className="space-y-2">
                             <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded">
@@ -324,7 +324,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedRoyalties ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Time-based royalty percentages automatically enforced on resale profits
+                        Creator royalty percentage decreases over time
                       </p>
                     </div>
                   </button>
@@ -333,15 +333,15 @@ export default function ResellerStep3({ setCurrentStep }) {
                     <div className="px-4 pb-4 border-t border-purple-200 dark:border-purple-700">
                       <div className="pt-4 space-y-2">
                         <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 1 (First 12 months)</span>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 1 (0-12 months)</span>
                           <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 1' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>90%</span>
                         </div>
                         <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 2' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 2 (12-24 months)</span>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 2 (13-24 months)</span>
                           <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 2' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>60%</span>
                         </div>
                         <div className={`flex items-center justify-between p-3 rounded-lg ${activeRoyaltyTier === 'Year 3+' ? 'bg-purple-200 dark:bg-purple-900/50 border-2 border-purple-400' : 'bg-white dark:bg-slate-800/50 border-2 border-transparent'}`}>
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 3+ (After 24 months)</span>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Year 3+ (25+ months)</span>
                           <span className={`font-mono font-bold text-lg ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-700 dark:text-purple-300' : 'text-gray-900 dark:text-white'}`}>15%</span>
                         </div>
                       </div>
@@ -367,7 +367,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedServiceLog ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Complete maintenance and service history verified by authorized service centers
+                        Verified maintenance history and service records
                       </p>
                     </div>
                   </button>
@@ -419,7 +419,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedCommunity ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Exclusive access to the Louis Erard owners community, events, and special offers
+                        Owner community, exclusive events, and special offers
                       </p>
                     </div>
                   </button>
@@ -462,7 +462,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                 <h4 className="text-lg font-bold text-gray-900 dark:text-white">Ownership History</h4>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                Complete provenance chain from creation to current ownership, digitally verified and tracked.
+                Full verified history from manufacturer to you
               </p>
 
               {/* Unified Provenance Chain Container */}
@@ -569,10 +569,9 @@ export default function ResellerStep3({ setCurrentStep }) {
                 <div className="flex items-start gap-3">
                   <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h5 className="font-bold text-gray-900 dark:text-white mb-1">Full Transparency & Provenance</h5>
+                    <h5 className="font-bold text-gray-900 dark:text-white mb-1">Verified Authenticity</h5>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Every ownership transfer, service record, and modification is permanently recorded and verified, 
-                      ensuring complete transparency and authenticity verification for future owners.
+                      All ownership transfers, service records, and watch modifications are permanently recorded and verified for complete transparency.
                     </p>
                   </div>
                 </div>
