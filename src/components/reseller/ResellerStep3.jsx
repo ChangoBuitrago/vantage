@@ -2,15 +2,6 @@ import React from 'react';
 import { Home, ChevronRight, Shield, Calendar, Hash, ExternalLink, Check, Award, Package } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
-  // Simulate waiting a few seconds before showing the "Watch Sold" notification
-  React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentStep(4); // Move to "Watch Sold" step automatically after viewing passport
-    }, 8000); // 8 seconds to view the passport
-    
-    return () => clearTimeout(timer);
-  }, [setCurrentStep]);
-
   return (
     <div className="px-6 py-8">
       <div className="max-w-5xl mx-auto">
