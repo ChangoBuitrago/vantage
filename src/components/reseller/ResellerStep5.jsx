@@ -90,17 +90,20 @@ export default function ResellerStep5({ setCurrentStep }) {
           </div>
         </div>
 
-        {/* Set Your Sale Price */}
+        {/* Creator Royalty Calculation */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Tag className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-            Set Your Sale Price
+            <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+            Creator Royalty Calculation
           </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Dynamic royalty enforced: {Math.round(royaltyRate * 100)}% of profit above base price for transfers within the first year
+          </p>
           
           {/* Sale Price Input */}
-          <div>
+          <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Resale Price (CHF)
+              Your Resale Price (CHF)
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -156,17 +159,6 @@ export default function ResellerStep5({ setCurrentStep }) {
               </div>
             )}
           </div>
-        </div>
-
-        {/* Creator Royalty Calculation */}
-        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-            Creator Royalty Calculation
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Dynamic royalty enforced: {Math.round(royaltyRate * 100)}% of profit above base price for transfers within the first year
-          </p>
           
           <div className={`border rounded-lg p-4 mb-4 ${
             isAboveBase 
