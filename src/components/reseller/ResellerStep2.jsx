@@ -4,6 +4,9 @@ import { Search, Mail, Inbox, Star, Archive, Trash2, ChevronLeft, Tag, MoreVerti
 // Import images
 import mountainBg from '/mountain-bg.jpg';
 import instagramIcon from '/instagram-icon.png';
+import securePaymentIcon from '/secure-payment-icon.png';
+import clockIcon from '/clock-icon.png';
+import returnsIcon from '/returns-icon.png';
 
 export default function ResellerStep2({ setCurrentStep }) {
   return (
@@ -227,6 +230,56 @@ export default function ResellerStep2({ setCurrentStep }) {
                       </button>
                     </div>
 
+                    {/* Features Icons Section */}
+                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'flex-start', gap: '30px', marginTop: '50px', marginBottom: '50px', flexWrap: 'nowrap', padding: '0 20px'}}>
+                      {/* Secure Payment */}
+                      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '140px', textAlign: 'center', flex: '1 1 auto'}}>
+                        <img 
+                          src={securePaymentIcon} 
+                          alt="Secure payment" 
+                          style={{width: '48px', height: '48px', marginBottom: '12px'}}
+                        />
+                        <p style={{margin: 0, fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '11px', fontWeight: 300, color: 'rgb(184,184,184)', letterSpacing: '0.5px'}}>Secure payment</p>
+                      </div>
+
+                      {/* Purchase 3x or 8x */}
+                      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '140px', textAlign: 'center', flex: '1 1 auto'}}>
+                        <img 
+                          src={clockIcon} 
+                          alt="Purchase 3x or 8x" 
+                          style={{width: '48px', height: '48px', marginBottom: '12px'}}
+                        />
+                        <p style={{margin: 0, fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '11px', fontWeight: 300, color: 'rgb(184,184,184)', letterSpacing: '0.5px'}}>Purchase 3x or 8x free of charge</p>
+                      </div>
+
+                      {/* Returns & Exchanges */}
+                      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '140px', textAlign: 'center', flex: '1 1 auto'}}>
+                        <img 
+                          src={returnsIcon} 
+                          alt="Returns & exchanges" 
+                          style={{width: '48px', height: '48px', marginBottom: '12px'}}
+                        />
+                        <p style={{margin: 0, fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '11px', fontWeight: 300, color: 'rgb(184,184,184)', letterSpacing: '0.5px'}}>Returns & exchanges</p>
+                      </div>
+
+                      {/* Digital Passport - SVG with gradient to match other icons */}
+                      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '140px', textAlign: 'center', flex: '1 1 auto'}}>
+                        <svg width="48" height="48" viewBox="0 0 64 64" fill="none" style={{marginBottom: '12px'}}>
+                          <defs>
+                            <linearGradient id="passportGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                              <stop offset="0%" style={{stopColor: 'rgb(33, 150, 243)', stopOpacity: 1}} />
+                              <stop offset="100%" style={{stopColor: 'rgb(13, 71, 161)', stopOpacity: 1}} />
+                            </linearGradient>
+                          </defs>
+                          <rect x="18" y="10" width="28" height="44" rx="2" stroke="url(#passportGradient)" strokeWidth="3" fill="none"/>
+                          <circle cx="32" cy="26" r="6" stroke="url(#passportGradient)" strokeWidth="2.5" fill="none"/>
+                          <path d="M23 42 C23 37 27 33 32 33 C37 33 41 37 41 42" stroke="url(#passportGradient)" strokeWidth="2.5" strokeLinecap="round"/>
+                          <line x1="23" y1="47" x2="41" y2="47" stroke="url(#passportGradient)" strokeWidth="2.5" strokeLinecap="round"/>
+                        </svg>
+                        <p style={{margin: 0, fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '11px', fontWeight: 300, color: 'rgb(184,184,184)', letterSpacing: '0.5px'}}>Digital Passport included</p>
+                      </div>
+                    </div>
+
                     <div style={{borderTop: '1px solid rgba(255,255,255,0.2)', marginBottom: '24px'}}></div>
 
                     {/* Footer - Company Info */}
@@ -234,8 +287,8 @@ export default function ResellerStep2({ setCurrentStep }) {
                       <p style={{margin: 0, marginBottom: '0.4rem', fontWeight: 700, fontSize: '12px', letterSpacing: '0.8px'}}>MONTRES LOUIS ERARD SA</p>
                       <p style={{margin: 0, marginBottom: '0.8rem'}}>Rue de l'Ouest 2 | 2340 Le Noirmont | Switzerland</p>
                       <p style={{margin: 0, marginBottom: '0.3rem', fontWeight: 700, letterSpacing: '0.8px'}}>CONTACT</p>
-                      <p style={{margin: 0, marginBottom: '0.8rem'}}>T +41 (0) 32 957 65 30 | <a href="mailto:info@louiserard.com" style={{color: 'rgb(255,255,255)', textDecoration: 'none'}}>info@louiserard.com</a></p>
-                      <p style={{margin: 0, fontWeight: 700}}><a href="https://www.louiserard.com" style={{color: 'rgb(255,255,255)', textDecoration: 'none'}}>www.louiserard.com</a></p>
+                      <p style={{margin: 0, marginBottom: '0.8rem'}}>T +41 (0) 32 957 65 30 | <a href="mailto:info@louiserard.com" style={{color: 'rgb(33,150,243)', textDecoration: 'underline'}}>info@louiserard.com</a></p>
+                      <p style={{margin: 0, fontWeight: 700}}><a href="https://www.louiserard.com" style={{color: 'rgb(33,150,243)', textDecoration: 'underline'}}>www.louiserard.com</a></p>
                     </div>
 
                     {/* Social Media Icons */}
@@ -255,18 +308,10 @@ export default function ResellerStep2({ setCurrentStep }) {
                     <div style={{borderTop: '1px solid rgba(255,255,255,0.3)', marginBottom: '20px'}}></div>
 
                     {/* Privacy Policy */}
-                    <div style={{marginBottom: '12px', textAlign: 'center'}}>
+                    <div style={{marginBottom: '12px', textAlign: 'center', paddingBottom: '40px'}}>
                       <p style={{margin: 0, fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '10px', fontWeight: 400, lineHeight: '1.5', color: 'rgba(255,255,255,0.95)', textShadow: '0 2px 10px rgba(0,0,0,0.9)'}}>
-                        <a href="#" style={{color: 'rgb(140,210,255)', textDecoration: 'underline'}}>Privacy Policy</a>
+                        <a href="#" style={{color: 'rgb(33,150,243)', textDecoration: 'underline'}}>Privacy Policy</a>
                       </p>
-                    </div>
-
-                    {/* Unsubscribe */}
-                    <div style={{textAlign: 'center', paddingBottom: '40px'}}>
-                      <div style={{fontFamily: "'Open Sans',Arial,'Helvetica Neue',Helvetica,sans-serif", fontSize: '10px', fontWeight: 400, lineHeight: '1.5', color: 'rgba(255,255,255,0.95)', textShadow: '0 2px 10px rgba(0,0,0,0.9)'}}>
-                        <p style={{margin: 0, marginBottom: '0.3rem'}}>Do you no longer wish to receive our emails?</p>
-                        <p style={{margin: 0}}><a href="#" style={{color: 'rgb(140,210,255)', textDecoration: 'underline'}}>Unsubscribe by clicking on this link</a></p>
-                      </div>
                     </div>
                   </div>
                 </div>
