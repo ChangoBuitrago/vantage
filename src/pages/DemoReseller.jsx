@@ -314,9 +314,9 @@ export default function DemoReseller() {
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={currentStep >= 3 ? "flex" : ""}>
-        {/* Sidebar Navigation - Only show for steps 3+ (inside Faircut platform) */}
-        {currentStep >= 3 && (
+      <div className={currentStep >= 3 && currentStep < 6 ? "flex" : ""}>
+        {/* Sidebar Navigation - Only show for steps 3-5 (inside Faircut platform) */}
+        {currentStep >= 3 && currentStep < 6 && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
             <nav className="p-4 space-y-1">
               {navItems.map((item, idx) => (

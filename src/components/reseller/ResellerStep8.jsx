@@ -5,6 +5,17 @@ export default function ResellerStep8({ navigate }) {
   return (
     <div className="px-6 py-8">
       <div className="max-w-6xl mx-auto">
+        {/* Page Header */}
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-3 mb-2">
+            <Check className="w-8 h-8 text-green-600 dark:text-green-400" />
+            Demo Complete!
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            You've experienced how Faircut enables seamless transfers while ensuring creators earn fair royalties.
+          </p>
+        </div>
+
         {/* Faircut Benefits */}
         <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border border-purple-200 dark:border-purple-800 rounded-xl p-6 mb-6">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 text-center">How Faircut Benefits Everyone</h3>
@@ -39,20 +50,6 @@ export default function ResellerStep8({ navigate }) {
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Demo Complete */}
-        <div className="bg-white dark:bg-slate-900 border-2 border-green-200 dark:border-green-800 rounded-xl p-6 text-center mb-6">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <Check className="w-6 h-6 text-green-600 dark:text-green-400" />
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white">Demo Complete!</h3>
-          </div>
-          <p className="text-gray-700 dark:text-gray-300 mb-2">
-            You've experienced how Faircut enables seamless transfers while ensuring creators earn fair royalties.
-          </p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Every transfer automatically enforces smart rules, protecting brands and providing transparency for all parties.
-          </p>
         </div>
 
         <button
