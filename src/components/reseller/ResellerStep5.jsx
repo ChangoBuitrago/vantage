@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, DollarSign } from 'lucide-react';
+import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, DollarSign, Package, Mail } from 'lucide-react';
 
-export default function ResellerStep5({ setCurrentStep }) {
+export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
   const [salePrice, setSalePrice] = useState('6500');
+  const [buyerEmail, setBuyerEmail] = useState('');
   
   const basePurchasePrice = 3000;
   const royaltyRate = 0.90; // 90% for Year 1
   const salePriceNum = parseFloat(salePrice) || 0;
   const royaltyAmount = salePriceNum >= basePurchasePrice ? salePriceNum * royaltyRate : 0;
   
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isEmailValid = emailRegex.test(buyerEmail);
+  
   // Validation states
   const isPriceValid = salePriceNum >= basePurchasePrice;
   const isBelowBase = salePriceNum > 0 && salePriceNum < basePurchasePrice;
+  const isFormValid = isPriceValid && isEmailValid;
 
   return (
     <div className="px-6 py-8">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-6">
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
@@ -32,20 +38,37 @@ export default function ResellerStep5({ setCurrentStep }) {
         {/* Watch Summary Card */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-lg mb-6">
           {/* Watch Header */}
-          <div className="bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-800 dark:via-slate-900 dark:to-black p-6">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-white dark:bg-slate-800 rounded-xl shadow-lg flex items-center justify-center flex-shrink-0 border-2 border-white dark:border-slate-700 overflow-hidden p-2">
+          <div className="relative bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-800 dark:via-slate-900 dark:to-black p-8">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              {/* Watch Image */}
+              <div className="w-40 h-40 bg-white dark:bg-slate-800 rounded-xl shadow-2xl flex items-center justify-center flex-shrink-0 border-2 border-white dark:border-slate-700 overflow-hidden p-3">
                 <img
                   src="https://www.louiserard.com/cdn/shop/files/85358TT01.BTT83-_1.webp?v=1718639401&width=900"
-                  alt="Le Régulateur Blanc"
+                  alt="Le Régulateur Blanc Louis Erard x Alain Silberstein"
                   className="w-full h-full object-contain"
                   onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex'; }}
                 />
-                <span className="text-2xl" style={{display: 'none'}}>⌚</span>
+                <span className="text-6xl" style={{display: 'none'}}>⌚</span>
               </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Louis Erard x Alain Silberstein</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Le Régulateur Blanc Edition #042</p>
+              
+              {/* Watch Info */}
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                  Louis Erard x Alain Silberstein
+                </h2>
+                <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
+                  Le Régulateur Blanc Edition
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <Shield className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Verified Authentic</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <Package className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">1st Owner</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -57,34 +80,94 @@ export default function ResellerStep5({ setCurrentStep }) {
             <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
             Smart Rules Validation
           </h3>
-          <div className="space-y-2">
-            <div className="flex items-center gap-3 p-2.5 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center">
+          <div className="space-y-3">
+            {/* Transfer Lock */}
+            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
                 <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-gray-900 dark:text-white">Transfer Lock Expired</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">6-month holding period completed</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">6-month holding period completed</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-2.5 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center">
+            
+            {/* Ownership Verified */}
+            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
                 <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Authenticity Verified</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">Digital passport validated</p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Ownership Verified</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Current owner confirmed via digital passport</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-2.5 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center">
+            
+            {/* Watch Status */}
+            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
                 <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Service History Complete</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">All records verified</p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Watch Status Clean</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">No outstanding issues or reports</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Transfer Details */}
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <Send className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+            Transfer Details
+          </h3>
+          
+          {/* Buyer Email Input */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              Buyer Email Address
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Mail className="w-5 h-5 text-gray-400" />
+              </div>
+              <input
+                type="email"
+                value={buyerEmail}
+                onChange={(e) => setBuyerEmail(e.target.value)}
+                className={`w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border-2 rounded-lg text-base text-gray-900 dark:text-white focus:ring-2 outline-none transition-all ${
+                  buyerEmail && !isEmailValid
+                    ? 'border-red-400 dark:border-red-600 focus:border-red-500 focus:ring-red-500/20'
+                    : isEmailValid
+                    ? 'border-green-400 dark:border-green-600 focus:border-green-500 focus:ring-green-500/20'
+                    : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
+                }`}
+                placeholder="buyer@example.com"
+              />
+            </div>
+            
+            {/* Email Validation Messages */}
+            {buyerEmail && !isEmailValid && (
+              <div className="mt-2">
+                <div className="flex items-start gap-2 p-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                  <Mail className="w-4 h-4 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-red-700 dark:text-red-300">
+                    <span className="font-semibold">Invalid email format.</span> Please enter a valid email address.
+                  </p>
+                </div>
+              </div>
+            )}
+            {isEmailValid && (
+              <div className="mt-2">
+                <div className="flex items-start gap-2 p-2 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                  <Check className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs text-green-700 dark:text-green-300">
+                    Digital passport will be transferred to this email address
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -259,10 +342,10 @@ export default function ResellerStep5({ setCurrentStep }) {
 
         {/* Action Button */}
         <button
-          onClick={() => isPriceValid && setCurrentStep(5)}
-          disabled={!isPriceValid}
+          onClick={() => isFormValid && handlePayRoyalty()}
+          disabled={!isFormValid}
           className={`w-full flex items-center justify-center gap-2 text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 ${
-            isPriceValid
+            isFormValid
               ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl cursor-pointer'
               : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed opacity-60'
           }`}

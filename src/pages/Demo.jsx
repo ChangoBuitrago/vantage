@@ -45,7 +45,7 @@ export default function Demo() {
       </div>
 
       <div ref={containerRef} className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 px-6 py-20">
-        <div className="w-full max-w-6xl mx-auto">
+        <div className="w-full max-w-[100rem] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">
@@ -57,7 +57,7 @@ export default function Demo() {
         </div>
 
         {/* Experience Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           
           {/* Creator Experience */}
           <button
@@ -69,47 +69,16 @@ export default function Demo() {
             </div>
             
             <div className="mb-6 pr-16">
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-3">
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Creator Experience
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                See how independent creators earn perpetual royalties from every resale—automatically and forever—while protecting their community
+              <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                Coming soon
               </p>
             </div>
 
             <div className="space-y-3 mb-8">
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">Attach immutable digital passports to each timepiece</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">Set anti-flipping rules & dynamic royalties</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">Earn automatic royalties from every resale in the open secondary market</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">Build a connected owner community</span>
-              </div>
+              {/* Content to be added */}
             </div>
 
             <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-semibold group-hover:gap-3 transition-all">
@@ -130,46 +99,46 @@ export default function Demo() {
             </div>
             
             <div className="mb-6 pr-16">
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-3">
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Reseller Experience
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                Experience how resellers can profit from the secondary market while automatically supporting creators through transparent royalties
+              <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                Experience the complete journey from purchase to transfer—see how digital passports enable seamless resales with transparent smart rules
               </p>
             </div>
 
             <div className="space-y-3 mb-8">
               <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-gray-700 dark:text-gray-300">Purchase watches with digital passports from official brands</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">Purchase luxury watches with digital passports from official brands</span>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-gray-700 dark:text-gray-300">Sell watches on any open marketplace (eBay, Chrono24, etc.)</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">View complete ownership history, smart rules, and benefits</span>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-gray-700 dark:text-gray-300">Pay automatic royalties and transfer passport seamlessly</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">Transfer with clear royalty calculations and automated compliance</span>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <span className="text-gray-700 dark:text-gray-300">Keep substantial profits while supporting creators</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">Simple payment flow with instant passport transfer to new owner</span>
               </div>
             </div>
 
@@ -191,47 +160,16 @@ export default function Demo() {
             </div>
             
             <div className="mb-6 pr-16">
-              <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-3">
+              <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Collector Experience
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                Discover how collectors benefit from verified authenticity, complete ownership history, and trusted transactions
+              <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                Coming soon
               </p>
             </div>
 
             <div className="space-y-3 mb-8">
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">Browse watches with verified authenticity & complete ownership history</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">View complete service history & warranties</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">Seamless resale with built-in royalties</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span className="text-gray-700 dark:text-gray-300">Join the creator's owner community</span>
-              </div>
+              {/* Content to be added */}
             </div>
 
             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold group-hover:gap-3 transition-all">

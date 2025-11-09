@@ -9,8 +9,8 @@ import ResellerStep1 from '../components/reseller/ResellerStep1';
 import ResellerStep2 from '../components/reseller/ResellerStep2';
 import ResellerStep3 from '../components/reseller/ResellerStep3';
 import ResellerStep4 from '../components/reseller/ResellerStep5';
-import ResellerStep5 from '../components/reseller/ResellerStep6';
-import ResellerStep6 from '../components/reseller/ResellerStep7';
+import ResellerStep5 from '../components/reseller/ResellerStep7';
+import ResellerStep6 from '../components/reseller/ResellerStep8';
 
 export default function DemoReseller() {
   const navigate = useNavigate();
@@ -23,18 +23,67 @@ export default function DemoReseller() {
 
   const totalSteps = 7; // Step 0: Louis Erard product, Step 1: Order confirmation, Step 2: Email, Step 3-6: Faircut platform
 
-  // Reset on mount
+  // Step URL fragments mapping
+  const stepFragments = {
+    0: 'browse-product',
+    1: 'order-placed',
+    2: 'email-received',
+    3: 'view-passport',
+    4: 'review-transfer',
+    5: 'transfer-complete',
+    6: 'benefits'
+  };
+
+  // Reverse mapping for fragment to step
+  const fragmentToStep = Object.entries(stepFragments).reduce((acc, [step, fragment]) => {
+    acc[fragment] = parseInt(step);
+    return acc;
+  }, {});
+
+  // Update URL fragment when step changes
+  const updateStep = (step) => {
+    setCurrentStep(step);
+    const fragment = stepFragments[step];
+    if (fragment) {
+      window.location.hash = fragment;
+    }
+  };
+
+  // Initialize from URL fragment or default to step 0
   useEffect(() => {
-    setCurrentStep(0);
+    const hash = window.location.hash.replace('#', '');
+    const stepFromHash = fragmentToStep[hash];
+    
+    if (stepFromHash !== undefined) {
+      setCurrentStep(stepFromHash);
+    } else {
+      setCurrentStep(0);
+      window.location.hash = stepFragments[0];
+    }
+    
     setShowPaymentModal(false);
     setShowSuccessModal(false);
     setShowSuccessToast(false);
   }, []);
 
+  // Listen for hash changes (browser back/forward)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      const stepFromHash = fragmentToStep[hash];
+      if (stepFromHash !== undefined) {
+        setCurrentStep(stepFromHash);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const navItems = [
     { icon: Home, label: 'Dashboard', active: false },
     { icon: Package, label: 'My Passports', active: currentStep === 3 },
-    { icon: RefreshCw, label: 'Transfers', active: currentStep >= 4 && currentStep <= 5 },
+    { icon: RefreshCw, label: 'Transfers', active: currentStep === 4 || currentStep === 5 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
@@ -48,21 +97,21 @@ export default function DemoReseller() {
     setTimeout(() => {
       setShowSuccessModal(false);
       setShowSuccessToast(true);
-      setCurrentStep(6);
+      updateStep(5);
       setTimeout(() => setShowSuccessToast(false), 3000);
     }, 2000);
   };
 
   // Step navigation data for hover sidebar
   const stepNavigation = [
-    { step: 'home', emoji: '🏠', label: 'Demo Menu', isHome: true },
-    { step: 0, emoji: '🛒', label: 'Browse Product' },
-    { step: 1, emoji: '✅', label: 'Order Placed' },
-    { step: 2, emoji: '📧', label: 'Email Received' },
-    { step: 3, emoji: '🎫', label: 'View Passport' },
-    { step: 4, emoji: '📋', label: 'Review Rules' },
-    { step: 5, emoji: '💳', label: 'Pay Royalty' },
-    { step: 6, emoji: '🎉', label: 'Complete' },
+    { step: 'home', emoji: '🏠', label: 'Demo Home', isHome: true },
+    { step: 0, emoji: '🛒', label: 'Product Page' },
+    { step: 1, emoji: '✅', label: 'Order Confirmed' },
+    { step: 2, emoji: '📧', label: 'Inbox' },
+    { step: 3, emoji: '🎫', label: 'Digital Passport' },
+    { step: 4, emoji: '📋', label: 'Transfer Review' },
+    { step: 5, emoji: '🎉', label: 'Transfer Complete' },
+    { step: 6, emoji: '✨', label: 'Demo Summary' },
   ];
 
   return (
@@ -94,25 +143,21 @@ export default function DemoReseller() {
             
             <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 mb-6">
               <div className="flex justify-between items-center mb-4">
-                <span className="text-gray-600 dark:text-gray-400">Royalty Amount</span>
-                <span className="text-2xl font-bold text-gray-900 dark:text-white">CHF 1,050</span>
+                <span className="text-gray-600 dark:text-gray-400">Total Royalty Due</span>
+                <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">CHF 5,850</span>
               </div>
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600 dark:text-gray-400">Sale Price</span>
+                  <span className="text-gray-600 dark:text-gray-400">Your Sale Price</span>
                   <span className="text-gray-900 dark:text-white">CHF 6,500</span>
                 </div>
                 <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600 dark:text-gray-400">Purchase Price</span>
+                  <span className="text-gray-600 dark:text-gray-400">Minimum Base Price</span>
                   <span className="text-gray-900 dark:text-white">CHF 3,000</span>
                 </div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600 dark:text-gray-400">Profit</span>
-                  <span className="text-gray-900 dark:text-white">CHF 3,500</span>
-                </div>
                 <div className="flex justify-between text-sm font-semibold">
-                  <span className="text-gray-900 dark:text-white">Royalty Rate</span>
-                  <span className="text-purple-600 dark:text-purple-400">30%</span>
+                  <span className="text-gray-900 dark:text-white">Royalty Rate (Year 1)</span>
+                  <span className="text-purple-600 dark:text-purple-400">90%</span>
                 </div>
               </div>
             </div>
@@ -153,41 +198,71 @@ export default function DemoReseller() {
         </div>
       )}
 
-      {/* Step Navigation Sidebar - Hover activated, RIGHT side */}
+      {/* Step Navigation Sidebar - Elegant & Minimal */}
       <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group">
         {/* Hover trigger area */}
-        <div className="absolute right-0 top-0 bottom-0 w-12 cursor-pointer"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-16 cursor-pointer"></div>
         
         {/* Sidebar content */}
-        <div className="bg-white dark:bg-slate-800 border-l border-gray-200 dark:border-gray-700 shadow-2xl transform translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out">
-          <div className="py-4 px-2 space-y-2">
+        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-l border-gray-200 dark:border-gray-800 shadow-xl transform translate-x-full group-hover:translate-x-0 transition-all duration-500 ease-out rounded-l-2xl overflow-hidden">
+          <div className="py-6 px-3 space-y-1 min-w-[240px]">
             {stepNavigation.map(({ step, emoji, label, isHome }) => (
               <button
                 key={step}
-                onClick={() => isHome ? navigate('/demo') : setCurrentStep(step)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                onClick={() => isHome ? navigate('/demo') : updateStep(step)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group/item relative overflow-hidden ${
                   currentStep === step
-                    ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg'
+                    ? 'bg-slate-50 dark:bg-slate-800 text-gray-900 dark:text-white'
                     : isHome
-                    ? 'hover:bg-slate-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700'
-                    : 'hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-300'
+                    ? 'hover:bg-slate-50 dark:hover:bg-slate-800/50 text-gray-600 dark:text-gray-400 mb-2'
+                    : 'hover:bg-slate-50 dark:hover:bg-slate-800/50 text-gray-600 dark:text-gray-400'
                 }`}
               >
-                <span className="text-2xl">{emoji}</span>
-                <div className="text-left whitespace-nowrap">
-                  <div className={`text-xs font-medium ${currentStep === step ? 'text-white' : 'text-gray-500 dark:text-gray-400'}`}>
-                    {isHome ? '' : `Step ${step + 1}`}
+                {/* Active indicator line */}
+                {currentStep === step && !isHome && (
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-purple-500 to-pink-500 rounded-r-full"></div>
+                )}
+                
+                {/* Step number badge */}
+                {!isHome && (
+                  <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-semibold transition-all duration-300 ${
+                    currentStep === step
+                      ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white shadow-lg'
+                      : 'bg-slate-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 group-hover/item:bg-slate-200 dark:group-hover/item:bg-slate-600'
+                  }`}>
+                    {step + 1}
                   </div>
-                  <div className="text-sm font-semibold">{label}</div>
+                )}
+                
+                {/* Home icon */}
+                {isHome && (
+                  <div className="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    <Home className="w-4 h-4" />
+                  </div>
+                )}
+                
+                {/* Label */}
+                <div className="text-left flex-1">
+                  <div className={`text-sm font-medium transition-colors duration-300 ${
+                    currentStep === step
+                      ? 'text-gray-900 dark:text-white'
+                      : 'text-gray-600 dark:text-gray-400 group-hover/item:text-gray-900 dark:group-hover/item:text-white'
+                  }`}>
+                    {label}
+                  </div>
                 </div>
               </button>
             ))}
           </div>
         </div>
         
-        {/* Visual hint - arrow on hover target */}
-        <div className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none">
-          <ChevronRight className="w-6 h-6 animate-pulse" />
+        {/* Visual hint - elegant dots indicator */}
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40 group-hover:opacity-0 transition-opacity duration-300">
+          <div className="flex flex-col gap-1.5">
+            <div className="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+            <div className="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+            <div className="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+          </div>
         </div>
       </div>
 
@@ -265,24 +340,24 @@ export default function DemoReseller() {
       <main className={currentStep >= 3 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
           
           {/* Step 0: Louis Erard Website - Product Page */}
-          {currentStep === 0 && <ResellerStep0 setCurrentStep={setCurrentStep} />}
+          {currentStep === 0 && <ResellerStep0 setCurrentStep={updateStep} />}
 
           {/* Step 1: Louis Erard Website - Order Confirmation */}
-          {currentStep === 1 && <ResellerStep1 />}
+          {currentStep === 1 && <ResellerStep1 setCurrentStep={updateStep} />}
 
           {/* Step 2: Email - Digital Passport Received */}
-          {currentStep === 2 && <ResellerStep2 setCurrentStep={setCurrentStep} />}
+          {currentStep === 2 && <ResellerStep2 setCurrentStep={updateStep} />}
 
           {/* Step 3: Digital Passport View (INSIDE FAIRCUT) */}
-          {currentStep === 3 && <ResellerStep3 setCurrentStep={setCurrentStep} />}
+          {currentStep === 3 && <ResellerStep3 setCurrentStep={updateStep} />}
 
-          {/* Step 4: Review Transfer & Creator Rules */}
-          {currentStep === 4 && <ResellerStep4 setCurrentStep={setCurrentStep} />}
+          {/* Step 4: Review Transfer & Pay Royalty */}
+          {currentStep === 4 && <ResellerStep4 setCurrentStep={updateStep} handlePayRoyalty={handlePayRoyalty} />}
 
-          {/* Step 5: Pay Royalty & Complete Transfer */}
-          {currentStep === 5 && <ResellerStep5 handlePayRoyalty={handlePayRoyalty} />}
+          {/* Step 5: Transfer Complete */}
+          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} />}
 
-          {/* Step 6: Demo Complete */}
+          {/* Step 6: Benefits & Demo Complete */}
           {currentStep === 6 && <ResellerStep6 navigate={navigate} />}
 
         </main>

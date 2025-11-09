@@ -1,7 +1,7 @@
 import React from 'react';
-import { Check, Search, ShoppingBag } from 'lucide-react';
+import { Check, Search, ShoppingBag, Mail } from 'lucide-react';
 
-export default function ResellerStep1() {
+export default function ResellerStep1({ setCurrentStep }) {
   return (
     <div className="min-h-screen bg-white" style={{fontFamily: 'Assistant, sans-serif', letterSpacing: '0.06rem'}}>
       {/* Louis Erard Header */}
@@ -97,6 +97,25 @@ export default function ResellerStep1() {
             <p>• Your watch will be shipped within 2-3 business days</p>
             <p>• You'll receive a digital passport via email after delivery</p>
           </div>
+        </div>
+
+        {/* View Inbox Button */}
+        <div className="text-center">
+          <button
+            onClick={() => setCurrentStep && setCurrentStep(2)}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-black text-white hover:bg-gray-900 transition-colors duration-200"
+            style={{
+              fontFamily: 'Assistant, sans-serif',
+              fontWeight: 300,
+              letterSpacing: '0.2em',
+              fontSize: '11px',
+              textTransform: 'uppercase',
+              borderRadius: '0px'
+            }}
+          >
+            <Mail className="w-4 h-4" />
+            View Inbox
+          </button>
         </div>
       </div>
     </div>
