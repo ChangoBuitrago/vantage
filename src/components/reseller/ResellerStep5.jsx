@@ -201,7 +201,7 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
                     ? 'border-purple-400 dark:border-purple-600 focus:border-purple-500 focus:ring-purple-500/20'
                     : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
                 }`}
-                placeholder="Enter sale price"
+                placeholder="Enter resale price"
                 min={basePurchasePrice}
                 step="100"
               />
