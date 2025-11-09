@@ -342,7 +342,7 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
 
         {/* Action Button */}
         <button
-          onClick={() => isFormValid && handlePayRoyalty()}
+          onClick={() => isFormValid && handlePayRoyalty(salePriceNum, royaltyAmount, buyerEmail)}
           disabled={!isFormValid}
           className={`w-full flex items-center justify-center gap-2 text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 ${
             isFormValid

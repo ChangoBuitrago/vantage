@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import { Shield, Percent, Wallet, X, Bell, Moon, Sun, Home, Package, BarChart3, Settings, DollarSign, ChevronRight, RefreshCw, Check } from 'lucide-react';
+import { Shield, Percent, Wallet, X, Bell, Moon, Sun, Home, Package, BarChart3, Settings, DollarSign, ChevronRight, RefreshCw, Check, Mail } from 'lucide-react';
 
 // Import step components
 import ResellerStep0 from '../components/reseller/ResellerStep0';
@@ -20,6 +20,9 @@ export default function DemoReseller() {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [salePrice, setSalePrice] = useState(0);
+  const [royaltyAmount, setRoyaltyAmount] = useState(0);
+  const [buyerEmail, setBuyerEmail] = useState('');
 
   const totalSteps = 7; // Step 0: Louis Erard product, Step 1: Order confirmation, Step 2: Email, Step 3-6: Faircut platform
 
@@ -87,7 +90,10 @@ export default function DemoReseller() {
     { icon: Settings, label: 'Settings', active: false },
   ];
 
-  const handlePayRoyalty = () => {
+  const handlePayRoyalty = (price, royalty, email) => {
+    setSalePrice(price);
+    setRoyaltyAmount(royalty);
+    setBuyerEmail(email);
     setShowPaymentModal(true);
   };
 
@@ -144,12 +150,12 @@ export default function DemoReseller() {
             <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 mb-6">
               <div className="flex justify-between items-center mb-4">
                 <span className="text-gray-600 dark:text-gray-400">Total Royalty Due</span>
-                <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">CHF 5,850</span>
+                <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">CHF {royaltyAmount.toLocaleString()}</span>
               </div>
               <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-gray-600 dark:text-gray-400">Your Sale Price</span>
-                  <span className="text-gray-900 dark:text-white">CHF 6,500</span>
+                  <span className="text-gray-900 dark:text-white">CHF {salePrice.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm mb-2">
                   <span className="text-gray-600 dark:text-gray-400">Minimum Base Price</span>
@@ -158,6 +164,19 @@ export default function DemoReseller() {
                 <div className="flex justify-between text-sm font-semibold">
                   <span className="text-gray-900 dark:text-white">Royalty Rate (Year 1)</span>
                   <span className="text-purple-600 dark:text-purple-400">90%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Transfer To */}
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mt-0.5">
+                  <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Transfer To</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 break-all">{buyerEmail}</p>
                 </div>
               </div>
             </div>
@@ -355,7 +374,7 @@ export default function DemoReseller() {
           {currentStep === 4 && <ResellerStep4 setCurrentStep={updateStep} handlePayRoyalty={handlePayRoyalty} />}
 
           {/* Step 5: Transfer Complete */}
-          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} />}
+          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} buyerEmail={buyerEmail} salePrice={salePrice} />}
 
           {/* Step 6: Benefits & Demo Complete */}
           {currentStep === 6 && <ResellerStep6 navigate={navigate} />}

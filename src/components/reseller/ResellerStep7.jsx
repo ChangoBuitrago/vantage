@@ -1,10 +1,11 @@
 import React from 'react';
-import { Check, Shield, Package, Send, Users, Clock, ArrowRight } from 'lucide-react';
+import { Check, Shield, Package, Send, Users, Clock, ArrowRight, Mail } from 'lucide-react';
 
-export default function ResellerStep7({ setCurrentStep }) {
-  const salePrice = 6500;
+export default function ResellerStep7({ setCurrentStep, buyerEmail, salePrice: salePriceProp }) {
+  const salePrice = salePriceProp || 6500;
   const royaltyRate = 0.90;
   const royaltyAmount = Math.round(salePrice * royaltyRate);
+  const recipientEmail = buyerEmail || 'buyer@example.com';
 
   return (
     <div className="px-6 py-8">
@@ -60,7 +61,7 @@ export default function ResellerStep7({ setCurrentStep }) {
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Transfer Summary</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
               <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mt-0.5">
                 <Package className="w-4 h-4 text-gray-600 dark:text-gray-400" />
@@ -88,6 +89,16 @@ export default function ResellerStep7({ setCurrentStep }) {
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Royalty Rate</p>
                 <p className="text-base font-bold text-gray-900 dark:text-white">{Math.round(royaltyRate * 100)}%</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mt-0.5">
+                <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Transferred To</p>
+                <p className="text-base font-bold text-gray-900 dark:text-white truncate" title={recipientEmail}>{recipientEmail}</p>
               </div>
             </div>
           </div>
