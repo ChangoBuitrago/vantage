@@ -37,8 +37,8 @@ export default function ResellerStep1({ setCurrentStep }) {
       </header>
 
       {/* Order Confirmation Content */}
-      <div className="max-w-2xl mx-auto px-6 lg:px-12 py-20">
-        <div className="text-center mb-16">
+      <div className="max-w-2xl mx-auto px-6 lg:px-12 py-8">
+        <div className="text-center mb-8">
           <div className="w-16 h-16 border-2 flex items-center justify-center mx-auto mb-6" style={{borderRadius: '0px', borderColor: '#000000'}}>
             <Check className="w-8 h-8" style={{color: '#000000'}} />
           </div>
@@ -47,7 +47,7 @@ export default function ResellerStep1({ setCurrentStep }) {
         </div>
 
         {/* Order Summary */}
-        <div className="p-8 mb-10" style={{border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '0px'}}>
+        <div className="p-8 mb-6" style={{border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '0px'}}>
           <h2 className="text-xs uppercase tracking-[0.2em] mb-8 font-light" style={{fontFamily: 'Assistant, sans-serif', fontWeight: 300, color: 'rgba(0, 0, 0, 0.6)'}}>Order Summary</h2>
           
           {/* Product Item */}
@@ -91,7 +91,7 @@ export default function ResellerStep1({ setCurrentStep }) {
         </div>
 
         {/* What Happens Next */}
-        <div className="p-6 mb-10" style={{backgroundColor: 'rgba(0, 0, 0, 0.05)', border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '0px'}}>
+        <div className="p-6 mb-6" style={{backgroundColor: 'rgba(0, 0, 0, 0.05)', border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '0px'}}>
           <h3 className="text-xs uppercase tracking-[0.2em] mb-4 font-light" style={{fontFamily: 'Assistant, sans-serif', fontWeight: 300, color: 'rgba(0, 0, 0, 0.6)'}}>What Happens Next?</h3>
           <div className="space-y-3 text-xs leading-relaxed" style={{fontFamily: 'Assistant, sans-serif', fontWeight: 300, color: 'rgba(0, 0, 0, 0.7)'}}>
             <p>• Your watch will be shipped within 2-3 business days</p>

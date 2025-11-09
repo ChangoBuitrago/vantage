@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, DollarSign, Package, Mail } from 'lucide-react';
 
 export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
-  const [salePrice, setSalePrice] = useState('6500');
+  const [salePrice, setSalePrice] = useState('');
   const [buyerEmail, setBuyerEmail] = useState('');
   
   const basePurchasePrice = 3000;
@@ -201,7 +201,7 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
                     ? 'border-purple-400 dark:border-purple-600 focus:border-purple-500 focus:ring-purple-500/20'
                     : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
                 }`}
-                placeholder="6500"
+                placeholder="Enter sale price"
                 min={basePurchasePrice}
                 step="100"
               />
