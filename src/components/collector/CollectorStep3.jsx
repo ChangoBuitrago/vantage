@@ -32,12 +32,10 @@ export default function ResellerStep3({ setCurrentStep }) {
   // Passport data
   const today = new Date();
   
-  // Watch was created 14 months ago
-  const watchCreationDate = new Date(today);
-  watchCreationDate.setMonth(watchCreationDate.getMonth() - 14);
-  const watchMintTimestamp = watchCreationDate.getTime();
+  // Watch was issued today (same as Maria's demo - independent timelines)
+  const watchMintTimestamp = today.getTime();
   
-  // John bought from Maria 7 months ago (transfer lock has EXPIRED - demo showing unlocked state)
+  // John received transfer 7 months ago (transfer lock has EXPIRED - demo showing unlocked state)
   const transferDate = new Date(today);
   transferDate.setMonth(transferDate.getMonth() - 7);
   const transferTimestamp = transferDate.getTime();
@@ -284,6 +282,15 @@ export default function ResellerStep3({ setCurrentStep }) {
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Issue Date</p>
                   <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
+                </div>
+              </div>
+
+              {/* Transfer Date */}
+              <div className="flex items-start gap-2.5 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5" />
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Transfer Date</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(transferTimestamp)}</p>
                 </div>
               </div>
             </div>
