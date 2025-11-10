@@ -479,12 +479,12 @@ export default function ResellerStep3({ setCurrentStep }) {
                     onClick={() => setExpandedServiceLog(!expandedServiceLog)}
                     className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
-                    <Wrench className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                    <Wrench className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
-                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
+                          <span className="text-sm font-bold text-purple-600 dark:text-purple-400">{serviceLogStatus}</span>
                         </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedServiceLog ? 'rotate-180' : ''}`} />
                       </div>
@@ -537,12 +537,12 @@ export default function ResellerStep3({ setCurrentStep }) {
                     onClick={() => setExpandedCommunity(!expandedCommunity)}
                     className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
-                    <Users className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+                    <Users className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
-                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
+                          <span className="text-sm font-bold text-purple-600 dark:text-purple-400">{communityAccessStatus}</span>
                         </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedCommunity ? 'rotate-180' : ''}`} />
                       </div>
