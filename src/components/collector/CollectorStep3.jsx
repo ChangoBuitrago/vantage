@@ -30,20 +30,20 @@ export default function ResellerStep3({ setCurrentStep }) {
   };
 
   // Passport data
-  // John's demo: "today" is 16 May 2026 (future scenario)
-  const today = new Date('2026-05-16');
+  // John's demo: "today" is 5 Aug 2026 (future scenario, showing unlocked state)
+  const today = new Date('2026-08-05');
   
-  // Watch was issued on 10 Nov 2025 (same as Maria's demo)
-  const watchIssueDate = new Date('2025-11-10');
+  // Watch was issued on 28 July 2025 (same as Maria's demo)
+  const watchIssueDate = new Date('2025-07-28');
   const watchMintTimestamp = watchIssueDate.getTime();
   
-  // Maria's lock expired on 10 May 2026 (6 months after issue)
-  // John received transfer shortly after: 11 May 2026
-  const transferDate = new Date('2026-05-11');
+  // Maria's lock expired on 28 Jan 2026 (6 months after issue)
+  // John received transfer shortly after: 1 Feb 2026
+  const transferDate = new Date('2026-02-01');
   const transferTimestamp = transferDate.getTime();
   
-  // John's transfer lock ended on 11 Nov 2026 (6 months after his purchase, expired 5 days ago!)
-  const transferLockEndDate = new Date('2026-11-11');
+  // John's transfer lock ended on 1 Aug 2026 (6 months after his purchase, expired 4 days ago!)
+  const transferLockEndDate = new Date('2026-08-01');
   const transferLockEndDateTimestamp = transferLockEndDate.getTime();
   
   const threeYearsLater = new Date(watchMintTimestamp);

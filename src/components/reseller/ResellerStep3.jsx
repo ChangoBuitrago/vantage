@@ -32,12 +32,12 @@ export default function ResellerStep3({ setCurrentStep }) {
   // Passport data
   const today = new Date();
   
-  // Maria bought the watch recently (transfer lock is ACTIVE - demo showing locked state)
-  const watchMintTimestamp = today.getTime();
+  // Maria bought the watch on 28 July 2025 (transfer lock is ACTIVE - demo showing locked state)
+  const watchIssueDate = new Date('2025-07-28');
+  const watchMintTimestamp = watchIssueDate.getTime();
   
-  // Transfer lock ends 6 months from now
-  const transferLockEndDate = new Date(today);
-  transferLockEndDate.setMonth(transferLockEndDate.getMonth() + 6);
+  // Transfer lock ends 28 January 2026 (6 months from issue)
+  const transferLockEndDate = new Date('2026-01-28');
   const transferLockEndDateTimestamp = transferLockEndDate.getTime();
   
   const threeYearsLater = new Date(watchMintTimestamp);
