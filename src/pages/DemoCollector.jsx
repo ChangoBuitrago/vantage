@@ -1,25 +1,27 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { 
-  Home, Shield, Check, Mail
+  Home, Shield, Check, Mail, FileText
 } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import CollectorStep0 from '../components/collector/CollectorStep0';
 import CollectorStep1 from '../components/collector/CollectorStep1';
 import CollectorStep2 from '../components/collector/CollectorStep2';
+import CollectorStep3 from '../components/collector/CollectorStep3';
 
 export default function DemoCollector() {
   const navigate = useNavigate();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [currentStep, setCurrentStep] = useState(0);
 
-  const totalSteps = 3;
+  const totalSteps = 4;
 
   // Step URL fragments mapping
   const stepFragments = {
     0: 'browse-chrono24',
     1: 'order-confirmed',
-    2: 'inbox'
+    2: 'inbox',
+    3: 'view-passport'
   };
 
   // Reverse mapping for fragment to step
@@ -69,6 +71,7 @@ export default function DemoCollector() {
     { step: 0, emoji: '🛒', label: 'Browse Chrono24' },
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
+    { step: 3, emoji: '📜', label: 'View Passport' },
   ];
 
   return (
@@ -154,6 +157,11 @@ export default function DemoCollector() {
       {/* Step 2: Inbox */}
       {currentStep === 2 && (
         <CollectorStep2 setCurrentStep={updateStep} />
+      )}
+
+      {/* Step 3: View Passport */}
+      {currentStep === 3 && (
+        <CollectorStep3 setCurrentStep={updateStep} />
       )}
     </div>
   );
