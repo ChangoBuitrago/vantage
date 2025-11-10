@@ -376,7 +376,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
                           {isTransferLockActive 
                             ? 'A 6-month waiting period helps protect the brand and ensures authentic collector ownership.' 
-                            : 'The waiting period is complete. You can now transfer this watch anytime.'}
+                            : 'The 6-month waiting period has completed. You can now transfer this watch anytime.'}
                         </p>
                         <div className="space-y-2">
                           <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
