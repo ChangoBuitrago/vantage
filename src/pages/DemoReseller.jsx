@@ -157,10 +157,6 @@ export default function DemoReseller() {
                   <span className="text-gray-600 dark:text-gray-400">Your Sale Price</span>
                   <span className="text-gray-900 dark:text-white">CHF {salePrice.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600 dark:text-gray-400">Minimum Base Price</span>
-                  <span className="text-gray-900 dark:text-white">CHF 3,000</span>
-                </div>
                 <div className="flex justify-between text-sm font-semibold">
                   <span className="text-gray-900 dark:text-white">Royalty Rate (Year 1)</span>
                   <span className="text-purple-600 dark:text-purple-400">90%</span>
