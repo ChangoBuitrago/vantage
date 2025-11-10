@@ -80,7 +80,7 @@ export default function ResellerStep3({ setCurrentStep }) {
         seller: 'Louis Erard Authorized Dealer',
         dealerLocation: 'Bucherer New York',
         paymentMethod: 'Credit Card',
-        certificateIssued: 'Digital Passport',
+        certificateIssued: 'Via Faircut',
         purchasePrice: '3,500 CHF'
       }
     },
