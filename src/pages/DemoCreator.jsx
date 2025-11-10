@@ -899,10 +899,10 @@ export default function DemoCreator() {
 
                   <div className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
                     <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                      MS
+                      MR
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-1">Maria Smith</h4>
+                      <h4 className="font-bold text-gray-900 dark:text-white mb-1">Maria Reseller</h4>
                       <p className="text-sm text-gray-600 dark:text-gray-400">Original owner: Kudoke 2 Salmon Dial #042</p>
                       <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">Member since product launch</p>
                     </div>

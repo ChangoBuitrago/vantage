@@ -151,7 +151,7 @@ export default function CollectorStep1({ setCurrentStep }) {
           {/* Seller Info */}
           <div className="bg-gray-50 rounded-xl p-4">
             <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">Sold by</p>
-            <p className="text-base font-semibold text-gray-900">Maria Smith Watch Boutique</p>
+            <p className="text-base font-semibold text-gray-900">Maria Reseller Watch Boutique</p>
             <p className="text-sm text-gray-600">Switzerland</p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { 
-  Home, Shield, Check, Mail, FileText
+  Home, Shield, Check, Mail, FileText, Package, Settings, Bell, Sun, Moon
 } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import CollectorStep0 from '../components/collector/CollectorStep0';
@@ -65,6 +65,13 @@ export default function DemoCollector() {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  // Faircut sidebar navigation items
+  const navItems = [
+    { icon: Home, label: 'Dashboard', active: false },
+    { icon: Package, label: 'My Passports', active: currentStep === 3 },
+    { icon: Settings, label: 'Settings', active: false },
+  ];
 
   const stepNavigation = [
     { step: 'home', emoji: '🏠', label: 'Demo Home', isHome: true },
@@ -144,25 +151,90 @@ export default function DemoCollector() {
         </div>
       </div>
 
-      {/* Step 0: Chrono24 Product Page */}
-      {currentStep === 0 && (
-        <CollectorStep0 setCurrentStep={updateStep} />
+      {/* Header - Only show for step 3 (inside Faircut platform) */}
+      {currentStep >= 3 && (
+      <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
+        <div className="max-w-[120rem] mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 rounded-lg flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
+                  Faircut
+                </span>
+              </div>
+            </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <Sun size={18} className="text-gray-600 dark:text-gray-300" />
+              ) : (
+                <Moon size={18} className="text-gray-600" />
+              )}
+            </button>
+            <button className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+              <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            </button>
+            <div className="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-gray-700">
+              <div className="text-right hidden sm:block">
+                <div className="text-sm font-semibold text-gray-900 dark:text-white">John Collector</div>
+              </div>
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                JC
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </header>
       )}
 
-      {/* Step 1: Chrono24 Order Confirmation */}
-      {currentStep === 1 && (
-        <CollectorStep1 setCurrentStep={updateStep} />
-      )}
+      {/* Main Content with conditional sidebar */}
+      <div className={currentStep >= 3 ? "flex" : ""}>
+        {/* Sidebar Navigation - Only show for step 3 (inside Faircut platform) */}
+        {currentStep >= 3 && (
+          <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
+            <nav className="p-4 space-y-1">
+              {navItems.map((item, idx) => (
+                <button
+                  key={idx}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                    item.active
+                      ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-semibold'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800'
+                  }`}
+                >
+                  <item.icon className={`w-5 h-5 ${item.active ? 'text-blue-600 dark:text-blue-400' : ''}`} />
+                  <span>{item.label}</span>
+                </button>
+              ))}
+            </nav>
+          </aside>
+        )}
 
-      {/* Step 2: Inbox */}
-      {currentStep === 2 && (
-        <CollectorStep2 setCurrentStep={updateStep} />
-      )}
+      {/* Main Content Area */}
+      <main className={currentStep >= 3 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
+          
+          {/* Step 0: Chrono24 Product Page */}
+          {currentStep === 0 && <CollectorStep0 setCurrentStep={updateStep} />}
 
-      {/* Step 3: View Passport */}
-      {currentStep === 3 && (
-        <CollectorStep3 setCurrentStep={updateStep} />
-      )}
+          {/* Step 1: Chrono24 Order Confirmation */}
+          {currentStep === 1 && <CollectorStep1 setCurrentStep={updateStep} />}
+
+          {/* Step 2: Inbox */}
+          {currentStep === 2 && <CollectorStep2 setCurrentStep={updateStep} />}
+
+          {/* Step 3: View Passport (INSIDE FAIRCUT) */}
+          {currentStep === 3 && <CollectorStep3 setCurrentStep={updateStep} />}
+
+        </main>
+      </div>
     </div>
   );
 }

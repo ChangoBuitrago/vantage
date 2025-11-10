@@ -154,7 +154,7 @@ export default function CollectorStep2({ setCurrentStep }) {
 
                     <div style={{fontSize: '15px', lineHeight: '1.6', color: '#374151'}}>
                       <p style={{margin: '0 0 16px 0'}}>Dear John,</p>
-                      <p style={{margin: '0 0 16px 0'}}>Great news! <strong>Maria Smith</strong> has successfully transferred the Digital Passport for your recently purchased watch:</p>
+                      <p style={{margin: '0 0 16px 0'}}>Great news! <strong>Maria Reseller</strong> has successfully transferred the Digital Passport for your recently purchased watch:</p>
                       
                       <div style={{backgroundColor: '#ffffff', borderRadius: '8px', padding: '20px', marginBottom: '16px', border: '1px solid #e5e7eb'}}>
                         <div style={{display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '12px'}}>

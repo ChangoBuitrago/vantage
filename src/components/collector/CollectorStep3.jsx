@@ -64,7 +64,7 @@ export default function ResellerStep3({ setCurrentStep }) {
     },
     {
       type: 'purchase',
-      entity: 'Maria Smith',
+      entity: 'Maria Reseller',
       entityType: 'Previous Owner',
       date: watchMintTimestamp,
       location: 'New York, USA',
@@ -85,7 +85,7 @@ export default function ResellerStep3({ setCurrentStep }) {
       location: 'Los Angeles, USA',
       details: {
         action: 'Secondary Market Purchase',
-        seller: 'Maria Smith',
+        seller: 'Maria Reseller',
         platform: 'Chrono24',
         paymentMethod: 'Bank Transfer',
         passportTransferred: 'Via Faircut',

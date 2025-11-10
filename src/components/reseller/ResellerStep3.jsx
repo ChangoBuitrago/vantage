@@ -60,7 +60,7 @@ export default function ResellerStep3({ setCurrentStep }) {
     },
     {
       type: 'purchase',
-      entity: 'Maria Smith',
+      entity: 'Maria Reseller',
       entityType: 'Owner',
       date: watchMintTimestamp,
       location: 'New York, USA',
@@ -189,7 +189,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                 <Users className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Current Owner</p>
-                  <p className="text-base font-bold text-gray-900 dark:text-white">Maria Smith</p>
+                  <p className="text-base font-bold text-gray-900 dark:text-white">Maria Reseller</p>
                 </div>
               </div>
 

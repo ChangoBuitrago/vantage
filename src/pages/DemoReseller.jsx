@@ -317,13 +317,10 @@ export default function DemoReseller() {
             </button>
             <div className="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-gray-700">
               <div className="text-right hidden sm:block">
-                <div className="text-sm font-semibold text-gray-900 dark:text-white">Maria Smith</div>
-                <div className="flex items-center gap-2">
-                  <div className="text-xs px-2 py-0.5 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded font-semibold">Reseller</div>
-                </div>
+                <div className="text-sm font-semibold text-gray-900 dark:text-white">Maria Reseller</div>
               </div>
               <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
-                MS
+                MR
               </div>
             </div>
           </div>
