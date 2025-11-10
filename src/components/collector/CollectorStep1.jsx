@@ -4,9 +4,27 @@ import { Check, Search, Heart, Bell, ChevronDown, Mail } from 'lucide-react';
 export default function CollectorStep1({ setCurrentStep }) {
   return (
     <div className="min-h-screen bg-white">
+      {/* Pre-Header App Promo */}
+      <section className="bg-[#1e2a3a]">
+        <div className="max-w-7xl mx-auto px-6 py-1.5 text-center text-xs">
+          <div className="flex items-center justify-center gap-2">
+            <img 
+              src="https://static.chrono24.com/images/default/logos/apps/chrono24-app-logo.svg" 
+              alt="Chrono24 App" 
+              width="20" 
+              height="20" 
+              className="rounded-md"
+            />
+            <div className="text-white">
+              Have you tried the Chrono24 app? <a href="#" className="text-white underline hover:no-underline font-medium">Discover now</a>!
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Chrono24 Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-30" style={{fontFamily: 'system-ui, -apple-system, sans-serif'}}>
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           {/* Top bar with logo, search, and user */}
           <div className="flex items-center justify-between py-4 gap-8">
             {/* Logo */}
@@ -24,8 +42,8 @@ export default function CollectorStep1({ setCurrentStep }) {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search through 600,059 watches worldwide"
-                  className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="Search through 600,166 watches from 131 countries"
+                  className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-md text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500"
                   readOnly
                 />
               </div>
@@ -36,7 +54,7 @@ export default function CollectorStep1({ setCurrentStep }) {
               <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
-              <span className="text-sm text-gray-700 hover:text-gray-900 cursor-pointer">
+              <span className="text-base text-gray-700 hover:text-gray-900 cursor-pointer">
                 Log in or register
               </span>
             </div>
@@ -44,27 +62,27 @@ export default function CollectorStep1({ setCurrentStep }) {
 
           {/* Navigation Menu */}
           <nav className="flex items-center gap-1 pb-3 border-t border-gray-100 pt-2">
-            <button className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded flex items-center gap-1">
+            <button className="px-3 py-2 text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded flex items-center gap-1">
               <span>Buy a watch</span>
               <ChevronDown className="w-4 h-4" />
             </button>
-            <button className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded flex items-center gap-1">
+            <button className="px-3 py-2 text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded flex items-center gap-1">
               <span>Sell a watch</span>
               <ChevronDown className="w-4 h-4" />
             </button>
-            <button className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
+            <button className="px-3 py-2 text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
               Magazine
             </button>
-            <button className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
+            <button className="px-3 py-2 text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
               Watch Collection
             </button>
-            <button className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
+            <button className="px-3 py-2 text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
               ChronoPulse
             </button>
-            <button className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
+            <button className="px-3 py-2 text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded">
               FAQ
             </button>
-            <button className="px-3 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded flex items-center gap-1">
+            <button className="px-3 py-2 text-base text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded flex items-center gap-1">
               <span>Security</span>
               <ChevronDown className="w-4 h-4" />
             </button>
@@ -176,9 +194,16 @@ export default function CollectorStep1({ setCurrentStep }) {
         <div className="text-center">
           <button
             onClick={() => setCurrentStep && setCurrentStep(2)}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition-all duration-200 hover:scale-[1.02] shadow-lg"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-black text-white hover:bg-gray-800 transition-colors duration-200"
+            style={{
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+              fontWeight: 500,
+              letterSpacing: '0.02em',
+              fontSize: '14px',
+              borderRadius: '4px'
+            }}
           >
-            <Mail className="w-5 h-5" />
+            <Mail className="w-4 h-4" />
             View Inbox
           </button>
         </div>
