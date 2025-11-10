@@ -3,7 +3,7 @@ import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, DollarSign, Pack
 
 export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
   const [salePrice, setSalePrice] = useState('');
-  const [buyerEmail, setBuyerEmail] = useState('');
+  const [collectorEmail, setCollectorEmail] = useState('');
   
   const basePurchasePrice = 3000;
   const royaltyRate = 0.90; // 90% for Year 1
@@ -12,7 +12,7 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
   
   // Email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const isEmailValid = emailRegex.test(buyerEmail);
+  const isEmailValid = emailRegex.test(collectorEmail);
   
   // Validation states
   const isPriceValid = salePriceNum >= basePurchasePrice;
@@ -123,10 +123,10 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
             Transfer Details
           </h3>
           
-          {/* Buyer Email Input */}
+          {/* Collector Email Input */}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Buyer Email Address
+              Collector Email Address
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -134,21 +134,21 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
               </div>
               <input
                 type="email"
-                value={buyerEmail}
-                onChange={(e) => setBuyerEmail(e.target.value)}
+                value={collectorEmail}
+                onChange={(e) => setCollectorEmail(e.target.value)}
                 className={`w-full pl-12 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border-2 rounded-lg text-base text-gray-900 dark:text-white focus:ring-2 outline-none transition-all ${
-                  buyerEmail && !isEmailValid
+                  collectorEmail && !isEmailValid
                     ? 'border-red-400 dark:border-red-600 focus:border-red-500 focus:ring-red-500/20'
                     : isEmailValid
                     ? 'border-green-400 dark:border-green-600 focus:border-green-500 focus:ring-green-500/20'
                     : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
                 }`}
-                placeholder="buyer@example.com"
+                placeholder="collector@example.com"
               />
             </div>
             
             {/* Email Validation Messages */}
-            {buyerEmail && !isEmailValid && (
+            {collectorEmail && !isEmailValid && (
               <div className="mt-2">
                 <div className="flex items-start gap-2 p-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
                   <Mail className="w-4 h-4 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
@@ -342,7 +342,7 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
 
         {/* Action Button */}
         <button
-          onClick={() => isFormValid && handlePayRoyalty(salePriceNum, royaltyAmount, buyerEmail)}
+          onClick={() => isFormValid && handlePayRoyalty(salePriceNum, royaltyAmount, collectorEmail)}
           disabled={!isFormValid}
           className={`w-full flex items-center justify-center gap-2 text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 ${
             isFormValid

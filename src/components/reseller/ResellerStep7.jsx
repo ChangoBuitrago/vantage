@@ -1,11 +1,11 @@
 import React from 'react';
 import { Check, Shield, Package, Send, Users, Clock, ArrowRight, Mail } from 'lucide-react';
 
-export default function ResellerStep7({ setCurrentStep, buyerEmail, salePrice: salePriceProp }) {
+export default function ResellerStep7({ setCurrentStep, collectorEmail, salePrice: salePriceProp }) {
   const salePrice = salePriceProp || 6500;
   const royaltyRate = 0.90;
   const royaltyAmount = Math.round(salePrice * royaltyRate);
-  const recipientEmail = buyerEmail || 'buyer@example.com';
+  const recipientEmail = collectorEmail || 'collector@example.com';
 
   return (
     <div className="px-6 py-8">

@@ -22,7 +22,7 @@ export default function DemoReseller() {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [salePrice, setSalePrice] = useState(0);
   const [royaltyAmount, setRoyaltyAmount] = useState(0);
-  const [buyerEmail, setBuyerEmail] = useState('');
+  const [collectorEmail, setCollectorEmail] = useState('');
 
   const totalSteps = 7; // Step 0: Louis Erard product, Step 1: Order confirmation, Step 2: Email, Step 3-6: Faircut platform
 
@@ -93,7 +93,7 @@ export default function DemoReseller() {
   const handlePayRoyalty = (price, royalty, email) => {
     setSalePrice(price);
     setRoyaltyAmount(royalty);
-    setBuyerEmail(email);
+    setCollectorEmail(email);
     setShowPaymentModal(true);
   };
 
@@ -176,7 +176,7 @@ export default function DemoReseller() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Transfer To</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 break-all">{buyerEmail}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 break-all">{collectorEmail}</p>
                 </div>
               </div>
             </div>
@@ -371,7 +371,7 @@ export default function DemoReseller() {
           {currentStep === 4 && <ResellerStep4 setCurrentStep={updateStep} handlePayRoyalty={handlePayRoyalty} />}
 
           {/* Step 5: Transfer Complete */}
-          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} buyerEmail={buyerEmail} salePrice={salePrice} />}
+          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} />}
 
           {/* Step 6: Benefits & Demo Complete */}
           {currentStep === 6 && <ResellerStep6 navigate={navigate} />}

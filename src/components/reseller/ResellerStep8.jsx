@@ -44,7 +44,7 @@ export default function ResellerStep8({ navigate }) {
               <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Users className="w-6 h-6 text-purple-600 dark:text-purple-400" />
               </div>
-              <p className="font-semibold text-gray-900 dark:text-white mb-2">For Buyers</p>
+              <p className="font-semibold text-gray-900 dark:text-white mb-2">For Collectors</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 Verified authenticity, full benefits, transparent history
               </p>
