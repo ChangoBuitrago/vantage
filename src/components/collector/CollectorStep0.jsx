@@ -226,7 +226,7 @@ export default function CollectorStep0({ setCurrentStep }) {
 
               {/* Seller Info */}
               <div className="border-t border-gray-200 pt-4">
-                <h4 className="text-base font-bold text-gray-900 mb-3 underline cursor-pointer">MARIA SMITH</h4>
+                <h4 className="text-base font-bold text-gray-900 mb-3 underline cursor-pointer">MARIA RESELLER</h4>
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-xs text-gray-700">Professional dealer</span>
                   <span className="text-base">🇨🇭</span>
