@@ -307,12 +307,12 @@ export default function ResellerStep3({ setCurrentStep }) {
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
-                          <span className="font-mono text-sm font-bold text-blue-600 dark:text-blue-400">CHF {formatNumber(6500)}</span>
+                          <span className="font-mono text-sm font-bold text-blue-600 dark:text-blue-400">CHF {formatNumber(3000)}</span>
                         </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Your purchase price - base for calculating future resale royalties
+                        Original retail price - base for calculating creator royalties
                       </p>
                     </div>
                   </button>
@@ -328,8 +328,8 @@ export default function ResellerStep3({ setCurrentStep }) {
                             <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
                           <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Your Purchase Price</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 6,500</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Original Retail Price</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 3,000</p>
                           </div>
                         </div>
                       </div>
