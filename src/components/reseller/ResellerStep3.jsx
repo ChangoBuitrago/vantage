@@ -33,12 +33,12 @@ export default function ResellerStep3({ setCurrentStep }) {
   // Maria's demo: "today" is 5 Aug 2026 (future scenario, showing unlocked state)
   const today = new Date('2026-08-05');
   
-  // Maria bought the watch on 28 July 2025 (transfer lock has EXPIRED - demo showing unlocked state)
-  const watchIssueDate = new Date('2025-07-28');
+  // Maria bought the watch on 28 January 2025 (transfer lock has EXPIRED - demo showing unlocked state)
+  const watchIssueDate = new Date('2025-01-28');
   const watchMintTimestamp = watchIssueDate.getTime();
   
-  // Transfer lock ended 28 January 2026 (6 months from issue, expired 6 months ago)
-  const transferLockEndDate = new Date('2026-01-28');
+  // Transfer lock ended 28 July 2025 (6 months from issue, expired over 1 year ago)
+  const transferLockEndDate = new Date('2025-07-28');
   const transferLockEndDateTimestamp = transferLockEndDate.getTime();
   
   const threeYearsLater = new Date(watchMintTimestamp);
