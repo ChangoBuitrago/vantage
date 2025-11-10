@@ -320,18 +320,10 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Transfer Lock */}
               <div className="mb-3">
-                <div className={`border-2 rounded-lg overflow-hidden transition-all duration-300 ${
-                  isTransferLockActive 
-                    ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 hover:border-red-400' 
-                    : 'bg-slate-50 dark:bg-slate-800/50 border-gray-200 dark:border-gray-700 hover:border-purple-400'
-                }`}>
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
                   <button
                     onClick={() => setExpandedTransferLock(!expandedTransferLock)}
-                    className={`w-full p-4 flex items-start gap-3 transition-colors ${
-                      isTransferLockActive 
-                        ? 'hover:bg-red-100 dark:hover:bg-red-900/30' 
-                        : 'hover:bg-slate-100 dark:hover:bg-slate-700/50'
-                    }`}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
                     <Clock className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-purple-600 dark:text-purple-400'}`} />
                     <div className="flex-1 text-left">
@@ -351,7 +343,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                   </button>
 
                   {expandedTransferLock && (
-                    <div className={`px-4 pb-4 border-t ${isTransferLockActive ? 'border-red-200 dark:border-red-700' : 'border-gray-200 dark:border-gray-700'} bg-slate-50 dark:bg-slate-900/50`}>
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                       <div className="pt-3">
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
                           {isTransferLockActive 
@@ -395,10 +387,10 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Dynamic Royalties */}
               <div className="mb-3">
-                <div className="bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
                   <button
                     onClick={() => setExpandedRoyalties(!expandedRoyalties)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
                     <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
@@ -416,7 +408,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                   </button>
 
                   {expandedRoyalties && (
-                    <div className="px-4 pb-4 border-t border-purple-200 dark:border-purple-700 bg-slate-50 dark:bg-slate-900/50">
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                       <div className="pt-3 space-y-2">
                         <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600' : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'}`}>
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
@@ -453,10 +445,10 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Service Log */}
               <div className="mb-3">
-                <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-lg overflow-hidden hover:border-green-400 dark:hover:border-green-500 transition-all duration-300">
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
                   <button
                     onClick={() => setExpandedServiceLog(!expandedServiceLog)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
                     <Wrench className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
@@ -474,7 +466,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                   </button>
 
                   {expandedServiceLog && (
-                    <div className="px-4 pb-4 border-t border-green-200 dark:border-green-700 bg-slate-50 dark:bg-slate-900/50">
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                       <div className="pt-3 space-y-2">
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
@@ -511,10 +503,10 @@ export default function ResellerStep3({ setCurrentStep }) {
 
               {/* Community Access */}
               <div className="mb-3">
-                <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-800 rounded-lg overflow-hidden hover:border-green-400 dark:hover:border-green-500 transition-all duration-300">
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
                   <button
                     onClick={() => setExpandedCommunity(!expandedCommunity)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
                     <Users className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
@@ -532,7 +524,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                   </button>
 
                   {expandedCommunity && (
-                    <div className="px-4 pb-4 border-t border-green-200 dark:border-green-700 bg-slate-50 dark:bg-slate-900/50">
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                       <div className="pt-3 space-y-2">
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
