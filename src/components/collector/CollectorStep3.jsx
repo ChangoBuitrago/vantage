@@ -635,8 +635,6 @@ export default function ResellerStep3({ setCurrentStep }) {
                           }`}>
                             {entry.type === 'creation' ? (
                               <Building2 className="w-5 h-5 text-white" />
-                            ) : entry.type === 'transfer' ? (
-                              <ArrowRight className="w-5 h-5 text-white" />
                             ) : (
                               <User className="w-5 h-5 text-white" />
                             )}
