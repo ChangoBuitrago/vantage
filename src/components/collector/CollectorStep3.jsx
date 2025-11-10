@@ -31,9 +31,13 @@ export default function ResellerStep3({ setCurrentStep }) {
 
   // Passport data
   const today = new Date();
-  const watchMintTimestamp = today.getTime();
   
-  // Transfer happened 5 days ago
+  // Watch was created and Maria bought it 7 months ago
+  const mariaPurchaseDate = new Date(today);
+  mariaPurchaseDate.setMonth(mariaPurchaseDate.getMonth() - 7);
+  const watchMintTimestamp = mariaPurchaseDate.getTime();
+  
+  // John bought from Maria 5 days ago
   const transferDate = new Date(today);
   transferDate.setDate(transferDate.getDate() - 5);
   const transferTimestamp = transferDate.getTime();
