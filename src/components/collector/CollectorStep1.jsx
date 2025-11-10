@@ -7,47 +7,66 @@ export default function CollectorStep1({ setCurrentStep }) {
       {/* Chrono24 Header */}
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-[1400px] mx-auto px-6">
-          <div className="flex items-center justify-between py-3">
+          {/* Top bar with logo, search, and user */}
+          <div className="flex items-center justify-between py-4 gap-8">
             {/* Logo */}
-            <div className="flex items-center gap-8">
+            <div className="flex-shrink-0">
               <div className="text-2xl font-bold tracking-tight">
                 <span className="text-gray-900 dark:text-white">CHRONO</span>
                 <span className="text-green-600 dark:text-green-500">24</span>
               </div>
-              {/* Search Bar */}
-              <div className="hidden lg:block relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            </div>
+            
+            {/* Search Bar - Center */}
+            <div className="flex-1 max-w-2xl">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search for watches, brands..."
-                  className="pl-10 pr-4 py-2 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm w-96 focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:ring-green-600 text-gray-900 dark:text-white"
+                  placeholder="Search through 600,059 watches worldwide"
+                  className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:ring-green-600"
                   readOnly
                 />
               </div>
             </div>
-            {/* Right Actions */}
-            <div className="flex items-center gap-4">
-              <button className="hidden md:flex items-center gap-1 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
-                <span>EN</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-                <Heart className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-              </button>
-              <button className="p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
-                <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-              </button>
-              <div className="w-9 h-9 bg-green-600 dark:bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                JD
-              </div>
+
+            {/* Right Side - User */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <svg className="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span className="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white cursor-pointer">
+                Log in or register
+              </span>
             </div>
           </div>
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-6 pb-3 text-sm text-gray-700 dark:text-gray-300">
-            <button className="hover:text-gray-900 dark:hover:text-white">Watches</button>
-            <button className="hover:text-gray-900 dark:hover:text-white">Dealers</button>
-            <button className="hover:text-gray-900 dark:hover:text-white">Magazine</button>
-            <button className="hover:text-gray-900 dark:hover:text-white">My Watch Collection</button>
+
+          {/* Navigation Menu */}
+          <nav className="flex items-center gap-1 pb-3 border-t border-gray-100 dark:border-gray-800 pt-2">
+            <button className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 rounded flex items-center gap-1">
+              <span>Buy a watch</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+            <button className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 rounded flex items-center gap-1">
+              <span>Sell a watch</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+            <button className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 rounded">
+              Magazine
+            </button>
+            <button className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 rounded">
+              Watch Collection
+            </button>
+            <button className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 rounded">
+              ChronoPulse
+            </button>
+            <button className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 rounded">
+              FAQ
+            </button>
+            <button className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800 rounded flex items-center gap-1">
+              <span>Security</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
           </nav>
         </div>
       </header>
