@@ -1,23 +1,25 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { 
-  Home, Shield, Check
+  Home, Shield, Check, Mail
 } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import CollectorStep0 from '../components/collector/CollectorStep0';
 import CollectorStep1 from '../components/collector/CollectorStep1';
+import CollectorStep2 from '../components/collector/CollectorStep2';
 
 export default function DemoCollector() {
   const navigate = useNavigate();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [currentStep, setCurrentStep] = useState(0);
 
-  const totalSteps = 2;
+  const totalSteps = 3;
 
   // Step URL fragments mapping
   const stepFragments = {
     0: 'browse-chrono24',
-    1: 'order-confirmed'
+    1: 'order-confirmed',
+    2: 'inbox'
   };
 
   // Reverse mapping for fragment to step
@@ -66,6 +68,7 @@ export default function DemoCollector() {
     { step: 'home', emoji: '🏠', label: 'Demo Home', isHome: true },
     { step: 0, emoji: '🛒', label: 'Browse Chrono24' },
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
+    { step: 2, emoji: '📧', label: 'Inbox' },
   ];
 
   return (
@@ -92,14 +95,14 @@ export default function DemoCollector() {
               >
                 {/* Active indicator line */}
                 {currentStep === step && !isHome && (
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-r-full"></div>
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-blue-500 to-blue-600 rounded-r-full"></div>
                 )}
                 
                 {/* Step number badge */}
                 {!isHome && (
                   <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-semibold transition-all duration-300 ${
                     currentStep === step
-                      ? 'bg-gradient-to-br from-green-500 to-emerald-500 text-white shadow-lg'
+                      ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-lg'
                       : 'bg-slate-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 group-hover/item:bg-slate-200 dark:group-hover/item:bg-slate-600'
                   }`}>
                     {step + 1}
@@ -146,6 +149,11 @@ export default function DemoCollector() {
       {/* Step 1: Chrono24 Order Confirmation */}
       {currentStep === 1 && (
         <CollectorStep1 setCurrentStep={updateStep} />
+      )}
+
+      {/* Step 2: Inbox */}
+      {currentStep === 2 && (
+        <CollectorStep2 setCurrentStep={updateStep} />
       )}
     </div>
   );
