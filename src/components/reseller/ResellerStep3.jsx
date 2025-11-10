@@ -325,13 +325,13 @@ export default function ResellerStep3({ setCurrentStep }) {
                     onClick={() => setExpandedTransferLock(!expandedTransferLock)}
                     className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
-                    <Clock className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-purple-600 dark:text-purple-400'}`} />
+                    <Clock className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`} />
                     <div className="flex-1 text-left">
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
-                          <span className={`text-sm font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'}`}>
-                            {isTransferLockActive ? 'Active' : 'Inactive'}
+                          <span className={`text-sm font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
+                            {isTransferLockActive ? 'Locked' : 'Unlocked'}
                           </span>
                         </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
