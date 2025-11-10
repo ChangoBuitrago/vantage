@@ -148,16 +148,16 @@ export default function ResellerStep3({ setCurrentStep }) {
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <button
-                    onClick={() => !isStolen && setCurrentStep(4)}
-                    disabled={isStolen}
+                    onClick={() => !isStolen && !isTransferLockActive && setCurrentStep(4)}
+                    disabled={isStolen || isTransferLockActive}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                      isStolen
+                      isStolen || isTransferLockActive
                         ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
                         : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl'
                     }`}
                   >
                     <Send className="w-5 h-5" />
-                    {isStolen ? 'Transfer Locked' : 'Transfer Ownership'}
+                    {isStolen ? 'Reported Stolen' : isTransferLockActive ? 'Transfer Locked' : 'Transfer Ownership'}
                   </button>
                   <button
                     onClick={() => !isStolen && setShowReportModal(true)}

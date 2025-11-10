@@ -32,21 +32,24 @@ export default function ResellerStep3({ setCurrentStep }) {
   // Passport data
   const today = new Date();
   const watchMintTimestamp = today.getTime();
-  const sixMonthsLater = new Date(today);
-  sixMonthsLater.setMonth(sixMonthsLater.getMonth() + 6);
-  const transferLockEndDateTimestamp = sixMonthsLater.getTime(); // 6 months after purchase
-  const threeYearsLater = new Date(today);
+  
+  // Transfer happened 5 days ago
+  const transferDate = new Date(today);
+  transferDate.setDate(transferDate.getDate() - 5);
+  const transferTimestamp = transferDate.getTime();
+  
+  // Transfer lock ends 6 months after John's purchase
+  const transferLockEndDate = new Date(transferDate);
+  transferLockEndDate.setMonth(transferLockEndDate.getMonth() + 6);
+  const transferLockEndDateTimestamp = transferLockEndDate.getTime();
+  
+  const threeYearsLater = new Date(watchMintTimestamp);
   threeYearsLater.setFullYear(threeYearsLater.getFullYear() + 3);
-  const nextServiceDueTimestamp = threeYearsLater.getTime(); // 3 years after issue
+  const nextServiceDueTimestamp = threeYearsLater.getTime(); // 3 years after creation
   const isTransferLockActive = Date.now() < transferLockEndDateTimestamp;
   const activeRoyaltyTier = 'Year 1';
   const serviceLogStatus = "Verified";
   const communityAccessStatus = "Enabled";
-
-  // Ownership History Data
-  const transferDate = new Date(today);
-  transferDate.setDate(transferDate.getDate() - 5); // 5 days ago
-  const transferTimestamp = transferDate.getTime();
 
   const ownershipHistory = [
     {
@@ -159,24 +162,24 @@ export default function ResellerStep3({ setCurrentStep }) {
                     <span className="text-xs font-semibold text-gray-900 dark:text-white">Verified Authentic</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <Package className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                    <span className="text-xs font-semibold text-gray-900 dark:text-white">1st Owner</span>
+                    <Package className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">2nd Owner</span>
                   </div>
                 </div>
                 
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <button
-                    onClick={() => !isStolen && setCurrentStep(4)}
-                    disabled={isStolen}
+                    onClick={() => !isStolen && !isTransferLockActive && setCurrentStep(4)}
+                    disabled={isStolen || isTransferLockActive}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                      isStolen
+                      isStolen || isTransferLockActive
                         ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg hover:shadow-xl'
+                        : 'bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl'
                     }`}
                   >
                     <Send className="w-5 h-5" />
-                    {isStolen ? 'Transfer Locked' : 'Transfer Ownership'}
+                    {isStolen ? 'Reported Stolen' : isTransferLockActive ? 'Transfer Locked' : 'Transfer Ownership'}
                   </button>
                   <button
                     onClick={() => !isStolen && setShowReportModal(true)}
@@ -300,12 +303,12 @@ export default function ResellerStep3({ setCurrentStep }) {
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
-                          <span className="font-mono text-sm font-bold text-purple-600 dark:text-purple-400">CHF {formatNumber(3000)}</span>
+                          <span className="font-mono text-sm font-bold text-blue-600 dark:text-blue-400">CHF {formatNumber(6500)}</span>
                         </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Minimum resale value for calculating creator royalties
+                        Your purchase price - base for calculating future resale royalties
                       </p>
                     </div>
                   </button>
@@ -314,15 +317,15 @@ export default function ResellerStep3({ setCurrentStep }) {
                     <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                       <div className="pt-3">
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
-                          Royalties are calculated on profits above this base price. The creator receives a percentage based on how long you've owned the watch.
+                          If you resell, royalties are calculated on profits above this base price. The creator receives a percentage based on how long you've owned the watch.
                         </p>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
                           <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Original Purchase Price</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 3,000</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Your Purchase Price</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 6,500</p>
                           </div>
                         </div>
                       </div>
@@ -387,7 +390,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                             </div>
                             <div className="flex-1 min-w-0 flex items-center justify-between">
                               <p className="text-xs text-gray-500 dark:text-gray-400">Start Date</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
+                              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(transferTimestamp)}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
