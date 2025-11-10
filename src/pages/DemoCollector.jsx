@@ -5,6 +5,8 @@ import {
   Search, Bell, Heart, Filter, Star, Clock, Package, ChevronDown, CreditCard, MapPin, Moon, Sun
 } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
+import CollectorStep0 from '../components/collector/CollectorStep0';
+import CollectorStep1 from '../components/collector/CollectorStep1';
 
 export default function DemoCollector() {
   const navigate = useNavigate();
@@ -35,6 +37,19 @@ export default function DemoCollector() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      {/* Step 0: Chrono24 Product Page */}
+      {currentStep === 0 && (
+        <CollectorStep0 setCurrentStep={setCurrentStep} />
+      )}
+
+      {/* Step 1: Chrono24 Order Confirmation */}
+      {currentStep === 1 && (
+        <CollectorStep1 setCurrentStep={setCurrentStep} />
+      )}
+
+      {/* Hide rest of the demo if on steps 0-1 */}
+      {currentStep >= 2 && (
+        <>
       {/* Checkout Modal */}
       {showCheckoutModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-6">
@@ -806,6 +821,8 @@ export default function DemoCollector() {
         )}
 
       </main>
+        </>
+      )}
     </div>
   );
 }
