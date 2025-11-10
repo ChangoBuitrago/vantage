@@ -159,12 +159,8 @@ export default function CollectorStep0({ setCurrentStep }) {
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Louis Erard</h2>
               <h1 className="text-xl text-gray-900 mb-3 font-normal">Le Regulateur Louis Erard x Alain Silberstein</h1>
               <p className="text-base text-gray-900 leading-relaxed mb-2">
-                Condition: <span className="underline">Like new & unworn</span> | Year of production 2022 | Original box | Original papers
+                Condition: <span className="underline">Like new & unworn</span> | Year of production 2022 | Original box | Original papers | Digital passport
               </p>
-              <div className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-3 py-1.5 rounded-md text-sm font-semibold border border-green-200">
-                <Shield className="w-4 h-4" />
-                Digital Passport
-              </div>
             </div>
 
             {/* Price */}
