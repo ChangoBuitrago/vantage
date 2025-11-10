@@ -32,17 +32,17 @@ export default function ResellerStep3({ setCurrentStep }) {
   // Passport data
   const today = new Date();
   
-  // Watch was created and Maria bought it 7 months ago
-  const mariaPurchaseDate = new Date(today);
-  mariaPurchaseDate.setMonth(mariaPurchaseDate.getMonth() - 7);
-  const watchMintTimestamp = mariaPurchaseDate.getTime();
+  // Watch was created 14 months ago
+  const watchCreationDate = new Date(today);
+  watchCreationDate.setMonth(watchCreationDate.getMonth() - 14);
+  const watchMintTimestamp = watchCreationDate.getTime();
   
-  // John bought from Maria 5 days ago
+  // John bought from Maria 7 months ago (transfer lock has EXPIRED - demo showing unlocked state)
   const transferDate = new Date(today);
-  transferDate.setDate(transferDate.getDate() - 5);
+  transferDate.setMonth(transferDate.getMonth() - 7);
   const transferTimestamp = transferDate.getTime();
   
-  // Transfer lock ends 6 months after John's purchase
+  // Transfer lock ended 1 month ago (6 months after John's purchase)
   const transferLockEndDate = new Date(transferDate);
   transferLockEndDate.setMonth(transferLockEndDate.getMonth() + 6);
   const transferLockEndDateTimestamp = transferLockEndDate.getTime();
@@ -50,7 +50,7 @@ export default function ResellerStep3({ setCurrentStep }) {
   const threeYearsLater = new Date(watchMintTimestamp);
   threeYearsLater.setFullYear(threeYearsLater.getFullYear() + 3);
   const nextServiceDueTimestamp = threeYearsLater.getTime(); // 3 years after creation
-  const isTransferLockActive = Date.now() < transferLockEndDateTimestamp;
+  const isTransferLockActive = Date.now() < transferLockEndDateTimestamp; // FALSE - lock expired
   const activeRoyaltyTier = 'Year 1';
   const serviceLogStatus = "Verified";
   const communityAccessStatus = "Enabled";
