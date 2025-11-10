@@ -288,8 +288,8 @@ export default function ResellerStep3({ setCurrentStep }) {
               </div>
 
               {/* Transfer Date */}
-              <div className="flex items-start gap-2.5 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Transfer Date</p>
                   <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(transferTimestamp)}</p>
