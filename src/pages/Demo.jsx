@@ -62,27 +62,23 @@ export default function Demo() {
           {/* Creator Experience */}
           <button
             onClick={() => navigate('/demo/creator')}
-            className="group relative bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 rounded-3xl p-12 border-2 border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl text-left"
+            className="group relative bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 rounded-3xl p-12 border-2 border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600 transition-all duration-300 hover:scale-105 hover:shadow-2xl text-left"
           >
-            <div className="absolute top-6 right-6 w-14 h-14 bg-amber-100 dark:bg-amber-900/50 rounded-full flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform">
+            <div className="absolute top-6 right-6 w-14 h-14 bg-emerald-100 dark:bg-emerald-900/50 rounded-full flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform">
               <Palette size={28} />
             </div>
             
-            <div className="mb-6 pr-16">
+            <div className="mb-8 pr-16">
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Creator Experience
               </h2>
-              <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                Coming soon
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                Issue digital passports with smart rules and earn ongoing royalties from resales.
               </p>
             </div>
 
-            <div className="space-y-3 mb-8">
-              {/* Content to be added */}
-            </div>
-
-            <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-semibold group-hover:gap-3 transition-all">
-              <span>Start Creator Demo</span>
+            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-semibold group-hover:gap-3 transition-all">
+              <span>Start Creator Experience</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
