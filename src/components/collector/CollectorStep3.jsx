@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings, CheckCircle, Building, MessageSquare, Ticket, ShoppingBag, Send, AlertTriangle, X } from 'lucide-react';
 
-export default function ResellerStep3({ setCurrentStep }) {
+export default function CollectorStep3({ setCurrentStep }) {
   // State for expandable sections
   const [expandedHistory, setExpandedHistory] = useState({});
   const [expandedBasePrice, setExpandedBasePrice] = useState(false);

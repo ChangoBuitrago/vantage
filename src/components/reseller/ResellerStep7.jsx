@@ -158,15 +158,6 @@ export default function ResellerStep7({ setCurrentStep, collectorEmail, salePric
             </div>
           </div>
         </div>
-
-        {/* Continue Button */}
-        <button
-          onClick={() => setCurrentStep(6)}
-          className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-        >
-          Continue
-          <ArrowRight className="w-5 h-5" />
-        </button>
       </div>
     </div>
   );

@@ -8,20 +8,22 @@ import CollectorStep0 from '../components/collector/CollectorStep0';
 import CollectorStep1 from '../components/collector/CollectorStep1';
 import CollectorStep2 from '../components/collector/CollectorStep2';
 import CollectorStep3 from '../components/collector/CollectorStep3';
+import CollectorStep4 from '../components/collector/CollectorStep4';
 
 export default function DemoCollector() {
   const navigate = useNavigate();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [currentStep, setCurrentStep] = useState(0);
 
-  const totalSteps = 4;
+  const totalSteps = 5;
 
   // Step URL fragments mapping
   const stepFragments = {
     0: 'browse-chrono24',
     1: 'order-confirmed',
     2: 'inbox',
-    3: 'view-passport'
+    3: 'view-passport',
+    4: 'summary'
   };
 
   // Reverse mapping for fragment to step
@@ -79,6 +81,7 @@ export default function DemoCollector() {
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
     { step: 3, emoji: '📜', label: 'View Passport' },
+    { step: 4, emoji: '🎯', label: 'Demo Summary' },
   ];
 
   return (
@@ -151,8 +154,8 @@ export default function DemoCollector() {
         </div>
       </div>
 
-      {/* Header - Only show for step 3 (inside Faircut platform) */}
-      {currentStep >= 3 && (
+      {/* Header - Only show for steps 3-4 (inside Faircut platform) */}
+      {(currentStep === 3 || currentStep === 4) && (
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -196,9 +199,9 @@ export default function DemoCollector() {
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={currentStep >= 3 ? "flex" : ""}>
+      <div className={currentStep === 3 ? "flex" : ""}>
         {/* Sidebar Navigation - Only show for step 3 (inside Faircut platform) */}
-        {currentStep >= 3 && (
+        {currentStep === 3 && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
             <nav className="p-4 space-y-1">
               {navItems.map((item, idx) => (
@@ -219,7 +222,7 @@ export default function DemoCollector() {
         )}
 
       {/* Main Content Area */}
-      <main className={currentStep >= 3 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
+      <main className={(currentStep === 3 || currentStep === 4) ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
           
           {/* Step 0: Chrono24 Product Page */}
           {currentStep === 0 && <CollectorStep0 setCurrentStep={updateStep} />}
@@ -232,6 +235,9 @@ export default function DemoCollector() {
 
           {/* Step 3: View Passport (INSIDE FAIRCUT) */}
           {currentStep === 3 && <CollectorStep3 setCurrentStep={updateStep} />}
+
+          {/* Step 4: Demo Summary */}
+          {currentStep === 4 && <CollectorStep4 navigate={navigate} />}
 
         </main>
       </div>
