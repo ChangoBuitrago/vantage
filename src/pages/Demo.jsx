@@ -102,6 +102,9 @@ export default function Demo() {
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Reseller Experience
               </h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                Experience the journey as someone who buys luxury watches and resells them on the secondary market—see how Faircut enables compliant, transparent transfers with automated royalty handling.
+              </p>
             </div>
 
             <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400 font-semibold group-hover:gap-3 transition-all">
@@ -125,6 +128,9 @@ export default function Demo() {
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Collector Experience
               </h2>
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                Experience the journey as someone who purchases luxury watches on the secondary market—discover how Faircut protects you with verified authenticity and ongoing ownership benefits.
+              </p>
             </div>
 
             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold group-hover:gap-3 transition-all">
