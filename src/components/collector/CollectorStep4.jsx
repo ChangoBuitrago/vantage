@@ -14,7 +14,7 @@ export default function CollectorStep4({ navigate }) {
             Collector Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            You've experienced how Faircut protects collectors with verified authenticity and lasting benefits
+            Verified authenticity, complete provenance, and ongoing ownership benefits—all in one digital passport
           </p>
         </div>
 

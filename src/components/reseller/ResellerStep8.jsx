@@ -14,7 +14,7 @@ export default function ResellerStep8({ navigate }) {
             Reseller Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            You've experienced how Faircut makes reselling transparent, compliant, and profitable
+            Seamless transfers with automated royalties—reselling made transparent and compliant
           </p>
         </div>
 
