@@ -110,14 +110,14 @@ export default function DemoReseller() {
 
   // Step navigation data for hover sidebar
   const stepNavigation = [
-    { step: 'home', emoji: '🏠', label: 'Demo Home', isHome: true },
+    { step: 'home', emoji: '🏠', label: 'Experience Home', isHome: true },
     { step: 0, emoji: '🛒', label: 'Product Page' },
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
     { step: 3, emoji: '🎫', label: 'Digital Passport' },
     { step: 4, emoji: '📋', label: 'Transfer Review' },
     { step: 5, emoji: '🎉', label: 'Transfer Complete' },
-    { step: 6, emoji: '✨', label: 'Demo Summary' },
+    { step: 6, emoji: '✨', label: 'Experience Complete' },
   ];
 
   return (

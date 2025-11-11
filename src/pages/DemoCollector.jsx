@@ -76,12 +76,12 @@ export default function DemoCollector() {
   ];
 
   const stepNavigation = [
-    { step: 'home', emoji: '🏠', label: 'Demo Home', isHome: true },
-    { step: 0, emoji: '🛒', label: 'Browse Chrono24' },
+    { step: 'home', emoji: '🏠', label: 'Experience Home', isHome: true },
+    { step: 0, emoji: '🛒', label: 'Product Page' },
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
-    { step: 3, emoji: '📜', label: 'View Passport' },
-    { step: 4, emoji: '🎯', label: 'Demo Summary' },
+    { step: 3, emoji: '🎫', label: 'Digital Passport' },
+    { step: 4, emoji: '🎯', label: 'Experience Complete' },
   ];
 
   return (
