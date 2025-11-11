@@ -6,7 +6,7 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [transferLockDays, setTransferLockDays] = useState(365);
 
   return (
-    <div className="px-6 py-8 bg-gray-50 dark:bg-slate-950 min-h-screen">
+    <div className="px-6 py-8">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-8">

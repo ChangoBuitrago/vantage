@@ -5,7 +5,7 @@ export default function CreatorStep3({ setCurrentStep }) {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
-    <div className="px-6 py-8 bg-gray-50 dark:bg-slate-950 min-h-screen">
+    <div className="px-6 py-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">

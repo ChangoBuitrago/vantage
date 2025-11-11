@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import DarkModeToggle from '../components/DarkModeToggle';
-import { Home, Menu, X } from 'lucide-react';
+import { Shield, Home, Package, BarChart3, Settings, Bell, Moon, Sun } from 'lucide-react';
 
 // Import step components
 import CreatorStep0 from '../components/creator/CreatorStep0';
@@ -13,42 +12,69 @@ import CreatorStep4 from '../components/creator/CreatorStep4';
 
 export default function DemoCreator() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { darkMode } = useDarkMode();
-  const [currentStep, setCurrentStep] = useState('home');
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showStepNav, setShowStepNav] = useState(false);
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   
-  const totalSteps = 5; // 0-4 steps
+  const [currentStep, setCurrentStep] = useState(0);
+  
+  const totalSteps = 5; // Step 0-4
 
-  // Map URL hash to step
+  // Step URL fragments mapping
   const stepFragments = {
-    '': 'home',
-    '#home': 'home',
-    '#dashboard': 0,
-    '#configure': 1,
-    '#issue': 2,
-    '#passport': 3,
-    '#complete': 4,
+    0: 'brand-dashboard',
+    1: 'configure-passport',
+    2: 'issue-passport',
+    3: 'view-analytics',
+    4: 'complete'
   };
 
-  // Update step based on URL hash
-  useEffect(() => {
-    const hash = location.hash;
-    const step = stepFragments[hash];
-    if (step !== undefined) {
-      setCurrentStep(step);
-    }
-  }, [location.hash]);
+  // Reverse mapping for fragment to step
+  const fragmentToStep = Object.entries(stepFragments).reduce((acc, [step, fragment]) => {
+    acc[fragment] = parseInt(step);
+    return acc;
+  }, {});
 
-  // Update URL hash when step changes
-  const handleStepChange = (step) => {
+  // Update URL fragment when step changes
+  const updateStep = (step) => {
     setCurrentStep(step);
-    const fragment = Object.keys(stepFragments).find(key => stepFragments[key] === step);
+    const fragment = stepFragments[step];
     if (fragment) {
-      navigate(`/demo/creator${fragment}`, { replace: true });
+      window.location.hash = fragment;
     }
   };
+
+  // Initialize from URL fragment or default to step 0
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    const stepFromHash = fragmentToStep[hash];
+    
+    if (stepFromHash !== undefined) {
+      setCurrentStep(stepFromHash);
+    } else {
+      setCurrentStep(0);
+      window.location.hash = stepFragments[0];
+    }
+  }, []);
+
+  // Listen for hash changes (browser back/forward)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      const stepFromHash = fragmentToStep[hash];
+      if (stepFromHash !== undefined) {
+        setCurrentStep(stepFromHash);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navItems = [
+    { icon: Home, label: 'Dashboard', active: currentStep === 0 },
+    { icon: Package, label: 'My Passports', active: currentStep === 1 || currentStep === 2 },
+    { icon: BarChart3, label: 'Analytics', active: currentStep === 3 },
+    { icon: Settings, label: 'Settings', active: false },
+  ];
 
   // Step navigation data for hover sidebar
   const stepNavigation = [
@@ -60,163 +86,163 @@ export default function DemoCreator() {
     { step: 4, emoji: '🎯', label: 'Experience Complete' },
   ];
 
-  const renderStepIndicator = () => {
-    if (currentStep === 'home') return null;
-    
-    return (
-      <div className="fixed bottom-6 right-6 z-50">
-        <button
-          onClick={() => setShowStepNav(!showStepNav)}
-          className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-200"
-        >
-          <Menu className="w-6 h-6" />
-        </button>
-
-        {showStepNav && (
-          <div className="absolute bottom-20 right-0 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl shadow-2xl p-4 w-80">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Navigation</h3>
-              <button
-                onClick={() => setShowStepNav(false)}
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            
-            <div className="space-y-2">
-              {stepNavigation.map((item) => (
-                <button
-                  key={item.step}
-                  onClick={() => {
-                    handleStepChange(item.step);
-                    setShowStepNav(false);
-                  }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                    currentStep === item.step
-                      ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md'
-                      : 'hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-700 dark:text-gray-300'
-                  }`}
-                >
-                  <span className="text-xl">{item.emoji}</span>
-                  <span className="text-sm font-medium">{item.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  // Home view
-  if (currentStep === 'home') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
-        <div className="absolute top-6 right-6 z-10">
-          <DarkModeToggle />
-        </div>
-
-        <div className="container mx-auto px-6 py-20">
-          <div className="max-w-4xl mx-auto">
-            {/* Back button */}
-            <button
-              onClick={() => navigate('/demo')}
-              className="mb-8 flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              <Home size={20} />
-              <span>Back to Demo Selection</span>
-            </button>
-
-            {/* Hero Section */}
-            <div className="text-center mb-16">
-              <div className="w-24 h-24 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
-                <span className="text-5xl">🏭</span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-6">
-                Creator Experience
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Issue digital passports for your luxury watches with smart rules and ongoing benefits
-              </p>
-            </div>
-
-            {/* Journey Steps */}
-            <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-2xl border border-gray-200 dark:border-gray-800 mb-12">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Your Journey</h2>
-              <div className="space-y-4">
-                {stepNavigation.slice(1, -1).map((step, index) => (
-                  <div key={step.step} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0 text-white font-bold shadow-lg">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                        {step.emoji} {step.label}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-sm">
-                        {index === 0 && "View your watch collection ready for digital passport issuance"}
-                        {index === 1 && "Set smart rules, royalties, and exclusive owner benefits"}
-                        {index === 2 && "Issue the digital passport when selling to first owner"}
-                        {index === 3 && "Track ownership, transfers, and ongoing brand engagement"}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Start Button */}
-            <div className="text-center">
-              <button
-                onClick={() => handleStepChange(0)}
-                className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xl font-bold py-5 px-12 rounded-2xl transition-all duration-200 shadow-xl hover:shadow-2xl hover:scale-105"
-              >
-                Start Creator Experience
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Render current step
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
-      {/* Step Navigation Indicator */}
-      {renderStepIndicator()}
+    <div className={`min-h-screen ${currentStep >= 1 ? 'bg-slate-50 dark:bg-slate-950' : 'bg-white'}`}>
+      {/* Step Navigation Sidebar - Elegant & Minimal */}
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group">
+        {/* Hover trigger area */}
+        <div className="absolute right-0 top-0 bottom-0 w-16 cursor-pointer"></div>
+        
+        {/* Sidebar content */}
+        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-l border-gray-200 dark:border-gray-800 shadow-xl transform translate-x-full group-hover:translate-x-0 transition-all duration-500 ease-out rounded-l-2xl overflow-hidden">
+          <div className="py-6 px-3 space-y-1 min-w-[240px]">
+            {stepNavigation.map(({ step, emoji, label, isHome }) => (
+              <button
+                key={step}
+                onClick={() => isHome ? navigate('/demo') : updateStep(step)}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group/item relative overflow-hidden ${
+                  currentStep === step
+                    ? 'bg-slate-50 dark:bg-slate-800 text-gray-900 dark:text-white'
+                    : isHome
+                    ? 'hover:bg-slate-50 dark:hover:bg-slate-800/50 text-gray-600 dark:text-gray-400 mb-2'
+                    : 'hover:bg-slate-50 dark:hover:bg-slate-800/50 text-gray-600 dark:text-gray-400'
+                }`}
+              >
+                {/* Active indicator line */}
+                {currentStep === step && !isHome && (
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-r-full"></div>
+                )}
+                
+                {/* Step number badge */}
+                {!isHome && (
+                  <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-semibold transition-all duration-300 ${
+                    currentStep === step
+                      ? 'bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg'
+                      : 'bg-slate-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 group-hover/item:bg-slate-200 dark:group-hover/item:bg-slate-600'
+                  }`}>
+                    {step + 1}
+                  </div>
+                )}
+                
+                {/* Home icon */}
+                {isHome && (
+                  <div className="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    <Home className="w-4 h-4" />
+                  </div>
+                )}
+                
+                {/* Label */}
+                <div className="text-left flex-1">
+                  <div className={`text-sm font-medium transition-colors duration-300 ${
+                    currentStep === step
+                      ? 'text-gray-900 dark:text-white'
+                      : 'text-gray-600 dark:text-gray-400 group-hover/item:text-gray-900 dark:group-hover/item:text-white'
+                  }`}>
+                    {label}
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        {/* Visual hint - elegant dots indicator */}
+        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40 group-hover:opacity-0 transition-opacity duration-300">
+          <div className="flex flex-col gap-1.5">
+            <div className="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+            <div className="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+            <div className="w-1 h-1 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+          </div>
+        </div>
+      </div>
 
-      {/* Header - Only show for steps inside Faircut platform */}
-      {currentStep >= 1 && currentStep <= 3 && (
-        <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
-          <div className="px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center">
-                  <span className="text-xl">⚡</span>
+      {/* Header - Only show for steps 1+ (inside Faircut platform) */}
+      {currentStep >= 1 && (
+      <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
+        <div className="max-w-[120rem] mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 rounded-lg flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
                   Faircut
                 </span>
-                <span className="text-sm text-gray-500 dark:text-gray-400">Brand Portal</span>
               </div>
-              <div className="flex items-center gap-4">
-                <DarkModeToggle />
+            </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <Sun size={18} className="text-gray-600 dark:text-gray-300" />
+              ) : (
+                <Moon size={18} className="text-gray-600" />
+              )}
+            </button>
+            <button className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+              <Bell className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            </button>
+            <div className="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-gray-700">
+              <div className="text-right hidden sm:block">
+                <div className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard</div>
+              </div>
+              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold">
+                LE
               </div>
             </div>
           </div>
-        </header>
+        </div>
+      </div>
+      </header>
       )}
 
-      {/* Main Content */}
-      <main className={currentStep >= 1 && currentStep <= 3 ? "min-h-[calc(100vh-73px)]" : "min-h-screen"}>
-        {currentStep === 0 && <CreatorStep0 setCurrentStep={handleStepChange} />}
-        {currentStep === 1 && <CreatorStep1 setCurrentStep={handleStepChange} />}
-        {currentStep === 2 && <CreatorStep2 setCurrentStep={handleStepChange} />}
-        {currentStep === 3 && <CreatorStep3 setCurrentStep={handleStepChange} />}
-        {currentStep === 4 && <CreatorStep4 navigate={navigate} />}
-      </main>
+      {/* Main Content with conditional sidebar */}
+      <div className={currentStep >= 1 && currentStep < 4 ? "flex" : ""}>
+        {/* Sidebar Navigation - Only show for steps 1-3 (inside Faircut platform) */}
+        {currentStep >= 1 && currentStep < 4 && (
+          <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
+            <nav className="p-4 space-y-1">
+              {navItems.map((item, idx) => (
+                <button
+                  key={idx}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                    item.active
+                      ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 font-semibold'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800'
+                  }`}
+                >
+                  <item.icon className={`w-5 h-5 ${item.active ? 'text-emerald-600 dark:text-emerald-400' : ''}`} />
+                  <span>{item.label}</span>
+                </button>
+              ))}
+            </nav>
+          </aside>
+        )}
+
+      {/* Main Content Area */}
+      <main className={currentStep >= 1 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
+          
+          {/* Step 0: Brand Dashboard (External) */}
+          {currentStep === 0 && <CreatorStep0 setCurrentStep={updateStep} />}
+
+          {/* Step 1: Configure Passport (INSIDE FAIRCUT) */}
+          {currentStep === 1 && <CreatorStep1 setCurrentStep={updateStep} />}
+
+          {/* Step 2: Issue Passport (INSIDE FAIRCUT) */}
+          {currentStep === 2 && <CreatorStep2 setCurrentStep={updateStep} />}
+
+          {/* Step 3: View Analytics (INSIDE FAIRCUT) */}
+          {currentStep === 3 && <CreatorStep3 setCurrentStep={updateStep} />}
+
+          {/* Step 4: Experience Complete */}
+          {currentStep === 4 && <CreatorStep4 navigate={navigate} />}
+
+        </main>
+      </div>
     </div>
   );
 }
