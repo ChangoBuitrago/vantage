@@ -77,101 +77,48 @@ export default function CreatorStep1({ setCurrentStep }) {
 
         {/* Smart Rules Configuration */}
         <div className="space-y-6">
-          {/* Resale Royalty */}
+          {/* Smart Rules Configuration */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
-            <div className="flex items-start gap-3 mb-6">
-              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Resale Royalty</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Percentage you earn from each secondary market resale
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Smart Rules</h3>
+            
+            <div className="space-y-6">
+              {/* Resale Royalty */}
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Royalty Rate</label>
-                  <div className="flex items-center gap-2">
-                    <span className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">{royaltyRate}%</span>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="15"
-                  value={royaltyRate}
-                  onChange={(e) => setRoyaltyRate(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-600"
-                />
-                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  <span>0% (No royalty)</span>
-                  <span>15% (Maximum)</span>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Resale Royalty
+                </label>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="number"
+                    min="0"
+                    max="15"
+                    value={royaltyRate}
+                    onChange={(e) => setRoyaltyRate(Number(e.target.value))}
+                    className="w-24 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  />
+                  <span className="text-gray-600 dark:text-gray-400">%</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">of each resale price</span>
                 </div>
               </div>
 
-              <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
-                <div className="flex items-start gap-2">
-                  <Info className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                  <div className="text-sm text-purple-900 dark:text-purple-200">
-                    <p className="font-semibold mb-1">Example Calculation</p>
-                    <p>If this watch resells for <span className="font-bold">€5,000</span>, you receive <span className="font-bold">€{(5000 * royaltyRate / 100).toFixed(0)}</span> in royalties automatically</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Transfer Lock Period */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
-            <div className="flex items-start gap-3 mb-6">
-              <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Lock className="w-5 h-5 text-orange-600 dark:text-orange-400" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Transfer Lock Period</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Minimum ownership period to prevent immediate flipping
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-4">
+              {/* Transfer Lock */}
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Lock Duration</label>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent">
-                      {transferLockMonths} {transferLockMonths === 1 ? 'month' : 'months'}
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">{transferLockDays} days</div>
-                  </div>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="730"
-                  step="30"
-                  value={transferLockDays}
-                  onChange={(e) => setTransferLockDays(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-orange-600"
-                />
-                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  <span>No lock</span>
-                  <span>24 months</span>
-                </div>
-              </div>
-
-              <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4">
-                <div className="flex items-start gap-2">
-                  <Info className="w-4 h-4 text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
-                  <div className="text-sm text-orange-900 dark:text-orange-200">
-                    <p className="font-semibold mb-1">Transfer Restriction</p>
-                    <p>Owners must hold the watch for at least <span className="font-bold">{transferLockMonths} months</span> before they can transfer or resell it</p>
-                  </div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Transfer Lock Period
+                </label>
+                <div className="flex items-center gap-3">
+                  <select
+                    value={transferLockDays}
+                    onChange={(e) => setTransferLockDays(Number(e.target.value))}
+                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                  >
+                    <option value="0">No lock</option>
+                    <option value="90">3 months</option>
+                    <option value="180">6 months</option>
+                    <option value="365">12 months</option>
+                    <option value="730">24 months</option>
+                  </select>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">minimum ownership</span>
                 </div>
               </div>
             </div>
@@ -252,11 +199,11 @@ export default function CreatorStep1({ setCurrentStep }) {
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-400">Resale Royalty</span>
-                <span className="font-semibold text-purple-600 dark:text-purple-400">{royaltyRate}% per resale</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{royaltyRate}%</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-400">Transfer Lock</span>
-                <span className="font-semibold text-orange-600 dark:text-orange-400">{transferLockMonths} months</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{Math.floor(transferLockDays / 30)} months</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-gray-600 dark:text-gray-400">Owner Benefits</span>
