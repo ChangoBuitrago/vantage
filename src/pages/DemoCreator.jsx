@@ -50,7 +50,7 @@ export default function DemoCreator() {
     if (stepFromHash !== undefined) {
       setCurrentStep(stepFromHash);
     } else {
-      setCurrentStep(0);
+    setCurrentStep(0);
       window.location.hash = stepFragments[0];
     }
   }, []);
@@ -87,7 +87,7 @@ export default function DemoCreator() {
   ];
 
   return (
-    <div className={`min-h-screen ${currentStep >= 1 ? 'bg-slate-50 dark:bg-slate-950' : 'bg-white'}`}>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Step Navigation Sidebar - Elegant & Minimal */}
       <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group">
         {/* Hover trigger area */}
@@ -121,14 +121,14 @@ export default function DemoCreator() {
                       : 'bg-slate-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 group-hover/item:bg-slate-200 dark:group-hover/item:bg-slate-600'
                   }`}>
                     {step + 1}
-                  </div>
-                )}
-                
+        </div>
+      )}
+
                 {/* Home icon */}
                 {isHome && (
                   <div className="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400">
                     <Home className="w-4 h-4" />
-                  </div>
+              </div>
                 )}
                 
                 {/* Label */}
@@ -139,9 +139,9 @@ export default function DemoCreator() {
                       : 'text-gray-600 dark:text-gray-400 group-hover/item:text-gray-900 dark:group-hover/item:text-white'
                   }`}>
                     {label}
-                  </div>
-                </div>
-              </button>
+            </div>
+            </div>
+            </button>
             ))}
           </div>
         </div>
@@ -156,21 +156,21 @@ export default function DemoCreator() {
         </div>
       </div>
 
-      {/* Header - Only show for steps 1+ (inside Faircut platform) */}
-      {currentStep >= 1 && (
+      {/* Header - Always show (inside Faircut platform) */}
+      {currentStep < 4 && (
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
+          <div className="flex items-center gap-8">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-gradient-to-br from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 rounded-lg flex items-center justify-center">
                   <Shield className="w-5 h-5 text-white" />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
-                  Faircut
+              Faircut
                 </span>
               </div>
-            </div>
+          </div>
           <div className="flex items-center gap-3">
             <button
               onClick={toggleDarkMode}
@@ -193,40 +193,40 @@ export default function DemoCreator() {
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold">
                 LE
               </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </header>
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={currentStep >= 1 && currentStep < 4 ? "flex" : ""}>
-        {/* Sidebar Navigation - Only show for steps 1-3 (inside Faircut platform) */}
-        {currentStep >= 1 && currentStep < 4 && (
+      <div className={currentStep < 4 ? "flex" : ""}>
+        {/* Sidebar Navigation - Show for steps 0-3 (inside Faircut platform) */}
+        {currentStep < 4 && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
-            <nav className="p-4 space-y-1">
-              {navItems.map((item, idx) => (
-                <button
-                  key={idx}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
-                    item.active
+          <nav className="p-4 space-y-1">
+            {navItems.map((item, idx) => (
+              <button
+                key={idx}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                  item.active
                       ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 font-semibold'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800'
-                  }`}
-                >
+                }`}
+              >
                   <item.icon className={`w-5 h-5 ${item.active ? 'text-emerald-600 dark:text-emerald-400' : ''}`} />
-                  <span>{item.label}</span>
-                </button>
-              ))}
-            </nav>
-          </aside>
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </nav>
+        </aside>
         )}
 
-      {/* Main Content Area */}
-      <main className={currentStep >= 1 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
+        {/* Main Content Area */}
+      <main className="flex-1 min-h-[calc(100vh-73px)]">
           
-          {/* Step 0: Brand Dashboard (External) */}
+          {/* Step 0: Brand Dashboard (INSIDE FAIRCUT) */}
           {currentStep === 0 && <CreatorStep0 setCurrentStep={updateStep} />}
 
           {/* Step 1: Configure Passport (INSIDE FAIRCUT) */}

@@ -3,7 +3,7 @@ import { Package, Clock, TrendingUp, Award } from 'lucide-react';
 
 export default function CreatorStep0({ setCurrentStep }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 px-6 py-12">
+    <div className="px-6 py-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
