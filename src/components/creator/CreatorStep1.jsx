@@ -11,7 +11,7 @@ export default function CreatorStep1({ setCurrentStep }) {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            Configure Digital Passport
+            Create Digital Passport for New Collection
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400">
             Set smart rules and benefits for Le Regulateur Louis Erard x Alain Silberstein

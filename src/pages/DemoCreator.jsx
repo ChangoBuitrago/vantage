@@ -19,7 +19,7 @@ export default function DemoCreator() {
 
   // Step URL fragments mapping
   const stepFragments = {
-    0: 'configure-passport',
+    0: 'create-passport',
     1: 'issue-passport',
     2: 'view-analytics',
     3: 'complete'
@@ -77,7 +77,7 @@ export default function DemoCreator() {
   // Step navigation data for hover sidebar
   const stepNavigation = [
     { step: 'home', emoji: '🏠', label: 'Experience Home', isHome: true },
-    { step: 0, emoji: '⚙️', label: 'Configure Passport' },
+    { step: 0, emoji: '✨', label: 'Create Passport' },
     { step: 1, emoji: '🎫', label: 'Issue Passport' },
     { step: 2, emoji: '📊', label: 'View Analytics' },
     { step: 3, emoji: '🎯', label: 'Experience Complete' },
@@ -223,7 +223,7 @@ export default function DemoCreator() {
         {/* Main Content Area */}
       <main className="flex-1 min-h-[calc(100vh-73px)]">
           
-          {/* Step 0: Configure Passport (INSIDE FAIRCUT) */}
+          {/* Step 0: Create Passport for Collection (INSIDE FAIRCUT) */}
           {currentStep === 0 && <CreatorStep0 setCurrentStep={updateStep} />}
 
           {/* Step 1: Issue Passport (INSIDE FAIRCUT) */}
