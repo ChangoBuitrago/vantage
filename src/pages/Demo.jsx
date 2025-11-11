@@ -52,7 +52,7 @@ export default function Demo() {
             Experience <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">Faircut</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Choose your journey to see how digital passports transform high-end watchmaking—forever
+            Choose your journey to see how digital passports transform high&#8209;end watchmaking—forever
           </p>
         </div>
 
@@ -72,7 +72,7 @@ export default function Demo() {
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Creator Experience
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
                 Issue digital passports with smart rules and earn royalties from every resale.
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function Demo() {
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Reseller Experience
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
                 Buy and resell watches with automated compliance and transparent transfers.
               </p>
             </div>
@@ -124,7 +124,7 @@ export default function Demo() {
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Collector Experience
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
                 Purchase with verified authenticity and access ongoing ownership benefits.
               </p>
             </div>
