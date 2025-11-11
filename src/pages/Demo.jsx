@@ -103,7 +103,7 @@ export default function Demo() {
                 Reseller Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Experience the journey as someone who buys luxury watches and resells them on the secondary market—see how Faircut enables compliant, transparent transfers with automated royalty handling.
+                Buy and resell luxury watches with automated compliance and transparent transfers.
               </p>
             </div>
 
@@ -129,7 +129,7 @@ export default function Demo() {
                 Collector Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Experience the journey as someone who purchases luxury watches on the secondary market—discover how Faircut protects you with verified authenticity and ongoing ownership benefits.
+                Purchase on the secondary market with verified authenticity and ownership benefits.
               </p>
             </div>
 
