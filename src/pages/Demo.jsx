@@ -68,11 +68,11 @@ export default function Demo() {
               <Palette size={28} />
             </div>
             
-            <div className="mb-8 pr-16">
+            <div className="mb-8 pr-12">
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Creator Experience
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 Issue digital passports with smart rules and earn royalties from every resale.
               </p>
             </div>
@@ -94,11 +94,11 @@ export default function Demo() {
               <RefreshCw size={28} />
             </div>
             
-            <div className="mb-8 pr-16">
+            <div className="mb-8 pr-12">
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Reseller Experience
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 Buy and resell watches with automated compliance and transparent transfers.
               </p>
             </div>
@@ -120,11 +120,11 @@ export default function Demo() {
               <ShoppingBag size={28} />
             </div>
             
-            <div className="mb-8 pr-16">
+            <div className="mb-8 pr-12">
               <h2 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3">
                 Collector Experience
               </h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed text-justify">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 Purchase with verified authenticity and access ongoing ownership benefits.
               </p>
             </div>
