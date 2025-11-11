@@ -99,7 +99,7 @@ export default function Demo() {
                 Reseller Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Buy and resell luxury watches with automated compliance and transparent transfers.
+                Buy and resell high-end watches with automated compliance and transparent transfers.
               </p>
             </div>
 
