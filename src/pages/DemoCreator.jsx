@@ -4,11 +4,10 @@ import { useDarkMode } from '../contexts/DarkModeContext';
 import { Shield, Home, Package, BarChart3, Settings, Bell, Moon, Sun } from 'lucide-react';
 
 // Import step components
-import CreatorStep0 from '../components/creator/CreatorStep0';
-import CreatorStep1 from '../components/creator/CreatorStep1';
-import CreatorStep2 from '../components/creator/CreatorStep2';
-import CreatorStep3 from '../components/creator/CreatorStep3';
-import CreatorStep4 from '../components/creator/CreatorStep4';
+import CreatorStep0 from '../components/creator/CreatorStep1';
+import CreatorStep1 from '../components/creator/CreatorStep2';
+import CreatorStep2 from '../components/creator/CreatorStep3';
+import CreatorStep3 from '../components/creator/CreatorStep4';
 
 export default function DemoCreator() {
   const navigate = useNavigate();
@@ -16,15 +15,14 @@ export default function DemoCreator() {
   
   const [currentStep, setCurrentStep] = useState(0);
   
-  const totalSteps = 5; // Step 0-4
+  const totalSteps = 4; // Step 0-3
 
   // Step URL fragments mapping
   const stepFragments = {
-    0: 'brand-dashboard',
-    1: 'configure-passport',
-    2: 'issue-passport',
-    3: 'view-analytics',
-    4: 'complete'
+    0: 'configure-passport',
+    1: 'issue-passport',
+    2: 'view-analytics',
+    3: 'complete'
   };
 
   // Reverse mapping for fragment to step
@@ -70,20 +68,19 @@ export default function DemoCreator() {
   }, []);
 
   const navItems = [
-    { icon: Home, label: 'Dashboard', active: currentStep === 0 },
-    { icon: Package, label: 'My Passports', active: currentStep === 1 || currentStep === 2 },
-    { icon: BarChart3, label: 'Analytics', active: currentStep === 3 },
+    { icon: Home, label: 'Dashboard', active: false },
+    { icon: Package, label: 'My Passports', active: currentStep === 0 || currentStep === 1 },
+    { icon: BarChart3, label: 'Analytics', active: currentStep === 2 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
   // Step navigation data for hover sidebar
   const stepNavigation = [
     { step: 'home', emoji: '🏠', label: 'Experience Home', isHome: true },
-    { step: 0, emoji: '🏭', label: 'Brand Dashboard' },
-    { step: 1, emoji: '⚙️', label: 'Configure Passport' },
-    { step: 2, emoji: '🎫', label: 'Issue Passport' },
-    { step: 3, emoji: '📊', label: 'View Analytics' },
-    { step: 4, emoji: '🎯', label: 'Experience Complete' },
+    { step: 0, emoji: '⚙️', label: 'Configure Passport' },
+    { step: 1, emoji: '🎫', label: 'Issue Passport' },
+    { step: 2, emoji: '📊', label: 'View Analytics' },
+    { step: 3, emoji: '🎯', label: 'Experience Complete' },
   ];
 
   return (
@@ -157,7 +154,7 @@ export default function DemoCreator() {
       </div>
 
       {/* Header - Always show (inside Faircut platform) */}
-      {currentStep < 4 && (
+      {currentStep < 3 && (
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -169,7 +166,7 @@ export default function DemoCreator() {
                 <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
               Faircut
                 </span>
-              </div>
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -189,7 +186,7 @@ export default function DemoCreator() {
             <div className="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-gray-700">
               <div className="text-right hidden sm:block">
                 <div className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard</div>
-              </div>
+                </div>
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold">
                 LE
               </div>
@@ -201,9 +198,9 @@ export default function DemoCreator() {
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={currentStep < 4 ? "flex" : ""}>
-        {/* Sidebar Navigation - Show for steps 0-3 (inside Faircut platform) */}
-        {currentStep < 4 && (
+      <div className={currentStep < 3 ? "flex" : ""}>
+        {/* Sidebar Navigation - Show for steps 0-2 (inside Faircut platform) */}
+        {currentStep < 3 && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
           <nav className="p-4 space-y-1">
             {navItems.map((item, idx) => (
@@ -226,20 +223,17 @@ export default function DemoCreator() {
         {/* Main Content Area */}
       <main className="flex-1 min-h-[calc(100vh-73px)]">
           
-          {/* Step 0: Brand Dashboard (INSIDE FAIRCUT) */}
+          {/* Step 0: Configure Passport (INSIDE FAIRCUT) */}
           {currentStep === 0 && <CreatorStep0 setCurrentStep={updateStep} />}
 
-          {/* Step 1: Configure Passport (INSIDE FAIRCUT) */}
+          {/* Step 1: Issue Passport (INSIDE FAIRCUT) */}
           {currentStep === 1 && <CreatorStep1 setCurrentStep={updateStep} />}
 
-          {/* Step 2: Issue Passport (INSIDE FAIRCUT) */}
+          {/* Step 2: View Analytics (INSIDE FAIRCUT) */}
           {currentStep === 2 && <CreatorStep2 setCurrentStep={updateStep} />}
 
-          {/* Step 3: View Analytics (INSIDE FAIRCUT) */}
-          {currentStep === 3 && <CreatorStep3 setCurrentStep={updateStep} />}
-
-          {/* Step 4: Experience Complete */}
-          {currentStep === 4 && <CreatorStep4 navigate={navigate} />}
+          {/* Step 3: Experience Complete */}
+          {currentStep === 3 && <CreatorStep3 navigate={navigate} />}
 
         </main>
       </div>
