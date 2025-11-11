@@ -73,7 +73,7 @@ export default function Demo() {
                 Creator Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Issue digital passports with smart rules and earn ongoing royalties from resales.
+                Issue digital passports with smart rules and earn royalties from every resale.
               </p>
             </div>
 
@@ -99,7 +99,7 @@ export default function Demo() {
                 Reseller Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Buy and resell high-end watches with automated compliance and transparent transfers.
+                Buy and resell watches with automated compliance and transparent transfers.
               </p>
             </div>
 
@@ -125,7 +125,7 @@ export default function Demo() {
                 Collector Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Purchase on the secondary market with verified authenticity and ownership benefits.
+                Purchase with verified authenticity and access ongoing ownership benefits.
               </p>
             </div>
 
