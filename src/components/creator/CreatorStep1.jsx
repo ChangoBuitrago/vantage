@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle } from 'lucide-react';
+import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown } from 'lucide-react';
 
 export default function CreatorStep1({ setCurrentStep }) {
   const [royaltyRate, setRoyaltyRate] = useState(5);
   const [transferLockDays, setTransferLockDays] = useState(180);
   const [selectedBenefits, setSelectedBenefits] = useState(['service', 'warranty', 'events', 'early-access']);
+  const [expandedRoyalty, setExpandedRoyalty] = useState(false);
+  const [expandedTransferLock, setExpandedTransferLock] = useState(false);
 
   const toggleBenefit = (benefit) => {
     if (selectedBenefits.includes(benefit)) {
@@ -77,49 +79,100 @@ export default function CreatorStep1({ setCurrentStep }) {
 
         {/* Smart Rules Configuration */}
         <div className="space-y-6">
-          {/* Smart Rules Configuration */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Smart Rules</h3>
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <Settings className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              Smart Rules
+            </h4>
             
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Resale Royalty */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Resale Royalty
-                </label>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="number"
-                    min="0"
-                    max="15"
-                    value={royaltyRate}
-                    onChange={(e) => setRoyaltyRate(Number(e.target.value))}
-                    className="w-24 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
-                  />
-                  <span className="text-gray-600 dark:text-gray-400">%</span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">of each resale price</span>
-                </div>
+              <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
+                <button
+                  onClick={() => setExpandedRoyalty(!expandedRoyalty)}
+                  className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                >
+                  <Percent className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1 text-left">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold text-gray-900 dark:text-white">Resale Royalty</p>
+                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{royaltyRate}%</span>
+                      </div>
+                      <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedRoyalty ? 'rotate-180' : ''}`} />
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Percentage earned on each secondary market resale
+                    </p>
+                  </div>
+                </button>
+
+                {expandedRoyalty && (
+                  <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                    <div className="pt-3 space-y-3">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 px-1">
+                        Set the royalty percentage you'll receive automatically on each resale. This applies to all future transfers of watches in this collection.
+                      </p>
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="number"
+                          min="0"
+                          max="15"
+                          value={royaltyRate}
+                          onChange={(e) => setRoyaltyRate(Number(e.target.value))}
+                          className="w-24 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                        />
+                        <span className="text-gray-600 dark:text-gray-400">%</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">of resale price</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Transfer Lock */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Transfer Lock Period
-                </label>
-                <div className="flex items-center gap-3">
-                  <select
-                    value={transferLockDays}
-                    onChange={(e) => setTransferLockDays(Number(e.target.value))}
-                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
-                  >
-                    <option value="0">No lock</option>
-                    <option value="90">3 months</option>
-                    <option value="180">6 months</option>
-                    <option value="365">12 months</option>
-                    <option value="730">24 months</option>
-                  </select>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">minimum ownership</span>
-                </div>
+              <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
+                <button
+                  onClick={() => setExpandedTransferLock(!expandedTransferLock)}
+                  className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                >
+                  <Lock className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1 text-left">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
+                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                          {Math.floor(transferLockDays / 30)} months
+                        </span>
+                      </div>
+                      <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Minimum ownership period before transfer is allowed
+                    </p>
+                  </div>
+                </button>
+
+                {expandedTransferLock && (
+                  <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                    <div className="pt-3 space-y-3">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 px-1">
+                        Set minimum holding period to prevent immediate flipping and encourage genuine collecting.
+                      </p>
+                      <select
+                        value={transferLockDays}
+                        onChange={(e) => setTransferLockDays(Number(e.target.value))}
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                      >
+                        <option value="0">No lock</option>
+                        <option value="90">3 months</option>
+                        <option value="180">6 months</option>
+                        <option value="365">12 months</option>
+                        <option value="730">24 months</option>
+                      </select>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
