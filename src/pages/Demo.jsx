@@ -73,7 +73,7 @@ export default function Demo() {
                 Creator Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Set smart rules for your watches and earn ongoing royalties from resales.
+                Issue digital passports with smart rules and earn ongoing royalties from resales.
               </p>
             </div>
 
