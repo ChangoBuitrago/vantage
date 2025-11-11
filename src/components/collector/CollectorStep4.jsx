@@ -23,20 +23,20 @@ export default function CollectorStep4({ navigate }) {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What You Experienced</h2>
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">Purchase from secondary marketplace with digital passport verification</span>
+              <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Purchase from secondary marketplace with digital passport verification</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">Receive authenticated provenance and complete ownership history</span>
+              <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Receive authenticated provenance and complete ownership history</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">Access exclusive brand benefits and community features as a verified owner</span>
+              <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Access exclusive brand benefits and community features as a verified owner</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">View transparent smart rules including transfer locks and service history</span>
+              <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">View transparent smart rules including transfer locks and service history</span>
             </div>
           </div>
         </div>

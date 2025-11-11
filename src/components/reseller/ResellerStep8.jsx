@@ -23,20 +23,20 @@ export default function ResellerStep8({ navigate }) {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What You Experienced</h2>
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">Purchase luxury watches with digital passports from official brands</span>
+              <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Purchase luxury watches with digital passports from official brands</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">View complete ownership history, smart rules, and benefits</span>
+              <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">View complete ownership history, smart rules, and benefits</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">Transfer with clear royalty calculations and automated compliance</span>
+              <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Transfer with clear royalty calculations and automated compliance</span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-base text-gray-700 dark:text-gray-300">Simple payment flow with instant passport transfer to new owner</span>
+              <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Simple payment flow with instant passport transfer to new owner</span>
             </div>
           </div>
         </div>
