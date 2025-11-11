@@ -19,7 +19,7 @@ export default function ResellerStep8({ navigate }) {
         </div>
 
         {/* What You Experienced */}
-        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 mb-8">
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 mb-8 max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">What You Experienced</h2>
           <div className="space-y-4">
             <div className="flex items-start gap-3">
