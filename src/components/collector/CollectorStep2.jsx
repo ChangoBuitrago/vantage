@@ -157,25 +157,25 @@ export default function CollectorStep2({ setCurrentStep }) {
                       <p style={{margin: '0 0 16px 0'}}>Great news! <strong>Maria Reseller</strong> has successfully transferred the Digital Passport for your recently purchased watch:</p>
                       
                       <div style={{backgroundColor: '#ffffff', borderRadius: '8px', padding: '20px', marginBottom: '16px', border: '1px solid #e5e7eb'}}>
-                        <div style={{display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '12px'}}>
+                        <div style={{display: 'flex', gap: '16px', alignItems: 'flex-start'}}>
                           <img 
                             src="/faircut/watch-thumb-0.jpg" 
                             alt="Watch" 
                             style={{width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e5e7eb'}}
                           />
-                          <div style={{flex: 1}}>
-                            <h3 style={{fontSize: '16px', fontWeight: 600, color: '#1a1a1a', margin: '0 0 4px 0'}}>Louis Erard</h3>
-                            <p style={{fontSize: '14px', color: '#6b7280', margin: '0 0 8px 0'}}>Le Regulateur Louis Erard x Alain Silberstein</p>
-                            <div style={{display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: '#f0fdf4', padding: '4px 10px', borderRadius: '6px'}}>
-                              <Shield size={14} color="#22c55e" />
-                              <span style={{fontSize: '12px', fontWeight: 500, color: '#16a34a'}}>Verified Authentic</span>
+                          <div style={{flex: 1, display: 'flex', justifyContent: 'space-between', gap: '16px'}}>
+                            <div>
+                              <h3 style={{fontSize: '16px', fontWeight: 600, color: '#1a1a1a', margin: '0 0 4px 0'}}>Louis Erard</h3>
+                              <p style={{fontSize: '14px', color: '#6b7280', margin: '0 0 8px 0'}}>Le Regulateur Louis Erard x Alain Silberstein</p>
+                              <div style={{display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: '#f0fdf4', padding: '4px 10px', borderRadius: '6px'}}>
+                                <Shield size={14} color="#22c55e" />
+                                <span style={{fontSize: '12px', fontWeight: 500, color: '#16a34a'}}>Verified Authentic</span>
+                              </div>
                             </div>
-                          </div>
-                        </div>
-                        <div style={{display: 'flex', justifyContent: 'flex-end', paddingTop: '12px', borderTop: '1px solid #f3f4f6'}}>
-                          <div style={{textAlign: 'right'}}>
-                            <p style={{fontSize: '11px', color: '#9ca3af', margin: '0 0 2px 0', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Transfer Date</p>
-                            <p style={{fontSize: '15px', fontWeight: 600, color: '#1a1a1a', margin: 0}}>Nov 10, 2025</p>
+                            <div style={{textAlign: 'right'}}>
+                              <p style={{fontSize: '11px', color: '#9ca3af', margin: '0 0 2px 0', textTransform: 'uppercase', letterSpacing: '0.5px'}}>Transfer Date</p>
+                              <p style={{fontSize: '15px', fontWeight: 600, color: '#1a1a1a', margin: 0}}>Nov 10, 2025</p>
+                            </div>
                           </div>
                         </div>
                       </div>
