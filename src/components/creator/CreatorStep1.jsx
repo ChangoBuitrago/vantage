@@ -7,6 +7,7 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [selectedBenefits, setSelectedBenefits] = useState(['service']);
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
+  const [expandedCollectionDetails, setExpandedCollectionDetails] = useState(true);
   
   // Collection data state
   const [collectionName, setCollectionName] = useState('Le Regulateur Louis Erard x Alain Silberstein');
@@ -157,13 +158,20 @@ export default function CreatorStep1({ setCurrentStep }) {
           </div>
 
           {/* Collection Details - Input Form */}
-          <div className="p-6 border-t border-gray-200 dark:border-gray-800">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              Collection Details
-            </h3>
+          <div className="border-t border-gray-200 dark:border-gray-800">
+            <button
+              onClick={() => setExpandedCollectionDetails(!expandedCollectionDetails)}
+              className="w-full p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Collection Details</h3>
+              </div>
+              <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${expandedCollectionDetails ? 'rotate-180' : ''}`} />
+            </button>
             
-            <div className="space-y-4">
+            {expandedCollectionDetails && (
+              <div className="px-6 pb-6 space-y-4">
               {/* Collection Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
@@ -282,7 +290,8 @@ export default function CreatorStep1({ setCurrentStep }) {
                   </p>
                 </div>
               </div>
-            </div>
+              </div>
+            )}
           </div>
         </div>
 
