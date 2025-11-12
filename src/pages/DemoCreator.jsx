@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import { Shield, Home, Package, BarChart3, Settings, Bell, Moon, Sun } from 'lucide-react';
+import { Shield, Home, Package, BarChart3, Settings, Bell, Moon, Sun, FileCheck } from 'lucide-react';
 
 // Import step components
 import CreatorStep0 from '../components/creator/CreatorStep1';
@@ -69,7 +69,8 @@ export default function DemoCreator() {
 
   const navItems = [
     { icon: Home, label: 'View Dashboard', active: currentStep === 2 },
-    { icon: Package, label: 'My Collections', active: currentStep === 0 || currentStep === 1 },
+    { icon: Package, label: 'My Collections', active: currentStep === 0 },
+    { icon: FileCheck, label: 'Issue Passports', active: currentStep === 1 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
