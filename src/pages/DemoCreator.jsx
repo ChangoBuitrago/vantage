@@ -6,8 +6,7 @@ import { Shield, Home, Package, BarChart3, Settings, Bell, Moon, Sun } from 'luc
 // Import step components
 import CreatorStep0 from '../components/creator/CreatorStep1';
 import CreatorStep1 from '../components/creator/CreatorStep2';
-import CreatorStep2 from '../components/creator/CreatorStep3';
-import CreatorStep3 from '../components/creator/CreatorStep4';
+import CreatorStep2 from '../components/creator/CreatorStep4';
 
 export default function DemoCreator() {
   const navigate = useNavigate();
@@ -15,14 +14,13 @@ export default function DemoCreator() {
   
   const [currentStep, setCurrentStep] = useState(0);
   
-  const totalSteps = 4; // Step 0-3
+  const totalSteps = 3; // Step 0-2
 
   // Step URL fragments mapping
   const stepFragments = {
     0: 'create-collection',
     1: 'issue-passport',
-    2: 'view-analytics',
-    3: 'complete'
+    2: 'complete'
   };
 
   // Reverse mapping for fragment to step
@@ -70,7 +68,7 @@ export default function DemoCreator() {
   const navItems = [
     { icon: Home, label: 'Dashboard', active: false },
     { icon: Package, label: 'My Collections', active: currentStep === 0 || currentStep === 1 },
-    { icon: BarChart3, label: 'Analytics', active: currentStep === 2 },
+    { icon: BarChart3, label: 'Analytics', active: false },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
@@ -79,8 +77,7 @@ export default function DemoCreator() {
     { step: 'home', emoji: '🏠', label: 'Experience Home', isHome: true },
     { step: 0, emoji: '✨', label: 'Create Collection' },
     { step: 1, emoji: '🎫', label: 'Issue Passport' },
-    { step: 2, emoji: '📊', label: 'View Analytics' },
-    { step: 3, emoji: '🎯', label: 'Experience Complete' },
+    { step: 2, emoji: '🎯', label: 'Experience Complete' },
   ];
 
   return (
@@ -154,7 +151,7 @@ export default function DemoCreator() {
       </div>
 
       {/* Header - Always show (inside Faircut platform) */}
-      {currentStep < 3 && (
+      {currentStep < 2 && (
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -198,9 +195,9 @@ export default function DemoCreator() {
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={currentStep < 3 ? "flex" : ""}>
-        {/* Sidebar Navigation - Show for steps 0-2 (inside Faircut platform) */}
-        {currentStep < 3 && (
+      <div className={currentStep < 2 ? "flex" : ""}>
+        {/* Sidebar Navigation - Show for steps 0-1 (inside Faircut platform) */}
+        {currentStep < 2 && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
           <nav className="p-4 space-y-1">
             {navItems.map((item, idx) => (
@@ -223,17 +220,14 @@ export default function DemoCreator() {
         {/* Main Content Area */}
       <main className="flex-1 min-h-[calc(100vh-73px)]">
 
-          {/* Step 0: Create Passport for Collection (INSIDE FAIRCUT) */}
+          {/* Step 0: Create Collection (INSIDE FAIRCUT) */}
           {currentStep === 0 && <CreatorStep0 setCurrentStep={updateStep} />}
 
           {/* Step 1: Issue Passport (INSIDE FAIRCUT) */}
           {currentStep === 1 && <CreatorStep1 setCurrentStep={updateStep} />}
 
-          {/* Step 2: View Analytics (INSIDE FAIRCUT) */}
-          {currentStep === 2 && <CreatorStep2 setCurrentStep={updateStep} />}
-
-          {/* Step 3: Experience Complete */}
-          {currentStep === 3 && <CreatorStep3 navigate={navigate} />}
+          {/* Step 2: Experience Complete */}
+          {currentStep === 2 && <CreatorStep2 navigate={navigate} />}
 
         </main>
       </div>
