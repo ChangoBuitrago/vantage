@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown } from 'lucide-react';
+import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown, Upload, Image as ImageIcon } from 'lucide-react';
 
 export default function CreatorStep1({ setCurrentStep }) {
   const [royaltyRate, setRoyaltyRate] = useState(5);
@@ -13,9 +13,29 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [reference, setReference] = useState('LE78229AA04');
   const [editionSize, setEditionSize] = useState(178);
   const [retailPrice, setRetailPrice] = useState('3,850');
-  const [currency, setCurrency] = useState('EUR');
+  const [currency, setCurrency] = useState('CHF');
   const [serialFormat, setSerialFormat] = useState('LE-AS-2024-');
   const [launchDate, setLaunchDate] = useState('2024-12-01');
+  const [watchImages, setWatchImages] = useState(['/faircut/watch-thumb-0.jpg']);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  const handleImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setWatchImages(prev => [...prev, reader.result]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+  
+  const removeImage = (index) => {
+    setWatchImages(prev => prev.filter((_, i) => i !== index));
+    if (currentImageIndex >= watchImages.length - 1) {
+      setCurrentImageIndex(Math.max(0, watchImages.length - 2));
+    }
+  };
 
   const toggleBenefit = (benefit) => {
     if (selectedBenefits.includes(benefit)) {
@@ -50,23 +70,72 @@ export default function CreatorStep1({ setCurrentStep }) {
           <p className="text-gray-600 dark:text-gray-400 mt-2">Configure smart rules and benefits for your new collection</p>
         </div>
 
-        {/* Collection Summary Card */}
+        {/* Collection Summary Card with Live Preview */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-lg mb-6">
           <div className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-emerald-900/20 dark:via-teal-900/20 dark:to-cyan-900/20 p-8">
             <div className="flex flex-col md:flex-row items-center gap-6">
-              {/* Watch Image */}
-              <div className="w-40 h-40 bg-white dark:bg-slate-800 rounded-xl shadow-2xl flex items-center justify-center flex-shrink-0 border-2 border-white dark:border-slate-700 overflow-hidden p-3">
-                <img
-                  src="/faircut/watch-thumb-0.jpg"
-                  alt="Le Regulateur Louis Erard x Alain Silberstein"
-                  className="w-full h-full object-contain"
-                />
+              {/* Watch Image Gallery */}
+              <div className="flex flex-col items-center gap-3">
+                <div className="relative w-48 h-48 bg-white dark:bg-slate-800 rounded-xl shadow-2xl flex items-center justify-center flex-shrink-0 border-2 border-white dark:border-slate-700 overflow-hidden p-3 group">
+                  {watchImages.length > 0 ? (
+                    <>
+                      <img
+                        src={watchImages[currentImageIndex]}
+                        alt={collectionName}
+                        className="w-full h-full object-contain"
+                      />
+                      {watchImages.length > 1 && (
+                        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+                          {watchImages.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => setCurrentImageIndex(idx)}
+                              className={`w-2 h-2 rounded-full transition-all ${
+                                idx === currentImageIndex
+                                  ? 'bg-emerald-600 dark:bg-emerald-400 w-3'
+                                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-2 text-gray-400">
+                      <ImageIcon className="w-12 h-12" />
+                      <p className="text-xs">No images</p>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Image Upload Controls */}
+                <div className="flex gap-2">
+                  <label className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg cursor-pointer transition-colors text-xs font-semibold">
+                    <Upload className="w-3.5 h-3.5" />
+                    Add Image
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </label>
+                  {watchImages.length > 0 && (
+                    <button
+                      onClick={() => removeImage(currentImageIndex)}
+                      className="px-3 py-1.5 bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-700 dark:text-red-400 rounded-lg transition-colors text-xs font-semibold"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
               </div>
               
-              {/* Collection Info */}
+              {/* Collection Info - Live Preview */}
               <div className="flex-1 text-center md:text-left">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                  {collectionName}
+                  {collectionName || 'Collection Name'}
                 </h2>
                 <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
                   Limited Edition Collaboration - {editionSize} Pieces
@@ -74,18 +143,20 @@ export default function CreatorStep1({ setCurrentStep }) {
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Tag className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Ref: {reference}</span>
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Ref: {reference || 'N/A'}</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Package className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Retail: {currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF'}{retailPrice}</span>
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">
+                      Retail: {currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{retailPrice || '0'}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Collection Details - Editable */}
+          {/* Collection Details - Input Form */}
           <div className="p-6 border-t border-gray-200 dark:border-gray-800">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
@@ -148,9 +219,9 @@ export default function CreatorStep1({ setCurrentStep }) {
                       onChange={(e) => setCurrency(e.target.value)}
                       className="w-24 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     >
+                      <option value="CHF">CHF</option>
                       <option value="EUR">EUR</option>
                       <option value="USD">USD</option>
-                      <option value="CHF">CHF</option>
                     </select>
                     <input
                       type="text"
