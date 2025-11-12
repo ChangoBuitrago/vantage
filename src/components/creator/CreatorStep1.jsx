@@ -580,7 +580,7 @@ export default function CreatorStep1({ setCurrentStep }) {
             onClick={() => setCurrentStep(1)}
             className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
           >
-            <span>Continue to Issue Passport</span>
+            <span>Create Collection</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
