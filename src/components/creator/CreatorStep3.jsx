@@ -6,9 +6,9 @@ export default function CreatorStep3({ setCurrentStep }) {
 
   // Dashboard data
   const stats = {
-    totalCollections: 12,
-    totalPassportsIssued: 2847,
-    activePassports: 2689,
+    totalCollections: 5,
+    totalPassportsIssued: 1846,
+    activePassports: 1738,
     totalRevenue: 428500,
     monthlyGrowth: 24.5,
     averageResalePrice: 4200,
@@ -16,16 +16,18 @@ export default function CreatorStep3({ setCurrentStep }) {
   };
 
   const recentCollections = [
-    { name: 'Le Régulateur x Alain Silberstein', issued: 178, active: 164, revenue: 127400, trend: '+12%' },
-    { name: 'Excellence Guilloché Main', issued: 420, active: 398, revenue: 89300, trend: '+8%' },
-    { name: '1931 Collection', issued: 850, active: 812, revenue: 156200, trend: '+18%' },
+    { name: 'Alain Silberstein', issued: 178, active: 164, revenue: 127400, trend: '+12%' },
+    { name: 'Konstantin Chaykin', issued: 250, active: 238, revenue: 156200, trend: '+18%' },
+    { name: 'Vianney Halter', issued: 125, active: 118, revenue: 89300, trend: '+8%' },
+    { name: 'Stefan Kudoke', issued: 93, active: 89, revenue: 67200, trend: '+15%' },
+    { name: 'Astro Boy', issued: 1200, active: 1129, revenue: 248600, trend: '+22%' },
   ];
 
   const recentActivity = [
-    { action: 'Passport Issued', collection: 'Le Régulateur x Alain Silberstein', watch: '#042', owner: 'Maria Reseller', time: 'Just now', status: 'success' },
-    { action: 'Transfer Completed', collection: 'Excellence Guilloché Main', watch: '#127', owner: 'John Collector', time: '2 hours ago', status: 'success' },
-    { action: 'Royalty Payment', collection: '1931 Collection', watch: '#584', amount: 'CHF 485', time: '5 hours ago', status: 'success' },
-    { action: 'Passport Viewed', collection: 'Le Régulateur x Alain Silberstein', watch: '#018', owner: 'Sarah Williams', time: '8 hours ago', status: 'info' },
+    { action: 'Passport Issued', collection: 'Alain Silberstein', watch: '#042', owner: 'Maria Reseller', time: 'Just now', status: 'success' },
+    { action: 'Transfer Completed', collection: 'Konstantin Chaykin', watch: '#127', owner: 'John Collector', time: '2 hours ago', status: 'success' },
+    { action: 'Royalty Payment', collection: 'Astro Boy', watch: '#584', amount: 'CHF 485', time: '5 hours ago', status: 'success' },
+    { action: 'Passport Viewed', collection: 'Vianney Halter', watch: '#018', owner: 'Sarah Williams', time: '8 hours ago', status: 'info' },
   ];
 
   return (
