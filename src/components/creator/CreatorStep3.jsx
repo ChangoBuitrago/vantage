@@ -25,8 +25,8 @@ export default function CreatorStep3({ setCurrentStep }) {
 
   const recentActivity = [
     { action: 'Passport Issued', collection: 'Alain Silberstein', watch: '#042', owner: 'Maria Reseller', time: 'Just now', status: 'success' },
-    { action: 'Transfer Completed', collection: 'Konstantin Chaykin', watch: '#127', owner: 'John Collector', time: '2 hours ago', status: 'success' },
-    { action: 'Royalty Payment', collection: 'Astro Boy', watch: '#584', amount: 'CHF 485', time: '5 hours ago', status: 'success' },
+    { action: 'Transfer Completed', collection: 'Konstantin Chaykin', watch: '#027', owner: 'John Collector', time: '2 hours ago', status: 'success' },
+    { action: 'Royalty Payment', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'success' },
     { action: 'Passport Viewed', collection: 'Vianney Halter', watch: '#018', owner: 'Sarah Williams', time: '8 hours ago', status: 'info' },
   ];
 
