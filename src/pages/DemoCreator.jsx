@@ -68,7 +68,7 @@ export default function DemoCreator() {
   }, []);
 
   const navItems = [
-    { icon: Home, label: 'Dashboard', active: currentStep === 2 },
+    { icon: Home, label: 'View Dashboard', active: currentStep === 2 },
     { icon: Package, label: 'My Collections', active: currentStep === 0 || currentStep === 1 },
     { icon: Settings, label: 'Settings', active: false },
   ];
@@ -78,7 +78,7 @@ export default function DemoCreator() {
     { step: 'home', emoji: '🏠', label: 'Experience Home', isHome: true },
     { step: 0, emoji: '✨', label: 'Create Collection' },
     { step: 1, emoji: '🎫', label: 'Issue Passport' },
-    { step: 2, emoji: '📊', label: 'Dashboard' },
+    { step: 2, emoji: '📊', label: 'View Dashboard' },
     { step: 3, emoji: '🎯', label: 'Experience Complete' },
   ];
 
