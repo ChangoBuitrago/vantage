@@ -103,7 +103,10 @@ export default function ResellerStep0({ setCurrentStep }) {
 
               {/* Buy Button */}
               <button
-                onClick={() => setCurrentStep(1)}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setCurrentStep(1);
+                }}
                 className="w-full bg-gradient-to-b from-[#105281] to-[#158ee4] text-white py-4 px-6 text-sm font-normal uppercase hover:opacity-90 transition-opacity mb-3 border border-transparent tracking-[0.2em]"
                 style={{fontFamily: 'Assistant, sans-serif', fontWeight: 400, borderRadius: '0px'}}
               >

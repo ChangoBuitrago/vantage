@@ -222,7 +222,10 @@ export default function CollectorStep2({ setCurrentStep }) {
                   {/* CTA Button */}
                   <div style={{textAlign: 'center', marginBottom: '32px'}}>
                     <button
-                      onClick={() => setCurrentStep(3)}
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        setCurrentStep(3);
+                      }}
                       style={{
                         backgroundColor: '#1a1a1a',
                         color: '#ffffff',

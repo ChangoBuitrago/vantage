@@ -26,7 +26,10 @@ export default function ResellerStep4({ setCurrentStep }) {
                 Congratulations! You've sold your watch for <strong>CHF 6,500</strong>. To complete the sale and transfer the digital passport to the new owner, you must first satisfy all creator rules.
               </p>
               <button
-                onClick={() => setCurrentStep(5)}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setCurrentStep(5);
+                }}
                 className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 text-white rounded-lg hover:opacity-90 transition-opacity font-semibold"
               >
                 Review Transfer Requirements

@@ -180,7 +180,10 @@ export default function CollectorStep1({ setCurrentStep }) {
         {/* View Inbox Button */}
         <div className="text-center">
           <button
-            onClick={() => setCurrentStep && setCurrentStep(2)}
+            onClick={() => {
+              window.scrollTo(0, 0);
+              setCurrentStep && setCurrentStep(2);
+            }}
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-black text-white hover:bg-gray-800 transition-colors duration-200"
             style={{
               fontFamily: 'system-ui, -apple-system, sans-serif',

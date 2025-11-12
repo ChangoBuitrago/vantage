@@ -102,7 +102,10 @@ export default function ResellerStep1({ setCurrentStep }) {
         {/* View Inbox Button */}
         <div className="text-center">
           <button
-            onClick={() => setCurrentStep && setCurrentStep(2)}
+            onClick={() => {
+              window.scrollTo(0, 0);
+              setCurrentStep && setCurrentStep(2);
+            }}
             className="inline-flex items-center gap-3 px-8 py-4 bg-black text-white hover:bg-gray-900 transition-colors duration-200"
             style={{
               fontFamily: 'Assistant, sans-serif',

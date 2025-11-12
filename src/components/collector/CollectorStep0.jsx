@@ -189,7 +189,10 @@ export default function CollectorStep0({ setCurrentStep }) {
 
             {/* Buy Button */}
             <button
-              onClick={() => setCurrentStep(1)}
+              onClick={() => {
+                window.scrollTo(0, 0);
+                setCurrentStep(1);
+              }}
               className="w-full bg-slate-800 hover:bg-slate-900 text-white text-lg font-medium py-3 px-6 rounded-lg transition-colors mb-4"
             >
               Buy

@@ -174,7 +174,12 @@ export default function CollectorStep3({ setCurrentStep }) {
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                   <button
-                    onClick={() => !isStolen && !isTransferLockActive && setCurrentStep(4)}
+                    onClick={() => {
+                      if (!isStolen && !isTransferLockActive) {
+                        window.scrollTo(0, 0);
+                        setCurrentStep(4);
+                      }
+                    }}
                     disabled={isStolen || isTransferLockActive}
                     className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
                       isStolen || isTransferLockActive
