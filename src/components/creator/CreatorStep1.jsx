@@ -12,7 +12,7 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [collectionName, setCollectionName] = useState('Le Regulateur Louis Erard x Alain Silberstein');
   const [reference, setReference] = useState('LE78229AA04');
   const [editionSize, setEditionSize] = useState(178);
-  const [retailPrice, setRetailPrice] = useState('3,850');
+  const [retailPrice, setRetailPrice] = useState('3,000');
   const [currency, setCurrency] = useState('CHF');
   const [serialFormat, setSerialFormat] = useState('LE-AS-2024-');
   const [launchDate, setLaunchDate] = useState('2024-12-01');
