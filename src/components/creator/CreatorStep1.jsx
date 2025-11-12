@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown, Upload, Image as ImageIcon } from 'lucide-react';
+import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown, Upload, Image as ImageIcon, Baseline } from 'lucide-react';
 
 export default function CreatorStep1({ setCurrentStep }) {
   const [royaltyRate, setRoyaltyRate] = useState(5);
   const [transferLockDays, setTransferLockDays] = useState(180);
   const [selectedBenefits, setSelectedBenefits] = useState(['service']);
+  const [baseRetailPrice, setBaseRetailPrice] = useState('3,000');
+  const [expandedBasePrice, setExpandedBasePrice] = useState(false);
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
   
@@ -299,6 +301,56 @@ export default function CreatorStep1({ setCurrentStep }) {
             </h4>
             
             <div className="space-y-3">
+              {/* Base Retail Price */}
+              <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
+                <button
+                  onClick={() => setExpandedBasePrice(!expandedBasePrice)}
+                  className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                >
+                  <Baseline className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1 text-left">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold text-gray-900 dark:text-white">Base Retail Price</p>
+                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{baseRetailPrice}</span>
+                      </div>
+                      <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Baseline price for calculating royalties and resale minimums
+                    </p>
+                  </div>
+                </button>
+
+                {expandedBasePrice && (
+                  <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                    <div className="pt-3 space-y-3">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 px-1">
+                        Set the base retail price used as a reference for royalty calculations and minimum resale values.
+                      </p>
+                      <div className="flex items-center gap-3">
+                        <select
+                          value={currency}
+                          onChange={(e) => setCurrency(e.target.value)}
+                          className="w-24 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                        >
+                          <option value="CHF">CHF</option>
+                          <option value="EUR">EUR</option>
+                          <option value="USD">USD</option>
+                        </select>
+                        <input
+                          type="text"
+                          value={baseRetailPrice}
+                          onChange={(e) => setBaseRetailPrice(e.target.value)}
+                          className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                          placeholder="e.g. 3,000"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Resale Royalty */}
               <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
                 <button
@@ -479,6 +531,10 @@ export default function CreatorStep1({ setCurrentStep }) {
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Serial Format</span>
                 <span className="text-sm font-semibold font-mono text-gray-900 dark:text-white">{serialFormat}###</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Base Retail Price</span>
+                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{baseRetailPrice}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Resale Royalty</span>
