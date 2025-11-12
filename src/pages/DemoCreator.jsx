@@ -19,7 +19,7 @@ export default function DemoCreator() {
 
   // Step URL fragments mapping
   const stepFragments = {
-    0: 'create-passport',
+    0: 'create-collection',
     1: 'issue-passport',
     2: 'view-analytics',
     3: 'complete'
@@ -61,7 +61,7 @@ export default function DemoCreator() {
       if (stepFromHash !== undefined) {
         setCurrentStep(stepFromHash);
       }
-    };
+  };
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -69,7 +69,7 @@ export default function DemoCreator() {
 
   const navItems = [
     { icon: Home, label: 'Dashboard', active: false },
-    { icon: Package, label: 'My Passports', active: currentStep === 0 || currentStep === 1 },
+    { icon: Package, label: 'My Collections', active: currentStep === 0 || currentStep === 1 },
     { icon: BarChart3, label: 'Analytics', active: currentStep === 2 },
     { icon: Settings, label: 'Settings', active: false },
   ];
@@ -77,7 +77,7 @@ export default function DemoCreator() {
   // Step navigation data for hover sidebar
   const stepNavigation = [
     { step: 'home', emoji: '🏠', label: 'Experience Home', isHome: true },
-    { step: 0, emoji: '✨', label: 'Create Passport' },
+    { step: 0, emoji: '✨', label: 'Create Collection' },
     { step: 1, emoji: '🎫', label: 'Issue Passport' },
     { step: 2, emoji: '📊', label: 'View Analytics' },
     { step: 3, emoji: '🎯', label: 'Experience Complete' },
@@ -142,7 +142,7 @@ export default function DemoCreator() {
             ))}
           </div>
         </div>
-        
+
         {/* Visual hint - elegant dots indicator */}
         <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40 group-hover:opacity-0 transition-opacity duration-300">
           <div className="flex flex-col gap-1.5">
@@ -222,7 +222,7 @@ export default function DemoCreator() {
 
         {/* Main Content Area */}
       <main className="flex-1 min-h-[calc(100vh-73px)]">
-          
+
           {/* Step 0: Create Passport for Collection (INSIDE FAIRCUT) */}
           {currentStep === 0 && <CreatorStep0 setCurrentStep={updateStep} />}
 
