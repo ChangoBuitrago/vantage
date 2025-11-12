@@ -179,63 +179,60 @@ export default function CreatorStep1({ setCurrentStep }) {
 
           {/* Owner Benefits */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
-            <div className="flex items-start gap-3 mb-6">
-              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Gift className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Exclusive Owner Benefits</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  Benefits that verified owners will receive
-                </p>
-              </div>
-            </div>
-
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <Gift className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              Owner Benefits
+            </h4>
+            
             <div className="space-y-3">
               {benefits.map((benefit) => {
                 const Icon = benefit.icon;
                 const isSelected = selectedBenefits.includes(benefit.id);
                 return (
-                  <button
+                  <div
                     key={benefit.id}
-                    onClick={() => toggleBenefit(benefit.id)}
-                    className={`w-full flex items-start gap-3 p-4 rounded-lg border-2 transition-all ${
-                      isSelected
-                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                    className={`bg-slate-50 dark:bg-slate-800/50 border-2 rounded-lg overflow-hidden transition-all duration-300 ${
+                      isSelected 
+                        ? 'border-emerald-400 dark:border-emerald-500' 
                         : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                     }`}
                   >
-                    <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                      isSelected ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'
-                    }`}>
-                      {isSelected && <CheckCircle className="w-4 h-4 text-white" />}
-                    </div>
-                    <Icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                      isSelected ? 'text-blue-600 dark:text-blue-400' : 'text-gray-400'
-                    }`} />
-                    <div className="flex-1 text-left">
-                      <p className={`font-semibold ${
-                        isSelected ? 'text-blue-900 dark:text-blue-100' : 'text-gray-900 dark:text-white'
-                      }`}>
-                        {benefit.label}
-                      </p>
-                      <p className={`text-sm ${
-                        isSelected ? 'text-blue-700 dark:text-blue-300' : 'text-gray-600 dark:text-gray-400'
-                      }`}>
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </button>
+                    <button
+                      onClick={() => toggleBenefit(benefit.id)}
+                      className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                    >
+                      <Icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
+                        isSelected ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-400'
+                      }`} />
+                      <div className="flex-1 text-left">
+                        <div className="flex items-center justify-between gap-2">
+                          <p className={`font-semibold ${
+                            isSelected ? 'text-gray-900 dark:text-white' : 'text-gray-700 dark:text-gray-300'
+                          }`}>
+                            {benefit.label}
+                          </p>
+                          <div className={`flex-shrink-0 w-5 h-5 rounded flex items-center justify-center ${
+                            isSelected ? 'bg-emerald-600' : 'bg-gray-200 dark:bg-gray-700'
+                          }`}>
+                            {isSelected && <CheckCircle className="w-4 h-4 text-white" />}
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          {benefit.description}
+                        </p>
+                      </div>
+                    </button>
+                  </div>
                 );
               })}
             </div>
 
             {selectedBenefits.length === 0 && (
-              <div className="mt-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+              <div className="mt-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
                 <div className="flex items-start gap-2">
                   <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
                   <p className="text-sm text-amber-900 dark:text-amber-200">
-                    Consider adding at least one benefit to increase owner engagement and retention
+                    Consider selecting benefits to increase owner engagement
                   </p>
                 </div>
               </div>
@@ -243,24 +240,28 @@ export default function CreatorStep1({ setCurrentStep }) {
           </div>
 
           {/* Summary Card */}
-          <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Configuration Summary</h3>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">Collection</span>
-                <span className="font-semibold text-gray-900 dark:text-white">Le Regulateur x Silberstein (178 pieces)</span>
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Configuration Summary</h4>
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Collection</span>
+                <span className="text-sm font-semibold text-gray-900 dark:text-white">Le Regulateur x Silberstein</span>
               </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">Resale Royalty</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{royaltyRate}%</span>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Edition Size</span>
+                <span className="text-sm font-semibold text-gray-900 dark:text-white">178 pieces</span>
               </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">Transfer Lock</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{Math.floor(transferLockDays / 30)} months</span>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Resale Royalty</span>
+                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{royaltyRate}%</span>
               </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">Owner Benefits</span>
-                <span className="font-semibold text-blue-600 dark:text-blue-400">{selectedBenefits.length} selected</span>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Transfer Lock</span>
+                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{Math.floor(transferLockDays / 30)} months</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Owner Benefits</span>
+                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{selectedBenefits.length} selected</span>
               </div>
             </div>
           </div>
