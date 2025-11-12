@@ -76,7 +76,7 @@ export default function CreatorStep2({ setCurrentStep }) {
             <span>Issue Passport #{watchNumber}</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Issue Digital Passport</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Mint and transfer passport to first owner upon retail sale</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Create and transfer passport to first owner upon retail sale</p>
         </div>
 
         {/* Digital Passport Card */}
