@@ -3,8 +3,6 @@ import { Home, ChevronRight, TrendingUp, Users, Package, DollarSign, Shield, Bar
 
 export default function CreatorStep3({ setCurrentStep }) {
   const [timeRange, setTimeRange] = useState('30d');
-  const [isActivityExpanded, setIsActivityExpanded] = useState(true);
-  const [isCollectionPerformanceExpanded, setIsCollectionPerformanceExpanded] = useState(true);
 
   // Dashboard data
   const stats = {
@@ -155,23 +153,16 @@ export default function CreatorStep3({ setCurrentStep }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
           {/* Collections Performance */}
           <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden">
-            <button
-              onClick={() => setIsCollectionPerformanceExpanded(!isCollectionPerformanceExpanded)}
-              className="w-full p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
-            >
-              <div className="flex items-center gap-2">
+            <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                <div className="text-left">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">Collection Performance</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Passports issued and royalties by collection</p>
-                </div>
-              </div>
-              <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isCollectionPerformanceExpanded ? 'rotate-180' : ''}`} />
-            </button>
+                Collection Performance
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Passports issued and royalties by collection</p>
+            </div>
 
-            {isCollectionPerformanceExpanded && (
-              <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-800">
-                <div className="pt-6 space-y-4">
+            <div className="overflow-y-auto" style={{ maxHeight: '400px' }}>
+              <div className="p-6 space-y-4">
               {recentCollections.map((collection, index) => (
                 <div key={index} className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                   <div className="flex items-center justify-between mb-3">
@@ -210,9 +201,8 @@ export default function CreatorStep3({ setCurrentStep }) {
                   </p>
                 </div>
               ))}
-                </div>
               </div>
-            )}
+            </div>
           </div>
 
           {/* Quick Insights */}
@@ -256,23 +246,16 @@ export default function CreatorStep3({ setCurrentStep }) {
 
         {/* Recent Activity */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden">
-          <button
-            onClick={() => setIsActivityExpanded(!isActivityExpanded)}
-            className="w-full p-6 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
-          >
-            <div className="flex items-center gap-2">
+          <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
               <Clock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              <div className="text-left">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Recent Activity</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Latest passport events across all collections</p>
-              </div>
-            </div>
-            <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isActivityExpanded ? 'rotate-180' : ''}`} />
-          </button>
+              Recent Activity
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Latest passport events across all collections</p>
+          </div>
 
-          {isActivityExpanded && (
-            <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-800">
-              <div className="pt-6 space-y-3">
+          <div className="overflow-y-auto" style={{ maxHeight: '400px' }}>
+            <div className="p-6 space-y-3">
             {recentActivity.map((activity, index) => (
               <div key={index} className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
@@ -309,9 +292,8 @@ export default function CreatorStep3({ setCurrentStep }) {
                 </div>
               </div>
             ))}
-              </div>
             </div>
-          )}
+          </div>
         </div>
 
         {/* Continue Button */}
