@@ -164,7 +164,9 @@ export default function CreatorStep1({ setCurrentStep }) {
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Package className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Edition: {editionSize} pieces</span>
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">
+                      Retail: {currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{retailPrice || '0'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Tag className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
