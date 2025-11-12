@@ -34,17 +34,17 @@ export default function CreatorStep2({ setCurrentStep }) {
   const editionSize = 178;
   const serialNumber = "LE-AS-2024-042";
   const reference = "LE78229AA04";
-  const retailPrice = 3000; // CHF
+  const retailPrice = 3500; // CHF
   const productionDate = new Date('2025-10-15').getTime();
   const transferLockDays = 180; // 6 months
   
   // First owner data (from retail sale)
   const firstOwner = {
-    name: "James Mitchell",
-    email: "james.mitchell@email.com",
-    location: "Geneva, Switzerland",
-    purchaseDate: "11 Nov 2025",
-    purchasePrice: `CHF ${formatNumber(retailPrice)}`
+    name: "Maria Reseller",
+    email: "maria.reseller@email.com",
+    location: "New York, USA",
+    purchaseDate: "28 Jan 2025",
+    purchasePrice: `CHF ${formatNumber(3500)}`
   };
 
   // Smart rules from collection configuration
@@ -397,7 +397,7 @@ export default function CreatorStep2({ setCurrentStep }) {
               <Building className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Dealer/Boutique</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">Bucherer Geneva</p>
+                <p className="text-base font-bold text-gray-900 dark:text-white">Bucherer New York</p>
               </div>
             </div>
           </div>
