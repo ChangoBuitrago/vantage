@@ -7,6 +7,15 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [selectedBenefits, setSelectedBenefits] = useState(['service']);
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
+  
+  // Collection data state
+  const [collectionName, setCollectionName] = useState('Le Regulateur Louis Erard x Alain Silberstein');
+  const [reference, setReference] = useState('LE78229AA04');
+  const [editionSize, setEditionSize] = useState(178);
+  const [retailPrice, setRetailPrice] = useState('3,850');
+  const [currency, setCurrency] = useState('EUR');
+  const [serialFormat, setSerialFormat] = useState('LE-AS-2024-');
+  const [launchDate, setLaunchDate] = useState('2024-12-01');
 
   const toggleBenefit = (benefit) => {
     if (selectedBenefits.includes(benefit)) {
@@ -57,21 +66,136 @@ export default function CreatorStep1({ setCurrentStep }) {
               {/* Collection Info */}
               <div className="flex-1 text-center md:text-left">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                  Le Regulateur Louis Erard x Alain Silberstein
+                  {collectionName}
                 </h2>
                 <p className="text-base text-gray-600 dark:text-gray-400 mb-4">
-                  Limited Edition Collaboration - 178 Pieces
+                  Limited Edition Collaboration - {editionSize} Pieces
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Tag className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Ref: LE78229AA04</span>
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Ref: {reference}</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Package className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Retail: €3,850</span>
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Retail: {currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF'}{retailPrice}</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Collection Details - Editable */}
+          <div className="p-6 border-t border-gray-200 dark:border-gray-800">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              Collection Details
+            </h3>
+            
+            <div className="space-y-4">
+              {/* Collection Name */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                  Collection Name
+                </label>
+                <input
+                  type="text"
+                  value={collectionName}
+                  onChange={(e) => setCollectionName(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  placeholder="Enter collection name"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Reference */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Reference Number
+                  </label>
+                  <input
+                    type="text"
+                    value={reference}
+                    onChange={(e) => setReference(e.target.value)}
+                    className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white font-mono focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    placeholder="e.g. LE78229AA04"
+                  />
+                </div>
+
+                {/* Edition Size */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Edition Size
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={editionSize}
+                    onChange={(e) => setEditionSize(Number(e.target.value))}
+                    className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    placeholder="Number of pieces"
+                  />
+                </div>
+
+                {/* Retail Price */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Retail Price
+                  </label>
+                  <div className="flex gap-2">
+                    <select
+                      value={currency}
+                      onChange={(e) => setCurrency(e.target.value)}
+                      className="w-24 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    >
+                      <option value="EUR">EUR</option>
+                      <option value="USD">USD</option>
+                      <option value="CHF">CHF</option>
+                    </select>
+                    <input
+                      type="text"
+                      value={retailPrice}
+                      onChange={(e) => setRetailPrice(e.target.value)}
+                      className="flex-1 px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      placeholder="e.g. 3,850"
+                    />
+                  </div>
+                </div>
+
+                {/* Launch Date */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                    Launch Date
+                  </label>
+                  <input
+                    type="date"
+                    value={launchDate}
+                    onChange={(e) => setLaunchDate(e.target.value)}
+                    className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
+              {/* Serial Number Format */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                  Serial Number Format
+                </label>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={serialFormat}
+                    onChange={(e) => setSerialFormat(e.target.value)}
+                    className="flex-1 px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white font-mono focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    placeholder="e.g. LE-AS-2024-"
+                  />
+                  <span className="text-sm text-gray-500 dark:text-gray-400 font-mono bg-slate-50 dark:bg-slate-800 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700">
+                    001-{editionSize.toString().padStart(3, '0')}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1.5">
+                  Each watch will be numbered sequentially: {serialFormat}001, {serialFormat}002, etc.
+                </p>
               </div>
             </div>
           </div>
@@ -245,11 +369,27 @@ export default function CreatorStep1({ setCurrentStep }) {
             <div className="space-y-2.5">
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Collection</span>
-                <span className="text-sm font-semibold text-gray-900 dark:text-white">Le Regulateur x Silberstein</span>
+                <span className="text-sm font-semibold text-gray-900 dark:text-white truncate ml-4">{collectionName}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Reference</span>
+                <span className="text-sm font-semibold font-mono text-gray-900 dark:text-white">{reference}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Edition Size</span>
-                <span className="text-sm font-semibold text-gray-900 dark:text-white">178 pieces</span>
+                <span className="text-sm font-semibold text-gray-900 dark:text-white">{editionSize} pieces</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Retail Price</span>
+                <span className="text-sm font-semibold text-gray-900 dark:text-white">{currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{retailPrice}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Launch Date</span>
+                <span className="text-sm font-semibold text-gray-900 dark:text-white">{new Date(launchDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Serial Format</span>
+                <span className="text-sm font-semibold font-mono text-gray-900 dark:text-white">{serialFormat}###</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Resale Royalty</span>
