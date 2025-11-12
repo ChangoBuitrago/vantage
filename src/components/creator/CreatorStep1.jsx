@@ -10,6 +10,21 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
   
+  // Tiered royalties by year
+  const [royaltyTiers, setRoyaltyTiers] = useState([
+    { year: 1, rate: 5 },
+    { year: 2, rate: 4 },
+    { year: 3, rate: 3 },
+    { year: 4, rate: 2 },
+    { year: 5, rate: 1 },
+  ]);
+  
+  const updateRoyaltyTier = (yearIndex, newRate) => {
+    const newTiers = [...royaltyTiers];
+    newTiers[yearIndex].rate = newRate;
+    setRoyaltyTiers(newTiers);
+  };
+  
   // Collection data state
   const [collectionName, setCollectionName] = useState('Le Regulateur Louis Erard x Alain Silberstein');
   const [reference, setReference] = useState('LE78229AA04');
@@ -149,9 +164,7 @@ export default function CreatorStep1({ setCurrentStep }) {
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Package className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs font-semibold text-gray-900 dark:text-white">
-                      Retail: {currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{retailPrice || '0'}
-                    </span>
+                    <span className="text-xs font-semibold text-gray-900 dark:text-white">Edition: {editionSize} pieces</span>
                   </div>
                   <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                     <Tag className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -362,12 +375,12 @@ export default function CreatorStep1({ setCurrentStep }) {
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <p className="font-semibold text-gray-900 dark:text-white">Resale Royalty</p>
-                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{royaltyRate}%</span>
+                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">Tiered by year</span>
                       </div>
                       <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedRoyalty ? 'rotate-180' : ''}`} />
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      Percentage earned on each secondary market resale
+                      Percentage earned on each secondary market resale, decreasing over time
                     </p>
                   </div>
                 </button>
@@ -376,19 +389,28 @@ export default function CreatorStep1({ setCurrentStep }) {
                   <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                     <div className="pt-3 space-y-3">
                       <p className="text-sm text-gray-600 dark:text-gray-400 px-1">
-                        Set the royalty percentage you'll receive automatically on each resale. This applies to all future transfers of watches in this collection.
+                        Set royalty percentages that automatically decrease over time. This incentivizes early adoption while maintaining long-term revenue.
                       </p>
-                      <div className="flex items-center gap-3">
-                        <input
-                          type="number"
-                          min="0"
-                          max="15"
-                          value={royaltyRate}
-                          onChange={(e) => setRoyaltyRate(Number(e.target.value))}
-                          className="w-24 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
-                        />
-                        <span className="text-gray-600 dark:text-gray-400">%</span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400">of resale price</span>
+                      <div className="space-y-2">
+                        {royaltyTiers.map((tier, index) => (
+                          <div key={tier.year} className="flex items-center gap-3 bg-white dark:bg-slate-800 p-3 rounded-lg">
+                            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 w-16">Year {tier.year}:</span>
+                            <input
+                              type="number"
+                              min="0"
+                              max="15"
+                              value={tier.rate}
+                              onChange={(e) => updateRoyaltyTier(index, Number(e.target.value))}
+                              className="w-20 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                            />
+                            <span className="text-gray-600 dark:text-gray-400">%</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 mt-3">
+                        <p className="text-xs text-blue-900 dark:text-blue-200">
+                          💡 Example: A watch sold in Year 1 earns {royaltyTiers[0].rate}% royalty. The same watch resold in Year 3 earns {royaltyTiers[2].rate}%.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -538,7 +560,7 @@ export default function CreatorStep1({ setCurrentStep }) {
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Resale Royalty</span>
-                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{royaltyRate}%</span>
+                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{royaltyTiers[0].rate}% (Year 1) → {royaltyTiers[4].rate}% (Year 5)</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Transfer Lock</span>
