@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, TrendingUp, Users, Package, DollarSign, Shield, BarChart3, ArrowUp, ArrowDown, Calendar, Clock, Eye, CheckCircle, ChevronDown } from 'lucide-react';
+import { Home, ChevronRight, TrendingUp, Users, Package, DollarSign, Shield, BarChart3, ArrowUp, ArrowDown, Calendar, Clock, Eye, CheckCircle } from 'lucide-react';
 
 export default function CreatorStep3({ setCurrentStep }) {
   const [timeRange, setTimeRange] = useState('30d');
