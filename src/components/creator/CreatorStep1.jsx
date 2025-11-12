@@ -12,11 +12,9 @@ export default function CreatorStep1({ setCurrentStep }) {
   
   // Tiered royalties by year
   const [royaltyTiers, setRoyaltyTiers] = useState([
-    { year: 1, rate: 5 },
-    { year: 2, rate: 4 },
-    { year: 3, rate: 3 },
-    { year: 4, rate: 2 },
-    { year: 5, rate: 1 },
+    { year: 1, rate: 90, label: 'Year 1 (0-12 months)' },
+    { year: 2, rate: 60, label: 'Year 2 (13-24 months)' },
+    { year: 3, rate: 15, label: 'Year 3+ (25+ months)' },
   ]);
   
   const updateRoyaltyTier = (yearIndex, newRate) => {
@@ -396,11 +394,11 @@ export default function CreatorStep1({ setCurrentStep }) {
                       <div className="space-y-2">
                         {royaltyTiers.map((tier, index) => (
                           <div key={tier.year} className="flex items-center gap-3 bg-white dark:bg-slate-800 p-3 rounded-lg">
-                            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 w-16">Year {tier.year}:</span>
+                            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300 min-w-[180px]">{tier.label}:</span>
                             <input
                               type="number"
                               min="0"
-                              max="15"
+                              max="100"
                               value={tier.rate}
                               onChange={(e) => updateRoyaltyTier(index, Number(e.target.value))}
                               className="w-20 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
@@ -411,7 +409,7 @@ export default function CreatorStep1({ setCurrentStep }) {
                       </div>
                       <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 mt-3">
                         <p className="text-xs text-blue-900 dark:text-blue-200">
-                          💡 Example: A watch sold in Year 1 earns {royaltyTiers[0].rate}% royalty. The same watch resold in Year 3 earns {royaltyTiers[2].rate}%.
+                          💡 Example: A watch sold in Year 1 earns {royaltyTiers[0].rate}% royalty. The same watch resold in Year 3+ earns {royaltyTiers[2].rate}%.
                         </p>
                       </div>
                     </div>
@@ -562,7 +560,7 @@ export default function CreatorStep1({ setCurrentStep }) {
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Resale Royalty</span>
-                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{royaltyTiers[0].rate}% (Year 1) → {royaltyTiers[4].rate}% (Year 5)</span>
+                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{royaltyTiers[0].rate}% (Y1) → {royaltyTiers[2].rate}% (Y3+)</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <span className="text-sm text-gray-600 dark:text-gray-400">Transfer Lock</span>
