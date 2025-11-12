@@ -24,19 +24,19 @@ export default function CreatorStep4({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Configure digital passports with custom smart rules and royalty rates</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Create collections with tiered royalties, transfer locks, and owner benefits</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Issue authenticated passports directly to first owners upon purchase</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Issue individual passports from collections to first owners upon retail sale</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Set transfer locks and exclusive benefits to reward long-term ownership</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Monitor collection performance, passport issuance, and active ownership</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Track ownership history, resales, and ongoing engagement in real-time</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Track royalty earnings and watch activity through real-time dashboard analytics</span>
             </div>
           </div>
         </div>
