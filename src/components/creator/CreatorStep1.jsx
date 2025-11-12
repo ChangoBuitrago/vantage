@@ -250,23 +250,37 @@ export default function CreatorStep1({ setCurrentStep }) {
               {/* Serial Number Format */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                  Serial Number Format
+                  Serial Number Format (Template)
                 </label>
-                <div className="flex items-center gap-2">
+                <div className="space-y-2">
                   <input
                     type="text"
                     value={serialFormat}
                     onChange={(e) => setSerialFormat(e.target.value)}
-                    className="flex-1 px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white font-mono focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                    className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white font-mono focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                     placeholder="e.g. LE-AS-2024-"
                   />
-                  <span className="text-sm text-gray-500 dark:text-gray-400 font-mono bg-slate-50 dark:bg-slate-800 px-3 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700">
-                    001-{editionSize.toString().padStart(3, '0')}
-                  </span>
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+                    <p className="text-xs text-blue-900 dark:text-blue-200 mb-2 font-semibold">
+                      Auto-Generated Serial Numbers Preview:
+                    </p>
+                    <div className="space-y-1">
+                      <p className="text-xs font-mono text-blue-800 dark:text-blue-300">
+                        #{1}: {serialFormat}001
+                      </p>
+                      <p className="text-xs font-mono text-blue-800 dark:text-blue-300">
+                        #{2}: {serialFormat}002
+                      </p>
+                      <p className="text-xs text-blue-700 dark:text-blue-400">...</p>
+                      <p className="text-xs font-mono text-blue-800 dark:text-blue-300">
+                        #{editionSize}: {serialFormat}{editionSize.toString().padStart(3, '0')}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    💡 The system will automatically generate {editionSize} unique serial numbers using this template
+                  </p>
                 </div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1.5">
-                  Each watch will be numbered sequentially: {serialFormat}001, {serialFormat}002, etc.
-                </p>
               </div>
             </div>
           </div>
