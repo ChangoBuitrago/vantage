@@ -5,7 +5,7 @@ export default function ResellerStep7({ setCurrentStep, collectorEmail, salePric
   const salePrice = salePriceProp || 6500;
   const royaltyRate = 0.90;
   const royaltyAmount = Math.round(salePrice * royaltyRate);
-  const recipientEmail = collectorEmail || 'collector@example.com';
+  const recipientEmail = collectorEmail || 'collector@gmail.com';
 
   return (
     <div className="px-6 py-8">

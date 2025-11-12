@@ -41,7 +41,7 @@ export default function CreatorStep2({ setCurrentStep }) {
   // First owner data (from retail sale)
   const firstOwner = {
     name: "Maria Reseller",
-    email: "maria.reseller@email.com",
+    email: "maria.reseller@gmail.com",
     location: "New York, USA",
     purchaseDate: "28 Jan 2025",
     purchasePrice: `CHF ${formatNumber(3500)}`

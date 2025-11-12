@@ -143,7 +143,7 @@ export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
                     ? 'border-green-400 dark:border-green-600 focus:border-green-500 focus:ring-green-500/20'
                     : 'border-gray-200 dark:border-gray-700 focus:border-purple-500 focus:ring-purple-500/20'
                 }`}
-                placeholder="collector@example.com"
+                placeholder="collector@gmail.com"
               />
             </div>
             
