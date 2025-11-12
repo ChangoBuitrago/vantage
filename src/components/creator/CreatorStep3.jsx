@@ -7,20 +7,20 @@ export default function CreatorStep3({ setCurrentStep }) {
   // Dashboard data
   const stats = {
     totalCollections: 5,
-    totalPassportsIssued: 1846,
-    activePassports: 1738,
+    totalPassportsIssued: 387,
+    activePassports: 368,
     totalRevenue: 428500,
     monthlyGrowth: 24.5,
-    averageResalePrice: 4200,
+    averageResalePrice: 5800,
     royaltiesEarned: 127400
   };
 
   const recentCollections = [
-    { name: 'Alain Silberstein', issued: 178, active: 164, revenue: 127400, trend: '+12%' },
-    { name: 'Konstantin Chaykin', issued: 250, active: 238, revenue: 156200, trend: '+18%' },
-    { name: 'Vianney Halter', issued: 125, active: 118, revenue: 89300, trend: '+8%' },
-    { name: 'Stefan Kudoke', issued: 93, active: 89, revenue: 67200, trend: '+15%' },
-    { name: 'Astro Boy', issued: 1200, active: 1129, revenue: 248600, trend: '+22%' },
+    { name: 'Alain Silberstein', issued: 88, active: 84, revenue: 127400, trend: '+12%' },
+    { name: 'Konstantin Chaykin', issued: 45, active: 43, revenue: 156200, trend: '+18%' },
+    { name: 'Vianney Halter', issued: 28, active: 27, revenue: 89300, trend: '+8%' },
+    { name: 'Stefan Kudoke', issued: 18, active: 17, revenue: 67200, trend: '+15%' },
+    { name: 'Astro Boy', issued: 208, active: 197, revenue: 248600, trend: '+22%' },
   ];
 
   const recentActivity = [
