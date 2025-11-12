@@ -70,7 +70,6 @@ export default function DemoCreator() {
   const navItems = [
     { icon: Home, label: 'Dashboard', active: currentStep === 2 },
     { icon: Package, label: 'My Collections', active: currentStep === 0 || currentStep === 1 },
-    { icon: BarChart3, label: 'Analytics', active: false },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
