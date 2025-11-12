@@ -4,7 +4,7 @@ import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag
 export default function CreatorStep1({ setCurrentStep }) {
   const [royaltyRate, setRoyaltyRate] = useState(5);
   const [transferLockDays, setTransferLockDays] = useState(180);
-  const [selectedBenefits, setSelectedBenefits] = useState(['service', 'warranty', 'events', 'early-access']);
+  const [selectedBenefits, setSelectedBenefits] = useState(['service']);
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
 
