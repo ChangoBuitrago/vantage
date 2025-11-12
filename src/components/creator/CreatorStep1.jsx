@@ -575,14 +575,21 @@ export default function CreatorStep1({ setCurrentStep }) {
         </div>
 
         {/* Action Button */}
-        <div className="mt-8 flex justify-end">
-          <button
-            onClick={() => setCurrentStep(1)}
-            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center gap-2"
-          >
-            <span>Create Collection</span>
-            <ArrowRight className="w-5 h-5" />
-          </button>
+        <div className="mt-8">
+          <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Create Collection</h4>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              This will create the "{collectionName}" collection with {editionSize} passports. You'll be able to issue individual passports to first owners after creation.
+            </p>
+            
+            <button
+              onClick={() => setCurrentStep(1)}
+              className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+            >
+              <span>Create Collection</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
