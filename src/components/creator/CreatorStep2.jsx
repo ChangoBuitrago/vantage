@@ -405,9 +405,9 @@ export default function CreatorStep2({ setCurrentStep }) {
           {/* Issue Action */}
           {!issued ? (
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
-              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Mint & Issue Passport</h4>
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Issue Passport</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                This will create passport #{watchNumber} and transfer it to {firstOwner.name}. The watch ownership will be permanently recorded on the blockchain with all configured smart rules.
+                This will create passport #{watchNumber} and transfer it to {firstOwner.name}. The watch ownership will be securely recorded with all configured smart rules.
               </p>
               
               <button
@@ -422,12 +422,12 @@ export default function CreatorStep2({ setCurrentStep }) {
                 {issuing ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Minting Passport...</span>
+                    <span>Issuing Passport...</span>
                   </>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
-                    <span>Mint & Issue to First Owner</span>
+                    <span>Issue to First Owner</span>
                   </>
                 )}
               </button>
