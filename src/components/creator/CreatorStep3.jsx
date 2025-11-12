@@ -34,7 +34,7 @@ export default function CreatorStep3({ setCurrentStep }) {
     <div className="px-6 py-8">
       <div className="max-w-7xl mx-auto">
         {/* Page Header */}
-        <div className="mb-6">
+        <div className="mb-4">
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
             <Home className="w-4 h-4" />
             <ChevronRight className="w-4 h-4" />
@@ -42,8 +42,8 @@ export default function CreatorStep3({ setCurrentStep }) {
           </div>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Creator Dashboard</h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">Monitor your collections, passports, and royalty revenue</p>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Creator Dashboard</h1>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Monitor your collections, passports, and royalty revenue</p>
             </div>
             
             {/* Time Range Filter */}
@@ -83,83 +83,83 @@ export default function CreatorStep3({ setCurrentStep }) {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
           {/* Total Collections */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
-                <Package className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                <Package className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
-                <ArrowUp className="w-3.5 h-3.5" />
+                <ArrowUp className="w-3 h-3" />
                 {stats.monthlyGrowth}%
               </span>
             </div>
             <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Total Collections</p>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white">{stats.totalCollections}</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalCollections}</p>
           </div>
 
           {/* Passports Issued */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               </div>
               <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
-                <ArrowUp className="w-3.5 h-3.5" />
+                <ArrowUp className="w-3 h-3" />
                 12%
               </span>
             </div>
             <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Passports Issued</p>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white">{stats.totalPassportsIssued.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalPassportsIssued.toLocaleString()}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{stats.activePassports.toLocaleString()} active</p>
           </div>
 
           {/* Active Owners */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-                <Users className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                <Users className="w-4 h-4 text-purple-600 dark:text-purple-400" />
               </div>
               <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
-                <ArrowUp className="w-3.5 h-3.5" />
+                <ArrowUp className="w-3 h-3" />
                 8%
               </span>
             </div>
             <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Active Owners</p>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white">{stats.activePassports.toLocaleString()}</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.activePassports.toLocaleString()}</p>
           </div>
 
           {/* Royalties Earned */}
-          <div className="bg-white dark:bg-slate-900 border-2 border-emerald-200 dark:border-emerald-800 rounded-2xl p-6 relative overflow-hidden">
+          <div className="bg-white dark:bg-slate-900 border-2 border-emerald-200 dark:border-emerald-800 rounded-2xl p-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20"></div>
             <div className="relative">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
-                  <DollarSign className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
+                  <DollarSign className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
-                  <ArrowUp className="w-3.5 h-3.5" />
+                  <ArrowUp className="w-3 h-3" />
                   {stats.monthlyGrowth}%
                 </span>
               </div>
               <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Royalties Earned</p>
-              <p className="text-3xl font-bold text-gray-900 dark:text-white">CHF {stats.royaltiesEarned.toLocaleString()}</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF {stats.royaltiesEarned.toLocaleString()}</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Last 30 days</p>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
           {/* Collections Performance */}
-          <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <BarChart3 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+              <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               Collection Performance
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">Passports issued and royalties by collection</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Passports issued and royalties by collection</p>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {recentCollections.map((collection, index) => (
                 <div key={index} className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                   <div className="flex items-center justify-between mb-3">
@@ -202,53 +202,53 @@ export default function CreatorStep3({ setCurrentStep }) {
           </div>
 
           {/* Quick Insights */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               Quick Insights
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">Key performance metrics</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Key performance metrics</p>
 
-            <div className="space-y-3">
-              <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-2">
-                  <DollarSign className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <div className="space-y-2">
+              <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <DollarSign className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
                   <p className="text-xs font-semibold text-gray-900 dark:text-white">Avg. Resale Price</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF {stats.averageResalePrice.toLocaleString()}</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">+15% from last month</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white">CHF {stats.averageResalePrice.toLocaleString()}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">+15% from last month</p>
               </div>
 
-              <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-2">
-                  <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
+              <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <TrendingUp className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
                   <p className="text-xs font-semibold text-gray-900 dark:text-white">Ownership Retention</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">95.1%</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Excellent engagement</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white">95.1%</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Excellent engagement</p>
               </div>
 
-              <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-2">
-                  <Eye className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <Eye className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                   <p className="text-xs font-semibold text-gray-900 dark:text-white">Passport Views</p>
                 </div>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">12,847</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Last 30 days</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white">12,847</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Last 30 days</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Recent Activity */}
-        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Clock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+          <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             Recent Activity
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">Latest passport events across all collections</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Latest passport events across all collections</p>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             {recentActivity.map((activity, index) => (
               <div key={index} className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
@@ -289,7 +289,7 @@ export default function CreatorStep3({ setCurrentStep }) {
         </div>
 
         {/* Continue Button */}
-        <div className="mt-8">
+        <div className="mt-6">
           <button
             onClick={() => setCurrentStep(3)}
             className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
