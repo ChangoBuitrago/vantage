@@ -16,7 +16,7 @@ export default function CreatorStep2({ setCurrentStep }) {
   const [ownerEmail, setOwnerEmail] = useState("maria.reseller@gmail.com");
   const [ownerLocation, setOwnerLocation] = useState("New York, USA");
   const [purchaseDate, setPurchaseDate] = useState("28 Jan 2025");
-  const [purchasePrice, setPurchasePrice] = useState("3,500");
+  const [purchasePrice, setPurchasePrice] = useState("3,000");
   const [dealer, setDealer] = useState("Bucherer New York");
 
   const handleIssue = () => {
@@ -42,7 +42,7 @@ export default function CreatorStep2({ setCurrentStep }) {
   const editionSize = 178;
   const serialNumber = "LE-AS-2024-042";
   const reference = "LE78229AA04";
-  const retailPrice = 3500; // CHF
+  const retailPrice = 3000; // CHF - Base retail price
   const productionDate = new Date('2025-10-15').getTime();
   const transferLockDays = 180; // 6 months
   
