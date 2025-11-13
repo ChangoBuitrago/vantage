@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ChevronRight, Package, Shield, Calendar, CheckCircle, Eye, Percent, Clock } from 'lucide-react';
+import { Home, ChevronRight, Package, Shield, Calendar, CheckCircle, Percent, Clock } from 'lucide-react';
 
 export default function MyCollections({ setCurrentStep }) {
   const collectionName = "Le Régulateur x Alain Silberstein";
@@ -132,32 +132,20 @@ export default function MyCollections({ setCurrentStep }) {
 
         {/* Primary Actions */}
         <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
-          <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Next Steps</h4>
+          <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Issue Passport</h4>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
             Your collection is configured and ready. Issue passports as watches are sold to first owners.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <button
-              onClick={() => {
-                window.scrollTo(0, 0);
-                setCurrentStep(2);
-              }}
-              className="flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              <Shield className="w-5 h-5" />
-              <span>Issue First Passport</span>
-            </button>
-            <button
-              onClick={() => {
-                window.scrollTo(0, 0);
-                setCurrentStep(3);
-              }}
-              className="flex items-center justify-center gap-2 px-6 py-4 bg-white dark:bg-slate-800 border-2 border-gray-300 dark:border-gray-700 hover:border-emerald-400 dark:hover:border-emerald-500 text-gray-900 dark:text-white text-lg font-semibold rounded-xl transition-all duration-200"
-            >
-              <Eye className="w-5 h-5" />
-              <span>View Dashboard</span>
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              window.scrollTo(0, 0);
+              setCurrentStep(2);
+            }}
+            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-lg font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            <Shield className="w-5 h-5" />
+            <span>Issue First Passport</span>
+          </button>
         </div>
       </div>
     </div>
