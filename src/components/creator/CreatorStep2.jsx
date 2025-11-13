@@ -73,9 +73,11 @@ export default function CreatorStep2({ setCurrentStep }) {
           <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
             <Home className="w-4 h-4" />
             <ChevronRight className="w-4 h-4" />
-            <span>Issue Passports</span>
+            <span>My Collections</span>
             <ChevronRight className="w-4 h-4" />
             <span>{collectionName}</span>
+            <ChevronRight className="w-4 h-4" />
+            <span>Passport #{watchNumber.toString().padStart(3, '0')}</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Issue Digital Passport</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-2">Create and transfer passport to first owner upon retail sale</p>
