@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDarkMode } from '../contexts/DarkModeContext';
-import { Shield, Home, Package, BarChart3, Settings, Bell, Moon, Sun, FileCheck } from 'lucide-react';
+import { Shield, Home, Package, BarChart3, Settings, Bell, Moon, Sun } from 'lucide-react';
 
 // Import step components
 import CreatorStep0 from '../components/creator/CreatorStep1';
@@ -71,8 +71,7 @@ export default function DemoCreator() {
 
   const navItems = [
     { icon: Home, label: 'View Dashboard', active: currentStep === 3 },
-    { icon: Package, label: 'My Collections', active: currentStep === 0 || currentStep === 1 },
-    { icon: FileCheck, label: 'Issue Passports', active: currentStep === 2 },
+    { icon: Package, label: 'My Collections', active: currentStep >= 0 && currentStep <= 2 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
@@ -168,7 +167,7 @@ export default function DemoCreator() {
                 </div>
                 <div>
                   <div className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
-                    Faircut
+              Faircut
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 -mt-0.5">Creator</div>
                 </div>
@@ -196,7 +195,7 @@ export default function DemoCreator() {
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold">
                 LE
               </div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
