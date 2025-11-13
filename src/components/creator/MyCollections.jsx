@@ -16,9 +16,11 @@ export default function MyCollections({ setCurrentStep }) {
             <Home className="w-4 h-4" />
             <ChevronRight className="w-4 h-4" />
             <span>My Collections</span>
+            <ChevronRight className="w-4 h-4" />
+            <span>{collectionName}</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">My Collections</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Manage your watch collections and issue passports</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{collectionName}</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Limited edition collection • {editionSize} pieces • CHF {retailPrice.toLocaleString()} retail</p>
         </div>
 
         {/* Success Message */}
