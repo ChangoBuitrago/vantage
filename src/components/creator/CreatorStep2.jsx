@@ -11,6 +11,9 @@ export default function CreatorStep2({ setCurrentStep }) {
   const [expandedRoyalties, setExpandedRoyalties] = useState(false);
   const [expandedBenefits, setExpandedBenefits] = useState(false);
   
+  // State for edition number (editable)
+  const [watchNumber, setWatchNumber] = useState(42);
+  
   // State for first owner information (editable)
   const [ownerName, setOwnerName] = useState("Maria Reseller");
   const [ownerEmail, setOwnerEmail] = useState("maria.reseller@gmail.com");
@@ -38,13 +41,14 @@ export default function CreatorStep2({ setCurrentStep }) {
 
   // Collection data
   const collectionName = "Le Régulateur x Alain Silberstein";
-  const watchNumber = 42;
   const editionSize = 178;
-  const serialNumber = "LE-AS-2024-042";
   const reference = "LE78229AA04";
   const retailPrice = 3000; // CHF - Base retail price
   const productionDate = new Date('2025-10-15').getTime();
   const transferLockDays = 180; // 6 months
+  
+  // Generate serial number based on watch number
+  const serialNumber = `LE-AS-2024-${watchNumber.toString().padStart(3, '0')}`;
   
 
   // Smart rules from collection configuration
@@ -134,20 +138,34 @@ export default function CreatorStep2({ setCurrentStep }) {
                 </div>
               </div>
 
-              {/* Edition Number */}
-              <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <Edit3 className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-                <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Edition Number</p>
-                  <p className="text-base font-bold text-gray-900 dark:text-white">#{watchNumber.toString().padStart(3, '0')} / {editionSize}</p>
+              {/* Edition Number - Now Editable */}
+              <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                  <Edit3 className="w-3.5 h-3.5" />
+                  Edition Number
+                </label>
+                <div className="flex items-center gap-2">
+                  <span className="text-base font-bold text-gray-900 dark:text-white">#</span>
+                  <input
+                    type="number"
+                    min="1"
+                    max={editionSize}
+                    value={watchNumber}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value) || 1;
+                      setWatchNumber(Math.min(Math.max(val, 1), editionSize));
+                    }}
+                    className="w-20 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-bold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  />
+                  <span className="text-base font-bold text-gray-900 dark:text-white">/ {editionSize}</span>
                 </div>
               </div>
 
-              {/* Serial Number */}
+              {/* Serial Number - Auto-generated */}
               <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Serial Number</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Serial Number (Auto-generated)</p>
                   <p className="text-base font-mono font-bold text-gray-900 dark:text-white">{serialNumber}</p>
                 </div>
               </div>
