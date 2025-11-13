@@ -71,7 +71,7 @@ export default function DemoCreator() {
 
   const navItems = [
     { icon: Home, label: 'View Dashboard', active: currentStep === 3 },
-    { icon: Package, label: 'My Collections', active: currentStep === 1 },
+    { icon: Package, label: 'My Collections', active: currentStep === 0 || currentStep === 1 },
     { icon: FileCheck, label: 'Issue Passports', active: currentStep === 2 },
     { icon: Settings, label: 'Settings', active: false },
   ];
