@@ -10,6 +10,14 @@ export default function CreatorStep2({ setCurrentStep }) {
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
   const [expandedRoyalties, setExpandedRoyalties] = useState(false);
   const [expandedBenefits, setExpandedBenefits] = useState(false);
+  
+  // State for first owner information (editable)
+  const [ownerName, setOwnerName] = useState("Maria Reseller");
+  const [ownerEmail, setOwnerEmail] = useState("maria.reseller@gmail.com");
+  const [ownerLocation, setOwnerLocation] = useState("New York, USA");
+  const [purchaseDate, setPurchaseDate] = useState("28 Jan 2025");
+  const [purchasePrice, setPurchasePrice] = useState("3,500");
+  const [dealer, setDealer] = useState("Bucherer New York");
 
   const handleIssue = () => {
     setIssuing(true);
@@ -38,14 +46,6 @@ export default function CreatorStep2({ setCurrentStep }) {
   const productionDate = new Date('2025-10-15').getTime();
   const transferLockDays = 180; // 6 months
   
-  // First owner data (from retail sale)
-  const firstOwner = {
-    name: "Maria Reseller",
-    email: "maria.reseller@gmail.com",
-    location: "New York, USA",
-    purchaseDate: "28 Jan 2025",
-    purchasePrice: `CHF ${formatNumber(3500)}`
-  };
 
   // Smart rules from collection configuration
   const royaltyTiers = [
@@ -353,52 +353,88 @@ export default function CreatorStep2({ setCurrentStep }) {
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-            <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <User className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-              <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Owner Name</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">{firstOwner.name}</p>
-              </div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <User className="w-3.5 h-3.5" />
+                Owner Name
+              </label>
+              <input
+                type="text"
+                value={ownerName}
+                onChange={(e) => setOwnerName(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-semibold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="Enter owner name"
+              />
             </div>
 
-            <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <Mail className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-              <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Email Address</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">{firstOwner.email}</p>
-              </div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <Mail className="w-3.5 h-3.5" />
+                Email Address
+              </label>
+              <input
+                type="email"
+                value={ownerEmail}
+                onChange={(e) => setOwnerEmail(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-semibold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="Enter email address"
+              />
             </div>
 
-            <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <MapPin className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-              <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Location</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">{firstOwner.location}</p>
-              </div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5" />
+                Location
+              </label>
+              <input
+                type="text"
+                value={ownerLocation}
+                onChange={(e) => setOwnerLocation(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-semibold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="Enter location"
+              />
             </div>
 
-            <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-              <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Purchase Date</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">{firstOwner.purchaseDate}</p>
-              </div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5" />
+                Purchase Date
+              </label>
+              <input
+                type="text"
+                value={purchaseDate}
+                onChange={(e) => setPurchaseDate(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-semibold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="e.g., 28 Jan 2025"
+              />
             </div>
 
-            <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <CreditCard className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-              <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Purchase Price</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">{firstOwner.purchasePrice}</p>
-              </div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <CreditCard className="w-3.5 h-3.5" />
+                Purchase Price (CHF)
+              </label>
+              <input
+                type="text"
+                value={purchasePrice}
+                onChange={(e) => setPurchasePrice(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-semibold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="e.g., 3,500"
+              />
             </div>
 
-            <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <Building className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
-              <div>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Dealer/Boutique</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">Bucherer New York</p>
-              </div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <label className="block text-xs text-gray-500 dark:text-gray-400 mb-1.5 flex items-center gap-1.5">
+                <Building className="w-3.5 h-3.5" />
+                Dealer/Boutique
+              </label>
+              <input
+                type="text"
+                value={dealer}
+                onChange={(e) => setDealer(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-semibold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                placeholder="Enter dealer name"
+              />
             </div>
           </div>
 
@@ -407,7 +443,7 @@ export default function CreatorStep2({ setCurrentStep }) {
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Issue Passport</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                This will create passport #{watchNumber} and transfer it to {firstOwner.name}. The watch ownership will be securely recorded with all configured smart rules.
+                This will create passport #{watchNumber} and transfer it to {ownerName}. The watch ownership will be securely recorded with all configured smart rules.
               </p>
               
               <button
@@ -440,7 +476,7 @@ export default function CreatorStep2({ setCurrentStep }) {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-gray-900 dark:text-white">Passport Issued Successfully!</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Digital passport #{watchNumber} transferred to {firstOwner.name}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Digital passport #{watchNumber} transferred to {ownerName}</p>
                 </div>
               </div>
 
