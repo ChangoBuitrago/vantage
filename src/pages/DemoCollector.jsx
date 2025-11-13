@@ -161,12 +161,15 @@ export default function DemoCollector() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Shield className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
-                  Faircut
-                </span>
+                <div>
+                  <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
+                    Faircut
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 -mt-0.5">Collector</div>
+                </div>
               </div>
             </div>
           <div className="flex items-center gap-3">
@@ -187,7 +190,6 @@ export default function DemoCollector() {
             <div className="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-gray-700">
               <div className="text-right hidden sm:block">
                 <div className="text-sm font-semibold text-gray-900 dark:text-white">John Collector</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">Collector</div>
               </div>
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                 JC
