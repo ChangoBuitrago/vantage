@@ -161,7 +161,14 @@ export default function CreatorStep3({ setCurrentStep }) {
 
             <div className="space-y-3">
               {recentCollections.map((collection, index) => (
-                <div key={index} className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                <div 
+                  key={index} 
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    setCurrentStep(1);
+                  }}
+                  className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+                >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex-1">
                       <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{collection.name}</h4>
