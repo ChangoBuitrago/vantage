@@ -15,8 +15,6 @@ export default function DemoCollector() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [currentStep, setCurrentStep] = useState(0);
 
-  const totalSteps = 5;
-
   // Step URL fragments mapping
   const stepFragments = {
     0: 'browse-chrono24',
@@ -52,6 +50,7 @@ export default function DemoCollector() {
       setCurrentStep(0);
       window.location.hash = stepFragments[0];
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Listen for hash changes (browser back/forward)
@@ -66,6 +65,7 @@ export default function DemoCollector() {
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Faircut sidebar navigation items
@@ -94,7 +94,7 @@ export default function DemoCollector() {
         {/* Sidebar content */}
         <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-l border-gray-200 dark:border-gray-800 shadow-xl transform translate-x-full group-hover:translate-x-0 transition-all duration-500 ease-out rounded-l-2xl overflow-hidden">
           <div className="py-6 px-3 space-y-1 min-w-[240px]">
-            {stepNavigation.map(({ step, emoji, label, isHome }) => (
+            {stepNavigation.map(({ step, label, isHome }) => (
               <button
                 key={step}
                 onClick={() => isHome ? navigate('/demo') : updateStep(step)}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, DollarSign, Package, Mail } from 'lucide-react';
 
-export default function ResellerStep5({ setCurrentStep, handlePayRoyalty }) {
+export default function ResellerStep5({ handlePayRoyalty }) {
   const [salePrice, setSalePrice] = useState('');
   const [collectorEmail, setCollectorEmail] = useState('');
   

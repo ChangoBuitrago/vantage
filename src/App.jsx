@@ -4,6 +4,7 @@ import DarkModeToggle from './components/DarkModeToggle';
 import Landing from './pages/Landing';
 import Slides from './pages/Slides';
 import ManuelEmch from './pages/ManuelEmch';
+import ManuelEmchV2 from './pages/ManuelEmchV2';
 import StefanKudoke from './pages/StefanKudoke';
 import PatrikSjogren from './pages/PatrikSjogren';
 import Demo from './pages/Demo';
@@ -23,8 +24,6 @@ function ConditionalDarkModeToggle() {
 }
 
 function App() {
-  console.log('App rendering, current path:', window.location.pathname);
-  
   return (
     <DarkModeProvider>
       <Router basename="/faircut/">
@@ -33,6 +32,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/slides" element={<Slides />} />
           <Route path="/manuel-emch" element={<ManuelEmch />} />
+          <Route path="/manuel-emch-v2" element={<ManuelEmchV2 />} />
           <Route path="/stefan-kudoke" element={<StefanKudoke />} />
           <Route path="/patrik-sjogren" element={<PatrikSjogren />} />
           <Route path="/demo" element={<Demo />} />

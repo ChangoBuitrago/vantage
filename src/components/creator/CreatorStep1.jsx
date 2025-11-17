@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown, Upload, Image as ImageIcon, Baseline } from 'lucide-react';
 
 export default function CreatorStep1({ setCurrentStep }) {
-  const [royaltyRate, setRoyaltyRate] = useState(5);
   const [transferLockDays, setTransferLockDays] = useState(180);
   const [selectedBenefits, setSelectedBenefits] = useState(['service']);
   const [baseRetailPrice, setBaseRetailPrice] = useState('3,000');
@@ -66,8 +65,6 @@ export default function CreatorStep1({ setCurrentStep }) {
     { id: 'events', label: 'Collector Events Access', description: 'VIP invitations to brand events and launches', icon: Calendar },
     { id: 'early-access', label: 'Early Access to New Releases', description: 'Priority purchasing for limited editions', icon: Gift }
   ];
-
-  const transferLockMonths = Math.floor(transferLockDays / 30);
 
   return (
     <div className="px-6 py-8">

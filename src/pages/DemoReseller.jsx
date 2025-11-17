@@ -24,8 +24,6 @@ export default function DemoReseller() {
   const [royaltyAmount, setRoyaltyAmount] = useState(0);
   const [collectorEmail, setCollectorEmail] = useState('');
 
-  const totalSteps = 7; // Step 0: Louis Erard product, Step 1: Order confirmation, Step 2: Email, Step 3-6: Faircut platform
-
   // Step URL fragments mapping
   const stepFragments = {
     0: 'browse-product',
@@ -67,6 +65,7 @@ export default function DemoReseller() {
     setShowPaymentModal(false);
     setShowSuccessModal(false);
     setShowSuccessToast(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Listen for hash changes (browser back/forward)
@@ -81,6 +80,7 @@ export default function DemoReseller() {
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const navItems = [
@@ -221,7 +221,7 @@ export default function DemoReseller() {
         {/* Sidebar content */}
         <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-l border-gray-200 dark:border-gray-800 shadow-xl transform translate-x-full group-hover:translate-x-0 transition-all duration-500 ease-out rounded-l-2xl overflow-hidden">
           <div className="py-6 px-3 space-y-1 min-w-[240px]">
-            {stepNavigation.map(({ step, emoji, label, isHome }) => (
+            {stepNavigation.map(({ step, label, isHome }) => (
               <button
                 key={step}
                 onClick={() => isHome ? navigate('/demo') : updateStep(step)}

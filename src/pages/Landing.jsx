@@ -173,6 +173,7 @@ export default function Landing() {
   // Recalculate when slider values change
   useEffect(() => {
     calculateRevenue();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sliderValues]);
 
   // Handle slider changes
