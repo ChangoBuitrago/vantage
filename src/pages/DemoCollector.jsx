@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { 
-  Home, Shield, Check, Mail, FileText, Package, Settings, Bell, Sun, Moon
+  Home, Shield, Check, Mail, FileText, Package, Settings, Bell, Sun, Moon, RefreshCw
 } from 'lucide-react';
 import { useDarkMode } from '../contexts/DarkModeContext';
 import CollectorStep0 from '../components/collector/CollectorStep0';
@@ -72,6 +72,7 @@ export default function DemoCollector() {
   const navItems = [
     { icon: Home, label: 'Dashboard', active: false },
     { icon: Package, label: 'My Passports', active: currentStep === 3 },
+    { icon: RefreshCw, label: 'Transfers', active: false },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
@@ -88,8 +89,8 @@ export default function DemoCollector() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       {/* Step Navigation Sidebar - Elegant & Minimal */}
       <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 group">
-        {/* Hover trigger area */}
-        <div className="absolute right-0 top-0 bottom-0 w-16 cursor-pointer"></div>
+        {/* Hover trigger area - positioned around the three dots */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-32 h-32 cursor-pointer"></div>
         
         {/* Sidebar content */}
         <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-l border-gray-200 dark:border-gray-800 shadow-xl transform translate-x-full group-hover:translate-x-0 transition-all duration-500 ease-out rounded-l-2xl overflow-hidden">
