@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown, Upload, Image as ImageIcon, Baseline } from 'lucide-react';
+import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag, ArrowRight, Info, CheckCircle, AlertCircle, Settings, ChevronDown, Image as ImageIcon, Baseline, Folder, X } from 'lucide-react';
 
 export default function CreatorStep1({ setCurrentStep }) {
   const [transferLockDays, setTransferLockDays] = useState(180);
@@ -8,6 +8,7 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [expandedBasePrice, setExpandedBasePrice] = useState(false);
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
+  const [showImageGallery, setShowImageGallery] = useState(false);
   
   // Tiered royalties by year
   const [royaltyTiers, setRoyaltyTiers] = useState([
@@ -22,6 +23,14 @@ export default function CreatorStep1({ setCurrentStep }) {
     setRoyaltyTiers(newTiers);
   };
   
+  // Available watch thumb images from public folder
+  const availableWatchImages = [
+    '/faircut/watch-thumb-0.jpg',
+    '/faircut/watch-thumb-1.jpg',
+    '/faircut/watch-thumb-2.webp',
+    '/faircut/watch-thumb-3.jpg',
+  ];
+  
   // Collection data state
   const [collectionName, setCollectionName] = useState('Le Regulateur Louis Erard x Alain Silberstein');
   const [reference, setReference] = useState('LE78229AA04');
@@ -33,15 +42,15 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [watchImages, setWatchImages] = useState(['/faircut/watch-thumb-0.jpg']);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  const handleImageUpload = (e) => {
-    const files = Array.from(e.target.files);
-    files.forEach(file => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setWatchImages(prev => [...prev, reader.result]);
-      };
-      reader.readAsDataURL(file);
-    });
+  const handleImageSelect = (imagePath) => {
+    if (!watchImages.includes(imagePath)) {
+      setWatchImages(prev => [...prev, imagePath]);
+      setCurrentImageIndex(watchImages.length);
+    } else {
+      // If already selected, just switch to it
+      setCurrentImageIndex(watchImages.indexOf(imagePath));
+    }
+    setShowImageGallery(false);
   };
   
   const removeImage = (index) => {
@@ -120,29 +129,91 @@ export default function CreatorStep1({ setCurrentStep }) {
                   )}
                 </div>
                 
-                {/* Image Upload Controls */}
-                <div className="flex gap-2">
-                  <label className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg cursor-pointer transition-colors text-xs font-semibold">
-                    <Upload className="w-3.5 h-3.5" />
-                    Add Image
-                    <input
-                      type="file"
-                      accept="image/*"
-                      multiple
-                      onChange={handleImageUpload}
-                      className="hidden"
-                    />
-                  </label>
+                {/* Image Selection Controls */}
+                <div className="flex flex-col gap-2 w-full">
+                  <button
+                    onClick={() => setShowImageGallery(true)}
+                    className="w-full flex items-center justify-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg cursor-pointer transition-colors text-xs font-semibold"
+                  >
+                    <Folder className="w-3.5 h-3.5" />
+                    Select from Gallery
+                  </button>
                   {watchImages.length > 0 && (
                     <button
                       onClick={() => removeImage(currentImageIndex)}
-                      className="px-3 py-1.5 bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-700 dark:text-red-400 rounded-lg transition-colors text-xs font-semibold"
+                      className="w-full px-3 py-1.5 bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-700 dark:text-red-400 rounded-lg transition-colors text-xs font-semibold"
                     >
-                      Remove
+                      Remove Current
                     </button>
                   )}
                 </div>
               </div>
+              
+              {/* Image Gallery Modal */}
+              {showImageGallery && (
+                <div className="fixed inset-0 bg-black/50 dark:bg-black/70 z-50 flex items-center justify-center p-4" onClick={() => setShowImageGallery(false)}>
+                  <div 
+                    className="bg-white dark:bg-slate-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {/* Modal Header */}
+                    <div className="sticky top-0 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 p-6 flex items-center justify-between z-10">
+                      <div>
+                        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Select Watch Image</h2>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Choose from available watch images in public folder</p>
+                      </div>
+                      <button
+                        onClick={() => setShowImageGallery(false)}
+                        className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors"
+                      >
+                        <X className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                      </button>
+                    </div>
+
+                    {/* Gallery Grid */}
+                    <div className="p-6">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {availableWatchImages.map((imagePath, index) => {
+                          const isSelected = watchImages.includes(imagePath);
+                          return (
+                            <button
+                              key={index}
+                              onClick={() => handleImageSelect(imagePath)}
+                              className={`relative group aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                                isSelected
+                                  ? 'border-emerald-500 dark:border-emerald-400 ring-2 ring-emerald-200 dark:ring-emerald-800'
+                                  : 'border-gray-200 dark:border-gray-700 hover:border-emerald-400 dark:hover:border-emerald-600'
+                              }`}
+                            >
+                              <img
+                                src={imagePath}
+                                alt={`Watch thumbnail ${index + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                              {isSelected && (
+                                <div className="absolute inset-0 bg-emerald-500/20 dark:bg-emerald-400/20 flex items-center justify-center">
+                                  <div className="w-8 h-8 bg-emerald-500 dark:bg-emerald-400 rounded-full flex items-center justify-center">
+                                    <CheckCircle className="w-5 h-5 text-white" />
+                                  </div>
+                                </div>
+                              )}
+                              <div className="absolute bottom-0 left-0 right-0 bg-black/60 dark:bg-black/80 text-white text-xs p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                {imagePath.split('/').pop()}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {availableWatchImages.length === 0 && (
+                        <div className="text-center py-12">
+                          <Folder className="w-16 h-16 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
+                          <p className="text-gray-600 dark:text-gray-400">No watch images found in public folder</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
               
               {/* Collection Info - Live Preview */}
               <div className="flex-1 text-center md:text-left">

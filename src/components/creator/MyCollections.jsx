@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ChevronRight, Package, Shield, Calendar, CheckCircle, Percent, Clock } from 'lucide-react';
+import { Home, ChevronRight, Package, Shield, Calendar, Percent, Clock } from 'lucide-react';
 
 export default function MyCollections({ setCurrentStep }) {
   const collectionName = "Le Régulateur x Alain Silberstein";
@@ -28,19 +28,6 @@ export default function MyCollections({ setCurrentStep }) {
             <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold rounded-full">
               Active
             </span>
-          </div>
-        </div>
-
-        {/* Success Message */}
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-2 border-green-200 dark:border-green-800 rounded-xl p-6 mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-              <CheckCircle className="w-7 h-7 text-white" />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Collection Created Successfully!</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">You can now start issuing passports to first owners</p>
-            </div>
           </div>
         </div>
 
