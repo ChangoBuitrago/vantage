@@ -70,7 +70,6 @@ export default function DemoCollector() {
 
   // Faircut sidebar navigation items
   const navItems = [
-    { icon: Home, label: 'Dashboard', active: false },
     { icon: Package, label: 'My Passports', active: currentStep === 3 },
     { icon: RefreshCw, label: 'Transfers', active: false },
     { icon: Settings, label: 'Settings', active: false },

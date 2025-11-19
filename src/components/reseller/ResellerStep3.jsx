@@ -76,7 +76,7 @@ export default function ResellerStep3({ setCurrentStep }) {
         dealerLocation: 'Bucherer New York',
         paymentMethod: 'Credit Card',
         certificateIssued: 'Via Faircut',
-        purchasePrice: '3,500 CHF'
+        purchasePrice: '3,000 CHF'
       }
     }
   ];
@@ -292,7 +292,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
-                          <span className="font-mono text-sm font-bold text-green-600 dark:text-green-400">CHF {formatNumber(3500)}</span>
+                          <span className="font-mono text-sm font-bold text-green-600 dark:text-green-400">CHF {formatNumber(3000)}</span>
                         </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
                       </div>
@@ -314,7 +314,7 @@ export default function ResellerStep3({ setCurrentStep }) {
                           </div>
                           <div className="flex-1 min-w-0 flex items-center justify-between">
                             <p className="text-xs text-gray-500 dark:text-gray-400">Original Purchase Price</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 3,500</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 3,000</p>
                           </div>
                         </div>
                       </div>

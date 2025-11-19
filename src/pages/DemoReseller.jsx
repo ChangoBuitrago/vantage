@@ -84,7 +84,6 @@ export default function DemoReseller() {
   }, []);
 
   const navItems = [
-    { icon: Home, label: 'Dashboard', active: false },
     { icon: Package, label: 'My Passports', active: currentStep === 3 },
     { icon: RefreshCw, label: 'Transfers', active: currentStep === 4 || currentStep === 5 },
     { icon: Settings, label: 'Settings', active: false },

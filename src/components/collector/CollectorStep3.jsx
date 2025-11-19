@@ -81,7 +81,7 @@ export default function CollectorStep3({ setCurrentStep }) {
         dealerLocation: 'Bucherer New York',
         paymentMethod: 'Credit Card',
         certificateIssued: 'Via Faircut',
-        purchasePrice: '3,500 CHF'
+        purchasePrice: '3,000 CHF'
       }
     },
     {

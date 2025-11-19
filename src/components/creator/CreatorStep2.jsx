@@ -435,7 +435,7 @@ export default function CreatorStep2({ setCurrentStep }) {
                 value={purchasePrice}
                 onChange={(e) => setPurchasePrice(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-900 text-base font-semibold text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-                placeholder="e.g., 3,500"
+                placeholder="e.g., 3,000"
               />
             </div>
 
