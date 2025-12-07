@@ -103,7 +103,7 @@ faircut/
 │   │   ├── DemoReseller.jsx         # Reseller experience demo
 │   │   ├── Slides.jsx               # Story/business slides presentation
 │   │   ├── ManuelEmch.jsx           # Manuel Emch napkin strategy
-│   │   ├── ManuelEmchV2.jsx         # Manuel Emch v2 strategy
+│   │   ├── ManuelEmchV3.jsx         # Manuel Emch v3 strategy
 │   │   ├── StefanKudoke.jsx         # Stefan Kudoke napkin strategy
 │   │   └── PatrikSjogren.jsx        # Patrik Sjögren napkin strategy
 │   ├── components/
@@ -252,7 +252,7 @@ No environment variables required for basic functionality. The platform is fully
 - `/demo/reseller` - Reseller experience demo
 - `/slides` - Story/business slides presentation
 - `/manuel-emch` - Manuel Emch strategy presentation
-- `/manuel-emch-v2` - Manuel Emch v2 strategy presentation
+- `/manuel-emch-v3` - Manuel Emch v3 strategy presentation
 - `/stefan-kudoke` - Stefan Kudoke strategy presentation
 - `/patrik-sjogren` - Patrik Sjögren strategy presentation
 
