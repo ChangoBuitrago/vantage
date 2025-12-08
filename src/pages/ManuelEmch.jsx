@@ -181,20 +181,20 @@ export default function ManuelEmch() {
         
         {/* --- SLIDE 1: CURRENT STRATEGY --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center space-y-8">
+          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10">
             
             {/* Title Section - More Compact */}
             <div className="text-center">
-              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider">Louis Erard Strategy</p>
+              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Strategy</p>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling, Not Distributing</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">50% direct, 50% selected retailers — self-sustainable and independent</p>
+              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium whitespace-nowrap">50% direct, 50% selected retailers — self-sustainable and independent</p>
             </div>
 
             {/* Markets Comparison - Side by Side */}
             <div className="grid md:grid-cols-2 gap-6 items-start">
               {/* Primary Market */}
               <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-2 font-semibold">Primary Market</p>
+                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
                 <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-4 border-2 border-green-200 dark:border-green-800 shadow-md">
                   <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                     <span className="font-semibold">Brand</span>
@@ -208,7 +208,7 @@ export default function ManuelEmch() {
 
               {/* Secondary Market */}
               <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-2 font-semibold">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
+                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
                 <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-4 border-2 border-red-200 dark:border-red-800 shadow-md">
                   <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
                     <span className="font-semibold">Brand</span>
@@ -235,7 +235,8 @@ export default function ManuelEmch() {
             {/* The Core Problem - Better Integrated */}
             <div>
               <div className="mb-5 text-center">
-                <p className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">The Core Problem</p>
+                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Core Problem</p>
+                <p className="text-base text-gray-600 dark:text-gray-400">Three critical issues that undermine your independence</p>
               </div>
               <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
                 {/* Frustration */}
@@ -245,9 +246,15 @@ export default function ManuelEmch() {
                       <AlertCircle className="w-7 h-7 text-red-600 dark:text-red-400" />
                     </div>
                     <h3 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-3">"Frustration"</h3>
-                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-1.5 text-left w-full list-disc list-inside">
-                      <li>Real collectors can't buy at retail because flippers buy instantly and list immediately at markup.</li>
-                      <li>Brand loses huge profits to resellers.</li>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>Real collectors can't buy at retail because flippers buy instantly and list immediately at markup.</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>Brand loses huge profits to resellers.</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -259,10 +266,19 @@ export default function ManuelEmch() {
                       <AlertTriangle className="w-7 h-7 text-red-600 dark:text-red-400" />
                     </div>
                     <h3 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-3">"Headaches"</h3>
-                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-1.5 text-left w-full list-disc list-inside">
-                      <li>Collectors buying secondhand face authenticity concerns</li>
-                      <li>warranty issues</li>
-                      <li>and condition uncertainties</li>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>Collectors buying secondhand face authenticity concerns</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>warranty issues</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>and condition uncertainties</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -274,9 +290,15 @@ export default function ManuelEmch() {
                       <Heart className="w-7 h-7 text-red-600 dark:text-red-400" />
                     </div>
                     <h3 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-3">"Lost Community"</h3>
-                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-1.5 text-left w-full list-disc list-inside">
-                      <li>No connection between brand and secondary market collectors</li>
-                      <li>missing opportunities to build lasting relationships</li>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>No connection between brand and secondary market collectors</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>missing opportunities to build lasting relationships</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
