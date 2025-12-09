@@ -183,56 +183,59 @@ export default function ManuelEmch() {
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10">
             
-            {/* Title Section - More Compact */}
-            <div className="text-center">
-              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Strategy</p>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling, Not Distributing</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium whitespace-nowrap">50% direct, 50% selected retailers — self-sustainable and independent</p>
-            </div>
-
-            {/* Markets Comparison - Side by Side */}
-            <div className="grid md:grid-cols-2 gap-6 items-start">
-              {/* Primary Market */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-4 border-2 border-green-200 dark:border-green-800 shadow-md">
-                  <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Known Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
-                </div>
+            {/* Section 1: Selling, Not Distributing */}
+            <div>
+              {/* Title Section - More Compact */}
+              <div className="text-center mb-6">
+                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Strategy</p>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling, Not Distributing</h2>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium whitespace-nowrap">50% direct, 50% selected retailers — self-sustainable and independent</p>
               </div>
 
-              {/* Secondary Market */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
-                <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-4 border-2 border-red-200 dark:border-red-800 shadow-md">
-                  <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Flipper</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Unknown New Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
-                  </div>
-                  <div className="bg-red-100 dark:bg-red-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700">
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
-                      <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 3,500</span>
+              {/* Markets Comparison - Side by Side */}
+              <div className="grid md:grid-cols-2 gap-6 items-start">
+                {/* Primary Market */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-4 border-2 border-green-200 dark:border-green-800 shadow-md">
+                    <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
+                      <span className="font-semibold">Brand</span>
+                      <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Known Collector</span>
+                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
                     </div>
-                    <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
-                      <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
+                  </div>
+                </div>
+
+                {/* Secondary Market */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
+                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-4 border-2 border-red-200 dark:border-red-800 shadow-md">
+                    <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
+                      <span className="font-semibold">Brand</span>
+                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Flipper</span>
+                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Unknown Collector</span>
+                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
+                    </div>
+                    <div className="bg-red-100 dark:bg-red-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700">
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
+                        <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 3,500</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
+                        <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* The Core Problem - Better Integrated */}
+            {/* Section 2: The Resale Market Problem */}
             <div>
               <div className="mb-5 text-center">
                 <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Resale Market Problem</p>
@@ -351,7 +354,7 @@ export default function ManuelEmch() {
                       <span className="text-gray-500">→</span>
                       <span className="font-medium">Reseller</span>
                       <span className="text-gray-500">→</span>
-                      <span className="font-medium">Unknown New Collector</span>
+                      <span className="font-medium">Unknown Collector</span>
                       <span className="ml-auto font-mono text-2xl font-bold">CHF 6,500</span>
                     </div>
                     
