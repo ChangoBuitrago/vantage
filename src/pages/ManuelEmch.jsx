@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { FileText, Edit3, Tag, Calendar, Baseline, Clock, Percent, Wrench, Users, ArrowRight, CornerDownRight, Building2, Store, Sparkles, Shield, AlertCircle, AlertTriangle, Heart } from 'lucide-react';
+import { FileText, Edit3, Tag, Calendar, Baseline, Clock, Percent, Wrench, Users, ArrowRight, CornerDownRight, Building2, Store, Sparkles, Shield, AlertCircle, AlertTriangle, Heart, CheckCircle, Lock } from 'lucide-react';
 
 export default function ManuelEmch() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 5; // Current Strategy, New Strategy, Digital Passport, Transfer Flow, Why You
+  const totalSections = 5; // Current Strategy, New Strategy, Smart Contract, Transfer Flow, Why You
   
-  // Digital Passport data
+  // Smart Contract data
   const watchMintTimestamp = new Date('2025-06-15').getTime();
   const transferLockEndDateTimestamp = new Date('2025-12-15').getTime();
   const isTransferLockActive = Date.now() < transferLockEndDateTimestamp;
@@ -312,87 +312,123 @@ export default function ManuelEmch() {
         </section>
 
         {/* --- SLIDE 2: NEW STRATEGY --- */}
-        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center px-16 py-10 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          <div className="w-full max-w-6xl mx-auto z-10">
+        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10">
             
-            {/* Title */}
-            <div className="text-center mb-6">
-              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider">The Napkin Strategy</p>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Digital Passport</span></h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">100% control, zero cost, perpetual revenue — maintaining independence and self-sustainability</p>
-            </div>
-
-            {/* With Digital Passport Container */}
-            <div className="mb-6 bg-gradient-to-br from-amber-50/70 to-orange-50/70 dark:from-amber-900/20 dark:to-orange-900/20 backdrop-blur-sm rounded-2xl p-5 border border-amber-300 dark:border-amber-700">
-              {/* Digital Passport Badge */}
-              <div className="mb-4">
-                <span className="inline-block bg-amber-200 dark:bg-amber-800 text-amber-900 dark:text-amber-100 px-3 py-1 rounded-full text-sm font-semibold border border-amber-400 dark:border-amber-600">
-                  🔐 Watch With A Digital Passport
-                </span>
+            {/* Section 1: Selling And Distributing, With A Smart Contract */}
+            <div>
+              {/* Title Section - More Compact */}
+              <div className="text-center mb-6">
+                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Napkin Strategy</p>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart Contract</span></h2>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">100% control, zero cost, perpetual revenue — maintaining independence and self-sustainability</p>
               </div>
 
-              {/* Primary Market */}
-              <div className="mb-5">
-                <p className="text-base text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-gray-300 dark:border-gray-700">
-                  <div className="flex items-center gap-4 text-xl text-gray-900 dark:text-white">
-                    <span className="font-medium">Brand</span>
-                    <span className="text-gray-500">→</span>
-                    <span className="font-medium">Known Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
+              {/* Markets Comparison - Side by Side */}
+              <div className="grid md:grid-cols-2 gap-6 items-start">
+                {/* Primary Market */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-4 border-2 border-green-200 dark:border-green-800 shadow-md">
+                    <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
+                      <span className="font-semibold">Brand</span>
+                      <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Known Collector</span>
+                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
                   </div>
                 </div>
-              </div>
 
-              {/* Secondary Market with Royalty */}
-              <div>
-                <p className="text-base text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein — Chrono24)</p>
-                <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 border border-gray-300 dark:border-gray-700">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-4 text-xl text-gray-900 dark:text-white">
-                      <span className="font-medium">Brand</span>
-                      <span className="text-gray-500">→</span>
-                      <span className="font-medium">Reseller</span>
-                      <span className="text-gray-500">→</span>
-                      <span className="font-medium">Unknown Collector</span>
-                      <span className="ml-auto font-mono text-2xl font-bold">CHF 6,500</span>
+                {/* Secondary Market with Royalty */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-4 border-2 border-amber-200 dark:border-amber-800 shadow-md">
+                    <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
+                      <span className="font-semibold">Brand</span>
+                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Reseller</span>
+                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Unknown Collector</span>
+                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                     </div>
-                    
-                    {/* Royalty Ticker */}
-                    <div className="bg-amber-50 dark:bg-amber-900/30 rounded-lg px-4 py-3 border border-amber-300 dark:border-amber-700">
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg text-gray-600 dark:text-gray-400">Reseller profit</span>
-                        <div className="text-right">
-                          <span className="font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 2,450</span>
-                        </div>
+                    <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg px-3 py-2 border border-amber-300 dark:border-amber-700">
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Reseller profit</span>
+                        <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 2,450</span>
                       </div>
-                      <div className="flex items-center justify-between mt-2 pt-2 border-t border-amber-200 dark:border-amber-700">
-                        <span className="text-lg text-gray-600 dark:text-gray-400">Louis Erard Share (30% royalty)</span>
-                        <div className="text-right">
-                          <span className="font-mono text-xl font-bold text-amber-600 dark:text-amber-400">CHF 1,050</span>
-                          <p className="text-base text-gray-600 dark:text-gray-400 italic mt-1">Per resale. Perpetual.</p>
-                        </div>
+                      <div className="flex justify-between items-center pt-1.5 border-t border-amber-300 dark:border-amber-700">
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share (30% royalty)</span>
+                        <span className="font-mono text-base font-bold text-amber-600 dark:text-amber-400">CHF 1,050</span>
                       </div>
+                      <p className="text-xs text-amber-700 dark:text-amber-400 italic text-left mt-2 font-medium">Per resale. Perpetual.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* The Solution */}
-            <div className="pt-6 pb-4 border-t border-gray-300 dark:border-gray-700">
-              <div className="flex justify-center gap-6 max-w-6xl mx-auto">
-                <div className="text-center flex-1">
-                  <p className="text-2xl font-bold mb-2"><span className="text-orange-600 dark:text-orange-400">"Fair Access"</span></p>
-                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Transfer locks ensure real collectors get priority access. Dynamic royalties (90% Yr 1, 60% Yr 2, 15% Yr 3+) eliminate flippers' margin and return profits to the brand.</p>
+            {/* Section 2: The Solution */}
+            <div>
+              <div className="mb-5 text-center">
+                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Solution</p>
+                <p className="text-base text-gray-600 dark:text-gray-400">Three key benefits enabled by the Smart Contract</p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
+                {/* Fair Access */}
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-amber-200 dark:border-amber-800 shadow-md hover:shadow-lg transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mb-3">
+                      <Lock className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-3">"Fair Access"</h3>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                        <span>Transfer locks rules ensure real collectors get priority access</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                        <span>Dynamic royalties rules (90% Yr 1, 60% Yr 2, 15% Yr 3+) reduce flippers' margin and return profits to the brand</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="text-center flex-1">
-                  <p className="text-2xl font-bold mb-2"><span className="text-orange-600 dark:text-orange-400">"Trust & Security"</span></p>
-                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Digital passport ensures authenticity, tracks warranty, and maintains condition history throughout ownership</p>
+                
+                {/* Trust & Security */}
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-amber-200 dark:border-amber-800 shadow-md hover:shadow-lg transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mb-3">
+                      <Shield className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-3">"Trust & Security"</h3>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                        <span>Smart contract ensures authenticity and tracks warranty</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                        <span>Maintains condition history throughout ownership</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="text-center flex-1">
-                  <p className="text-2xl font-bold mb-2"><span className="text-orange-600 dark:text-orange-400">"Connected Community"</span></p>
-                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Like a dating app, you connect collectors with each other across the watch's lifetime, building lasting relationships and community</p>
+                
+                {/* Connected Community */}
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-amber-200 dark:border-amber-800 shadow-md hover:shadow-lg transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mb-3">
+                      <Users className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-3">"Connected Community"</h3>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                        <span>Like a "dating app", you connect collectors with each other across the watch's lifetime, building lasting relationships and community</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -400,7 +436,7 @@ export default function ManuelEmch() {
           </div>
         </section>
 
-        {/* --- SECTION 3: THE DIGITAL PASSPORT (Visual & Simplified) --- */}
+        {/* --- SECTION 3: THE SMART CONTRACT (Visual & Simplified) --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden text-neutral-900 dark:text-neutral-100 font-[Inter]">
           {/* Content container */}
           <div className="w-full max-w-6xl mx-auto space-y-6">
@@ -408,11 +444,11 @@ export default function ManuelEmch() {
             {/* Title */}
             <div className="text-center">
               <p className="text-base text-neutral-500 dark:text-neutral-500 mb-2 uppercase tracking-wider">Proof of Concept</p>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-neutral-900 dark:text-white mb-2">The Digital Passport</h2>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-neutral-900 dark:text-white mb-2">The Smart Contract</h2>
               <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">Smart rules, immutable records, perpetual revenues—connected communities</p>
             </div>
 
-            {/* Passport Visual Mockup Area */}
+            {/* Smart Contract Visual Mockup Area */}
             <div className="bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-900 dark:to-neutral-800 rounded-xl shadow-lg border-2 border-amber-200 dark:border-amber-800 overflow-hidden max-w-3xl mx-auto">
               {/* Header with Brand and Badge */}
               <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 px-4 py-3 border-b border-amber-200 dark:border-amber-800">
@@ -547,7 +583,7 @@ export default function ManuelEmch() {
                       </div>
                   </div>
               </div> {/* End Main Flex Container */}
-            </div> {/* End Passport Card */}
+            </div> {/* End Smart Contract Card */}
 
             {/* SECTION: Brand-Defined Rules & Benefits Tiles */}
             <div className="space-y-4 pt-4 border-t border-neutral-200 dark:border-neutral-800">
@@ -658,7 +694,7 @@ export default function ManuelEmch() {
                          </div>
                          <div>
                            <p className="text-base font-bold text-green-900 dark:text-green-300 mb-1">Step 4</p>
-                           <p className="text-xl font-semibold text-green-900 dark:text-green-200 mb-2">Passport Transfers</p>
+                           <p className="text-xl font-semibold text-green-900 dark:text-green-200 mb-2">Smart Contract Transfers</p>
                            <p className="text-base text-green-700 dark:text-green-400">Ownership updates, history preserved</p>
                          </div>
                        </div>
