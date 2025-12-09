@@ -321,7 +321,7 @@ export default function ManuelEmch() {
               <div className="text-center">
                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Napkin Strategy</p>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart Contract</span></h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">100% control, zero cost, perpetual revenue — maintaining independence and self-sustainability</p>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">100% control, zero cost, perpetual revenue — self-sustainable and independent</p>
               </div>
 
               {/* Markets Comparison - Side by Side */}
