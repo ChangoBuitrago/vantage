@@ -196,8 +196,8 @@ export default function ManuelEmch() {
               <div className="grid md:grid-cols-2 gap-6 items-start">
                 {/* Primary Market */}
                 <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-200 dark:border-green-800 shadow-md">
-                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -210,8 +210,8 @@ export default function ManuelEmch() {
 
                 {/* Secondary Market */}
                 <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
                   <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-200 dark:border-red-800 shadow-md">
-                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
                     <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
@@ -328,8 +328,8 @@ export default function ManuelEmch() {
               <div className="grid md:grid-cols-2 gap-6 items-start">
                 {/* Primary Market */}
                 <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-200 dark:border-green-800 shadow-md">
-                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -342,14 +342,14 @@ export default function ManuelEmch() {
 
                 {/* Secondary Market with Royalty */}
                 <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
                   <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-5 border-2 border-amber-200 dark:border-amber-800 shadow-md">
-                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
                     <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
                       <span className="font-semibold">Reseller</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Known Collector</span>
+                      <span className="font-semibold">Unknown Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                     </div>
                     <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg px-3 py-2 border border-amber-300 dark:border-amber-700">
