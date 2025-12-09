@@ -181,23 +181,23 @@ export default function ManuelEmch() {
         
         {/* --- SLIDE 1: CURRENT STRATEGY --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10">
+          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
             {/* Section 1: Selling, Not Distributing */}
-            <div>
-              {/* Title Section - More Compact */}
-              <div className="text-center mb-6">
+            <div className="space-y-6">
+              {/* Title Section */}
+              <div className="text-center">
                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Strategy</p>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling, Not Distributing</h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium whitespace-nowrap">50% direct, 50% selected retailers — self-sustainable and independent</p>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling, Not Distributing</h2>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">50% direct, 50% selected retailers — self-sustainable and independent</p>
               </div>
 
               {/* Markets Comparison - Side by Side */}
               <div className="grid md:grid-cols-2 gap-6 items-start">
                 {/* Primary Market */}
                 <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-4 border-2 border-green-200 dark:border-green-800 shadow-md">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-200 dark:border-green-800 shadow-md">
+                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -210,8 +210,8 @@ export default function ManuelEmch() {
 
                 {/* Secondary Market */}
                 <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
-                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-4 border-2 border-red-200 dark:border-red-800 shadow-md">
+                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-200 dark:border-red-800 shadow-md">
+                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
                     <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
@@ -235,13 +235,13 @@ export default function ManuelEmch() {
               </div>
             </div>
 
-            {/* Section 2: The Resale Market Problem */}
-            <div>
-              <div className="mb-5 text-center">
-                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Resale Market Problem</p>
+            {/* Section 2: The Secondary Market Problem */}
+            <div className="space-y-6">
+              <div className="text-center">
+                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Secondary Market Problem</p>
                 <p className="text-base text-gray-600 dark:text-gray-400">Three critical issues that undermine your independence</p>
               </div>
-              <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {/* Frustration */}
                 <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-red-200 dark:border-red-800 shadow-md hover:shadow-lg transition-all">
                   <div className="flex flex-col items-center">
@@ -313,14 +313,14 @@ export default function ManuelEmch() {
 
         {/* --- SLIDE 2: NEW STRATEGY --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10">
+          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
             {/* Section 1: Selling And Distributing, With A Smart Contract */}
-            <div>
-              {/* Title Section - More Compact */}
-              <div className="text-center mb-6">
+            <div className="space-y-6">
+              {/* Title Section */}
+              <div className="text-center">
                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Napkin Strategy</p>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-2">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart Contract</span></h2>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart Contract</span></h2>
                 <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">100% control, zero cost, perpetual revenue — maintaining independence and self-sustainability</p>
               </div>
 
@@ -328,8 +328,8 @@ export default function ManuelEmch() {
               <div className="grid md:grid-cols-2 gap-6 items-start">
                 {/* Primary Market */}
                 <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-4 border-2 border-green-200 dark:border-green-800 shadow-md">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-200 dark:border-green-800 shadow-md">
+                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -342,14 +342,14 @@ export default function ManuelEmch() {
 
                 {/* Secondary Market with Royalty */}
                 <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
-                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-4 border-2 border-amber-200 dark:border-amber-800 shadow-md">
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-5 border-2 border-amber-200 dark:border-amber-800 shadow-md">
+                    <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
                     <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
                       <span className="font-semibold">Reseller</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Unknown Collector</span>
+                      <span className="font-semibold">Known Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                     </div>
                     <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg px-3 py-2 border border-amber-300 dark:border-amber-700">
@@ -369,12 +369,12 @@ export default function ManuelEmch() {
             </div>
 
             {/* Section 2: The Solution */}
-            <div>
-              <div className="mb-5 text-center">
+            <div className="space-y-6">
+              <div className="text-center">
                 <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Solution</p>
                 <p className="text-base text-gray-600 dark:text-gray-400">Three key benefits enabled by the Smart Contract</p>
               </div>
-              <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {/* Fair Access */}
                 <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-amber-200 dark:border-amber-800 shadow-md hover:shadow-lg transition-all">
                   <div className="flex flex-col items-center">
@@ -425,7 +425,7 @@ export default function ManuelEmch() {
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                        <span>Like a "dating app", you connect collectors with each other across the watch's lifetime, building lasting relationships and community</span>
+                        <span>Like a "dating app", you connect collectors with each other across the watch's lifetime</span>
                       </li>
                     </ul>
                   </div>
