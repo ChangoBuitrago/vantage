@@ -199,8 +199,8 @@ export default function ManuelEmch() {
                   <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                     <span className="font-semibold">Brand</span>
                     <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Collector</span>
-                    <span className="ml-auto font-mono text-2xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
+                    <span className="font-semibold">Known Collector</span>
+                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
                 </div>
@@ -215,8 +215,8 @@ export default function ManuelEmch() {
                     <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
                     <span className="font-semibold">Flipper</span>
                     <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">New Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-red-600 dark:text-red-400">CHF 6,500</span>
+                    <span className="font-semibold">Unknown New Collector</span>
+                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                   </div>
                   <div className="bg-red-100 dark:bg-red-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700">
                     <div className="flex justify-between items-center mb-1.5">
@@ -224,8 +224,8 @@ export default function ManuelEmch() {
                       <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 3,500</span>
                     </div>
                     <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Brand share</span>
-                      <span className="font-mono text-base font-bold text-gray-500 dark:text-gray-400">CHF 0</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
+                      <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
                     </div>
                   </div>
                 </div>
@@ -235,7 +235,7 @@ export default function ManuelEmch() {
             {/* The Core Problem - Better Integrated */}
             <div>
               <div className="mb-5 text-center">
-                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Core Problem</p>
+                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Resale Market Problem</p>
                 <p className="text-base text-gray-600 dark:text-gray-400">Three critical issues that undermine your independence</p>
               </div>
               <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
@@ -335,8 +335,8 @@ export default function ManuelEmch() {
                   <div className="flex items-center gap-4 text-xl text-gray-900 dark:text-white">
                     <span className="font-medium">Brand</span>
                     <span className="text-gray-500">→</span>
-                    <span className="font-medium">Collector</span>
-                    <span className="ml-auto font-mono text-2xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
+                    <span className="font-medium">Known Collector</span>
+                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
                   </div>
                 </div>
               </div>
@@ -351,7 +351,7 @@ export default function ManuelEmch() {
                       <span className="text-gray-500">→</span>
                       <span className="font-medium">Reseller</span>
                       <span className="text-gray-500">→</span>
-                      <span className="font-medium">New Collector</span>
+                      <span className="font-medium">Unknown New Collector</span>
                       <span className="ml-auto font-mono text-2xl font-bold">CHF 6,500</span>
                     </div>
                     
@@ -364,7 +364,7 @@ export default function ManuelEmch() {
                         </div>
                       </div>
                       <div className="flex items-center justify-between mt-2 pt-2 border-t border-amber-200 dark:border-amber-700">
-                        <span className="text-lg text-gray-600 dark:text-gray-400">Brand share (30% royalty)</span>
+                        <span className="text-lg text-gray-600 dark:text-gray-400">Louis Erard Share (30% royalty)</span>
                         <div className="text-right">
                           <span className="font-mono text-xl font-bold text-amber-600 dark:text-amber-400">CHF 1,050</span>
                           <p className="text-base text-gray-600 dark:text-gray-400 italic mt-1">Per resale. Perpetual.</p>
