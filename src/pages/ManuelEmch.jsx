@@ -5,7 +5,7 @@ export default function ManuelEmch() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 5; // Current Strategy, New Strategy, Smart Contract, Transfer Flow, Why You
+  const totalSections = 4; // Current Strategy, New Strategy, Smart Contract, Why You
   
   // Smart Contract data
   const watchMintTimestamp = new Date('2025-06-15').getTime();
@@ -186,7 +186,7 @@ export default function ManuelEmch() {
             {/* Section 1: Selling, Not Distributing */}
             <div className="space-y-6">
               {/* Title Section */}
-              <div className="text-center">
+              <div className="text-center mb-10">
                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Strategy</p>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling, Not Distributing</h2>
                 <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">50% direct, 50% selected retailers — self-sustainable and independent</p>
@@ -318,9 +318,9 @@ export default function ManuelEmch() {
             {/* Section 1: Selling And Distributing, With A Smart Contract */}
             <div className="space-y-6">
               {/* Title Section */}
-              <div className="text-center">
+              <div className="text-center mb-10">
                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Napkin Strategy</p>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart Contract</span></h2>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With Faircut</span></h2>
                 <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">100% control, zero cost, perpetual revenue — self-sustainable and independent</p>
               </div>
 
@@ -619,94 +619,7 @@ export default function ManuelEmch() {
           </div>
         </section> {/* End Section 3 */}
 
-         {/* --- SECTION 4: THE TRANSFER FLOW --- */}
-         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-12 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-           {/* Content container */}
-           <div className="w-full max-w-6xl mx-auto space-y-12 z-10">
-
-             {/* Title */}
-             <div className="text-center">
-               <p className="text-base text-gray-500 dark:text-gray-500 mb-3 uppercase tracking-wider">How It Works</p>
-               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Royalty-Enforced Transfer</h2>
-               <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Every resale automatically enforces smart rules and captures revenue for the brand</p>
-             </div>
-
-             {/* Transfer Flow Steps */}
-             <div className="space-y-6">
-               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                   {/* Step 1 */}
-                   <div className="relative">
-                     <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-800 h-full">
-                       <div className="flex flex-col items-center text-center space-y-3">
-                         <div className="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                           <Tag className="w-6 h-6 text-amber-600 dark:text-amber-500" />
-                         </div>
-                         <div>
-                           <p className="text-base font-bold text-gray-900 dark:text-white mb-1">Step 1</p>
-                           <p className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Seller Lists Price</p>
-                           <p className="text-base text-gray-600 dark:text-gray-400">Owner decides to sell and sets their asking price</p>
-                         </div>
-                       </div>
-                     </div>
-                     <ArrowRight className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 text-amber-500 dark:text-amber-600 z-10" />
-                   </div>
-
-                   {/* Step 2 */}
-                   <div className="relative">
-                     <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-800 h-full">
-                       <div className="flex flex-col items-center text-center space-y-3">
-                         <div className="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                           <Wrench className="w-6 h-6 text-amber-600 dark:text-amber-500" />
-                         </div>
-                         <div>
-                           <p className="text-base font-bold text-gray-900 dark:text-white mb-1">Step 2</p>
-                           <p className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Rules Enforced</p>
-                           <p className="text-base text-gray-600 dark:text-gray-400">Hub calculates royalty based on smart rules</p>
-                         </div>
-                       </div>
-                     </div>
-                     <ArrowRight className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 text-amber-500 dark:text-amber-600 z-10" />
-                   </div>
-
-                   {/* Step 3 */}
-                   <div className="relative">
-                     <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 dark:border-gray-800 h-full">
-                       <div className="flex flex-col items-center text-center space-y-3">
-                         <div className="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                           <Percent className="w-6 h-6 text-amber-600 dark:text-amber-500" />
-                         </div>
-                         <div>
-                           <p className="text-base font-bold text-gray-900 dark:text-white mb-1">Step 3</p>
-                           <p className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Royalty Paid</p>
-                           <p className="text-base text-gray-600 dark:text-gray-400">Seller pays required percentage to brand</p>
-                         </div>
-                       </div>
-                     </div>
-                     <ArrowRight className="hidden md:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 text-green-500 dark:text-green-600 z-10" />
-                   </div>
-
-                   {/* Step 4 */}
-                   <div>
-                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 backdrop-blur-sm rounded-2xl p-6 border-2 border-green-300 dark:border-green-700 h-full">
-                       <div className="flex flex-col items-center text-center space-y-3">
-                         <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center">
-                           <FileText className="w-6 h-6 text-green-600 dark:text-green-500" />
-                         </div>
-                         <div>
-                           <p className="text-base font-bold text-green-900 dark:text-green-300 mb-1">Step 4</p>
-                           <p className="text-xl font-semibold text-green-900 dark:text-green-200 mb-2">Smart Contract Transfers</p>
-                           <p className="text-base text-green-700 dark:text-green-400">Ownership updates, history preserved</p>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-               </div>
-             </div>
-
-           </div>
-         </section> {/* End Section 4 */}
-
-         {/* --- SECTION 5: WHY YOU --- */}
+         {/* --- SECTION 4: WHY YOU --- */}
          <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-12 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
            {/* Content container */}
            <div className="w-full max-w-4xl mx-auto space-y-12 z-10">
@@ -750,7 +663,7 @@ export default function ManuelEmch() {
              </div>
 
            </div>
-         </section> {/* End Section 5 */}
+         </section> {/* End Section 4 */}
 
       </div>
     </>
