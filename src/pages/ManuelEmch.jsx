@@ -371,8 +371,8 @@ export default function ManuelEmch() {
             {/* Section 2: The Solution */}
             <div className="space-y-6">
               <div className="text-center">
-                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Solution</p>
-                <p className="text-base text-gray-600 dark:text-gray-400">Three key benefits enabled by the Faircut Smart Contract</p>
+                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Secondary Market Solution</p>
+                <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Transform every resale into perpetual revenue, trust, and community</p>
               </div>
               <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {/* Fair Access */}
