@@ -197,7 +197,7 @@ export default function ManuelEmch() {
                 {/* Primary Market */}
                 <div className="flex flex-col">
                   <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-200 dark:border-green-800 shadow-md">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -211,7 +211,7 @@ export default function ManuelEmch() {
                 {/* Secondary Market */}
                 <div className="flex flex-col">
                   <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
-                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-200 dark:border-red-800 shadow-md">
+                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
                     <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
@@ -220,7 +220,7 @@ export default function ManuelEmch() {
                       <span className="font-semibold">Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                     </div>
-                    <div className="bg-red-100 dark:bg-red-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700">
+                    <div className="bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700 shadow-sm">
                       <div className="flex justify-between items-center mb-1.5">
                         <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
                         <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 3,500</span>
@@ -243,12 +243,12 @@ export default function ManuelEmch() {
               </div>
               <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {/* Frustration */}
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-red-200 dark:border-red-800 shadow-md hover:shadow-lg transition-all">
+                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
                   <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-3">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                       <AlertCircle className="w-7 h-7 text-red-600 dark:text-red-400" />
                     </div>
-                    <h3 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-3">"Frustration"</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Frustration"</h3>
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
@@ -263,12 +263,12 @@ export default function ManuelEmch() {
                 </div>
                 
                 {/* Headaches */}
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-red-200 dark:border-red-800 shadow-md hover:shadow-lg transition-all">
+                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
                   <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-3">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                       <AlertTriangle className="w-7 h-7 text-red-600 dark:text-red-400" />
                     </div>
-                    <h3 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-3">"Headaches"</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Headaches"</h3>
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
@@ -287,12 +287,12 @@ export default function ManuelEmch() {
                 </div>
                 
                 {/* Lost Community */}
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-5 border-2 border-red-200 dark:border-red-800 shadow-md hover:shadow-lg transition-all">
+                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
                   <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-3">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                       <Heart className="w-7 h-7 text-red-600 dark:text-red-400" />
                     </div>
-                    <h3 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-3">"Lost Community"</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Lost Community"</h3>
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
@@ -329,7 +329,7 @@ export default function ManuelEmch() {
                 {/* Primary Market */}
                 <div className="flex flex-col">
                   <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-200 dark:border-green-800 shadow-md">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
@@ -343,7 +343,7 @@ export default function ManuelEmch() {
                 {/* Secondary Market with Royalty */}
                 <div className="flex flex-col">
                   <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-200 dark:border-green-800 shadow-md">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
                     <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
@@ -352,7 +352,7 @@ export default function ManuelEmch() {
                       <span className="font-semibold">Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                     </div>
-                    <div className="bg-green-100 dark:bg-green-900/40 rounded-lg px-3 py-2 border border-green-300 dark:border-green-700">
+                    <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-lg px-3 py-2 border border-green-300 dark:border-green-700 shadow-sm">
                       <div className="flex justify-between items-center mb-1.5">
                         <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Reseller profit</span>
                         <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 1,550</span>
