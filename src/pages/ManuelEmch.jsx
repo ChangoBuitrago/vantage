@@ -355,11 +355,11 @@ export default function ManuelEmch() {
                     <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg px-3 py-2 border border-amber-300 dark:border-amber-700">
                       <div className="flex justify-between items-center mb-1.5">
                         <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Reseller profit</span>
-                        <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 2,450</span>
+                        <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 1,550</span>
                       </div>
                       <div className="flex justify-between items-center pt-1.5 border-t border-amber-300 dark:border-amber-700">
                         <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Manuel Emch Share (30% royalty)</span>
-                        <span className="font-mono text-base font-bold text-amber-600 dark:text-amber-400">CHF 1,050</span>
+                        <span className="font-mono text-base font-bold text-amber-600 dark:text-amber-400">CHF 1,950</span>
                       </div>
                       <p className="text-xs text-amber-700 dark:text-amber-400 italic text-left mt-2 font-medium">Per resale. Perpetual.</p>
                     </div>
