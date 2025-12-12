@@ -187,7 +187,7 @@ export default function ManuelEmch() {
             <div className="space-y-6">
               {/* Title Section */}
               <div className="text-center mb-10">
-                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Strategy</p>
+                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Manuel Emch Napkin Strategy</p>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling, Not Distributing</h2>
                 <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">50% direct, 50% selected retailers — self-sustainable and independent</p>
               </div>
@@ -201,7 +201,7 @@ export default function ManuelEmch() {
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Known Collector</span>
+                      <span className="font-semibold">Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
@@ -217,7 +217,7 @@ export default function ManuelEmch() {
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
                       <span className="font-semibold">Flipper</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Unknown Collector</span>
+                      <span className="font-semibold">Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                     </div>
                     <div className="bg-red-100 dark:bg-red-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700">
@@ -226,7 +226,7 @@ export default function ManuelEmch() {
                         <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 3,500</span>
                       </div>
                       <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
-                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Manuel Emch Share</span>
                         <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
                       </div>
                     </div>
@@ -319,8 +319,8 @@ export default function ManuelEmch() {
             <div className="space-y-6">
               {/* Title Section */}
               <div className="text-center mb-10">
-                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Napkin Strategy</p>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling And Distributing,<br /><span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With Faircut</span></h2>
+                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Faircut Napkin Strategy</p>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling And Distributing</h2>
                 <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">100% control, zero cost, perpetual revenue — self-sustainable and independent</p>
               </div>
 
@@ -333,7 +333,7 @@ export default function ManuelEmch() {
                     <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
                       <span className="font-semibold">Brand</span>
                       <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Known Collector</span>
+                      <span className="font-semibold">Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
@@ -349,7 +349,7 @@ export default function ManuelEmch() {
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
                       <span className="font-semibold">Reseller</span>
                       <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Unknown Collector</span>
+                      <span className="font-semibold">Collector</span>
                       <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
                     </div>
                     <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg px-3 py-2 border border-amber-300 dark:border-amber-700">
@@ -358,7 +358,7 @@ export default function ManuelEmch() {
                         <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 2,450</span>
                       </div>
                       <div className="flex justify-between items-center pt-1.5 border-t border-amber-300 dark:border-amber-700">
-                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share (30% royalty)</span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Manuel Emch Share (30% royalty)</span>
                         <span className="font-mono text-base font-bold text-amber-600 dark:text-amber-400">CHF 1,050</span>
                       </div>
                       <p className="text-xs text-amber-700 dark:text-amber-400 italic text-left mt-2 font-medium">Per resale. Perpetual.</p>
@@ -454,7 +454,7 @@ export default function ManuelEmch() {
               <div className="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 px-4 py-3 border-b border-amber-200 dark:border-amber-800">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-sm uppercase tracking-widest text-amber-700 dark:text-amber-400 font-bold">Louis Erard</span>
+                    <span className="text-sm uppercase tracking-widest text-amber-700 dark:text-amber-400 font-bold">Manuel Emch</span>
                     <h3 className="text-base font-bold tracking-tight text-neutral-900 dark:text-white mt-0.5">Le Régulateur x Alain Silberstein</h3>
                   </div>
                   <div className="flex items-center gap-1.5 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 px-3 py-1 rounded-full text-xs font-semibold border border-green-300 dark:border-green-700">
