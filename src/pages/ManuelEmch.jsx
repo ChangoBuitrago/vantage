@@ -419,19 +419,19 @@ export default function ManuelEmch() {
           </div>
         </section>
 
-        {/* --- SECTION 3: PARTNERSHIP & NEXT STEPS --- */}
+        {/* --- SECTION 3: COLLABORATION & NEXT STEPS --- */}
          <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
            {/* Content container */}
            <div className="w-full max-w-6xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
              
              {/* Title */}
              <div className="text-center">
-               <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Partnership</p>
-               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Simple. Transparent. Zero Risk.</h2>
-               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium max-w-3xl">We handle the technology. You focus on what you do best.</p>
+               <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Value Proposition</p>
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">A Different Type of Collaboration</h2>
+               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium max-w-3xl">We bring the technology. You bring your expertise. Together we transform your secondary market.</p>
              </div>
 
-             {/* Partnership Details */}
+             {/* Collaboration Details */}
              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                {/* Zero Setup Cost */}
                <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-6 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
@@ -440,7 +440,7 @@ export default function ManuelEmch() {
                      <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Zero Setup Cost</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront fees. No infrastructure. We build and maintain everything.</p>
+                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. We build and maintain everything so you can focus on your craft.</p>
                  </div>
                </div>
 
@@ -450,8 +450,8 @@ export default function ManuelEmch() {
                    <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-4 shadow-sm">
                      <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                    </div>
-                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Revenue Share</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple percentage of royalties collected.</p>
+                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Aligned Success</h3>
+                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple revenue share model—we earn when your watches resell.</p>
                  </div>
                </div>
 
@@ -461,39 +461,8 @@ export default function ManuelEmch() {
                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-4 shadow-sm">
                      <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
-                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">You Own Everything</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your data. Your rules. Always.</p>
-                 </div>
-               </div>
-             </div>
-
-             {/* Next Steps */}
-             <div className="bg-gradient-to-br from-white to-amber-50/30 dark:from-slate-900 dark:to-amber-950/20 rounded-2xl p-8 border-2 border-amber-300 dark:border-amber-700 shadow-lg max-w-4xl mx-auto">
-               <div className="text-center mb-6">
-                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Getting Started</h3>
-                 <p className="text-base text-gray-600 dark:text-gray-400">Three simple steps to transform your secondary market</p>
-               </div>
-               <div className="grid md:grid-cols-3 gap-6">
-                 <div className="text-center">
-                   <div className="w-12 h-12 bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/40 dark:to-orange-900/40 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-amber-600 dark:text-amber-400">1</span>
-                   </div>
-                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Choose Your Collection</h4>
-                   <p className="text-sm text-gray-600 dark:text-gray-400">Select which watches to enable with Faircut smart contracts</p>
-                 </div>
-                 <div className="text-center">
-                   <div className="w-12 h-12 bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/40 dark:to-orange-900/40 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-amber-600 dark:text-amber-400">2</span>
-                   </div>
-                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Set Your Rules</h4>
-                   <p className="text-sm text-gray-600 dark:text-gray-400">Define transfer locks, royalty rates, and collector access rules</p>
-                 </div>
-                 <div className="text-center">
-                   <div className="w-12 h-12 bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/40 dark:to-orange-900/40 rounded-full flex items-center justify-center mx-auto mb-3">
-                     <span className="text-xl font-bold text-amber-600 dark:text-amber-400">3</span>
-                   </div>
-                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Launch & Scale</h4>
-                   <p className="text-sm text-gray-600 dark:text-gray-400">We handle the rest. Start earning on every resale, immediately</p>
+                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">You Stay in Control</h3>
+                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your data. Your rules. Complete independence, always.</p>
                  </div>
                </div>
              </div>
@@ -501,7 +470,7 @@ export default function ManuelEmch() {
              {/* Call to Action */}
              <div className="text-center">
                <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
-                 Ready to transform your secondary market?
+                 Ready to explore this collaboration?
                </p>
              </div>
 
