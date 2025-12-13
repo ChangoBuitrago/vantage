@@ -5,7 +5,7 @@ export default function ManuelEmch() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 3; // Current Strategy, New Strategy, Why You
+  const totalSections = 4; // Current Strategy, New Strategy, Value Proposition, Why You
   
   // Effect to ensure page starts at the top on load
   useEffect(() => {
@@ -440,7 +440,7 @@ export default function ManuelEmch() {
                      <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Zero Setup Cost</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. We build and maintain everything so you can focus on your craft.</p>
+                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. We build and maintain everything.</p>
                  </div>
                </div>
 
@@ -467,15 +467,54 @@ export default function ManuelEmch() {
                </div>
              </div>
 
-             {/* Call to Action */}
+           </div>
+         </section> {/* End Section 3 */}
+
+         {/* --- SECTION 4: WHY YOU --- */}
+         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-12 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
+           {/* Content container */}
+           <div className="w-full max-w-4xl mx-auto space-y-12 z-10">
+
+             {/* Title */}
              <div className="text-center">
-               <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
-                 Ready to explore this collaboration?
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white">Why Manuel Emch?</h2>
+             </div>
+
+             {/* Simple Facts */}
+             <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-2xl p-10 border-2 border-amber-400 dark:border-amber-600 shadow-xl">
+               <div className="space-y-6 text-lg text-gray-800 dark:text-gray-200">
+                 <div className="flex items-start gap-4">
+                   <span className="text-3xl text-amber-600 dark:text-amber-400 font-bold flex-shrink-0">•</span>
+                   <p>You were born and raised in the industry</p>
+                 </div>
+                 <div className="flex items-start gap-4">
+                   <span className="text-3xl text-amber-600 dark:text-amber-400 font-bold flex-shrink-0">•</span>
+                   <p>You prioritize strategy, design and art over marketing hype</p>
+                 </div>
+                 <div className="flex items-start gap-4">
+                   <span className="text-3xl text-amber-600 dark:text-amber-400 font-bold flex-shrink-0">•</span>
+                   <p>You choose perceived value over profit</p>
+                 </div>
+                 <div className="flex items-start gap-4">
+                   <span className="text-3xl text-amber-600 dark:text-amber-400 font-bold flex-shrink-0">•</span>
+                   <p>You choose people over business</p>
+                 </div>
+                 <div className="flex items-start gap-4">
+                   <span className="text-3xl text-amber-600 dark:text-amber-400 font-bold flex-shrink-0">•</span>
+                   <p>You choose community over everything else</p>
+                 </div>
+               </div>
+             </div>
+
+             {/* Bottom line */}
+             <div className="text-center">
+               <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                 You breathe the values this system enables
                </p>
              </div>
 
            </div>
-         </section> {/* End Section 3 */}
+         </section> {/* End Section 4 */}
 
       </div>
     </>
