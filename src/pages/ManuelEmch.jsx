@@ -428,7 +428,7 @@ export default function ManuelEmch() {
              <div className="text-center">
                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Value Proposition</p>
                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">A Different Type of Collaboration</h2>
-               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium max-w-3xl">We bring the technology. You bring your expertise. Together we transform your secondary market.</p>
+               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium max-w-3xl">We bring the technology. You bring the market know-how. Together we transform your secondary market.</p>
              </div>
 
              {/* Collaboration Details */}
