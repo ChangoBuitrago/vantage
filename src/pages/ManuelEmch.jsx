@@ -440,7 +440,7 @@ export default function ManuelEmch() {
                      <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Zero Setup Cost</h3>
-                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. No vendor lock-in. We build and maintain everything—you stay independent.</p>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. No vendor lock-in. <span className="font-semibold text-green-700 dark:text-green-400 block mt-2">We build and maintain everything—you stay independent.</span></p>
                  </div>
                </div>
 
@@ -451,7 +451,7 @@ export default function ManuelEmch() {
                      <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                    </div>
                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Aligned Success</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple revenue share model—we earn only when your watches resell. Shared success, not shared risk.</p>
+                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple revenue share model—we earn only when your watches resell. <span className="font-semibold text-amber-700 dark:text-amber-400 block mt-2">Shared success, not shared risk.</span></p>
                  </div>
                </div>
 
@@ -462,7 +462,7 @@ export default function ManuelEmch() {
                      <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">You Stay in Control</h3>
-                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your community. Your values. Your rules. We're the invisible infrastructure—you're the brand.</p>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your community. Your values. Your rules. <span className="font-semibold text-green-700 dark:text-green-400 block mt-2">We're the invisible infrastructure—you're the brand.</span></p>
                  </div>
                </div>
              </div>
