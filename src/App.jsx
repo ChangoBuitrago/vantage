@@ -4,7 +4,6 @@ import DarkModeToggle from './components/DarkModeToggle';
 import Landing from './pages/Landing';
 import Slides from './pages/Slides';
 import ManuelEmch from './pages/ManuelEmch';
-import ManuelEmchV3 from './pages/ManuelEmchV3';
 import StefanKudoke from './pages/StefanKudoke';
 import PatrikSjogren from './pages/PatrikSjogren';
 import Demo from './pages/Demo';
@@ -32,7 +31,6 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/slides" element={<Slides />} />
           <Route path="/manuel-emch" element={<ManuelEmch />} />
-          <Route path="/manuel-emch-v3" element={<ManuelEmchV3 />} />
           <Route path="/stefan-kudoke" element={<StefanKudoke />} />
           <Route path="/patrik-sjogren" element={<PatrikSjogren />} />
           <Route path="/demo" element={<Demo />} />
