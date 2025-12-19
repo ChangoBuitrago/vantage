@@ -428,7 +428,7 @@ export default function ManuelEmch() {
              <div className="text-center">
                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Value Proposition</p>
                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">A Different Type of Collaboration</h2>
-               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium max-w-3xl">We bring the technology. You bring the market know-how. Together we transform your secondary market.</p>
+               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium max-w-3xl">We bring the technology. You bring the market know-how. Together we ensure your values outlive every watch.</p>
              </div>
 
              {/* Collaboration Details */}
@@ -439,8 +439,8 @@ export default function ManuelEmch() {
                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-4 shadow-sm">
                      <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
-                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Zero Setup Cost</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. We build and maintain everything.</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Zero Setup Cost</h3>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. No vendor lock-in. We build and maintain everything—you stay independent.</p>
                  </div>
                </div>
 
@@ -451,7 +451,7 @@ export default function ManuelEmch() {
                      <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                    </div>
                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Aligned Success</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple revenue share model—we earn when your watches resell.</p>
+                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple revenue share model—we earn only when your watches resell. Shared success, not shared risk.</p>
                  </div>
                </div>
 
@@ -461,8 +461,8 @@ export default function ManuelEmch() {
                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-4 shadow-sm">
                      <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
-                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">You Stay in Control</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your data. Your rules. Complete independence, always.</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">You Stay in Control</h3>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your community. Your values. Your rules. We're the invisible infrastructure—you're the brand.</p>
                  </div>
                </div>
              </div>
