@@ -434,36 +434,39 @@ export default function ManuelEmch() {
              {/* Collaboration Details */}
              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
                {/* Zero Setup Cost */}
-               <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-6 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                 <div className="flex flex-col items-center text-center">
+               <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-6 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all flex flex-col">
+                 <div className="flex flex-col items-center text-center flex-1">
                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-4 shadow-sm">
                      <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Zero Setup Cost</h3>
-                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. No vendor lock-in. <span className="font-semibold text-green-700 dark:text-green-400 block mt-2">We build and maintain everything—you stay independent.</span></p>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">No upfront investment. No infrastructure. No vendor lock-in.</p>
                  </div>
+                 <p className="text-center mt-auto pt-3"><span className="font-semibold text-green-700 dark:text-green-400">We build and maintain everything—you stay independent.</span></p>
                </div>
 
                {/* Revenue Share */}
-               <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-6 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
-                 <div className="flex flex-col items-center text-center">
+               <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-6 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all flex flex-col">
+                 <div className="flex flex-col items-center text-center flex-1">
                    <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-4 shadow-sm">
                      <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                    </div>
                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">Aligned Success</h3>
-                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple revenue share model—we earn only when your watches resell. <span className="font-semibold text-amber-700 dark:text-amber-400 block mt-2">Shared success, not shared risk.</span></p>
+                   <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">We only succeed when you do. Simple revenue share model—we earn only when your watches resell.</p>
                  </div>
+                 <p className="text-center mt-auto pt-3"><span className="font-semibold text-amber-700 dark:text-amber-400">Shared success, not shared risk.</span></p>
                </div>
 
                {/* Full Control */}
-               <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-6 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                 <div className="flex flex-col items-center text-center">
+               <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-6 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all flex flex-col">
+                 <div className="flex flex-col items-center text-center flex-1">
                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-4 shadow-sm">
                      <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
                    </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">You Stay in Control</h3>
-                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your community. Your values. Your rules. <span className="font-semibold text-green-700 dark:text-green-400 block mt-2">We're the invisible infrastructure—you're the brand.</span></p>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed">Your watches. Your collectors. Your community. Your values. Your rules.</p>
                  </div>
+                 <p className="text-center mt-auto pt-3"><span className="font-semibold text-green-700 dark:text-green-400">We're the invisible infrastructure—you're the brand.</span></p>
                </div>
              </div>
 
