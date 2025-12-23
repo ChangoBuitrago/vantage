@@ -388,7 +388,7 @@ export default function ManuelEmch() {
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>Smart contract ensures authenticity and tracks warranty</span>
+                        <span>DPP tracks authenticity and warranty — smart certificate enforces transfer rules and royalties</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
@@ -450,7 +450,7 @@ export default function ManuelEmch() {
                   <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Faircut Revenue</p>
                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
                     <div className="space-y-3">
-                      <p className="text-base text-gray-700 dark:text-gray-300 font-medium">Use that same database to generate revenue from every resale.</p>
+                      <p className="text-base text-gray-700 dark:text-gray-300 font-medium">Layer smart certificates on top of that DPP to generate revenue from every resale.</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400 italic">A living asset that connects collectors globally.</p>
                     </div>
                   </div>
