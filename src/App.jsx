@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { DarkModeProvider } from './contexts/DarkModeContext';
 import DarkModeToggle from './components/DarkModeToggle';
-import Landing from './pages/Landing';
-import Slides from './pages/Slides';
-import ManuelEmch from './pages/ManuelEmch';
-import StefanKudoke from './pages/StefanKudoke';
-import PatrikSjogren from './pages/PatrikSjogren';
-import Demo from './pages/Demo';
-import DemoCreator from './pages/DemoCreator';
-import DemoCollector from './pages/DemoCollector';
-import DemoReseller from './pages/DemoReseller';
+import Landing from './pages/landing/Landing';
+import Slides from './pages/presentations/Slides';
+import ManuelEmch from './pages/presentations/ManuelEmch';
+import Demo from './pages/demo/Demo';
+import DemoCreator from './pages/demo/DemoCreator';
+import DemoCollector from './pages/demo/DemoCollector';
+import DemoReseller from './pages/demo/DemoReseller';
 
 function ConditionalDarkModeToggle() {
   const location = useLocation();
@@ -22,17 +21,24 @@ function ConditionalDarkModeToggle() {
   return <DarkModeToggle />;
 }
 
+function PageTitle() {
+  useEffect(() => {
+    document.title = 'Faircut';
+  }, []);
+  
+  return null;
+}
+
 function App() {
   return (
     <DarkModeProvider>
       <Router basename="/faircut/">
+        <PageTitle />
         <ConditionalDarkModeToggle />
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/slides" element={<Slides />} />
           <Route path="/manuel-emch" element={<ManuelEmch />} />
-          <Route path="/stefan-kudoke" element={<StefanKudoke />} />
-          <Route path="/patrik-sjogren" element={<PatrikSjogren />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/demo/creator" element={<DemoCreator />} />
           <Route path="/demo/reseller" element={<DemoReseller />} />

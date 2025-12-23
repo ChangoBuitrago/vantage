@@ -1,16 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Home, Package, Settings } from 'lucide-react';
-import { useStepNavigation } from '../hooks/useStepNavigation';
-import StepNavigationSidebar from '../components/shared/StepNavigationSidebar';
-import DemoHeader from '../components/shared/DemoHeader';
+import { useStepNavigation } from '../../hooks/useStepNavigation';
+import StepNavigationSidebar from '../../components/shared/StepNavigationSidebar';
+import DemoHeader from '../../components/shared/DemoHeader';
 
 // Import step components
-import CreatorStep0 from '../components/creator/CreatorStep1';
-import CreatorStep1 from '../components/creator/MyCollections';
-import CreatorStep2 from '../components/creator/CreatorStep2';
-import CreatorStep3 from '../components/creator/CreatorStep3';
-import CreatorStep4 from '../components/creator/CreatorStep4';
+import CreatorStep0 from '../../components/creator/CreatorStep1';
+import CreatorStep1 from '../../components/creator/MyCollections';
+import CreatorStep2 from '../../components/creator/CreatorStep2';
+import CreatorStep3 from '../../components/creator/CreatorStep3';
+import CreatorStep4 from '../../components/creator/CreatorStep4';
 
 export default function DemoCreator() {
   const navigate = useNavigate();

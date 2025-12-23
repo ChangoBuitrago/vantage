@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import StorySlides from '../components/StorySlides';
-import BusinessSlides from '../components/BusinessSlides';
+import StorySlides from '../../components/StorySlides';
+import BusinessSlides from '../../components/BusinessSlides';
 
 export default function Slides() {
   const containerRef = useRef(null);

@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { 
   Home, Shield, Check, Mail, FileText, Package, Settings, Bell, Sun, Moon, RefreshCw
 } from 'lucide-react';
-import { useDarkMode } from '../contexts/DarkModeContext';
-import CollectorStep0 from '../components/collector/CollectorStep0';
-import CollectorStep1 from '../components/collector/CollectorStep1';
-import CollectorStep2 from '../components/collector/CollectorStep2';
-import CollectorStep3 from '../components/collector/CollectorStep3';
-import CollectorStep4 from '../components/collector/CollectorStep4';
+import { useDarkMode } from '../../contexts/DarkModeContext';
+import CollectorStep0 from '../../components/collector/CollectorStep0';
+import CollectorStep1 from '../../components/collector/CollectorStep1';
+import CollectorStep2 from '../../components/collector/CollectorStep2';
+import CollectorStep3 from '../../components/collector/CollectorStep3';
+import CollectorStep4 from '../../components/collector/CollectorStep4';
 
 export default function DemoCollector() {
   const navigate = useNavigate();

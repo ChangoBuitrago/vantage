@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDarkMode } from '../contexts/DarkModeContext';
+import { useDarkMode } from '../../contexts/DarkModeContext';
 import { Shield, Percent, Wallet, X, Bell, Moon, Sun, Home, Package, BarChart3, Settings, DollarSign, ChevronRight, RefreshCw, Check, Mail } from 'lucide-react';
 
 // Import step components
-import ResellerStep0 from '../components/reseller/ResellerStep0';
-import ResellerStep1 from '../components/reseller/ResellerStep1';
-import ResellerStep2 from '../components/reseller/ResellerStep2';
-import ResellerStep3 from '../components/reseller/ResellerStep3';
-import ResellerStep4 from '../components/reseller/ResellerStep5';
-import ResellerStep5 from '../components/reseller/ResellerStep7';
-import ResellerStep6 from '../components/reseller/ResellerStep8';
+import ResellerStep0 from '../../components/reseller/ResellerStep0';
+import ResellerStep1 from '../../components/reseller/ResellerStep1';
+import ResellerStep2 from '../../components/reseller/ResellerStep2';
+import ResellerStep3 from '../../components/reseller/ResellerStep3';
+import ResellerStep4 from '../../components/reseller/ResellerStep5';
+import ResellerStep5 from '../../components/reseller/ResellerStep7';
+import ResellerStep6 from '../../components/reseller/ResellerStep8';
 
 export default function DemoReseller() {
   const navigate = useNavigate();
