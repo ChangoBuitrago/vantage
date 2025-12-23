@@ -430,8 +430,8 @@ export default function ManuelEmch() {
              <div className="space-y-6">
                {/* Title Section */}
                <div className="text-center mb-10">
-                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Value Proposition</p>
-                 <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">A Different Type of Collaboration</h2>
+               <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Value Proposition</p>
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">A Different Type of Collaboration</h2>
                  <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Together we ensure your values outlive every watch</p>
                </div>
 
@@ -468,37 +468,37 @@ export default function ManuelEmch() {
                  <p className="text-base text-gray-600 dark:text-gray-400">Three principles that make this collaboration unique</p>
                </div>
                <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                 {/* Zero Setup Cost */}
+               {/* Zero Setup Cost */}
                  <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
                    <div className="flex flex-col items-center">
                      <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                       <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
+                     <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                      </div>
                      <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Zero Setup Cost"</h3>
                      <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
                        We build and maintain everything—you stay independent.
                      </p>
                    </div>
-                 </div>
-                 
+               </div>
+
                  {/* Aligned Success */}
                  <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
                    <div className="flex flex-col items-center">
                      <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                       <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+                     <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                      </div>
                      <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Aligned Success"</h3>
                      <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
                        Shared success, not shared risk. We earn only when your watches resell.
                      </p>
                    </div>
-                 </div>
-                 
+               </div>
+
                  {/* You Stay in Control */}
                  <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
                    <div className="flex flex-col items-center">
                      <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                       <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
+                     <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
                      </div>
                      <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Full Control"</h3>
                      <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
@@ -520,7 +520,7 @@ export default function ManuelEmch() {
               <div className="text-center mb-10">
                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Mandate</p>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Compliance Becomes Revenue</h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">EU Digital Product Passport mandatory by 2027 — We help you amortize the cost of compliance</p>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">EU Digital Product Passport mandatory by 2030 — Leading brands are adopting now</p>
               </div>
 
               {/* Comparison - Side by Side */}
