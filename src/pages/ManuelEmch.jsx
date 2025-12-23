@@ -5,7 +5,7 @@ export default function ManuelEmch() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 4; // Current Strategy, New Strategy, Why You, Value Proposition
+  const totalSections = 4; // Current Strategy, New Strategy, Value Proposition, Why Manuel Emch?
   
   // Effect to ensure page starts at the top on load
   useEffect(() => {
@@ -419,52 +419,7 @@ export default function ManuelEmch() {
           </div>
         </section>
 
-        {/* --- SECTION 3: WHY YOU --- */}
-         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-           <div className="w-full max-w-6xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
-             
-             {/* Title */}
-             <div className="text-center">
-               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Why Manuel Emch?</h2>
-             </div>
-
-             {/* Simple Facts */}
-             <div className="bg-gradient-to-br from-white to-amber-50/30 dark:from-slate-900 dark:to-amber-950/20 rounded-2xl p-8 border-2 border-amber-300 dark:border-amber-700 shadow-md hover:shadow-xl hover:border-amber-400 dark:hover:border-amber-600 transition-all max-w-4xl mx-auto">
-               <div className="space-y-5 text-base text-gray-800 dark:text-gray-200">
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You were born and raised in the industry</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You prioritize strategy, design and art over marketing hype</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You choose perceived value over profit</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You choose people over business</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You choose community over everything else</p>
-                 </div>
-               </div>
-             </div>
-
-             {/* Bottom line */}
-             <div className="text-center">
-               <p className="text-xl text-gray-700 dark:text-gray-300 font-semibold">
-                 You breathe the values this system enables
-               </p>
-             </div>
-
-           </div>
-         </section> {/* End Section 3 */}
-
-        {/* --- SECTION 4: VALUE PROPOSITION --- */}
+        {/* --- SECTION 3: VALUE PROPOSITION --- */}
          <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
            {/* Content container */}
            <div className="w-full max-w-6xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
@@ -513,6 +468,51 @@ export default function ManuelEmch() {
                  </div>
                  <p className="text-center mt-auto pt-3"><span className="font-semibold text-green-700 dark:text-green-400">We're the invisible infrastructure—you're the brand.</span></p>
                </div>
+             </div>
+
+           </div>
+         </section> {/* End Section 3 */}
+
+        {/* --- SECTION 4: WHY MANUEL EMCH? --- */}
+         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
+           <div className="w-full max-w-6xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
+             
+             {/* Title */}
+             <div className="text-center">
+               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Why Manuel Emch?</h2>
+             </div>
+
+             {/* Simple Facts */}
+             <div className="bg-gradient-to-br from-white to-amber-50/30 dark:from-slate-900 dark:to-amber-950/20 rounded-2xl p-8 border-2 border-amber-300 dark:border-amber-700 shadow-md hover:shadow-xl hover:border-amber-400 dark:hover:border-amber-600 transition-all max-w-4xl mx-auto">
+               <div className="space-y-5 text-base text-gray-800 dark:text-gray-200">
+                 <div className="flex items-start gap-3">
+                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                   <p>You were born and raised in the industry</p>
+                 </div>
+                 <div className="flex items-start gap-3">
+                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                   <p>You prioritize strategy, design and art over marketing hype</p>
+                 </div>
+                 <div className="flex items-start gap-3">
+                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                   <p>You choose perceived value over profit</p>
+                 </div>
+                 <div className="flex items-start gap-3">
+                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                   <p>You choose people over business</p>
+                 </div>
+                 <div className="flex items-start gap-3">
+                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
+                   <p>You choose community over everything else</p>
+                 </div>
+               </div>
+             </div>
+
+             {/* Bottom line */}
+             <div className="text-center">
+               <p className="text-xl text-gray-700 dark:text-gray-300 font-semibold">
+                 You breathe the values this system enables
+               </p>
              </div>
 
            </div>
