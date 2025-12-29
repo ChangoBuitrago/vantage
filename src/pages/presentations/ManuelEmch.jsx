@@ -424,93 +424,93 @@ export default function ManuelEmch() {
 
         {/* --- SECTION 3: VALUE PROPOSITION --- */}
          <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
-             
-             {/* Section 1: A Different Type of Collaboration */}
-             <div className="space-y-6">
-               {/* Title Section */}
-               <div className="text-center mb-10">
+          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
+            
+            {/* Section 1: A Different Type of Collaboration */}
+            <div className="space-y-6">
+              {/* Title Section */}
+              <div className="text-center mb-10">
                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Value Proposition</p>
-               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">A Different Type of Collaboration</h2>
-                 <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Together we ensure your values outlive every watch</p>
-               </div>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">1 + 1 = 3</h2>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your legacy, our infrastructure—Together we ensure your values outlive every watch</p>
+              </div>
 
-               {/* Collaboration - Side by Side */}
-               <div className="grid md:grid-cols-2 gap-6 items-start">
-                 {/* We Bring */}
-                 <div className="flex flex-col">
-                   <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">We Bring</p>
-                   <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-2xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
-                     <div className="space-y-3">
-                       <p className="text-base text-gray-700 dark:text-gray-300 font-medium">The technology, infrastructure, and maintenance.</p>
-                       <p className="text-sm text-gray-600 dark:text-gray-400 italic">Zero upfront investment. No vendor lock-in.</p>
-                     </div>
-                   </div>
-                 </div>
+              {/* Collaboration - Side by Side */}
+              <div className="grid md:grid-cols-2 gap-6 items-start">
+                {/* We Bring */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">We Bring</p>
+                  <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-2xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
+                    <div className="space-y-3">
+                      <p className="text-base text-gray-700 dark:text-gray-300 font-medium">The technology, infrastructure, and maintenance.</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 italic">Zero upfront investment. No vendor lock-in.</p>
+                    </div>
+                  </div>
+                </div>
 
-                 {/* You Bring */}
-                 <div className="flex flex-col">
-                   <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">You Bring</p>
-                   <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                     <div className="space-y-3">
-                       <p className="text-base text-gray-700 dark:text-gray-300 font-medium">Your market know-how, creators, and brand values.</p>
-                       <p className="text-sm text-gray-600 dark:text-gray-400 italic">You stay independent. You stay in control.</p>
-                     </div>
-                   </div>
-                 </div>
-               </div>
+                {/* You Bring */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">You Bring</p>
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
+                    <div className="space-y-3">
+                      <p className="text-base text-gray-700 dark:text-gray-300 font-medium">Your market know-how, creators, and brand values.</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 italic">You stay independent. You stay in control.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
              </div>
 
-             {/* Section 2: How It Works */}
-             <div className="space-y-6">
-               <div className="text-center">
-                 <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">How It Works</p>
-                 <p className="text-base text-gray-600 dark:text-gray-400">Three principles that make this collaboration unique</p>
-               </div>
-               <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Section 2: How It Works */}
+            <div className="space-y-6">
+              <div className="text-center">
+                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">How It Works</p>
+                <p className="text-base text-gray-600 dark:text-gray-400">Three principles that make this collaboration unique</p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                {/* Zero Setup Cost */}
-                 <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                   <div className="flex flex-col items-center">
-                     <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                      <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
-                     </div>
-                     <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Zero Setup Cost"</h3>
-                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                       We build and maintain everything—you stay independent.
-                     </p>
                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Zero Setup Cost"</h3>
+                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
+                      We build and maintain everything—you stay independent.
+                    </p>
+                 </div>
                </div>
 
-                 {/* Aligned Success */}
-                 <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
-                   <div className="flex flex-col items-center">
-                     <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                {/* Aligned Success */}
+                <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                      <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
-                     </div>
-                     <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Aligned Success"</h3>
-                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                       Shared success, not shared risk. We earn only when your watches resell.
-                     </p>
                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Aligned Success"</h3>
+                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
+                      Shared success, not shared risk. We earn only when your watches resell.
+                    </p>
+                 </div>
                </div>
 
-                 {/* You Stay in Control */}
-                 <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                   <div className="flex flex-col items-center">
-                     <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                {/* You Stay in Control */}
+                <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                      <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
-                     </div>
-                     <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Full Control"</h3>
-                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                       We're the invisible infrastructure—you're the brand.
-                     </p>
                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Full Control"</h3>
+                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
+                      We're the invisible infrastructure—you're the brand.
+                    </p>
+                  </div>
                  </div>
                </div>
              </div>
 
            </div>
-         </section> {/* End Section 3: Value Proposition */}
+        </section> {/* End Section 3: Value Proposition */}
          <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
