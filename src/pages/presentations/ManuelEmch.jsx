@@ -375,7 +375,7 @@ export default function ManuelEmch() {
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>Dynamic royalties rules (90% Yr 1, 60% Yr 2, 15% Yr 3+) reduce flippers' margin and return profits to the brand</span>
+                        <span>Dynamic royalties rules (90% Yr 1, 60% Yr 2, 15% Yr 3+) reduce resellers' margin and return profits to the brand</span>
                       </li>
                     </ul>
                   </div>
@@ -391,11 +391,11 @@ export default function ManuelEmch() {
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>DPP tracks authenticity and warranty — smart certificate enforces transfer rules and royalties</span>
+                        <span>Smart certificate tracks authenticity and warranty, enforces transfer rules and royalties</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>Maintains condition history throughout ownership</span>
+                        <span>Certificate maintains condition history throughout ownership</span>
                       </li>
                     </ul>
                   </div>
