@@ -52,7 +52,7 @@ export default function Demo() {
             Experience <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">Faircut</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Choose your journey to see how digital passports transform high&#8209;end watchmaking—forever
+            Choose your journey to see how smart-certificates transform high&#8209;end watchmaking—forever
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function Demo() {
                 Creator Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Issue digital passports with smart rules and earn royalties from every resale.
+                Issue smart-certificates with smart rules and earn royalties from every resale.
               </p>
             </div>
 
