@@ -5,7 +5,7 @@ export default function ManuelEmch() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 5; // Current Strategy, New Strategy, The Mandate, Value Proposition, Why Manuel Emch?
+  const totalSections = 3; // Current Strategy, New Strategy, Value Proposition
   
   // Effect to ensure page starts at the top on load
   useEffect(() => {
@@ -298,16 +298,16 @@ export default function ManuelEmch() {
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
-            {/* Section 1: Selling And Distributing, With A Smart Certificate */}
+            {/* Section 1: Selling And Distributing, With A Smart-Certificate */}
             <div className="space-y-6">
               {/* Title Section */}
               <div className="text-center mb-10">
                 <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Faircut Napkin Strategy</p>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-3">
                   <span className="text-gray-900 dark:text-white">Selling And Distributing, </span>
-                  <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart Certificate</span>
+                  <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart-Certificate</span>
                 </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">50% direct, 50% retailers, 100% control of your secondary market</p>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">50% direct, 50% retailers, 100% control of your secondary market — self-sustainable and independent</p>
               </div>
 
               {/* Markets Comparison - Side by Side */}
@@ -375,7 +375,7 @@ export default function ManuelEmch() {
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>Dynamic royalties rules (90% Yr 1, 60% Yr 2, 15% Yr 3+) reduce resellers' margin and return profits to the brand</span>
+                        <span>Dynamic royalty rules (30% Yr 1, 20% Yr 2, 10% Yr 3+) reduce resellers' margin and return profits to the brand</span>
                       </li>
                     </ul>
                   </div>
@@ -391,7 +391,7 @@ export default function ManuelEmch() {
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>Smart certificate tracks authenticity and warranty, enforces transfer rules and royalties</span>
+                        <span>Smart-Certificate tracks authenticity and warranty, enforces transfer rules and royalties</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
@@ -511,139 +511,6 @@ export default function ManuelEmch() {
 
            </div>
         </section> {/* End Section 3: Value Proposition */}
-         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
-            
-            {/* Section 1: Compliance Becomes Revenue */}
-            <div className="space-y-6">
-              {/* Title Section */}
-              <div className="text-center mb-10">
-                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The Mandate</p>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Compliance Becomes Revenue</h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">EU Digital Product Passport mandatory by 2030 — Leading brands are adopting now</p>
-              </div>
-
-              {/* Comparison - Side by Side */}
-              <div className="grid md:grid-cols-2 gap-6 items-start">
-                {/* Compliance Cost */}
-                <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Traditional Compliance</p>
-                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
-                    <div className="space-y-3">
-                      <p className="text-base text-gray-700 dark:text-gray-300 font-medium">A database to show the EU where the steel came from.</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 italic">A digital "sticker" that nobody looks at.</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Faircut Revenue */}
-                <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Faircut Revenue</p>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                    <div className="space-y-3">
-                      <p className="text-base text-gray-700 dark:text-gray-300 font-medium">Layer smart certificates on top of that DPP to generate revenue from every resale.</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 italic">A living asset that connects collectors globally.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Section 2: Why This Matters */}
-            <div className="space-y-6">
-              <div className="text-center">
-                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">Why This Matters</p>
-                <p className="text-base text-gray-600 dark:text-gray-400">The Brussels Effect makes EU standards global luxury standards</p>
-              </div>
-              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {/* EU Mandate */}
-                <div className="bg-gradient-to-br from-white to-blue-50/30 dark:from-slate-900 dark:to-blue-950/20 rounded-xl p-5 border-2 border-blue-300 dark:border-blue-700 shadow-md hover:shadow-xl hover:border-blue-400 dark:hover:border-blue-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <Shield className="w-7 h-7 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent mb-3">"EU Mandate"</h3>
-                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                      No compliant DPP means no market access. Being "banned in Europe" is a reputational death sentence.
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Global Standard */}
-                <div className="bg-gradient-to-br from-white to-purple-50/30 dark:from-slate-900 dark:to-purple-950/20 rounded-xl p-5 border-2 border-purple-300 dark:border-purple-700 shadow-md hover:shadow-xl hover:border-purple-400 dark:hover:border-purple-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <Building2 className="w-7 h-7 text-purple-600 dark:text-purple-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 dark:from-purple-400 dark:to-purple-500 bg-clip-text text-transparent mb-3">"Global Standard"</h3>
-                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                      Brands adopt the highest standard globally—it's cheaper than maintaining two supply chains.
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Resale Value */}
-                <div className="bg-gradient-to-br from-white to-amber-50/30 dark:from-slate-900 dark:to-amber-950/20 rounded-xl p-5 border-2 border-amber-300 dark:border-amber-700 shadow-md hover:shadow-xl hover:border-amber-400 dark:hover:border-amber-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/40 dark:to-amber-800/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent mb-3">"Resale Value"</h3>
-                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                      A watch sold in Dubai today may be listed on Chrono24 tomorrow. Without DPP, resale value in Europe drops to zero.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section> {/* End Section 4: The Mandate */}
-
-        {/* --- SECTION 5: WHY MANUEL EMCH? --- */}
-         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-           <div className="w-full max-w-6xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
-             
-             {/* Title */}
-             <div className="text-center">
-               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Why Manuel Emch?</h2>
-             </div>
-
-             {/* Simple Facts */}
-             <div className="bg-gradient-to-br from-white to-amber-50/30 dark:from-slate-900 dark:to-amber-950/20 rounded-2xl p-8 border-2 border-amber-300 dark:border-amber-700 shadow-md hover:shadow-xl hover:border-amber-400 dark:hover:border-amber-600 transition-all max-w-4xl mx-auto">
-               <div className="space-y-5 text-base text-gray-800 dark:text-gray-200">
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You were born and raised in the industry</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You prioritize strategy, design and art over marketing hype</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You choose perceived value over profit</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You choose people over business</p>
-                 </div>
-                 <div className="flex items-start gap-3">
-                   <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 mt-2"></span>
-                   <p>You choose community over everything else</p>
-                 </div>
-               </div>
-             </div>
-
-             {/* Bottom line */}
-             <div className="text-center">
-               <p className="text-xl text-gray-700 dark:text-gray-300 font-semibold">
-                 You breathe the values this system enables
-               </p>
-             </div>
-
-           </div>
-         </section> {/* End Section 5 */}
 
       </div>
     </>
