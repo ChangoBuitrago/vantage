@@ -302,7 +302,7 @@ export default function ManuelEmch() {
             <div className="space-y-6">
               {/* Title Section */}
               <div className="text-center mb-10">
-                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Faircut Napkin Strategy</p>
+                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Distribution Napkin Strategy</p>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-3">
                   <span className="text-gray-900 dark:text-white">Selling And Distributing, </span>
                   <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart-Certificate</span>
@@ -391,11 +391,11 @@ export default function ManuelEmch() {
                     <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>Smart-Certificate tracks authenticity and warranty, enforces transfer rules and royalties</span>
+                        <span>Enforces transfer rules and royalties</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2"></span>
-                        <span>Certificate maintains condition history throughout ownership</span>
+                        <span>It digitally tracks authenticity, warranty, and service history throughout ownership</span>
                       </li>
                     </ul>
                   </div>
