@@ -5,7 +5,7 @@ export default function FrankPagano() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 4; // From Passport to Protocol, Current Problem, Settlement Protocol, Value Proposition
+  const totalSections = 4; // Current Problem, From Passport to Protocol, Settlement Protocol, Value Proposition
   
   // Effect to ensure page starts at the top on load
   useEffect(() => {
