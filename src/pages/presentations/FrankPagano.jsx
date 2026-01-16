@@ -162,7 +162,90 @@ export default function FrankPagano() {
 
       <div ref={containerRef} className="smooth-scroll-container h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{scrollBehavior: 'smooth'}}>
         
-        {/* --- SLIDE 0: FROM PASSPORT TO PROTOCOL --- */}
+        {/* --- SLIDE 0: THE SECONDARY MARKET PROBLEM --- */}
+        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
+            
+            {/* Title Section */}
+            <div className="text-center mb-6">
+              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Current Strategy - Louis Erard</p>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Secondary Market Problem</h2>
+              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your Alain Silberstein drop doubled in value within 24 hours. Louis Erard captured CHF 0 from those resales.</p>
+            </div>
+
+            {/* Markets Comparison */}
+            <div className="grid md:grid-cols-2 gap-6 items-start">
+              {/* Primary Market */}
+              <div className="flex flex-col">
+                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
+                  <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
+                    <span className="font-semibold">Brand</span>
+                    <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    <span className="font-semibold">Collector</span>
+                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 11,000</span>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price. You have the DPP.</p>
+                </div>
+              </div>
+
+              {/* Secondary Market */}
+              <div className="flex flex-col">
+                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Chrono24 - Within 24 Hours)</p>
+                <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
+                  <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
+                    <span className="font-semibold">Brand</span>
+                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    <span className="font-semibold">Flipper</span>
+                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                    <span className="font-semibold">Collector</span>
+                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 22,000</span>
+                  </div>
+                  <div className="bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700 shadow-sm">
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
+                      <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 11,000</span>
+                    </div>
+                    <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
+                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
+                      <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
+                    </div>
+                  </div>
+                  <p className="text-xs text-red-700 dark:text-red-400 mt-2 font-medium">DPP exists, but it's not governable—can't enforce any business rules at exchange.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Three Critical Issues */}
+            <div className="space-y-4">
+              <div className="text-center">
+                <p className="text-base text-gray-600 dark:text-gray-400">Your DPP tracks ownership, but it's not governable—it can't enforce business rules</p>
+              </div>
+              <div className="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
+                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Governable</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">DPP tracks ownership but can't enforce transfer rules, royalties, or compliance checks</p>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
+                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Transaction-Gated</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Can't bind ownership transfer to payment, KYC, or any compliance requirement</p>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
+                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Enforceable</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Can't enforce your business logic across marketplaces at moment of exchange</p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* --- SLIDE 1: FROM PASSPORT TO PROTOCOL --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-12 py-6">
             
@@ -280,88 +363,6 @@ export default function FrankPagano() {
                 Your DPP proves <span className="font-bold text-gray-900 dark:text-white">authenticity</span>. 
                 Our protocol <span className="font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent">activates asset governance</span>—enforce any rule you want.
               </p>
-            </div>
-
-          </div>
-        </section>
-
-        {/* --- SLIDE 1: THE SECONDARY MARKET PROBLEM --- */}
-        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
-            
-            {/* Title Section */}
-            <div className="text-center mb-6">
-              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Current Strategy - Louis Erard</p>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Secondary Market Problem</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your Alain Silberstein drop doubled in value within 24 hours. Louis Erard captured CHF 0 from those resales.</p>
-            </div>
-
-            {/* Markets Comparison */}
-            <div className="grid md:grid-cols-2 gap-6 items-start">
-              {/* Primary Market */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                  <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 11,000</span>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price. You have the DPP.</p>
-                </div>
-              </div>
-
-              {/* Secondary Market */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Chrono24 - Within 24 Hours)</p>
-                <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
-                  <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Flipper</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 22,000</span>
-                  </div>
-                  <div className="bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700 shadow-sm">
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
-                      <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 11,000</span>
-                    </div>
-                    <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
-                      <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-red-700 dark:text-red-400 mt-2 font-medium">DPP exists, but it's not governable—can't enforce any business rules at exchange.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Three Critical Issues */}
-            <div className="space-y-4">
-              <div className="text-center">
-                <p className="text-base text-gray-600 dark:text-gray-400">Your DPP tracks ownership, but it's not governable—it can't enforce business rules</p>
-              </div>
-              <div className="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-                
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
-                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Governable</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">DPP tracks ownership but can't enforce transfer rules, royalties, or compliance checks</p>
-                </div>
-
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
-                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Transaction-Gated</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Can't bind ownership transfer to payment, KYC, or any compliance requirement</p>
-                </div>
-
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
-                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Enforceable</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Can't enforce your business logic across marketplaces at moment of exchange</p>
-                </div>
-
-              </div>
             </div>
 
           </div>
