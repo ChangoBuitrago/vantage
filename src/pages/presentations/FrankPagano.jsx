@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Lock, Shield, Users, CheckCircle, Percent, DollarSign, Zap, Code } from 'lucide-react';
+import { ArrowRight, Lock, Shield, Users, CheckCircle, Percent, DollarSign, Zap, Code, AlertCircle, AlertTriangle, Heart } from 'lucide-react';
 
 export default function FrankPagano() {
   const containerRef = useRef(null);
@@ -162,82 +162,132 @@ export default function FrankPagano() {
 
       <div ref={containerRef} className="smooth-scroll-container h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{scrollBehavior: 'smooth'}}>
         
-        {/* --- SLIDE 0: THE SECONDARY MARKET PROBLEM --- */}
+        {/* --- SLIDE 0: CURRENT STRATEGY --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
-            {/* Title Section */}
-            <div className="text-center mb-6">
-              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Current Strategy - Louis Erard</p>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Secondary Market Problem</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your Alain Silberstein drop doubled in value within 24 hours. Louis Erard captured CHF 0 from those resales.</p>
-            </div>
-
-            {/* Markets Comparison */}
-            <div className="grid md:grid-cols-2 gap-6 items-start">
-              {/* Primary Market */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                  <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 11,000</span>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price. You have the DPP.</p>
-                </div>
+            {/* Section 1: Selling, Not Distributing */}
+            <div className="space-y-6">
+              {/* Title Section */}
+              <div className="text-center mb-10">
+                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Napkin Strategy</p>
+                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling, Not Distributing</h2>
+                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">50% direct, 50% selected retailers — self-sustainable and independent</p>
               </div>
 
-              {/* Secondary Market */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Chrono24 - Within 24 Hours)</p>
-                <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
-                  <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Flipper</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 22,000</span>
-                  </div>
-                  <div className="bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700 shadow-sm">
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
-                      <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 11,000</span>
+              {/* Markets Comparison - Side by Side */}
+              <div className="grid md:grid-cols-2 gap-6 items-start">
+                {/* Primary Market */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
+                    <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
+                      <span className="font-semibold">Brand</span>
+                      <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Collector</span>
+                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
                     </div>
-                    <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
-                      <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
+                  </div>
+                </div>
+
+                {/* Secondary Market */}
+                <div className="flex flex-col">
+                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
+                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
+                    <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
+                      <span className="font-semibold">Brand</span>
+                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Flipper</span>
+                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <span className="font-semibold">Collector</span>
+                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
+                    </div>
+                    <div className="bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700 shadow-sm">
+                      <div className="flex justify-between items-center mb-1.5">
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
+                        <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 3,500</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
+                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
+                        <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
+                      </div>
                     </div>
                   </div>
-                  <p className="text-xs text-red-700 dark:text-red-400 mt-2 font-medium">DPP exists, but it's not governable—can't enforce any business rules at exchange.</p>
                 </div>
               </div>
             </div>
 
-            {/* Three Critical Issues */}
-            <div className="space-y-4">
+            {/* Section 2: The Secondary Market Problem */}
+            <div className="space-y-6">
               <div className="text-center">
-                <p className="text-base text-gray-600 dark:text-gray-400">Your DPP tracks ownership, but it's not governable—it can't enforce business rules</p>
+                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Secondary Market Problem</p>
+                <p className="text-base text-gray-600 dark:text-gray-400">Three critical issues that undermine your independence</p>
               </div>
-              <div className="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {/* Frustration */}
+                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                      <AlertCircle className="w-7 h-7 text-red-600 dark:text-red-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Frustration"</h3>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>Real collectors can't buy at retail; flippers buy instantly, flood waiting lists, and resell at markup.</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>Brand loses huge profits to flippers.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
                 
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
-                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Governable</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">DPP tracks ownership but can't enforce transfer rules, royalties, or compliance checks</p>
+                {/* Headaches */}
+                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                      <AlertTriangle className="w-7 h-7 text-red-600 dark:text-red-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Headaches"</h3>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>Collectors buying from flippers face authenticity concerns</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>warranty issues that backfire on the brand</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>and condition uncertainties</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
-                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Transaction-Gated</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Can't bind ownership transfer to payment, KYC, or any compliance requirement</p>
+                
+                {/* Lost Community */}
+                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
+                  <div className="flex flex-col items-center">
+                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                      <Heart className="w-7 h-7 text-red-600 dark:text-red-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Lost Community"</h3>
+                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>No connection between brand and secondary market collectors</span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
+                        <span>missing opportunities to build lasting relationships</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-
-                <div className="bg-white dark:bg-slate-900 rounded-xl p-4 border border-red-200 dark:border-red-800 shadow-sm">
-                  <p className="text-base font-semibold text-gray-900 dark:text-white mb-2">❌ Not Enforceable</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Can't enforce your business logic across marketplaces at moment of exchange</p>
-                </div>
-
               </div>
             </div>
 
@@ -583,7 +633,7 @@ export default function FrankPagano() {
                     </div>
                     <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Aligned Success"</h3>
                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                      We share in royalties. No upfront cost or risk.
+                      Shared success model. No upfront cost or risk.
                     </p>
                   </div>
                 </div>
