@@ -167,10 +167,10 @@ export default function FrankPagano() {
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
             {/* Title Section */}
-            <div className="text-center mb-10">
-              <p className="text-xs md:text-sm text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-widest font-bold">The State of Play</p>
-              <h2 className="text-4xl md:text-6xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Governance Gap</h2>
-              <p className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your DPP solved Identity. But the secondary market remains wild.</p>
+            <div className="text-center mb-6">
+              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The State of Play</p>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Governance Gap</h2>
+              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your DPP solved Identity. But the secondary market remains wild.</p>
             </div>
 
             {/* Three Scorecard Cards */}
@@ -182,8 +182,8 @@ export default function FrankPagano() {
                   <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
                     <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Authenticity</h3>
-                  <p className="text-center text-gray-600 dark:text-gray-400 text-sm mb-4">Counterfeiting is solved. Buyers trust the product is real.</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Authenticity</h3>
+                  <p className="text-center text-gray-600 dark:text-gray-400 text-base mb-4">Counterfeiting is solved. Buyers trust the product is real.</p>
                   <span className="px-3 py-1 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold rounded-full uppercase tracking-wide">Solved</span>
                 </div>
               </div>
@@ -194,8 +194,8 @@ export default function FrankPagano() {
                   <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
                     <Users className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Connection</h3>
-                  <p className="text-center text-gray-600 dark:text-gray-400 text-sm mb-4">Direct channel to owner. CRM and loyalty are active.</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Connection</h3>
+                  <p className="text-center text-gray-600 dark:text-gray-400 text-base mb-4">Direct channel to owner. CRM and loyalty are active.</p>
                   <span className="px-3 py-1 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold rounded-full uppercase tracking-wide">Solved</span>
                 </div>
               </div>
@@ -206,8 +206,8 @@ export default function FrankPagano() {
                   <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4 animate-pulse">
                     <XCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-2">Market Control</h3>
-                  <ul className="text-left text-gray-700 dark:text-gray-300 text-sm mb-4 space-y-2">
+                  <h3 className="text-2xl font-bold text-red-700 dark:text-red-400 mb-2">Market Control</h3>
+                  <ul className="text-left text-gray-700 dark:text-gray-300 text-base mb-4 space-y-2">
                     <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Resellers extract value</li>
                     <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Brand gets $0 revenue</li>
                     <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Static Passport ignored</li>
@@ -226,7 +226,7 @@ export default function FrankPagano() {
             
             {/* Title Section */}
             <div className="text-center mb-6">
-              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Faircut Settlement Protocol</p>
+              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Settlement Protocol</p>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-3">
                 <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">Asset Governance</span>
                 <span className="text-gray-900 dark:text-white"> On Your DPP</span>
@@ -243,7 +243,7 @@ export default function FrankPagano() {
                     <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                       <Code className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                     </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Asset Rules"</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">Asset Rules</h3>
                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
                       Royalties, transfer locks, KYC, geographic restrictions—any business logic, enforced automatically.
                     </p>
@@ -256,7 +256,7 @@ export default function FrankPagano() {
                     <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                       <Lock className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                     </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Compliance-Gated"</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">Compliance-Gated</h3>
                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
                       Ownership transfers only when all your rules are satisfied at moment of exchange.
                     </p>
@@ -269,7 +269,7 @@ export default function FrankPagano() {
                     <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
                       <Shield className="w-7 h-7 text-amber-600 dark:text-amber-400" />
                     </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Lifetime Control"</h3>
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">Lifetime Control</h3>
                     <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
                       Rules enforced across all platforms—Chrono24, eBay, private sales—through every transfer, perpetually.
                     </p>
@@ -292,118 +292,47 @@ export default function FrankPagano() {
               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">We add the governance layer. You keep full control.</p>
             </div>
 
-            {/* What We Each Bring */}
-            <div className="grid md:grid-cols-2 gap-6 items-start">
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
               
-              {/* You Keep */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">You Keep</p>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-6 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all h-full">
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-base font-semibold text-gray-900 dark:text-white">Your DPP infrastructure</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">qiibee, Aura, or any solution you have</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-base font-semibold text-gray-900 dark:text-white">Your independence</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Full control over brand and values</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-base font-semibold text-gray-900 dark:text-white">Your community</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Collectors stay with you</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* We Add */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">We Activate It With</p>
-                <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-2xl p-6 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all h-full">
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <Zap className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-base font-semibold text-gray-900 dark:text-white">Asset governance</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Enforce any rule: royalties, KYC, restrictions, time locks</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Zap className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-base font-semibold text-gray-900 dark:text-white">Market-driven compliance</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Rules execute automatically across all platforms at moment of exchange</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Zap className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-base font-semibold text-gray-900 dark:text-white">Perpetual revenue</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Your royalty logic earns on every resale, forever</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
-
-            {/* How We Work Together */}
-            <div className="space-y-6">
-              <div className="text-center">
-                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">How We Work Together</p>
-              </div>
-              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                
-                {/* Zero Setup Cost */}
-                <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Zero Setup Cost"</h3>
-                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                      We build and maintain everything. You stay independent.
-                    </p>
+              {/* Zero Setup Cost */}
+              <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                    <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                   </div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Zero Setup Cost"</h3>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
+                    We build and maintain everything. You stay independent.
+                  </p>
                 </div>
-
-                {/* Revenue Share */}
-                <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Aligned Success"</h3>
-                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                      Shared success model. No upfront cost or risk.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Complementary Layer */}
-                <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Invisible Layer"</h3>
-                    <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
-                      Infrastructure behind the scenes. Your brand, your rules, your revenue.
-                    </p>
-                  </div>
-                </div>
-
               </div>
+
+              {/* Revenue Share */}
+              <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                    <Percent className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-3">"Aligned Success"</h3>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
+                    Shared success model. No upfront cost or risk.
+                  </p>
+                </div>
+              </div>
+
+              {/* Complementary Layer */}
+              <div className="bg-gradient-to-br from-white to-green-50/30 dark:from-slate-900 dark:to-green-950/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
+                    <Shield className="w-7 h-7 text-green-600 dark:text-green-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-3">"Invisible Layer"</h3>
+                  <p className="text-base text-gray-600 dark:text-gray-400 leading-relaxed text-center">
+                    Infrastructure behind the scenes. Your brand, your rules, your revenue.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
