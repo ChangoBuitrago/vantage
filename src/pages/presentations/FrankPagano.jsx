@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Lock, Shield, Users, CheckCircle, Percent, DollarSign, Zap, Code, AlertCircle, AlertTriangle, Heart } from 'lucide-react';
+import { ArrowRight, Lock, Shield, Users, CheckCircle, Percent, DollarSign, Zap, Code, AlertCircle, AlertTriangle, Heart, XCircle } from 'lucide-react';
 
 export default function FrankPagano() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 4; // Current Problem, From Passport to Protocol, Settlement Protocol, Value Proposition
+  const totalSections = 3; // Governance Gap, Settlement Protocol, Value Proposition
   
   // Effect to ensure page starts at the top on load
   useEffect(() => {
@@ -162,263 +162,65 @@ export default function FrankPagano() {
 
       <div ref={containerRef} className="smooth-scroll-container h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{scrollBehavior: 'smooth'}}>
         
-        {/* --- SLIDE 0: CURRENT STRATEGY --- */}
+        {/* --- SLIDE 0: THE GOVERNANCE GAP --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
-            {/* Section 1: Selling, Not Distributing */}
-            <div className="space-y-6">
-              {/* Title Section */}
-              <div className="text-center mb-10">
-                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Louis Erard Napkin Strategy</p>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">Selling, Not Distributing</h2>
-                <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">50% direct, 50% selected retailers — self-sustainable and independent</p>
-              </div>
-
-              {/* Markets Comparison - Side by Side */}
-              <div className="grid md:grid-cols-2 gap-6 items-start">
-                {/* Primary Market */}
-                <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                    <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
-                      <span className="font-semibold">Brand</span>
-                      <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Collector</span>
-                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 3,000</span>
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price.</p>
-                  </div>
-                </div>
-
-                {/* Secondary Market */}
-                <div className="flex flex-col">
-                  <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (Le Régulateur x Alain Silberstein - Chrono24)</p>
-                  <div className="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-2xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
-                    <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
-                      <span className="font-semibold">Brand</span>
-                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Flipper</span>
-                      <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                      <span className="font-semibold">Collector</span>
-                      <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 6,500</span>
-                    </div>
-                    <div className="bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-lg px-3 py-2 border border-red-300 dark:border-red-700 shadow-sm">
-                      <div className="flex justify-between items-center mb-1.5">
-                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Flipper profit</span>
-                        <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 3,500</span>
-                      </div>
-                      <div className="flex justify-between items-center pt-1.5 border-t border-red-300 dark:border-red-700">
-                        <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share</span>
-                        <span className="font-mono text-base font-bold text-red-600 dark:text-red-400">CHF 0</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Section 2: The Secondary Market Problem */}
-            <div className="space-y-6">
-              <div className="text-center">
-                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">The Secondary Market Problem</p>
-                <p className="text-base text-gray-600 dark:text-gray-400">Three critical issues that undermine your independence</p>
-              </div>
-              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {/* Frustration */}
-                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <AlertCircle className="w-7 h-7 text-red-600 dark:text-red-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Frustration"</h3>
-                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
-                      <li className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
-                        <span>Real collectors can't buy at retail; flippers buy instantly, flood waiting lists, and resell at markup.</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
-                        <span>Brand loses huge profits to flippers.</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                
-                {/* Headaches */}
-                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <AlertTriangle className="w-7 h-7 text-red-600 dark:text-red-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Headaches"</h3>
-                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
-                      <li className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
-                        <span>Collectors buying from flippers face authenticity concerns</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
-                        <span>warranty issues that backfire on the brand</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
-                        <span>and condition uncertainties</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                
-                {/* Lost Community */}
-                <div className="bg-gradient-to-br from-white to-red-50/30 dark:from-slate-900 dark:to-red-950/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 shadow-md hover:shadow-xl hover:border-red-400 dark:hover:border-red-600 transition-all">
-                  <div className="flex flex-col items-center">
-                    <div className="w-14 h-14 bg-gradient-to-br from-red-100 to-rose-100 dark:from-red-900/40 dark:to-rose-900/40 rounded-full flex items-center justify-center mb-3 shadow-sm">
-                      <Heart className="w-7 h-7 text-red-600 dark:text-red-400" />
-                    </div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-rose-600 dark:from-red-400 dark:to-rose-400 bg-clip-text text-transparent mb-3">"Lost Community"</h3>
-                    <ul className="text-base text-gray-600 dark:text-gray-400 leading-relaxed space-y-2.5 text-left w-full">
-                      <li className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
-                        <span>No connection between brand and secondary market collectors</span>
-                      </li>
-                      <li className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-red-500 dark:bg-red-400 mt-2"></span>
-                        <span>missing opportunities to build lasting relationships</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-
-        {/* --- SLIDE 1: FROM PASSPORT TO PROTOCOL --- */}
-        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-12 py-6">
-            
             {/* Title Section */}
-            <div className="text-center mb-8">
-              <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Building on What You've Built</p>
-              <h2 className="text-5xl md:text-6xl font-black tracking-tight text-gray-900 dark:text-white mb-4">
-                From Passport to Protocol
-              </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto font-medium">
-                You built the passport. We activate asset governance—enforce any rule you want.
-              </p>
+            <div className="text-center mb-10">
+              <p className="text-xs md:text-sm text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-widest font-bold">The State of Play</p>
+              <h2 className="text-4xl md:text-6xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Governance Gap</h2>
+              <p className="text-lg md:text-2xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your DPP solved Identity. But the secondary market remains wild.</p>
             </div>
 
-            {/* Two Phases Comparison */}
-            <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            {/* Three Scorecard Cards */}
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto w-full px-4">
               
-              {/* Phase 1: Digital Product Passport */}
-              <div className="flex flex-col">
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-8 border-2 border-green-300 dark:border-green-700 shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-full flex items-center justify-center">
-                      <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Phase 1</h3>
-                      <p className="text-sm text-green-600 dark:text-green-400 font-semibold">COMPLETE</p>
-                    </div>
+              {/* Card 1: Authenticity (SOLVED) */}
+              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-6 border-2 border-green-200 dark:border-green-800/50 hover:border-green-400 dark:hover:border-green-600 transition-all duration-300">
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
+                    <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
-                  
-                  <h4 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent mb-6">
-                    Digital Product Passport
-                  </h4>
-                  
-                  <ul className="space-y-4 flex-grow">
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Authenticity verification</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Warranty tracking</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Condition history</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Loyalty programs</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Primary market focus</span>
-                    </li>
-                  </ul>
-
-                  <div className="mt-6 pt-6 border-t border-green-300 dark:border-green-700">
-                    <p className="text-sm text-gray-600 dark:text-gray-400 italic">Louis Erard, qiibee, Aura Consortium</p>
-                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Authenticity</h3>
+                  <p className="text-center text-gray-600 dark:text-gray-400 text-sm mb-4">Counterfeiting is solved. Buyers trust the product is real.</p>
+                  <span className="px-3 py-1 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold rounded-full uppercase tracking-wide">Solved</span>
                 </div>
               </div>
 
-              {/* Phase 2: Settlement Protocol */}
-              <div className="flex flex-col">
-                <div className="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 rounded-2xl p-8 border-2 border-orange-300 dark:border-orange-700 shadow-lg hover:shadow-xl transition-all h-full flex flex-col">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 rounded-full flex items-center justify-center">
-                      <Zap className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Phase 2</h3>
-                      <p className="text-sm text-orange-600 dark:text-orange-400 font-semibold">MISSING</p>
-                    </div>
+              {/* Card 2: Connection (SOLVED) */}
+              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-6 border-2 border-green-200 dark:border-green-800/50 hover:border-green-400 dark:hover:border-green-600 transition-all duration-300">
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
+                    <Users className="w-8 h-8 text-green-600 dark:text-green-400" />
                   </div>
-                  
-                  <h4 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent mb-6">
-                    Settlement Protocol
-                  </h4>
-                  
-                  <ul className="space-y-4 flex-grow">
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Binds ownership to payment</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Enforces transfer rules</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Perpetual royalty collection</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Market-driven compliance</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-orange-500 dark:bg-orange-400 mt-2.5"></span>
-                      <span className="text-base text-gray-700 dark:text-gray-300">Secondary market governance</span>
-                    </li>
-                  </ul>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Connection</h3>
+                  <p className="text-center text-gray-600 dark:text-gray-400 text-sm mb-4">Direct channel to owner. CRM and loyalty are active.</p>
+                  <span className="px-3 py-1 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold rounded-full uppercase tracking-wide">Solved</span>
+                </div>
+              </div>
 
-                  <div className="mt-6 pt-6 border-t border-orange-300 dark:border-orange-700">
-                    <p className="text-sm text-gray-600 dark:text-gray-400 italic">Faircut</p>
+              {/* Card 3: Market Control (FAILED) */}
+              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400 dark:border-red-600 shadow-xl scale-105 transform hover:shadow-2xl transition-all duration-300">
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4 animate-pulse">
+                    <XCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
                   </div>
+                  <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-2">Market Control</h3>
+                  <ul className="text-left text-gray-700 dark:text-gray-300 text-sm mb-4 space-y-2">
+                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Resellers extract value</li>
+                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Brand gets $0 revenue</li>
+                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Static Passport ignored</li>
+                  </ul>
+                  <span className="px-3 py-1 bg-red-200 dark:bg-red-900/50 text-red-800 dark:text-red-300 text-xs font-bold rounded-full uppercase tracking-wide animate-pulse">Critical Gap</span>
                 </div>
               </div>
 
             </div>
-
-            {/* Bottom Statement */}
-            <div className="text-center">
-              <p className="text-lg text-gray-600 dark:text-gray-400 font-medium">
-                Your DPP proves <span className="font-bold text-gray-900 dark:text-white">authenticity</span>. 
-                Our protocol <span className="font-bold bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent">activates asset governance</span>—enforce any rule you want.
-              </p>
-            </div>
-
           </div>
         </section>
 
-        {/* --- SLIDE 2: SETTLEMENT PROTOCOL SOLUTION --- */}
+        {/* --- SLIDE 1: SETTLEMENT PROTOCOL SOLUTION --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
@@ -426,63 +228,14 @@ export default function FrankPagano() {
             <div className="text-center mb-6">
               <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Faircut Settlement Protocol</p>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-3">
-                <span className="text-gray-900 dark:text-white">Activating </span>
                 <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">Asset Governance</span>
                 <span className="text-gray-900 dark:text-white"> On Your DPP</span>
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">We activate asset governance on your DPP—enforce any rule at the moment of exchange</p>
+              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">We activate asset governance on your DPP—enforce any asset rule at the moment of exchange</p>
             </div>
 
-            {/* Markets Comparison with Settlement Protocol */}
-            <div className="grid md:grid-cols-2 gap-6 items-start">
-              {/* Primary Market */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Primary Market</p>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                  <div className="flex items-center gap-3 text-lg text-gray-900 dark:text-white mb-3">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 11,000</span>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 italic">Direct relationship. Fair price. DPP issued.</p>
-                </div>
-              </div>
-
-              {/* Secondary Market with Protocol */}
-              <div className="flex flex-col">
-                <p className="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-widest mb-3">Secondary Market (With Settlement Protocol)</p>
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-5 border-2 border-green-300 dark:border-green-700 shadow-md hover:shadow-xl hover:border-green-400 dark:hover:border-green-600 transition-all">
-                  <div className="flex items-center gap-2 text-base text-gray-900 dark:text-white mb-3 flex-wrap">
-                    <span className="font-semibold">Brand</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Reseller</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
-                    <span className="font-semibold">Collector</span>
-                    <span className="ml-auto font-mono text-xl font-bold text-gray-900 dark:text-white">CHF 22,000</span>
-                  </div>
-                  <div className="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-lg px-3 py-2 border border-green-300 dark:border-green-700 shadow-sm">
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Reseller profit (after royalty)</span>
-                      <span className="font-mono text-base font-bold text-gray-900 dark:text-white">CHF 7,700</span>
-                    </div>
-                    <div className="flex justify-between items-center pt-1.5 border-t border-green-300 dark:border-green-700">
-                      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Louis Erard Share (30% royalty)</span>
-                      <span className="font-mono text-base font-bold text-green-600 dark:text-green-400">CHF 3,300</span>
-                    </div>
-                  </div>
-                  <p className="text-xs text-green-700 dark:text-green-400 italic text-left mt-2 font-medium">Perpetual. Rules enforced at every exchange.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* How Settlement Protocol Works */}
-            <div className="space-y-4">
-              <div className="text-center">
-                <p className="text-lg text-gray-900 dark:text-white uppercase tracking-wider font-semibold mb-2">How the Settlement Protocol Works</p>
-                <p className="text-base text-gray-600 dark:text-gray-400">Three core capabilities</p>
-              </div>
-              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Three Core Capabilities */}
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 
                 {/* Programmed Transfer Rules */}
                 <div className="bg-gradient-to-br from-white to-orange-50/30 dark:from-slate-900 dark:to-orange-950/20 rounded-xl p-5 border-2 border-orange-300 dark:border-orange-700 shadow-md hover:shadow-xl hover:border-orange-400 dark:hover:border-orange-600 transition-all">
@@ -523,13 +276,12 @@ export default function FrankPagano() {
                   </div>
                 </div>
 
-              </div>
             </div>
 
           </div>
         </section>
 
-        {/* --- SECTION 3: VALUE PROPOSITION --- */}
+        {/* --- SLIDE 2: VALUE PROPOSITION --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
