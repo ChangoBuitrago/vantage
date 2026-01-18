@@ -208,9 +208,9 @@ export default function FrankPagano() {
                   </div>
                   <h3 className="text-2xl font-bold text-red-700 dark:text-red-400 mb-2">Market Control</h3>
                   <ul className="text-left text-gray-700 dark:text-gray-300 text-base mb-4 space-y-2">
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Resellers capture 100% of markup</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Zero royalty revenue for your brand</li>
-                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Passport can't enforce rules</li>
+                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Grey market captures 100% upside</li>
+                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Brand earns $0 revenue</li>
+                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Passports cannot enforce rules</li>
                   </ul>
                   <span className="px-3 py-1 bg-red-200 dark:bg-red-900/50 text-red-800 dark:text-red-300 text-xs font-bold rounded-full uppercase tracking-wide animate-pulse">Critical Gap</span>
                 </div>
