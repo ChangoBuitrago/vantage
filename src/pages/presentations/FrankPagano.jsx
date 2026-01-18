@@ -289,7 +289,7 @@ export default function FrankPagano() {
             <div className="text-center mb-6">
               <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Value Proposition</p>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">1 + 1 = 3</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">We activate the governance layer. You keep full control.</p>
+              <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">You built the ID card. We are building the turnstile.</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
