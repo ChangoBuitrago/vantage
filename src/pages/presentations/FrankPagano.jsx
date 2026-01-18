@@ -5,7 +5,7 @@ export default function FrankPagano() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 3; // Governance Gap, Settlement Protocol, Value Proposition
+  const totalSections = 3; // Control Gap, Settlement Protocol, Value Proposition
   
   // Effect to ensure page starts at the top on load
   useEffect(() => {
@@ -162,14 +162,14 @@ export default function FrankPagano() {
 
       <div ref={containerRef} className="smooth-scroll-container h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{scrollBehavior: 'smooth'}}>
         
-        {/* --- SLIDE 0: THE GOVERNANCE GAP --- */}
+        {/* --- SLIDE 0: THE CONTROL GAP --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
             {/* Title Section */}
             <div className="text-center mb-6">
               <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">The State of Play</p>
-              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Governance Gap</h2>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-gray-900 dark:text-white mb-3">The Control Gap</h2>
               <p className="text-xl text-gray-600 dark:text-gray-400 mx-auto font-medium">Your DPP solved Identity. But you have no control over the secondary market.</p>
             </div>
 
