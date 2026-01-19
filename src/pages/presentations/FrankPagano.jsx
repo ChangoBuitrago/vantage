@@ -177,42 +177,42 @@ export default function FrankPagano() {
             <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto w-full px-4">
               
               {/* Card 1: Authenticity (SOLVED) */}
-              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-6 border-2 border-green-200 dark:border-green-800/50 hover:border-green-400 dark:hover:border-green-600 transition-all duration-300">
+              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-5 border-2 border-green-200 dark:border-green-800/50 hover:border-green-400 dark:hover:border-green-600 transition-all duration-300">
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
-                    <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-3">
+                    <CheckCircle className="w-7 h-7 text-green-600 dark:text-green-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">Authenticity</h3>
+                  <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-3">Authenticity</h3>
                   <p className="text-center text-gray-600 dark:text-gray-400 text-base mb-4">Counterfeiting is solved.</p>
-                  <span className="px-3 py-1 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold rounded-full uppercase tracking-wide">Solved</span>
+                  <span className="px-4 py-1.5 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-sm font-bold rounded-full uppercase tracking-wide">Solved</span>
                 </div>
               </div>
 
               {/* Card 2: Connection (SOLVED) */}
-              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-6 border-2 border-green-200 dark:border-green-800/50 hover:border-green-400 dark:hover:border-green-600 transition-all duration-300">
+              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-5 border-2 border-green-200 dark:border-green-800/50 hover:border-green-400 dark:hover:border-green-600 transition-all duration-300">
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4">
-                    <Users className="w-8 h-8 text-green-600 dark:text-green-400" />
+                  <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-3">
+                    <Users className="w-7 h-7 text-green-600 dark:text-green-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">Connection</h3>
+                  <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-3">Connection</h3>
                   <p className="text-center text-gray-600 dark:text-gray-400 text-base mb-4">Direct channel to every owner. Active CRM and loyalty programs.</p>
-                  <span className="px-3 py-1 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-xs font-bold rounded-full uppercase tracking-wide">Solved</span>
+                  <span className="px-4 py-1.5 bg-green-200 dark:bg-green-900/50 text-green-800 dark:text-green-300 text-sm font-bold rounded-full uppercase tracking-wide">Solved</span>
                 </div>
               </div>
 
               {/* Card 3: Market Control (FAILED) */}
-              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400 dark:border-red-600 shadow-xl scale-105 transform hover:shadow-2xl transition-all duration-300">
+              <div className="bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm rounded-xl p-5 border-2 border-red-400 dark:border-red-600 shadow-xl scale-105 transform hover:shadow-2xl transition-all duration-300">
                 <div className="flex flex-col items-center">
-                  <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4 animate-pulse">
-                    <XCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
+                  <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-3 animate-pulse">
+                    <XCircle className="w-7 h-7 text-red-600 dark:text-red-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-red-700 dark:text-red-400 mb-2">Market Control</h3>
-                  <ul className="text-left text-gray-700 dark:text-gray-300 text-base mb-4 space-y-2">
+                  <h3 className="text-2xl font-bold text-red-700 dark:text-red-400 mb-3">Market Control</h3>
+                  <ul className="text-left text-gray-700 dark:text-gray-300 text-base space-y-2 mb-4">
                     <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Grey market captures 100% upside</li>
                     <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Brand earns $0 revenue</li>
                     <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-red-500"></div>Passports cannot enforce rules</li>
                   </ul>
-                  <span className="px-3 py-1 bg-red-200 dark:bg-red-900/50 text-red-800 dark:text-red-300 text-xs font-bold rounded-full uppercase tracking-wide animate-pulse">Critical Gap</span>
+                  <span className="px-4 py-1.5 bg-red-200 dark:bg-red-900/50 text-red-800 dark:text-red-300 text-sm font-bold rounded-full uppercase tracking-wide animate-pulse">Critical Gap</span>
                 </div>
               </div>
 
