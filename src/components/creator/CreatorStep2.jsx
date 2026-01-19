@@ -51,7 +51,7 @@ export default function CreatorStep2({ setCurrentStep }) {
   const serialNumber = `LE-AS-2024-${watchNumber.toString().padStart(3, '0')}`;
   
 
-  // Smart rules from collection configuration
+  // Asset rules from collection configuration
   const royaltyTiers = [
     { label: "Year 1 (0-12 months)", value: "90%", active: false },
     { label: "Year 2 (13-24 months)", value: "60%", active: false },
@@ -182,7 +182,7 @@ export default function CreatorStep2({ setCurrentStep }) {
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                Smart Rules Configuration
+                Asset Rules
               </h4>
               
               {/* Base Retail Price */}
@@ -312,8 +312,15 @@ export default function CreatorStep2({ setCurrentStep }) {
                   )}
                 </div>
               </div>
+            </div>
 
-              {/* Owner Benefits */}
+            {/* Owner Benefits */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <Award className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                Owner Benefits
+              </h4>
+              
               <div className="mb-3">
                 <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
                   <button
@@ -459,7 +466,7 @@ export default function CreatorStep2({ setCurrentStep }) {
             <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Issue Passport</h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                This will create passport #{watchNumber} and transfer it to {ownerName}. The watch ownership will be securely recorded with all configured smart rules.
+                This will create passport #{watchNumber} and transfer it to {ownerName}. The watch ownership will be securely recorded with all configured asset rules.
               </p>
               
               <button

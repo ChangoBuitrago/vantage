@@ -14,7 +14,7 @@ export default function CollectorStep4({ navigate }) {
             Collector Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Verified authenticity, complete provenance, and ongoing ownership benefits—all in one digital passport
+            Verified authenticity with rule-enforced protection. Complete provenance and lifetime ownership benefits.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export default function CollectorStep4({ navigate }) {
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">View transparent smart rules including transfer locks and service history</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">View transparent asset rules including transfer locks and complete service history</span>
             </div>
           </div>
         </div>

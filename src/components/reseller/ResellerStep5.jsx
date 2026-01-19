@@ -32,7 +32,7 @@ export default function ResellerStep5({ handlePayRoyalty }) {
             <span>Le Régulateur Blanc</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Review Transfer</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Validate smart rules and confirm royalty payment</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Validate asset rules and confirm settlement payment</p>
         </div>
 
         {/* Watch Summary Card */}
@@ -69,48 +69,6 @@ export default function ResellerStep5({ handlePayRoyalty }) {
                     <span className="text-xs font-semibold text-gray-900 dark:text-white">1st Owner</span>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Smart Rules Validation */}
-        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
-            Smart Rules Validation
-          </h3>
-          <div className="space-y-3">
-            {/* Transfer Lock */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Transfer Lock Expired</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">6-month holding period completed</p>
-              </div>
-            </div>
-            
-            {/* Ownership Verified */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Ownership Verified</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Current owner confirmed via digital passport</p>
-              </div>
-            </div>
-            
-            {/* Watch Status */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Watch Status Clean</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">No outstanding issues or reports</p>
               </div>
             </div>
           </div>
@@ -334,7 +292,7 @@ export default function ResellerStep5({ handlePayRoyalty }) {
                   ? 'text-gray-600 dark:text-gray-400'
                   : 'text-gray-500 dark:text-gray-400'
               }`}>
-                Royalty is automatically calculated based on smart rules. Payment is required to complete the transfer.
+                Royalty is automatically calculated based on asset rules. Payment is required to complete settlement.
               </p>
             </div>
           </div>

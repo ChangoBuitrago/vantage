@@ -14,7 +14,7 @@ export default function CreatorStep4({ navigate }) {
             Creator Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Issue digital passports with smart rules, earn ongoing royalties, and maintain lifelong brand connections
+            Activate asset governance on every DPP. Capture royalties and maintain lifetime control.
           </p>
         </div>
 
@@ -24,7 +24,7 @@ export default function CreatorStep4({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Create collections with tiered royalties, transfer locks, and owner benefits</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Define asset rules: tiered royalties, transfer locks, and lifetime owner benefits</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />

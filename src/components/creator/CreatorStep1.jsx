@@ -88,7 +88,7 @@ export default function CreatorStep1({ setCurrentStep }) {
             <span>Create New</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create Collection</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Configure smart rules and benefits for your new collection</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Configure asset rules and benefits for your new collection</p>
         </div>
 
         {/* Collection Summary Card with Live Preview */}
@@ -373,12 +373,12 @@ export default function CreatorStep1({ setCurrentStep }) {
           </div>
         </div>
 
-        {/* Smart Rules Configuration */}
+        {/* Asset Rules Configuration */}
         <div className="space-y-6">
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
             <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <Settings className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              Smart Rules
+              Configure Asset Rules
             </h4>
             
             <div className="space-y-3">
@@ -536,7 +536,7 @@ export default function CreatorStep1({ setCurrentStep }) {
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
             <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <Gift className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              Owner Benefits
+              Configure Owner Benefits
             </h4>
             
             <div className="space-y-3">

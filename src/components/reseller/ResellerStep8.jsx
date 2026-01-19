@@ -14,7 +14,7 @@ export default function ResellerStep8({ navigate }) {
             Reseller Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Seamless transfers with automated royalties—reselling made transparent and compliant
+            Navigate compliance-gated transfers. Settlement protocol handles asset rules automatically.
           </p>
         </div>
 
@@ -28,11 +28,11 @@ export default function ResellerStep8({ navigate }) {
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">View complete ownership history, smart rules, and benefits</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">View complete ownership history, asset rules, and benefits</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Transfer with clear royalty calculations and automated compliance</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Comply with asset rules at settlement: royalties calculated and paid automatically</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />

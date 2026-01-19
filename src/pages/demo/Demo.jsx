@@ -52,7 +52,7 @@ export default function Demo() {
             Experience <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">Faircut</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Choose your journey to see how smart-certificates transform high&#8209;end watchmaking—forever
+            Asset governance on every DPP. Enforce any asset rule at the moment of exchange.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function Demo() {
                 Creator Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Issue smart-certificates with smart rules and earn royalties from every resale.
+                Activate asset governance on your DPP. Define rules, capture royalties, maintain lifetime control.
               </p>
             </div>
 
@@ -99,7 +99,7 @@ export default function Demo() {
                 Reseller Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Buy and resell watches with automated compliance and transparent transfers.
+                Navigate compliance-gated transfers. Satisfy asset rules automatically at settlement.
               </p>
             </div>
 
@@ -125,7 +125,7 @@ export default function Demo() {
                 Collector Experience
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                Purchase with verified authenticity and access ongoing ownership benefits.
+                Purchase with verified authenticity. Benefit from rule-enforced protection and ongoing ownership perks.
               </p>
             </div>
 

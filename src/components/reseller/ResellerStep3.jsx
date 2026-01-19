@@ -94,7 +94,7 @@ export default function ResellerStep3({ setCurrentStep }) {
             <span>Le Régulateur Blanc</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Digital Passport</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Verified ownership, automated royalties, lifetime benefits</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Verified ownership with asset rules, automated settlement, lifetime benefits</p>
         </div>
 
         {/* Digital Passport Card */}
@@ -277,7 +277,7 @@ export default function ResellerStep3({ setCurrentStep }) {
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <Settings className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-                Smart Rules
+                Asset Rules
               </h4>
               
               {/* Base Resale Price */}
@@ -447,7 +447,15 @@ export default function ResellerStep3({ setCurrentStep }) {
                   )}
                 </div>
               </div>
+            </div>
 
+            {/* Owner Benefits */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <Package className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                Owner Benefits
+              </h4>
+              
               {/* Service Log */}
               <div className="mb-3">
                 <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
