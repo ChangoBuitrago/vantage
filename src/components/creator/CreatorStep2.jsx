@@ -6,9 +6,6 @@ export default function CreatorStep2({ setCurrentStep }) {
   const [issued, setIssued] = useState(false);
   
   // State for expandable sections
-  const [expandedBasePrice, setExpandedBasePrice] = useState(false);
-  const [expandedTransferLock, setExpandedTransferLock] = useState(false);
-  const [expandedRoyalties, setExpandedRoyalties] = useState(false);
   const [expandedBenefits, setExpandedBenefits] = useState(false);
   
   // State for edition number (editable)
@@ -178,142 +175,6 @@ export default function CreatorStep2({ setCurrentStep }) {
               </div>
             </div>
 
-            {/* Smart Rules */}
-            <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
-              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                Asset Rules
-              </h4>
-              
-              {/* Base Retail Price */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedBasePrice(!expandedBasePrice)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <Baseline className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Base Retail Price</p>
-                          <span className="font-mono text-sm font-bold text-green-600 dark:text-green-400">CHF {formatNumber(retailPrice)}</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Foundation for royalty calculations on future resales
-                      </p>
-                    </div>
-                  </button>
-
-                  {expandedBasePrice && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3">
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
-                          Royalties will be calculated on profits above this retail price when owners resell the watch.
-                        </p>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Retail Price</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF {formatNumber(retailPrice)}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Transfer Lock */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedTransferLock(!expandedTransferLock)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <Clock className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock Period</p>
-                          <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{transferLockDays} days</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Minimum ownership period before transfer allowed
-                      </p>
-                    </div>
-                  </button>
-
-                  {expandedTransferLock && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3">
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
-                          First owner must hold the watch for {transferLockDays} days before transferring to protect against speculation.
-                        </p>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Clock className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Lock Duration</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">{transferLockDays} days ({Math.round(transferLockDays / 30)} months)</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Dynamic Royalties */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedRoyalties(!expandedRoyalties)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <Percent className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Dynamic Resale Royalties</p>
-                          <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">90% → 60% → 15%</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedRoyalties ? 'rotate-180' : ''}`} />
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Creator royalty decreases as watch ages
-                      </p>
-                    </div>
-                  </button>
-
-                  {expandedRoyalties && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3 space-y-2">
-                        {royaltyTiers.map((tier, index) => (
-                          <div key={index} className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                            <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                              <Percent className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                            </div>
-                            <div className="flex-1 min-w-0 flex items-center justify-between">
-                              <p className="text-xs text-gray-500 dark:text-gray-400">{tier.label}</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">{tier.value}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
             {/* Owner Benefits */}
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
@@ -331,7 +192,6 @@ export default function CreatorStep2({ setCurrentStep }) {
                     <div className="flex-1 text-left">
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Owner Benefits</p>
                           <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{benefits.length} benefits</span>
                         </div>
                         <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBenefits ? 'rotate-180' : ''}`} />

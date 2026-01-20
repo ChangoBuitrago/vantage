@@ -117,42 +117,6 @@ export default function MyCollections({ setCurrentStep }) {
           </div>
         </div>
 
-        {/* Owner Benefits Configuration */}
-        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 mb-6">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Package className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            Owner Benefits
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <Package className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Service & Warranty</p>
-              </div>
-              <p className="text-base font-bold text-emerald-600 dark:text-emerald-400">Active</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Free service + 5yr warranty</p>
-            </div>
-
-            <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <Calendar className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Events Access</p>
-              </div>
-              <p className="text-base font-bold text-emerald-600 dark:text-emerald-400">Enabled</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">VIP collector events</p>
-            </div>
-
-            <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <div className="flex items-center gap-2 mb-2">
-                <Shield className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Early Access</p>
-              </div>
-              <p className="text-base font-bold text-emerald-600 dark:text-emerald-400">Included</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">New release priority</p>
-            </div>
-          </div>
-        </div>
-
         {/* Primary Actions */}
         <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
           <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Issue Passport</h4>
