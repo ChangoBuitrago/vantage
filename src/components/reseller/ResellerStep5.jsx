@@ -31,8 +31,8 @@ export default function ResellerStep5({ handleSendToCollector }) {
             <ChevronRight className="w-4 h-4" />
             <span>Le Régulateur Blanc</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Review Transfer</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Review details and send to collector for approval</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Initiate Transfer</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Settlement protocol enforces all asset rules automatically</p>
         </div>
 
         {/* Watch Summary Card */}
@@ -129,14 +129,14 @@ export default function ResellerStep5({ handleSendToCollector }) {
           </div>
         </div>
 
-        {/* Creator Royalty Calculation */}
+        {/* Settlement Protocol Enforcement */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-            <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-            Creator Royalty Calculation
+            <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+            Settlement Protocol Enforcement
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Dynamic royalty enforced: {Math.round(royaltyRate * 100)}% of resale price for transfers within the first year
+            Protocol automatically validates all asset rules and calculates settlement ({Math.round(royaltyRate * 100)}% royalty for Year 1 transfers)
           </p>
           
           {/* Sale Price Input */}
@@ -174,7 +174,7 @@ export default function ResellerStep5({ handleSendToCollector }) {
                 <div className="flex items-start gap-2 p-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
                   <Shield className="w-4 h-4 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
                   <p className="text-xs text-red-700 dark:text-red-300">
-                    <span className="font-semibold">Below minimum price.</span> The minimum resale price is CHF {basePurchasePrice.toLocaleString()}. This rule protects brand value.
+                    <span className="font-semibold">Protocol validation failed.</span> Minimum price is CHF {basePurchasePrice.toLocaleString()} - asset rule enforced automatically.
                   </p>
                 </div>
               </div>
@@ -182,9 +182,9 @@ export default function ResellerStep5({ handleSendToCollector }) {
             {isPriceValid && (
               <div className="mt-2">
                 <div className="flex items-start gap-2 p-2 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg">
-                  <Percent className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                  <Check className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
                   <p className="text-xs text-purple-700 dark:text-purple-300">
-                    <span className="font-semibold">Royalty applies:</span> {Math.round(royaltyRate * 100)}% of your resale price (CHF {Math.round(royaltyAmount).toLocaleString()}) goes to the creator.
+                    <span className="font-semibold">Protocol validated.</span> Settlement automatically enforces {Math.round(royaltyRate * 100)}% royalty (CHF {Math.round(royaltyAmount).toLocaleString()}) to brand.
                   </p>
                 </div>
               </div>
@@ -292,11 +292,47 @@ export default function ResellerStep5({ handleSendToCollector }) {
                   ? 'text-gray-600 dark:text-gray-400'
                   : 'text-gray-500 dark:text-gray-400'
               }`}>
-                Collector will review passport details before accepting. Royalty payment will be processed after collector approval.
+                Settlement protocol enforces compliance automatically. Collector reviews passport, then settlement processes royalty payment.
               </p>
             </div>
           </div>
         </div>
+
+        {/* Protocol Enforcement Summary */}
+        {isPriceValid && (
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-2 border-purple-200 dark:border-purple-800 rounded-xl p-6 mb-6">
+            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+              <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+              What the Protocol Enforces Automatically
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Minimum price validation</span> - Enforces CHF {basePurchasePrice.toLocaleString()} floor
+                </p>
+              </div>
+              <div className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Dynamic royalty calculation</span> - {Math.round(royaltyRate * 100)}% for Year 1 transfers
+                </p>
+              </div>
+              <div className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Transfer lock validation</span> - Ensures 180-day hold period satisfied
+                </p>
+              </div>
+              <div className="flex items-start gap-2">
+                <Check className="w-4 h-4 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Automatic settlement</span> - Processes payment upon collector approval
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Action Button */}
         <button
@@ -308,8 +344,8 @@ export default function ResellerStep5({ handleSendToCollector }) {
               : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed opacity-60'
           }`}
         >
-          <Send className="w-5 h-5" />
-          Send to Collector for Review
+          <Shield className="w-5 h-5" />
+          Initiate Settlement Transfer
         </button>
       </div>
     </div>

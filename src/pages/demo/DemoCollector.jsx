@@ -8,8 +8,9 @@ import CollectorStep0 from '../../components/collector/CollectorStep0';
 import CollectorStep1 from '../../components/collector/CollectorStep1';
 import CollectorStep2 from '../../components/collector/CollectorStep2';
 import CollectorStep3 from '../../components/collector/CollectorStep3Review';
-import CollectorStep4 from '../../components/collector/CollectorStep4';
-import CollectorStep5 from '../../components/collector/CollectorStep5';
+import CollectorStep4Awaiting from '../../components/collector/CollectorStep4Awaiting';
+import CollectorStep5 from '../../components/collector/CollectorStep4';
+import CollectorStep6 from '../../components/collector/CollectorStep5';
 
 export default function DemoCollector() {
   const navigate = useNavigate();
@@ -22,8 +23,9 @@ export default function DemoCollector() {
     1: 'order-confirmed',
     2: 'inbox',
     3: 'review-passport',
-    4: 'view-passport',
-    5: 'summary'
+    4: 'awaiting-transfer',
+    5: 'view-passport',
+    6: 'summary'
   };
 
   // Reverse mapping for fragment to step
@@ -39,6 +41,11 @@ export default function DemoCollector() {
     if (fragment) {
       window.location.hash = fragment;
     }
+  };
+
+  // Simulate reseller payment completion
+  const simulatePayment = () => {
+    updateStep(5); // Navigate to view-passport step
   };
 
   // Initialize from URL fragment or default to step 0
@@ -72,8 +79,8 @@ export default function DemoCollector() {
 
   // Faircut sidebar navigation items
   const navItems = [
-    { icon: Package, label: 'My Passports', active: currentStep === 4 },
-    { icon: RefreshCw, label: 'Transfers', active: currentStep === 3 },
+    { icon: Package, label: 'My Passports', active: currentStep === 5 },
+    { icon: RefreshCw, label: 'Transfers', active: currentStep === 3 || currentStep === 4 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
@@ -83,8 +90,9 @@ export default function DemoCollector() {
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
     { step: 3, emoji: '🔍', label: 'Review Transfer' },
-    { step: 4, emoji: '🎫', label: 'Digital Passport' },
-    { step: 5, emoji: '🎯', label: 'Experience Complete' },
+    { step: 4, emoji: '⏳', label: 'Awaiting Transfer' },
+    { step: 5, emoji: '🎫', label: 'Digital Passport' },
+    { step: 6, emoji: '🎯', label: 'Experience Complete' },
   ];
 
   return (
@@ -205,9 +213,9 @@ export default function DemoCollector() {
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={(currentStep >= 3 && currentStep <= 4) ? "flex" : ""}>
-        {/* Sidebar Navigation - Only show for steps 3-4 (inside Faircut platform) */}
-        {(currentStep >= 3 && currentStep <= 4) && (
+      <div className={(currentStep >= 3 && currentStep <= 5) ? "flex" : ""}>
+        {/* Sidebar Navigation - Only show for steps 3-5 (inside Faircut platform) */}
+        {(currentStep >= 3 && currentStep <= 5) && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
             <nav className="p-4 space-y-1">
               {navItems.map((item, idx) => (
@@ -242,11 +250,14 @@ export default function DemoCollector() {
           {/* Step 3: Review & Approve Transfer (INSIDE FAIRCUT) */}
           {currentStep === 3 && <CollectorStep3 setCurrentStep={updateStep} />}
 
-          {/* Step 4: View Passport (INSIDE FAIRCUT) */}
-          {currentStep === 4 && <CollectorStep4 setCurrentStep={updateStep} />}
+          {/* Step 4: Awaiting Transfer Completion (INSIDE FAIRCUT) */}
+          {currentStep === 4 && <CollectorStep4Awaiting setCurrentStep={updateStep} simulatePayment={simulatePayment} />}
 
-          {/* Step 5: Demo Summary */}
-          {currentStep === 5 && <CollectorStep5 navigate={navigate} />}
+          {/* Step 5: View Passport (INSIDE FAIRCUT) */}
+          {currentStep === 5 && <CollectorStep5 setCurrentStep={updateStep} />}
+
+          {/* Step 6: Demo Summary */}
+          {currentStep === 6 && <CollectorStep6 navigate={navigate} />}
 
         </main>
       </div>

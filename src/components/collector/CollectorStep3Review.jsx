@@ -3,7 +3,7 @@ import CollectorReviewStep from './CollectorReviewStep';
 
 export default function CollectorStep3Review({ setCurrentStep }) {
   const handleApproval = () => {
-    // Move to view passport step
+    // Move to awaiting payment step
     setCurrentStep(4);
   };
 

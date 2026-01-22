@@ -32,7 +32,11 @@ export default function CollectorStep4({ navigate }) {
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Approve transfer and receive authenticated provenance with complete ownership history</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Approve transfer and wait for reseller to complete settlement</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Receive authenticated provenance with complete ownership history after transfer completes</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />

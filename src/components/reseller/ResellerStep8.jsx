@@ -32,11 +32,15 @@ export default function ResellerStep8({ navigate }) {
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Navigate compliance-gated transfer: royalties calculated and paid automatically</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Initiate settlement transfer: protocol validates all asset rules and calculates royalty</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Collector reviews and approves transfer, completing passport handover</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Collector reviews passport data and approves transfer before payment</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Pay royalty and complete settlement: passport transferred with enforced compliance</span>
             </div>
           </div>
         </div>

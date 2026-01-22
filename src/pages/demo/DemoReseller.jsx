@@ -24,6 +24,7 @@ export default function DemoReseller() {
   const [salePrice, setSalePrice] = useState(0);
   const [royaltyAmount, setRoyaltyAmount] = useState(0);
   const [collectorEmail, setCollectorEmail] = useState('');
+  const [collectorApproved, setCollectorApproved] = useState(false);
 
   // Step URL fragments mapping
   const stepFragments = {
@@ -67,6 +68,7 @@ export default function DemoReseller() {
     setShowPaymentModal(false);
     setShowSuccessModal(false);
     setShowSuccessToast(false);
+    setCollectorApproved(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -95,24 +97,19 @@ export default function DemoReseller() {
     setSalePrice(price);
     setRoyaltyAmount(royalty);
     setCollectorEmail(email);
+    setCollectorApproved(false); // Reset approval status
     // Navigate directly to awaiting collector step - no payment yet
     updateStep(5);
   };
 
   const handleCollectorApproval = () => {
-    // When collector approves, show payment processing modal
+    // Simulate collector approval - show button to pay
+    setCollectorApproved(true);
+  };
+
+  const handlePayRoyaltyAfterApproval = () => {
+    // When reseller clicks to pay after collector approval
     setShowPaymentModal(true);
-    // Auto-process payment
-    setTimeout(() => {
-      setShowPaymentModal(false);
-      setShowSuccessModal(true);
-      setTimeout(() => {
-        setShowSuccessModal(false);
-        setShowSuccessToast(true);
-        updateStep(6); // Navigate to transfer complete
-        setTimeout(() => setShowSuccessToast(false), 3000);
-      }, 2000);
-    }, 2000);
   };
 
   const confirmPayment = () => {
@@ -133,7 +130,7 @@ export default function DemoReseller() {
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
     { step: 3, emoji: '🎫', label: 'Digital Passport' },
-    { step: 4, emoji: '📋', label: 'Transfer Review' },
+    { step: 4, emoji: '⚡', label: 'Settlement Protocol' },
     { step: 5, emoji: '⏳', label: 'Awaiting Collector' },
     { step: 6, emoji: '🎉', label: 'Transfer Complete' },
     { step: 7, emoji: '✨', label: 'Experience Complete' },
@@ -143,45 +140,51 @@ export default function DemoReseller() {
     <div className={`min-h-screen ${currentStep >= 3 ? 'bg-slate-50 dark:bg-slate-950' : 'bg-white'}`}>
       {/* Success Toast */}
       {showSuccessToast && (
-        <div className="fixed top-24 right-6 bg-blue-500 text-white px-6 py-4 rounded-xl shadow-2xl z-50 animate-slide-in-right flex items-center gap-3">
+        <div className="fixed top-24 right-6 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl z-50 animate-slide-in-right flex items-center gap-3">
           <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
             <Check className="w-5 h-5" />
           </div>
           <div>
-            <div className="font-semibold">Royalty Payment Confirmed!</div>
-            <div className="text-sm text-white/90">Awaiting collector review</div>
+            <div className="font-semibold">Transfer Complete!</div>
+            <div className="text-sm text-white/90">Royalty paid and passport transferred</div>
           </div>
         </div>
       )}
 
       {/* Payment Modal */}
-      {showPaymentModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 max-w-md w-full shadow-2xl">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Wallet className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Processing Payment</h3>
-              <p className="text-gray-600 dark:text-gray-400">Collector approved - processing automatic royalty payment</p>
-            </div>
-            
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 mb-6">
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-gray-600 dark:text-gray-400">Total Royalty Due</span>
-                <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">CHF {royaltyAmount.toLocaleString()}</span>
-              </div>
-              <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-gray-600 dark:text-gray-400">Your Sale Price</span>
-                  <span className="text-gray-900 dark:text-white">CHF {salePrice.toLocaleString()}</span>
+      {showPaymentModal && (() => {
+        // Use demo defaults if values aren't set (for direct navigation testing)
+        const displaySalePrice = salePrice || 6500;
+        const displayRoyalty = royaltyAmount || Math.round(displaySalePrice * 0.9);
+        const displayEmail = collectorEmail || 'collector@example.com';
+        
+        return (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl p-8 max-w-md w-full shadow-2xl">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Wallet className="w-8 h-8 text-white" />
                 </div>
-                <div className="flex justify-between text-sm font-semibold">
-                  <span className="text-gray-900 dark:text-white">Royalty Rate (Year 1)</span>
-                  <span className="text-purple-600 dark:text-purple-400">90%</span>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Collector Approved</h3>
+                <p className="text-gray-600 dark:text-gray-400">Confirm royalty payment to complete transfer</p>
+              </div>
+              
+              <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 mb-6">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-gray-600 dark:text-gray-400">Total Royalty Due</span>
+                  <span className="text-2xl font-bold text-purple-600 dark:text-purple-400">CHF {displayRoyalty.toLocaleString()}</span>
+                </div>
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-gray-600 dark:text-gray-400">Your Sale Price</span>
+                    <span className="text-gray-900 dark:text-white">CHF {displaySalePrice.toLocaleString()}</span>
+                  </div>
+                  <div className="flex justify-between text-sm font-semibold">
+                    <span className="text-gray-900 dark:text-white">Royalty Rate (Year 1)</span>
+                    <span className="text-purple-600 dark:text-purple-400">90%</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
             {/* Transfer To */}
             <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6">
@@ -191,7 +194,7 @@ export default function DemoReseller() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Transfer To</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 break-all">{collectorEmail}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 break-all">{displayEmail}</p>
                 </div>
               </div>
             </div>
@@ -212,7 +215,8 @@ export default function DemoReseller() {
             </div>
           </div>
         </div>
-      )}
+        );
+      })()}
 
       {/* Success Modal */}
       {showSuccessModal && (
@@ -222,11 +226,11 @@ export default function DemoReseller() {
               <Check className="w-10 h-10 text-white" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Payment Successful!</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">Sending to collector for review...</p>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">Completing transfer...</p>
             <div className="flex items-center justify-center gap-2">
-              <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
             </div>
           </div>
         </div>
@@ -385,11 +389,11 @@ export default function DemoReseller() {
           {/* Step 3: Digital Passport View (INSIDE FAIRCUT) */}
           {currentStep === 3 && <ResellerStep3 setCurrentStep={updateStep} />}
 
-          {/* Step 4: Review Transfer & Send to Collector */}
+          {/* Step 4: Settlement Protocol Enforcement */}
           {currentStep === 4 && <ResellerStep4 setCurrentStep={updateStep} handleSendToCollector={handleSendToCollector} />}
 
           {/* Step 5: Awaiting Collector Review */}
-          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} collectorEmail={collectorEmail} handleCollectorApproval={handleCollectorApproval} />}
+          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} royaltyAmount={royaltyAmount} collectorApproved={collectorApproved} handleCollectorApproval={handleCollectorApproval} handlePayRoyaltyAfterApproval={handlePayRoyaltyAfterApproval} />}
 
           {/* Step 6: Transfer Complete */}
           {currentStep === 6 && <ResellerStep6 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} />}
