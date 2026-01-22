@@ -109,7 +109,7 @@ export default function CollectorStep2({ setCurrentStep }) {
               {/* Gmail Email Header */}
               <div style={{backgroundColor: '#ffffff', padding: '16px 32px', borderBottom: '1px solid #e0e0e0'}}>
                 <div style={{maxWidth: '1200px', margin: '0 auto'}}>
-                  <h1 style={{fontSize: '20px', fontWeight: 400, color: '#202124', margin: '0 0 12px 0'}}>Digital Passport Transfer Received</h1>
+                  <h1 style={{fontSize: '20px', fontWeight: 400, color: '#202124', margin: '0 0 12px 0'}}>Action Required: Review Digital Passport Before Transfer</h1>
                   <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
                     <div style={{width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0}}>
                       <Shield size={24} color="#ffffff" />
@@ -141,20 +141,20 @@ export default function CollectorStep2({ setCurrentStep }) {
                   </div>
 
                   {/* Main Message */}
-                  <div style={{backgroundColor: '#f9fafb', borderRadius: '12px', padding: '32px', marginBottom: '32px', border: '1px solid #e5e7eb'}}>
+                  <div style={{backgroundColor: '#fef3c7', borderRadius: '12px', padding: '32px', marginBottom: '32px', border: '2px solid #fbbf24'}}>
                     <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px'}}>
-                      <div style={{width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                      <div style={{width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#f59e0b', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                         <FileCheck size={24} color="#ffffff" />
                       </div>
                       <div>
-                        <h2 style={{fontSize: '20px', fontWeight: 600, color: '#1a1a1a', margin: '0 0 4px 0'}}>Digital Passport Received!</h2>
-                        <p style={{fontSize: '14px', color: '#6b7280', margin: 0}}>Transfer completed successfully</p>
+                        <h2 style={{fontSize: '20px', fontWeight: 600, color: '#1a1a1a', margin: '0 0 4px 0'}}>Review Required</h2>
+                        <p style={{fontSize: '14px', color: '#92400e', margin: 0}}>Pending your approval</p>
                       </div>
                     </div>
 
                     <div style={{fontSize: '15px', lineHeight: '1.6', color: '#374151'}}>
                       <p style={{margin: '0 0 16px 0'}}>Dear John,</p>
-                      <p style={{margin: '0 0 16px 0'}}>Great news! <strong>Maria Reseller</strong> has successfully transferred the Digital Passport for your recently purchased watch:</p>
+                      <p style={{margin: '0 0 16px 0'}}><strong>Maria Reseller</strong> has initiated a Digital Passport transfer for your recently purchased watch. Please review the passport details before accepting:</p>
                       
                       <div style={{backgroundColor: '#ffffff', borderRadius: '8px', padding: '20px', marginBottom: '16px', border: '1px solid #e5e7eb'}}>
                         <div style={{display: 'flex', gap: '16px', alignItems: 'flex-start'}}>
@@ -180,42 +180,47 @@ export default function CollectorStep2({ setCurrentStep }) {
                         </div>
                       </div>
 
-                      <p style={{margin: '0 0 16px 0'}}>Your Digital Passport is now active and contains:</p>
+                      <p style={{margin: '0 0 16px 0'}}><strong>Before accepting, please verify:</strong></p>
                       <div style={{margin: '0 0 16px 0'}}>
                         <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '10px'}}>
-                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
+                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                              <path d="M10 3L4.5 8.5L2 6" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M6 2v6m0 2h.01" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <span style={{flex: 1}}>Complete ownership history and provenance</span>
+                          <span style={{flex: 1}}><strong>Purchase price</strong> - Confirm the amount matches your agreement</span>
                         </div>
                         <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '10px'}}>
-                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
+                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                              <path d="M10 3L4.5 8.5L2 6" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M6 2v6m0 2h.01" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <span style={{flex: 1}}>Authentication certificate</span>
+                          <span style={{flex: 1}}><strong>Serial number</strong> - Must match the physical watch</span>
                         </div>
                         <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '10px'}}>
-                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
+                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                              <path d="M10 3L4.5 8.5L2 6" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M6 2v6m0 2h.01" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <span style={{flex: 1}}>Watch specifications and serial number</span>
+                          <span style={{flex: 1}}><strong>Product details</strong> - Reference, edition, and production date</span>
                         </div>
                         <div style={{display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '10px'}}>
-                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#dcfce7', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
+                          <div style={{width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#fed7aa', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px'}}>
                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                              <path d="M10 3L4.5 8.5L2 6" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              <path d="M6 2v6m0 2h.01" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <span style={{flex: 1}}>Service history and warranty information</span>
+                          <span style={{flex: 1}}><strong>Owner benefits & asset rules</strong> - Perks and obligations</span>
                         </div>
                       </div>
-                      <p style={{margin: 0}}>Click below to view your Digital Passport and complete the ownership transfer.</p>
+                      <div style={{backgroundColor: '#fff', borderRadius: '8px', padding: '16px', marginBottom: '16px', border: '1px solid #fbbf24'}}>
+                        <p style={{margin: 0, fontSize: '14px', color: '#92400e', fontWeight: 500}}>
+                          ⚠️ Once you approve, the transfer will be finalized. Please review all details carefully.
+                        </p>
+                      </div>
+                      <p style={{margin: 0}}>Click below to review the Digital Passport and decide whether to accept or reject the transfer.</p>
                     </div>
                   </div>
 
@@ -227,7 +232,7 @@ export default function CollectorStep2({ setCurrentStep }) {
                         setCurrentStep(3);
                       }}
                       style={{
-                        backgroundColor: '#1a1a1a',
+                        backgroundColor: '#f59e0b',
                         color: '#ffffff',
                         padding: '16px 40px',
                         fontSize: '15px',
@@ -236,29 +241,31 @@ export default function CollectorStep2({ setCurrentStep }) {
                         border: 'none',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                        boxShadow: '0 4px 12px rgba(245,158,11,0.3)'
                       }}
                       onMouseOver={(e) => {
                         e.target.style.transform = 'translateY(-2px)';
-                        e.target.style.boxShadow = '0 6px 16px rgba(0,0,0,0.2)';
+                        e.target.style.boxShadow = '0 6px 16px rgba(245,158,11,0.4)';
+                        e.target.style.backgroundColor = '#d97706';
                       }}
                       onMouseOut={(e) => {
                         e.target.style.transform = 'translateY(0)';
-                        e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                        e.target.style.boxShadow = '0 4px 12px rgba(245,158,11,0.3)';
+                        e.target.style.backgroundColor = '#f59e0b';
                       }}
                     >
-                      View Digital Passport
+                      Review Passport & Decide
                     </button>
                   </div>
 
                   {/* Footer */}
                   <div style={{borderTop: '1px solid #e5e7eb', paddingTop: '24px', marginTop: '32px'}}>
                     <p style={{fontSize: '13px', color: '#6b7280', textAlign: 'center', margin: '0 0 12px 0'}}>
-                      Questions? Contact us at <a href="mailto:support@faircut.com" style={{color: '#22c55e', textDecoration: 'none'}}>support@faircut.com</a>
+                      Questions? Contact us at <a href="mailto:support@faircut.com" style={{color: '#f59e0b', textDecoration: 'none'}}>support@faircut.com</a>
                     </p>
                     <p style={{fontSize: '12px', color: '#9ca3af', textAlign: 'center', margin: 0}}>
                       © 2025 Faircut. All rights reserved.<br/>
-                      You're receiving this email because a Digital Passport was transferred to you.
+                      You're receiving this email because a Digital Passport transfer requires your review.
                     </p>
                   </div>
                 </div>

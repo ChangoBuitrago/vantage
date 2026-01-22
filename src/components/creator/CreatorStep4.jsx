@@ -24,19 +24,19 @@ export default function CreatorStep4({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Define asset rules: tiered royalties, transfer locks, and lifetime owner benefits</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Create collection and configure asset rules: tiered royalties, transfer locks, and owner benefits</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Issue individual passports from collections to first owners upon retail sale</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Issue individual passports to first owners as watches are sold</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Monitor collection performance, passport issuance, and active ownership</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Monitor collection overview with issuance progress and retail pricing</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Track royalty earnings and watch activity through real-time dashboard analytics</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Set lifetime governance that follows every watch through all future transfers</span>
             </div>
           </div>
         </div>

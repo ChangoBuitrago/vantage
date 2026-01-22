@@ -24,19 +24,19 @@ export default function ResellerStep8({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Purchase luxury watches with digital passports from official brands</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Purchase luxury watch with verified digital passport from official brand</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">View complete ownership history, asset rules, and benefits</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">View complete passport: ownership history, asset rules, and owner benefits</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Comply with asset rules at settlement: royalties calculated and paid automatically</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Navigate compliance-gated transfer: royalties calculated and paid automatically</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Simple payment flow with instant passport transfer to new owner</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Collector reviews and approves transfer, completing passport handover</span>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Home, ChevronRight, Shield, Percent, Send, Tag, Check, DollarSign, Package, Mail } from 'lucide-react';
 
-export default function ResellerStep5({ handlePayRoyalty }) {
+export default function ResellerStep5({ handleSendToCollector }) {
   const [salePrice, setSalePrice] = useState('');
   const [collectorEmail, setCollectorEmail] = useState('');
   
@@ -32,7 +32,7 @@ export default function ResellerStep5({ handlePayRoyalty }) {
             <span>Le Régulateur Blanc</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Review Transfer</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Validate asset rules and confirm settlement payment</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Review details and send to collector for approval</p>
         </div>
 
         {/* Watch Summary Card */}
@@ -292,7 +292,7 @@ export default function ResellerStep5({ handlePayRoyalty }) {
                   ? 'text-gray-600 dark:text-gray-400'
                   : 'text-gray-500 dark:text-gray-400'
               }`}>
-                Royalty is automatically calculated based on asset rules. Payment is required to complete settlement.
+                Collector will review passport details before accepting. Royalty payment will be processed after collector approval.
               </p>
             </div>
           </div>
@@ -300,7 +300,7 @@ export default function ResellerStep5({ handlePayRoyalty }) {
 
         {/* Action Button */}
         <button
-          onClick={() => isFormValid && handlePayRoyalty(salePriceNum, royaltyAmount, collectorEmail)}
+          onClick={() => isFormValid && handleSendToCollector(salePriceNum, royaltyAmount, collectorEmail)}
           disabled={!isFormValid}
           className={`w-full flex items-center justify-center gap-2 text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-200 ${
             isFormValid
@@ -309,7 +309,7 @@ export default function ResellerStep5({ handlePayRoyalty }) {
           }`}
         >
           <Send className="w-5 h-5" />
-          Pay Royalty & Complete Transfer
+          Send to Collector for Review
         </button>
       </div>
     </div>

@@ -7,8 +7,9 @@ import { useDarkMode } from '../../contexts/DarkModeContext';
 import CollectorStep0 from '../../components/collector/CollectorStep0';
 import CollectorStep1 from '../../components/collector/CollectorStep1';
 import CollectorStep2 from '../../components/collector/CollectorStep2';
-import CollectorStep3 from '../../components/collector/CollectorStep3';
+import CollectorStep3 from '../../components/collector/CollectorStep3Review';
 import CollectorStep4 from '../../components/collector/CollectorStep4';
+import CollectorStep5 from '../../components/collector/CollectorStep5';
 
 export default function DemoCollector() {
   const navigate = useNavigate();
@@ -20,8 +21,9 @@ export default function DemoCollector() {
     0: 'browse-chrono24',
     1: 'order-confirmed',
     2: 'inbox',
-    3: 'view-passport',
-    4: 'summary'
+    3: 'review-passport',
+    4: 'view-passport',
+    5: 'summary'
   };
 
   // Reverse mapping for fragment to step
@@ -70,8 +72,8 @@ export default function DemoCollector() {
 
   // Faircut sidebar navigation items
   const navItems = [
-    { icon: Package, label: 'My Passports', active: currentStep === 3 },
-    { icon: RefreshCw, label: 'Transfers', active: false },
+    { icon: Package, label: 'My Passports', active: currentStep === 4 },
+    { icon: RefreshCw, label: 'Transfers', active: currentStep === 3 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
@@ -80,8 +82,9 @@ export default function DemoCollector() {
     { step: 0, emoji: '🛒', label: 'Product Page' },
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
-    { step: 3, emoji: '🎫', label: 'Digital Passport' },
-    { step: 4, emoji: '🎯', label: 'Experience Complete' },
+    { step: 3, emoji: '🔍', label: 'Review Transfer' },
+    { step: 4, emoji: '🎫', label: 'Digital Passport' },
+    { step: 5, emoji: '🎯', label: 'Experience Complete' },
   ];
 
   return (
@@ -154,8 +157,8 @@ export default function DemoCollector() {
         </div>
       </div>
 
-      {/* Header - Only show for steps 3-4 (inside Faircut platform) */}
-      {(currentStep === 3 || currentStep === 4) && (
+      {/* Header - Only show for steps 3-5 (inside Faircut platform) */}
+      {(currentStep >= 3 && currentStep <= 5) && (
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -202,9 +205,9 @@ export default function DemoCollector() {
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={currentStep === 3 ? "flex" : ""}>
-        {/* Sidebar Navigation - Only show for step 3 (inside Faircut platform) */}
-        {currentStep === 3 && (
+      <div className={(currentStep >= 3 && currentStep <= 4) ? "flex" : ""}>
+        {/* Sidebar Navigation - Only show for steps 3-4 (inside Faircut platform) */}
+        {(currentStep >= 3 && currentStep <= 4) && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
             <nav className="p-4 space-y-1">
               {navItems.map((item, idx) => (
@@ -225,7 +228,7 @@ export default function DemoCollector() {
         )}
 
       {/* Main Content Area */}
-      <main className={(currentStep === 3 || currentStep === 4) ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
+      <main className={(currentStep >= 3 && currentStep <= 5) ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
           
           {/* Step 0: Chrono24 Product Page */}
           {currentStep === 0 && <CollectorStep0 setCurrentStep={updateStep} />}
@@ -236,11 +239,14 @@ export default function DemoCollector() {
           {/* Step 2: Inbox */}
           {currentStep === 2 && <CollectorStep2 setCurrentStep={updateStep} />}
 
-          {/* Step 3: View Passport (INSIDE FAIRCUT) */}
+          {/* Step 3: Review & Approve Transfer (INSIDE FAIRCUT) */}
           {currentStep === 3 && <CollectorStep3 setCurrentStep={updateStep} />}
 
-          {/* Step 4: Demo Summary */}
-          {currentStep === 4 && <CollectorStep4 navigate={navigate} />}
+          {/* Step 4: View Passport (INSIDE FAIRCUT) */}
+          {currentStep === 4 && <CollectorStep4 setCurrentStep={updateStep} />}
+
+          {/* Step 5: Demo Summary */}
+          {currentStep === 5 && <CollectorStep5 navigate={navigate} />}
 
         </main>
       </div>

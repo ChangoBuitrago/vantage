@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Home, ChevronRight, TrendingUp, Users, Package, DollarSign, Shield, BarChart3, ArrowUp, ArrowDown, Calendar, Clock, Eye, CheckCircle } from 'lucide-react';
+import { Home, ChevronRight, TrendingUp, Users, Package, DollarSign, Shield, BarChart3, ArrowUp, ArrowDown, Calendar, Clock, Eye, CheckCircle, RefreshCw, Lock, Zap, Target, CreditCard, Building2, Wallet } from 'lucide-react';
 
 export default function CreatorStep3() {
   const [timeRange, setTimeRange] = useState('30d');
@@ -24,9 +24,9 @@ export default function CreatorStep3() {
         { name: 'Astro Boy', issued: 4, active: 4, revenue: 24800, trend: '+12%' },
       ],
       activity: [
-        { action: 'Passport Issued', collection: 'Alain Silberstein', watch: '#042', owner: 'Maria Reseller', time: 'Just now', status: 'success' },
-        { action: 'Transfer Completed', collection: 'Konstantin Chaykin', watch: '#027', owner: 'John Collector', time: '2 hours ago', status: 'success' },
-        { action: 'Royalty Payment', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'success' },
+        { action: 'Royalty Received', collection: 'Alain Silberstein', watch: '#042', amount: 'CHF 2,700', time: 'Just now', status: 'royalty', type: 'settlement' },
+        { action: 'Transfer Lock Enforced', collection: 'Konstantin Chaykin', watch: '#027', owner: 'Blocked: 45 days left', time: '2 hours ago', status: 'lock', type: 'governance' },
+        { action: 'Royalty Received', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'royalty', type: 'settlement' },
       ]
     },
     '30d': {
@@ -47,10 +47,10 @@ export default function CreatorStep3() {
         { name: 'Astro Boy', issued: 208, active: 197, revenue: 248600, trend: '+22%' },
       ],
       activity: [
-        { action: 'Passport Issued', collection: 'Alain Silberstein', watch: '#042', owner: 'Maria Reseller', time: 'Just now', status: 'success' },
-        { action: 'Transfer Completed', collection: 'Konstantin Chaykin', watch: '#027', owner: 'John Collector', time: '2 hours ago', status: 'success' },
-        { action: 'Royalty Payment', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'success' },
-        { action: 'Passport Viewed', collection: 'Vianney Halter', watch: '#018', owner: 'Sarah Williams', time: '8 hours ago', status: 'info' },
+        { action: 'Royalty Received', collection: 'Alain Silberstein', watch: '#042', amount: 'CHF 2,700', time: 'Just now', status: 'royalty', type: 'settlement' },
+        { action: 'Transfer Lock Enforced', collection: 'Konstantin Chaykin', watch: '#027', owner: 'Blocked: 45 days left', time: '2 hours ago', status: 'lock', type: 'governance' },
+        { action: 'Royalty Received', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'royalty', type: 'settlement' },
+        { action: 'Compliance Check Passed', collection: 'Vianney Halter', watch: '#018', owner: 'KYC verified', time: '8 hours ago', status: 'compliance', type: 'governance' },
       ]
     },
     '12m': {
@@ -71,11 +71,11 @@ export default function CreatorStep3() {
         { name: 'Astro Boy', issued: 208, active: 197, revenue: 248600, trend: '+58%' },
       ],
       activity: [
-        { action: 'Passport Issued', collection: 'Alain Silberstein', watch: '#042', owner: 'Maria Reseller', time: 'Just now', status: 'success' },
-        { action: 'Transfer Completed', collection: 'Konstantin Chaykin', watch: '#027', owner: 'John Collector', time: '2 hours ago', status: 'success' },
-        { action: 'Royalty Payment', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'success' },
-        { action: 'Passport Viewed', collection: 'Vianney Halter', watch: '#018', owner: 'Sarah Williams', time: '8 hours ago', status: 'info' },
-        { action: 'Collection Created', collection: 'Astro Boy', watch: null, owner: null, time: '2 days ago', status: 'success' },
+        { action: 'Royalty Received', collection: 'Alain Silberstein', watch: '#042', amount: 'CHF 2,700', time: 'Just now', status: 'royalty', type: 'settlement' },
+        { action: 'Transfer Lock Enforced', collection: 'Konstantin Chaykin', watch: '#027', owner: 'Blocked: 45 days left', time: '2 hours ago', status: 'lock', type: 'governance' },
+        { action: 'Royalty Received', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'royalty', type: 'settlement' },
+        { action: 'Compliance Check Passed', collection: 'Vianney Halter', watch: '#018', owner: 'KYC verified', time: '8 hours ago', status: 'compliance', type: 'governance' },
+        { action: 'Asset Rules Activated', collection: 'Astro Boy', watch: null, owner: '178 passports', time: '2 days ago', status: 'activation', type: 'governance' },
       ]
     }
   };
@@ -95,10 +95,10 @@ export default function CreatorStep3() {
             <span>Dashboard</span>
           </div>
           <div className="flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Creator Dashboard</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Monitor your collections, passports, and royalty revenue</p>
-            </div>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Analytics Dashboard</h1>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Secondary market performance and governance metrics</p>
+          </div>
             
             {/* Time Range Filter */}
             <div className="flex gap-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-lg p-1">
@@ -136,72 +136,299 @@ export default function CreatorStep3() {
           </div>
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-          {/* Total Collections */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
-                <Package className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+        {/* Hero Metric - Secondary Market Revenue */}
+        <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-6 mb-4 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIgLz48L3N2Zz4=')] opacity-30"></div>
+          <div className="relative">
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                  <DollarSign className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-white/90 text-sm font-medium">Secondary Market Revenue</p>
+                  <p className="text-white/70 text-xs">Royalties from resales</p>
+                </div>
               </div>
-              <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
+              <span className="flex items-center gap-1 px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-bold text-white">
                 <ArrowUp className="w-3 h-3" />
                 {stats.monthlyGrowth}%
               </span>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Total Collections</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalCollections}</p>
+            <p className="text-5xl font-black text-white mb-2">CHF {stats.royaltiesEarned.toLocaleString()}</p>
+            <p className="text-white/80 text-sm font-medium mb-4">
+              {timeRange === '7d' ? 'Last 7 days' : timeRange === '30d' ? 'Last 30 days' : 'Last 12 months'}
+            </p>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-white/70 text-xs mb-1">Avg. per Transfer</p>
+                <p className="text-white text-lg font-bold">CHF {Math.round(stats.royaltiesEarned / 45).toLocaleString()}</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-white/70 text-xs mb-1">Total Transfers</p>
+                <p className="text-white text-lg font-bold">45</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                <p className="text-white/70 text-xs mb-1">Compliance Rate</p>
+                <p className="text-white text-lg font-bold">100%</p>
+              </div>
+            </div>
           </div>
+        </div>
 
-          {/* Passports Issued */}
+        {/* Key Governance Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          {/* Secondary Market Transactions */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <RefreshCw className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               </div>
               <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
                 <ArrowUp className="w-3 h-3" />
                 12%
               </span>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Passports Issued</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.totalPassportsIssued.toLocaleString()}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{stats.activePassports.toLocaleString()} active</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Secondary Transfers</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">45</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Across all platforms</p>
           </div>
 
-          {/* Active Owners */}
+          {/* Asset Rules Enforced */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-                <Users className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                <Shield className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              </div>
+              <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
+                <CheckCircle className="w-3 h-3" />
+                100%
+              </span>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Compliance Rate</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">45/45</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">All rules satisfied</p>
+          </div>
+
+          {/* Transfer Locks Active */}
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                <Lock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              </div>
+              <span className="flex items-center gap-1 text-xs font-semibold text-amber-600 dark:text-amber-400">
+                <ArrowDown className="w-3 h-3" />
+                5%
+              </span>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Active Lock Periods</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">87</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Avg. 134 days remaining</p>
+          </div>
+
+          {/* Average Royalty */}
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               </div>
               <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
                 <ArrowUp className="w-3 h-3" />
-                8%
+                18%
               </span>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Active Owners</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats.activePassports.toLocaleString()}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Avg. Royalty/Transfer</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF {Math.round(stats.royaltiesEarned / 45).toLocaleString()}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">From {stats.royaltiesEarned.toLocaleString()} total</p>
+          </div>
+        </div>
+
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+          {/* Platform Distribution */}
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+              <Target className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              Platform Distribution
+            </h3>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Where your products are being resold</p>
+
+            <div className="space-y-3">
+              {/* Chrono24 */}
+              <div className="relative">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                      <span className="text-xs font-bold text-blue-600 dark:text-blue-400">C24</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">Chrono24</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">19 transfers</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">CHF 54,150</p>
+                    <span className="text-xs text-blue-600 dark:text-blue-400 font-semibold">42%</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div className="bg-blue-600 h-2 rounded-full transition-all" style={{ width: '42%' }}></div>
+                </div>
+              </div>
+
+              {/* eBay */}
+              <div className="relative">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                      <span className="text-xs font-bold text-purple-600 dark:text-purple-400">eB</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">eBay</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">12 transfers</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">CHF 34,380</p>
+                    <span className="text-xs text-purple-600 dark:text-purple-400 font-semibold">27%</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div className="bg-purple-600 h-2 rounded-full transition-all" style={{ width: '27%' }}></div>
+                </div>
+              </div>
+
+              {/* Private Sales */}
+              <div className="relative">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                      <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">Private Sales</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">8 transfers</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">CHF 22,920</p>
+                    <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">18%</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div className="bg-emerald-600 h-2 rounded-full transition-all" style={{ width: '18%' }}></div>
+                </div>
+              </div>
+
+              {/* WatchBox */}
+              <div className="relative">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                      <Package className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">WatchBox</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">4 transfers</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">CHF 11,460</p>
+                    <span className="text-xs text-amber-600 dark:text-amber-400 font-semibold">9%</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div className="bg-amber-600 h-2 rounded-full transition-all" style={{ width: '9%' }}></div>
+                </div>
+              </div>
+
+              {/* Others */}
+              <div className="relative">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
+                      <span className="text-xs font-bold text-slate-600 dark:text-slate-400">•••</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900 dark:text-white">Others</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">2 transfers</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">CHF 5,730</p>
+                    <span className="text-xs text-slate-600 dark:text-slate-400 font-semibold">4%</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                  <div className="bg-slate-600 h-2 rounded-full transition-all" style={{ width: '4%' }}></div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Royalties Earned */}
-          <div className="bg-white dark:bg-slate-900 border-2 border-emerald-200 dark:border-emerald-800 rounded-2xl p-4 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20"></div>
-            <div className="relative">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/50 rounded-lg flex items-center justify-center">
-                  <DollarSign className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          {/* Ownership Retention */}
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+              <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              Ownership Retention
+            </h3>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">How long owners hold before reselling</p>
+
+            {/* Average Hold Period */}
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl p-4 mb-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Average Hold Period</p>
+                  <p className="text-3xl font-black text-emerald-600 dark:text-emerald-400">487 days</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">16 months average</p>
                 </div>
-                <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
-                  <ArrowUp className="w-3 h-3" />
-                  {stats.monthlyGrowth}%
-                </span>
+                <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/40 rounded-full flex items-center justify-center">
+                  <TrendingUp className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                </div>
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Royalties Earned</p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF {stats.royaltiesEarned.toLocaleString()}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                {timeRange === '7d' ? 'Last 7 days' : timeRange === '30d' ? 'Last 30 days' : 'Last 12 months'}
-              </p>
+            </div>
+
+            {/* Retention Breakdown */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">Long-term (1+ years)</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">68%</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">31 owners</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">Medium (6-12 months)</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">24%</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">11 owners</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                  <p className="text-sm font-medium text-gray-900 dark:text-white">Early (&lt; 6 months)</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">8%</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">3 owners</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
+                <Lock className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                <span>180-day transfer lock enforced on all holdings</span>
+              </div>
             </div>
           </div>
         </div>
@@ -211,9 +438,9 @@ export default function CreatorStep3() {
           <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
               <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Collection Performance
+              Secondary Market Revenue by Collection
             </h3>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Passports issued and royalties by collection</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Royalties captured from resales</p>
 
             <div className="space-y-3">
               {collections.map((collection, index) => (
@@ -257,42 +484,53 @@ export default function CreatorStep3() {
             </div>
           </div>
 
-          {/* Quick Insights */}
+          {/* Market Intelligence */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Quick Insights
+              <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              Market Intelligence
             </h3>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Key performance metrics</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Real-time secondary market data</p>
 
             <div className="space-y-2">
+              {/* Total Revenue */}
+              <div className="p-3 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+                <div className="flex items-center gap-2 mb-1">
+                  <DollarSign className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Total Royalties</p>
+                </div>
+                <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">CHF {stats.royaltiesEarned.toLocaleString()}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{timeRange === '7d' ? 'Last 7 days' : timeRange === '30d' ? 'Last 30 days' : 'Last 12 months'}</p>
+              </div>
+
+              {/* Average Secondary Sale Price */}
               <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
-                  <DollarSign className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Avg. Resale Price</p>
+                  <TrendingUp className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Avg. Secondary Price</p>
                 </div>
                 <p className="text-xl font-bold text-gray-900 dark:text-white">CHF {stats.averageResalePrice.toLocaleString()}</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">+15% from last period</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5">+93% above retail</p>
               </div>
 
+              {/* Enforcement Rate */}
               <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
-                  <TrendingUp className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
-                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Ownership Retention</p>
+                  <Shield className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Enforcement Rate</p>
                 </div>
-                <p className="text-xl font-bold text-gray-900 dark:text-white">95.1%</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Excellent engagement</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white">100%</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">All transfers compliant</p>
               </div>
 
+              {/* Platform Coverage */}
               <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <div className="flex items-center gap-2 mb-1">
-                  <Eye className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
-                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Passport Views</p>
+                  <Target className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Platform Coverage</p>
                 </div>
-                <p className="text-xl font-bold text-gray-900 dark:text-white">12,847</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
-                  {timeRange === '7d' ? 'Last 7 days' : timeRange === '30d' ? 'Last 30 days' : 'Last 12 months'}
-                </p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white">5</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Major marketplaces</p>
               </div>
             </div>
           </div>
@@ -304,45 +542,72 @@ export default function CreatorStep3() {
             <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             Recent Activity
           </h3>
-          <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Latest passport events across all collections</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Latest settlement and governance events</p>
 
           <div className="space-y-2">
-            {activity.map((activityItem, index) => (
-              <div key={index} className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                  activityItem.status === 'success'
-                    ? 'bg-green-100 dark:bg-green-900/30'
-                    : 'bg-blue-100 dark:bg-blue-900/30'
-                }`}>
-                  {activityItem.status === 'success' ? (
-                    <CheckCircle className={`w-5 h-5 ${
-                      activityItem.status === 'success'
-                        ? 'text-green-600 dark:text-green-400'
-                        : 'text-blue-600 dark:text-blue-400'
-                    }`} />
-                  ) : (
-                    <Eye className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  )}
-                </div>
-                
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-gray-900 dark:text-white">{activityItem.action}</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
-                    {activityItem.collection} {activityItem.watch && `• ${activityItem.watch}`}
-                  </p>
-                </div>
+            {activity.map((activityItem, index) => {
+              const getActivityStyle = (status) => {
+                switch(status) {
+                  case 'royalty':
+                    return {
+                      bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
+                      icon: <DollarSign className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+                      textColor: 'text-emerald-600 dark:text-emerald-400'
+                    };
+                  case 'lock':
+                    return {
+                      bgColor: 'bg-amber-100 dark:bg-amber-900/30',
+                      icon: <Lock className="w-5 h-5 text-amber-600 dark:text-amber-400" />,
+                      textColor: 'text-amber-600 dark:text-amber-400'
+                    };
+                  case 'compliance':
+                    return {
+                      bgColor: 'bg-blue-100 dark:bg-blue-900/30',
+                      icon: <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+                      textColor: 'text-blue-600 dark:text-blue-400'
+                    };
+                  case 'activation':
+                    return {
+                      bgColor: 'bg-purple-100 dark:bg-purple-900/30',
+                      icon: <Zap className="w-5 h-5 text-purple-600 dark:text-purple-400" />,
+                      textColor: 'text-purple-600 dark:text-purple-400'
+                    };
+                  default:
+                    return {
+                      bgColor: 'bg-green-100 dark:bg-green-900/30',
+                      icon: <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />,
+                      textColor: 'text-green-600 dark:text-green-400'
+                    };
+                }
+              };
 
-                <div className="text-right flex-shrink-0">
-                  {activityItem.owner && (
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">{activityItem.owner}</p>
-                  )}
-                  {activityItem.amount && (
-                    <p className="text-sm font-medium text-emerald-600 dark:text-emerald-400">{activityItem.amount}</p>
-                  )}
-                  <p className="text-xs text-gray-500 dark:text-gray-400">{activityItem.time}</p>
+              const style = getActivityStyle(activityItem.status);
+
+              return (
+                <div key={index} className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${style.bgColor}`}>
+                    {style.icon}
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-gray-900 dark:text-white">{activityItem.action}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                      {activityItem.collection} {activityItem.watch && `• ${activityItem.watch}`}
+                    </p>
+                  </div>
+
+                  <div className="text-right flex-shrink-0">
+                    {activityItem.owner && (
+                      <p className="text-sm font-medium text-gray-900 dark:text-white">{activityItem.owner}</p>
+                    )}
+                    {activityItem.amount && (
+                      <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{activityItem.amount}</p>
+                    )}
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{activityItem.time}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

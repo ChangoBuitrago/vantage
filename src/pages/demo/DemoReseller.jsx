@@ -9,8 +9,9 @@ import ResellerStep1 from '../../components/reseller/ResellerStep1';
 import ResellerStep2 from '../../components/reseller/ResellerStep2';
 import ResellerStep3 from '../../components/reseller/ResellerStep3';
 import ResellerStep4 from '../../components/reseller/ResellerStep5';
-import ResellerStep5 from '../../components/reseller/ResellerStep7';
-import ResellerStep6 from '../../components/reseller/ResellerStep8';
+import ResellerStep5 from '../../components/reseller/ResellerStep6';
+import ResellerStep6 from '../../components/reseller/ResellerStep7';
+import ResellerStep7 from '../../components/reseller/ResellerStep8';
 
 export default function DemoReseller() {
   const navigate = useNavigate();
@@ -31,8 +32,9 @@ export default function DemoReseller() {
     2: 'email-received',
     3: 'view-passport',
     4: 'review-transfer',
-    5: 'transfer-complete',
-    6: 'benefits'
+    5: 'awaiting-collector',
+    6: 'transfer-complete',
+    7: 'benefits'
   };
 
   // Reverse mapping for fragment to step
@@ -85,15 +87,32 @@ export default function DemoReseller() {
 
   const navItems = [
     { icon: Package, label: 'My Passports', active: currentStep === 3 },
-    { icon: RefreshCw, label: 'Transfers', active: currentStep === 4 || currentStep === 5 },
+    { icon: RefreshCw, label: 'Transfers', active: currentStep >= 4 && currentStep <= 6 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
-  const handlePayRoyalty = (price, royalty, email) => {
+  const handleSendToCollector = (price, royalty, email) => {
     setSalePrice(price);
     setRoyaltyAmount(royalty);
     setCollectorEmail(email);
+    // Navigate directly to awaiting collector step - no payment yet
+    updateStep(5);
+  };
+
+  const handleCollectorApproval = () => {
+    // When collector approves, show payment processing modal
     setShowPaymentModal(true);
+    // Auto-process payment
+    setTimeout(() => {
+      setShowPaymentModal(false);
+      setShowSuccessModal(true);
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        setShowSuccessToast(true);
+        updateStep(6); // Navigate to transfer complete
+        setTimeout(() => setShowSuccessToast(false), 3000);
+      }, 2000);
+    }, 2000);
   };
 
   const confirmPayment = () => {
@@ -102,7 +121,7 @@ export default function DemoReseller() {
     setTimeout(() => {
       setShowSuccessModal(false);
       setShowSuccessToast(true);
-      updateStep(5);
+      updateStep(6);
       setTimeout(() => setShowSuccessToast(false), 3000);
     }, 2000);
   };
@@ -115,21 +134,22 @@ export default function DemoReseller() {
     { step: 2, emoji: '📧', label: 'Inbox' },
     { step: 3, emoji: '🎫', label: 'Digital Passport' },
     { step: 4, emoji: '📋', label: 'Transfer Review' },
-    { step: 5, emoji: '🎉', label: 'Transfer Complete' },
-    { step: 6, emoji: '✨', label: 'Experience Complete' },
+    { step: 5, emoji: '⏳', label: 'Awaiting Collector' },
+    { step: 6, emoji: '🎉', label: 'Transfer Complete' },
+    { step: 7, emoji: '✨', label: 'Experience Complete' },
   ];
 
   return (
     <div className={`min-h-screen ${currentStep >= 3 ? 'bg-slate-50 dark:bg-slate-950' : 'bg-white'}`}>
       {/* Success Toast */}
       {showSuccessToast && (
-        <div className="fixed top-24 right-6 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl z-50 animate-slide-in-right flex items-center gap-3">
+        <div className="fixed top-24 right-6 bg-blue-500 text-white px-6 py-4 rounded-xl shadow-2xl z-50 animate-slide-in-right flex items-center gap-3">
           <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
             <Check className="w-5 h-5" />
           </div>
           <div>
-            <div className="font-semibold">Transfer Complete!</div>
-            <div className="text-sm text-white/90">Passport transferred successfully</div>
+            <div className="font-semibold">Royalty Payment Confirmed!</div>
+            <div className="text-sm text-white/90">Awaiting collector review</div>
           </div>
         </div>
       )}
@@ -142,8 +162,8 @@ export default function DemoReseller() {
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Wallet className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Confirm Payment</h3>
-              <p className="text-gray-600 dark:text-gray-400">Pay royalty to complete transfer</p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Processing Payment</h3>
+              <p className="text-gray-600 dark:text-gray-400">Collector approved - processing automatic royalty payment</p>
             </div>
             
             <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 mb-6">
@@ -202,7 +222,7 @@ export default function DemoReseller() {
               <Check className="w-10 h-10 text-white" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Payment Successful!</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">Processing transfer...</p>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">Sending to collector for review...</p>
             <div className="flex items-center justify-center gap-2">
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
               <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
@@ -281,7 +301,7 @@ export default function DemoReseller() {
       </div>
 
       {/* Header - Only show for steps 3+ (inside Faircut platform) */}
-      {currentStep >= 3 && (
+      {currentStep >= 3 && currentStep < 7 && (
       <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-[120rem] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -294,7 +314,7 @@ export default function DemoReseller() {
                   <div className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 bg-clip-text text-transparent">
                     Faircut
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 -mt-0.5">Collector</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 -mt-0.5">Reseller</div>
                 </div>
               </div>
             </div>
@@ -328,9 +348,9 @@ export default function DemoReseller() {
       )}
 
       {/* Main Content with conditional sidebar */}
-      <div className={currentStep >= 3 && currentStep < 6 ? "flex" : ""}>
-        {/* Sidebar Navigation - Only show for steps 3-5 (inside Faircut platform) */}
-        {currentStep >= 3 && currentStep < 6 && (
+      <div className={currentStep >= 3 && currentStep < 7 ? "flex" : ""}>
+        {/* Sidebar Navigation - Only show for steps 3-6 (inside Faircut platform) */}
+        {currentStep >= 3 && currentStep < 7 && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
             <nav className="p-4 space-y-1">
               {navItems.map((item, idx) => (
@@ -351,7 +371,7 @@ export default function DemoReseller() {
         )}
 
       {/* Main Content Area */}
-      <main className={currentStep >= 3 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
+      <main className={currentStep >= 3 && currentStep < 7 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
           
           {/* Step 0: Louis Erard Website - Product Page */}
           {currentStep === 0 && <ResellerStep0 setCurrentStep={updateStep} />}
@@ -365,14 +385,17 @@ export default function DemoReseller() {
           {/* Step 3: Digital Passport View (INSIDE FAIRCUT) */}
           {currentStep === 3 && <ResellerStep3 setCurrentStep={updateStep} />}
 
-          {/* Step 4: Review Transfer & Pay Royalty */}
-          {currentStep === 4 && <ResellerStep4 setCurrentStep={updateStep} handlePayRoyalty={handlePayRoyalty} />}
+          {/* Step 4: Review Transfer & Send to Collector */}
+          {currentStep === 4 && <ResellerStep4 setCurrentStep={updateStep} handleSendToCollector={handleSendToCollector} />}
 
-          {/* Step 5: Transfer Complete */}
-          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} />}
+          {/* Step 5: Awaiting Collector Review */}
+          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} collectorEmail={collectorEmail} handleCollectorApproval={handleCollectorApproval} />}
 
-          {/* Step 6: Benefits & Demo Complete */}
-          {currentStep === 6 && <ResellerStep6 navigate={navigate} />}
+          {/* Step 6: Transfer Complete */}
+          {currentStep === 6 && <ResellerStep6 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} />}
+
+          {/* Step 7: Benefits & Demo Complete */}
+          {currentStep === 7 && <ResellerStep7 navigate={navigate} />}
 
         </main>
       </div>

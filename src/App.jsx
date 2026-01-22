@@ -15,7 +15,9 @@ function ConditionalDarkModeToggle() {
   const location = useLocation();
   
   // Hide on demo pages (they have their own integrated toggle)
-  if (location.pathname.includes('/demo/creator') || location.pathname.includes('/demo/collector') || location.pathname.includes('/demo/reseller')) {
+  if (location.pathname.includes('/demo/creator') || 
+      location.pathname.includes('/demo/collector') || 
+      location.pathname.includes('/demo/reseller')) {
     return null;
   }
   

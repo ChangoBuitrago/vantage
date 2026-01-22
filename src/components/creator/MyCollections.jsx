@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, ChevronRight, Package, Shield, Calendar, Percent, Clock } from 'lucide-react';
+import { Home, ChevronRight, Package, Shield, Calendar, Percent, Clock, Heart, Wrench, Gift, Zap } from 'lucide-react';
 
 export default function MyCollections({ setCurrentStep }) {
   const collectionName = "Le Régulateur x Alain Silberstein";
@@ -113,6 +113,42 @@ export default function MyCollections({ setCurrentStep }) {
               </div>
               <p className="text-base font-bold text-emerald-600 dark:text-emerald-400">October 2025</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Collection release</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Owner Benefits Summary */}
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6 mb-6">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <Heart className="w-5 h-5 text-pink-600 dark:text-pink-400" />
+            Owner Benefits
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Wrench className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Extended Service</p>
+              </div>
+              <p className="text-base font-bold text-pink-600 dark:text-pink-400">5-year warranty</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Plus annual servicing</p>
+            </div>
+
+            <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Gift className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Exclusive Events</p>
+              </div>
+              <p className="text-base font-bold text-pink-600 dark:text-pink-400">Priority invites</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Launches & gatherings</p>
+            </div>
+
+            <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <Zap className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Early Access</p>
+              </div>
+              <p className="text-base font-bold text-pink-600 dark:text-pink-400">New releases</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">First to purchase</p>
             </div>
           </div>
         </div>
