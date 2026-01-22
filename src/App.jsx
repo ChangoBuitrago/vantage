@@ -5,7 +5,7 @@ import DarkModeToggle from './components/DarkModeToggle';
 import Landing from './pages/landing/Landing';
 import Slides from './pages/presentations/Slides';
 import ManuelEmch from './pages/presentations/ManuelEmch';
-import FrankPagano from './pages/presentations/FrankPagano';
+import LouisErard from './pages/presentations/LouisErard';
 import Demo from './pages/demo/Demo';
 import DemoCreator from './pages/demo/DemoCreator';
 import DemoCollector from './pages/demo/DemoCollector';
@@ -42,7 +42,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/slides" element={<Slides />} />
           <Route path="/manuel-emch" element={<ManuelEmch />} />
-          <Route path="/frank-pagano" element={<FrankPagano />} />
+          <Route path="/louis-erard" element={<LouisErard />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/demo/creator" element={<DemoCreator />} />
           <Route path="/demo/reseller" element={<DemoReseller />} />

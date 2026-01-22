@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Home, ChevronRight, TrendingUp, Users, Package, DollarSign, Shield, BarChart3, ArrowUp, ArrowDown, Calendar, Clock, Eye, CheckCircle, RefreshCw, Lock, Zap, Target, CreditCard, Building2, Wallet } from 'lucide-react';
+import { Home, ChevronRight, TrendingUp, Users, Package, DollarSign, Shield, BarChart3, ArrowUp, ArrowDown, Calendar, Clock, Eye, CheckCircle, RefreshCw, Lock, Zap, Target, CreditCard, Building2, Wallet, MapPin, Globe } from 'lucide-react';
 
 export default function CreatorStep3() {
   const [timeRange, setTimeRange] = useState('30d');
@@ -27,6 +27,13 @@ export default function CreatorStep3() {
         { action: 'Royalty Received', collection: 'Alain Silberstein', watch: '#042', amount: 'CHF 2,700', time: 'Just now', status: 'royalty', type: 'settlement' },
         { action: 'Transfer Lock Enforced', collection: 'Konstantin Chaykin', watch: '#027', owner: 'Blocked: 45 days left', time: '2 hours ago', status: 'lock', type: 'governance' },
         { action: 'Royalty Received', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'royalty', type: 'settlement' },
+      ],
+      geography: [
+        { country: 'Switzerland', flag: '🇨🇭', transfers: 8, revenue: 51200, percentage: 40 },
+        { country: 'Germany', flag: '🇩🇪', transfers: 6, revenue: 35700, percentage: 28 },
+        { country: 'United States', flag: '🇺🇸', transfers: 5, revenue: 22880, percentage: 18 },
+        { country: 'United Kingdom', flag: '🇬🇧', transfers: 3, revenue: 11460, percentage: 9 },
+        { country: 'Japan', flag: '🇯🇵', transfers: 2, revenue: 6400, percentage: 5 },
       ]
     },
     '30d': {
@@ -51,6 +58,13 @@ export default function CreatorStep3() {
         { action: 'Transfer Lock Enforced', collection: 'Konstantin Chaykin', watch: '#027', owner: 'Blocked: 45 days left', time: '2 hours ago', status: 'lock', type: 'governance' },
         { action: 'Royalty Received', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'royalty', type: 'settlement' },
         { action: 'Compliance Check Passed', collection: 'Vianney Halter', watch: '#018', owner: 'KYC verified', time: '8 hours ago', status: 'compliance', type: 'governance' },
+      ],
+      geography: [
+        { country: 'Switzerland', flag: '🇨🇭', transfers: 19, revenue: 54150, percentage: 42 },
+        { country: 'Germany', flag: '🇩🇪', transfers: 12, revenue: 34380, percentage: 27 },
+        { country: 'United States', flag: '🇺🇸', transfers: 8, revenue: 22920, percentage: 18 },
+        { country: 'United Kingdom', flag: '🇬🇧', transfers: 4, revenue: 11460, percentage: 9 },
+        { country: 'Japan', flag: '🇯🇵', transfers: 2, revenue: 5730, percentage: 4 },
       ]
     },
     '12m': {
@@ -76,13 +90,20 @@ export default function CreatorStep3() {
         { action: 'Royalty Received', collection: 'Astro Boy', watch: '#184', amount: 'CHF 485', time: '5 hours ago', status: 'royalty', type: 'settlement' },
         { action: 'Compliance Check Passed', collection: 'Vianney Halter', watch: '#018', owner: 'KYC verified', time: '8 hours ago', status: 'compliance', type: 'governance' },
         { action: 'Asset Rules Activated', collection: 'Astro Boy', watch: null, owner: '178 passports', time: '2 days ago', status: 'activation', type: 'governance' },
+      ],
+      geography: [
+        { country: 'Switzerland', flag: '🇨🇭', transfers: 19, revenue: 180780, percentage: 42 },
+        { country: 'Germany', flag: '🇩🇪', transfers: 12, revenue: 115695, percentage: 27 },
+        { country: 'United States', flag: '🇺🇸', transfers: 8, revenue: 77130, percentage: 18 },
+        { country: 'United Kingdom', flag: '🇬🇧', transfers: 4, revenue: 38565, percentage: 9 },
+        { country: 'Japan', flag: '🇯🇵', transfers: 2, revenue: 17140, percentage: 4 },
       ]
     }
   };
 
   // Get filtered data based on time range
   const currentData = useMemo(() => allData[timeRange] || allData['30d'], [timeRange]);
-  const { stats, collections, activity } = currentData;
+  const { stats, collections, activity, geography } = currentData;
 
   return (
     <div className="px-6 py-8">
@@ -177,7 +198,7 @@ export default function CreatorStep3() {
         </div>
 
         {/* Key Governance Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
           {/* Secondary Market Transactions */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-3">
@@ -194,20 +215,20 @@ export default function CreatorStep3() {
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Across all platforms</p>
           </div>
 
-          {/* Asset Rules Enforced */}
+          {/* Value Protected by Locks */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
                 <Shield className="w-4 h-4 text-purple-600 dark:text-purple-400" />
               </div>
-              <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
-                <CheckCircle className="w-3 h-3" />
-                100%
+              <span className="flex items-center gap-1 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                <Lock className="w-3 h-3" />
+                87
               </span>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Compliance Rate</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">45/45</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">All rules satisfied</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Value Protected by Locks</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF 348K</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">87 watches in lock period</p>
           </div>
 
           {/* Transfer Locks Active */}
@@ -240,6 +261,22 @@ export default function CreatorStep3() {
             <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Avg. Royalty/Transfer</p>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF {Math.round(stats.royaltiesEarned / 45).toLocaleString()}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">From {stats.royaltiesEarned.toLocaleString()} total</p>
+          </div>
+
+          {/* Ownership Retention */}
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center">
+                <Clock className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+              </div>
+              <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
+                <ArrowUp className="w-3 h-3" />
+                68%
+              </span>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ownership Retention</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">487 days</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Average hold period</p>
           </div>
         </div>
 
@@ -366,68 +403,46 @@ export default function CreatorStep3() {
             </div>
           </div>
 
-          {/* Ownership Retention */}
+          {/* Geographic Distribution */}
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
             <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-              <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Ownership Retention
+              <Globe className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              Geographic Distribution
             </h3>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">How long owners hold before reselling</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Market performance by country</p>
 
-            {/* Average Hold Period */}
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl p-4 mb-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Average Hold Period</p>
-                  <p className="text-3xl font-black text-emerald-600 dark:text-emerald-400">487 days</p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">16 months average</p>
-                </div>
-                <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/40 rounded-full flex items-center justify-center">
-                  <TrendingUp className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
-                </div>
-              </div>
-            </div>
-
-            {/* Retention Breakdown */}
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">Long-term (1+ years)</p>
+              {geography.map((geo, index) => (
+                <div key={index} className="relative">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-slate-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-lg">
+                        {geo.flag}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white">{geo.country}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">{geo.transfers} transfers</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-bold text-gray-900 dark:text-white">CHF {geo.revenue.toLocaleString()}</p>
+                      <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">{geo.percentage}%</span>
+                    </div>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div 
+                      className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all" 
+                      style={{ width: `${geo.percentage}%` }}
+                    ></div>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">68%</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">31 owners</p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">Medium (6-12 months)</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">24%</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">11 owners</p>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-amber-500"></div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">Early (&lt; 6 months)</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">8%</p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">3 owners</p>
-                </div>
-              </div>
+              ))}
             </div>
 
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-                <Lock className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                <span>180-day transfer lock enforced on all holdings</span>
+                <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span>Top 5 markets by secondary sales volume</span>
               </div>
             </div>
           </div>

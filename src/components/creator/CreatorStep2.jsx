@@ -40,7 +40,7 @@ export default function CreatorStep2({ setCurrentStep }) {
   const collectionName = "Le Régulateur x Alain Silberstein";
   const editionSize = 178;
   const reference = "LE78229AA04";
-  const retailPrice = 3000; // CHF - Base retail price
+  const retailPrice = 3000; // CHF - Base resell price
   const productionDate = new Date('2025-10-15').getTime();
   const transferLockDays = 180; // 6 months
   

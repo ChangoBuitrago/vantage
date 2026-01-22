@@ -382,7 +382,7 @@ export default function CreatorStep1({ setCurrentStep }) {
             </h4>
             
             <div className="space-y-3">
-              {/* Base Retail Price */}
+              {/* Base Resell Price */}
               <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
                 <button
                   onClick={() => setExpandedBasePrice(!expandedBasePrice)}
@@ -392,7 +392,7 @@ export default function CreatorStep1({ setCurrentStep }) {
                   <div className="flex-1 text-left">
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <p className="font-semibold text-gray-900 dark:text-white">Base Retail Price</p>
+                        <p className="font-semibold text-gray-900 dark:text-white">Base Resell Price</p>
                         <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{baseRetailPrice}</span>
                       </div>
                       <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
@@ -407,7 +407,7 @@ export default function CreatorStep1({ setCurrentStep }) {
                   <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                     <div className="pt-3 space-y-3">
                       <p className="text-sm text-gray-600 dark:text-gray-400 px-1">
-                        Set the base retail price used as a reference for royalty calculations and minimum resale values.
+                        Set the base resell price used as a reference for royalty calculations and minimum resale values.
                       </p>
                       <div className="flex items-center gap-3">
                         <select
@@ -623,7 +623,7 @@ export default function CreatorStep1({ setCurrentStep }) {
                 <span className="text-sm font-semibold font-mono text-gray-900 dark:text-white">{serialFormat}###</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <span className="text-sm text-gray-600 dark:text-gray-400">Base Retail Price</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">Base Resell Price</span>
                 <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{currency === 'EUR' ? '€' : currency === 'USD' ? '$' : 'CHF '}{baseRetailPrice}</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
