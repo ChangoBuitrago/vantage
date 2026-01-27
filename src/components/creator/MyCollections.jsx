@@ -5,7 +5,6 @@ export default function MyCollections({ setCurrentStep }) {
   const collectionName = "Le Régulateur x Alain Silberstein";
   const editionSize = 178;
   const issued = 0; // Just created, none issued yet
-  const retailPrice = 3000;
   const reference = "LE78229AA04";
 
   return (
@@ -32,7 +31,7 @@ export default function MyCollections({ setCurrentStep }) {
         </div>
 
         {/* Collection Overview Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
@@ -53,17 +52,6 @@ export default function MyCollections({ setCurrentStep }) {
             </div>
             <p className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{issued} <span className="text-lg text-gray-400">/ {editionSize}</span></p>
             <p className="text-sm text-gray-500 dark:text-gray-400">{issued === 0 ? 'Ready to issue' : `${((issued / editionSize) * 100).toFixed(1)}% complete`}</p>
-          </div>
-
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-purple-600 dark:text-purple-400" />
-              </div>
-              <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Retail Price</p>
-            </div>
-            <p className="text-3xl font-bold text-gray-900 dark:text-white mb-1">CHF {retailPrice.toLocaleString()}</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Per piece</p>
           </div>
         </div>
 

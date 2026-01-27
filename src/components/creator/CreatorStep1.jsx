@@ -382,6 +382,51 @@ export default function CreatorStep1({ setCurrentStep }) {
             </h4>
             
             <div className="space-y-3">
+              {/* Transfer Lock */}
+              <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
+                <button
+                  onClick={() => setExpandedTransferLock(!expandedTransferLock)}
+                  className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                >
+                  <Lock className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <div className="flex-1 text-left">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
+                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+                          {Math.floor(transferLockDays / 30)} months
+                        </span>
+                      </div>
+                      <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      Minimum ownership period before transfer is allowed
+                    </p>
+                  </div>
+                </button>
+
+                {expandedTransferLock && (
+                  <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                    <div className="pt-3 space-y-3">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 px-1">
+                        Set minimum holding period to prevent immediate flipping and encourage genuine collecting.
+                      </p>
+                      <select
+                        value={transferLockDays}
+                        onChange={(e) => setTransferLockDays(Number(e.target.value))}
+                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
+                      >
+                        <option value="0">No lock</option>
+                        <option value="90">3 months</option>
+                        <option value="180">6 months</option>
+                        <option value="365">12 months</option>
+                        <option value="730">24 months</option>
+                      </select>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               {/* Base Resell Price */}
               <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
                 <button
@@ -480,51 +525,6 @@ export default function CreatorStep1({ setCurrentStep }) {
                           💡 Example: A watch sold in Year 1 earns {royaltyTiers[0].rate}% royalty. The same watch resold in Year 3+ earns {royaltyTiers[2].rate}%.
                         </p>
                       </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Transfer Lock */}
-              <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
-                <button
-                  onClick={() => setExpandedTransferLock(!expandedTransferLock)}
-                  className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                >
-                  <Lock className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <div className="flex-1 text-left">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
-                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
-                          {Math.floor(transferLockDays / 30)} months
-                        </span>
-                      </div>
-                      <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      Minimum ownership period before transfer is allowed
-                    </p>
-                  </div>
-                </button>
-
-                {expandedTransferLock && (
-                  <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                    <div className="pt-3 space-y-3">
-                      <p className="text-sm text-gray-600 dark:text-gray-400 px-1">
-                        Set minimum holding period to prevent immediate flipping and encourage genuine collecting.
-                      </p>
-                      <select
-                        value={transferLockDays}
-                        onChange={(e) => setTransferLockDays(Number(e.target.value))}
-                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500"
-                      >
-                        <option value="0">No lock</option>
-                        <option value="90">3 months</option>
-                        <option value="180">6 months</option>
-                        <option value="365">12 months</option>
-                        <option value="730">24 months</option>
-                      </select>
                     </div>
                   </div>
                 )}
