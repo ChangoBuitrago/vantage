@@ -57,7 +57,6 @@ export default function CreatorStep2({ setCurrentStep }) {
   ];
 
   const benefits = [
-    { icon: Wrench, title: "Free Annual Service", description: "Complimentary maintenance for life" },
     { icon: Shield, title: "Extended Warranty", description: "5-year international warranty" },
     { icon: Ticket, title: "Exclusive Events", description: "VIP access to brand events" },
     { icon: ShoppingBag, title: "Early Access", description: "First access to new releases" }
