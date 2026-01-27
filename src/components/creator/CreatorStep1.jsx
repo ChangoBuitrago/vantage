@@ -69,7 +69,7 @@ export default function CreatorStep1({ setCurrentStep }) {
   };
 
   const benefits = [
-    { id: 'warranty', label: 'Extended Warranty', description: '5 years international warranty coverage', icon: Shield },
+    { id: 'warranty', label: 'Extended Warranty', description: '3 years international warranty coverage', icon: Shield },
     { id: 'events', label: 'Collector Events Access', description: 'VIP invitations to brand events and launches', icon: Calendar },
     { id: 'early-access', label: 'Early Access to New Releases', description: 'Priority purchasing for limited editions', icon: Gift }
   ];

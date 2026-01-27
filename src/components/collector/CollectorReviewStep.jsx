@@ -245,7 +245,7 @@ export default function CollectorReviewStep({
                 <Wrench className="w-4 h-4 text-pink-600 dark:text-pink-400" />
                 <p className="font-semibold text-gray-900 dark:text-white">Extended Service</p>
               </div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">5-year warranty + service</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">3-year warranty + service</p>
             </div>
 
             <div className="p-4 bg-pink-50 dark:bg-pink-900/20 border border-pink-200 dark:border-pink-800 rounded-lg">
@@ -275,7 +275,7 @@ export default function CollectorReviewStep({
 
           {expandedOwnerBenefits && (
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400 space-y-2">
-              <p>• <strong>Extended Service:</strong> 5-year warranty coverage plus annual complimentary servicing</p>
+              <p>• <strong>Extended Service:</strong> 3-year warranty coverage plus annual complimentary servicing</p>
               <p>• <strong>Exclusive Events:</strong> Priority invitations to brand events, launches, and collector gatherings</p>
               <p>• <strong>Early Access:</strong> First opportunity to purchase new limited edition releases</p>
               <p>• <strong>Lifetime Support:</strong> Direct communication channel with brand for authentication and support</p>

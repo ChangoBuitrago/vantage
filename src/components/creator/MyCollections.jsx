@@ -117,7 +117,7 @@ export default function MyCollections({ setCurrentStep }) {
                 <Wrench className="w-4 h-4 text-pink-600 dark:text-pink-400" />
                 <p className="text-sm font-semibold text-gray-900 dark:text-white">Extended Service</p>
               </div>
-              <p className="text-base font-bold text-pink-600 dark:text-pink-400">5-year warranty</p>
+              <p className="text-base font-bold text-pink-600 dark:text-pink-400">3-year warranty</p>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Plus annual servicing</p>
             </div>
 
