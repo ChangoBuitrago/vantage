@@ -4,11 +4,6 @@ import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, E
 export default function CollectorStep3({ setCurrentStep }) {
   // State for expandable sections
   const [expandedHistory, setExpandedHistory] = useState({});
-  const [expandedBasePrice, setExpandedBasePrice] = useState(false);
-  const [expandedTransferLock, setExpandedTransferLock] = useState(false);
-  const [expandedRoyalties, setExpandedRoyalties] = useState(false);
-  const [expandedServiceLog, setExpandedServiceLog] = useState(false);
-  const [expandedCommunity, setExpandedCommunity] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFinalConfirmModal, setShowFinalConfirmModal] = useState(false);
   const [isStolen, setIsStolen] = useState(false);
@@ -52,8 +47,6 @@ export default function CollectorStep3({ setCurrentStep }) {
   const nextServiceDueTimestamp = threeYearsLater.getTime(); // 3 years after creation
   const isTransferLockActive = today.getTime() < transferLockEndDateTimestamp; // TRUE - lock is active
   const activeRoyaltyTier = 'Year 1';
-  const serviceLogStatus = "Verified";
-  const communityAccessStatus = "Enabled";
 
   const ownershipHistory = [
     {
@@ -309,171 +302,59 @@ export default function CollectorStep3({ setCurrentStep }) {
                 Asset Rules
               </h4>
               
-              {/* Base Resale Price */}
+              {/* Transfer Lock */}
               <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedBasePrice(!expandedBasePrice)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <Baseline className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
-                          <span className="font-mono text-sm font-bold text-green-600 dark:text-green-400">CHF {formatNumber(3000)}</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedBasePrice ? 'rotate-180' : ''}`} />
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <Clock className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`} />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
+                        <span className={`text-sm font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
+                          {isTransferLockActive ? 'Locked' : 'Unlocked'}
+                        </span>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Original retail price - base for calculating creator royalties
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        6-month minimum hold period
                       </p>
                     </div>
-                  </button>
-
-                  {expandedBasePrice && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3">
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
-                          If you resell, royalties are calculated on profits above this base price. The creator receives a percentage based on how long you've owned the watch.
-                        </p>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Tag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Original Retail Price</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">CHF 3,000</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
 
-              {/* Transfer Lock */}
+              {/* Base Resale Price */}
               <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedTransferLock(!expandedTransferLock)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <Clock className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`} />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
-                          <span className={`text-sm font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
-                            {isTransferLockActive ? 'Locked' : 'Unlocked'}
-                          </span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedTransferLock ? 'rotate-180' : ''}`} />
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <Baseline className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
+                        <span className="font-mono text-sm font-bold text-green-600 dark:text-green-400">CHF 3,000</span>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        {isTransferLockActive ? `Transfer available from ${formatDate(transferLockEndDateTimestamp)}` : 'Ready for transfer anytime'}
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Minimum resale value for calculating royalties
                       </p>
                     </div>
-                  </button>
-
-                  {expandedTransferLock && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3">
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 px-1">
-                          {isTransferLockActive 
-                            ? 'A 6-month waiting period helps protect the brand and ensures authentic collector ownership.' 
-                            : 'The 6-month waiting period has completed. You can now transfer this watch anytime.'}
-                        </p>
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                            <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                              <Clock className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                            </div>
-                            <div className="flex-1 min-w-0 flex items-center justify-between">
-                              <p className="text-xs text-gray-500 dark:text-gray-400">Lock Period</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">6 months</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                            <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                              <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                            </div>
-                            <div className="flex-1 min-w-0 flex items-center justify-between">
-                              <p className="text-xs text-gray-500 dark:text-gray-400">Start Date</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(transferTimestamp)}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                            <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                              <Calendar className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                            </div>
-                            <div className="flex-1 min-w-0 flex items-center justify-between">
-                              <p className="text-xs text-gray-500 dark:text-gray-400">End Date</p>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(transferLockEndDateTimestamp)}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
 
               {/* Dynamic Royalties */}
               <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedRoyalties(!expandedRoyalties)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
                     <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Dynamic Resale Royalties</p>
-                          <span className="text-sm font-bold text-green-600 dark:text-green-400">90%</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedRoyalties ? 'rotate-180' : ''}`} />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-900 dark:text-white">Dynamic Royalties</p>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400">90% → 60% → 15%</span>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Creator royalty percentage decreases over time
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Creator royalty decreases over 3 years
                       </p>
                     </div>
-                  </button>
-
-                  {expandedRoyalties && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3 space-y-2">
-                        <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${activeRoyaltyTier === 'Year 1' ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600' : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'}`}>
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Percent className={`w-4 h-4 ${activeRoyaltyTier === 'Year 1' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`} />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Year 1 (0-12 months)</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">90%</p>
-                          </div>
-                        </div>
-                        <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${activeRoyaltyTier === 'Year 2' ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600' : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'}`}>
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Percent className={`w-4 h-4 ${activeRoyaltyTier === 'Year 2' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`} />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Year 2 (13-24 months)</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">60%</p>
-                          </div>
-                        </div>
-                        <div className={`flex items-center gap-3 p-2.5 rounded-lg border ${activeRoyaltyTier === 'Year 3+' ? 'bg-purple-100 dark:bg-purple-900/30 border-purple-400 dark:border-purple-600' : 'bg-white dark:bg-slate-800 border-gray-200 dark:border-gray-700'}`}>
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Percent className={`w-4 h-4 ${activeRoyaltyTier === 'Year 3+' ? 'text-purple-600 dark:text-purple-400' : 'text-gray-600 dark:text-gray-400'}`} />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Year 3+ (25+ months)</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">15%</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -523,59 +404,19 @@ export default function CollectorStep3({ setCurrentStep }) {
 
               {/* Service Log */}
               <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedServiceLog(!expandedServiceLog)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
                     <Wrench className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
-                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedServiceLog ? 'rotate-180' : ''}`} />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Verified</span>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
                         Verified maintenance history and service records
                       </p>
                     </div>
-                  </button>
-
-                  {expandedServiceLog && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3 space-y-2">
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <CheckCircle className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Last Service</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Building className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Service Center</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard SA</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Clock className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Next Service Due</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(nextServiceDueTimestamp)}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </div>
 
