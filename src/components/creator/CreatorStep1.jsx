@@ -3,7 +3,7 @@ import { Home, ChevronRight, Shield, Percent, Lock, Gift, Calendar, Package, Tag
 
 export default function CreatorStep1({ setCurrentStep }) {
   const [transferLockDays, setTransferLockDays] = useState(180);
-  const [selectedBenefits, setSelectedBenefits] = useState(['service']);
+  const [selectedBenefits, setSelectedBenefits] = useState(['warranty']);
   const [baseRetailPrice, setBaseRetailPrice] = useState('3,000');
   const [expandedBasePrice, setExpandedBasePrice] = useState(false);
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
@@ -69,7 +69,6 @@ export default function CreatorStep1({ setCurrentStep }) {
   };
 
   const benefits = [
-    { id: 'service', label: 'Free Annual Service', description: 'Complimentary servicing at authorized centers', icon: Package },
     { id: 'warranty', label: 'Extended Warranty', description: '5 years international warranty coverage', icon: Shield },
     { id: 'events', label: 'Collector Events Access', description: 'VIP invitations to brand events and launches', icon: Calendar },
     { id: 'early-access', label: 'Early Access to New Releases', description: 'Priority purchasing for limited editions', icon: Gift }
