@@ -205,29 +205,6 @@ export default function ResellerStep3({ setCurrentStep }) {
                 </div>
               </div>
 
-              {/* Status */}
-              <div className={`flex items-start gap-2.5 p-3 rounded-lg ${
-                isStolen 
-                  ? 'bg-red-100 dark:bg-red-900/30 border-2 border-red-400 dark:border-red-600' 
-                  : 'bg-slate-50 dark:bg-slate-800/50'
-              }`}>
-                <AlertTriangle className={`w-4 h-4 mt-0.5 ${
-                  isStolen 
-                    ? 'text-red-600 dark:text-red-400' 
-                    : 'text-gray-600 dark:text-gray-400'
-                }`} />
-                <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Status</p>
-                  <p className={`text-base font-bold ${
-                    isStolen 
-                      ? 'text-red-700 dark:text-red-400' 
-                      : 'text-green-600 dark:text-green-400'
-                  }`}>
-                    {isStolen ? '⚠️ REPORTED STOLEN' : 'Active'}
-                  </p>
-                </div>
-              </div>
-
               {/* Reference */}
               <div className="flex items-start gap-2.5 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
                 <FileText className="w-4 h-4 text-gray-600 dark:text-gray-400 mt-0.5" />
