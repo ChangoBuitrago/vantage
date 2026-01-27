@@ -9,7 +9,6 @@ export default function CollectorReviewStep({
   onReject
 }) {
   const [paymentAuthorized, setPaymentAuthorized] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [rejectionReason, setRejectionReason] = useState('');
   const [selectedIssue, setSelectedIssue] = useState('');
@@ -77,7 +76,7 @@ export default function CollectorReviewStep({
                     <Shield className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
                     <div className="text-sm text-amber-900 dark:text-amber-100">
                       <p className="font-semibold mb-1">How Payment Authorization Works</p>
-                      <p>We'll place a temporary hold on your account. Funds will ONLY be captured if you approve the transfer after reviewing the passport details on the next step.</p>
+                      <p>We'll place a temporary hold on your account. Funds will ONLY be captured if you accept the passport after reviewing all details on the next step. The settlement protocol ensures the reseller pays royalties to the creator in parallel.</p>
                     </div>
                   </div>
                 </div>
@@ -103,9 +102,9 @@ export default function CollectorReviewStep({
                   <span className="text-sm font-semibold text-green-700 dark:text-green-400">Payment Authorized</span>
                 </div>
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Review Purchase Before Transfer</h1>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Review Passport Before Accepting</h1>
               <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Verify your purchase price and confirm all passport data
+                Verify passport details before accepting ownership transfer
               </p>
             </div>
 
@@ -353,26 +352,11 @@ export default function CollectorReviewStep({
           </button>
 
           <button
-            onClick={async () => {
-              setIsProcessing(true);
-              // Simulate atomic settlement (2.5 seconds)
-              await new Promise(resolve => setTimeout(resolve, 2500));
-              onApprove();
-            }}
-            disabled={isProcessing}
-            className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+            onClick={onApprove}
+            className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all"
           >
-            {isProcessing ? (
-              <>
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>Completing Settlement...</span>
-              </>
-            ) : (
-              <>
-                <CheckCircle className="w-5 h-5" />
-                <span>Approve & Complete Transfer</span>
-              </>
-            )}
+            <CheckCircle className="w-5 h-5" />
+            <span>Accept Passport & Complete Purchase</span>
           </button>
         </div>
           </>

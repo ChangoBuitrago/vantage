@@ -99,17 +99,21 @@ export default function DemoReseller() {
     // Show toast that transfer was initiated
     setShowSuccessToast(true);
     
-    // Simulate instant atomic settlement after collector approves (3 seconds)
+    // Simulate collector approval after 3 seconds, then show payment modal
     setTimeout(() => {
       setShowSuccessToast(false);
-      setShowSuccessModal(true);
-      
-      // After showing success modal, redirect to transfer complete
-      setTimeout(() => {
-        setShowSuccessModal(false);
-        updateStep(5);
-      }, 2000);
+      // Show payment modal for reseller to pay royalty
+      setShowPaymentModal(true);
     }, 3000);
+  };
+
+  const confirmPayment = () => {
+    setShowPaymentModal(false);
+    setShowSuccessModal(true);
+    setTimeout(() => {
+      setShowSuccessModal(false);
+      updateStep(5);
+    }, 2000);
   };
 
   // Step navigation data for hover sidebar
@@ -134,7 +138,7 @@ export default function DemoReseller() {
           </div>
           <div>
             <div className="font-semibold">Transfer Initiated</div>
-            <div className="text-sm text-white/90">Awaiting collector authorization...</div>
+            <div className="text-sm text-white/90">Awaiting collector acceptance...</div>
           </div>
         </div>
       )}
