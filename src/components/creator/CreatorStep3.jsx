@@ -197,13 +197,13 @@ export default function CreatorStep3() {
           </div>
         </div>
 
-        {/* Key Governance Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-4">
+        {/* Key Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           {/* Secondary Market Transactions */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                <RefreshCw className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                <RefreshCw className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               </div>
               <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
                 <ArrowUp className="w-3 h-3" />
@@ -211,63 +211,15 @@ export default function CreatorStep3() {
               </span>
             </div>
             <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Secondary Transfers</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">45</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-white">45</p>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Across all platforms</p>
           </div>
 
-          {/* Value Protected by Locks */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-                <Shield className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-              </div>
-              <span className="flex items-center gap-1 text-xs font-semibold text-purple-600 dark:text-purple-400">
-                <Lock className="w-3 h-3" />
-                87
-              </span>
-            </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Value Protected by Locks</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF 348K</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">87 watches in lock period</p>
-          </div>
-
-          {/* Transfer Locks Active */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
-                <Lock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-              </div>
-              <span className="flex items-center gap-1 text-xs font-semibold text-amber-600 dark:text-amber-400">
-                <ArrowDown className="w-3 h-3" />
-                5%
-              </span>
-            </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Active Lock Periods</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">87</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Avg. 134 days remaining</p>
-          </div>
-
-          {/* Average Royalty */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
-                <ArrowUp className="w-3 h-3" />
-                18%
-              </span>
-            </div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Avg. Royalty/Transfer</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">CHF {Math.round(stats.royaltiesEarned / 45).toLocaleString()}</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">From {stats.royaltiesEarned.toLocaleString()} total</p>
-          </div>
-
           {/* Ownership Retention */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center">
-                <Clock className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+              <div className="w-10 h-10 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center">
+                <Clock className="w-5 h-5 text-teal-600 dark:text-teal-400" />
               </div>
               <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
                 <ArrowUp className="w-3 h-3" />
@@ -275,8 +227,23 @@ export default function CreatorStep3() {
               </span>
             </div>
             <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Ownership Retention</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">487 days</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-white">487 days</p>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Average hold period</p>
+          </div>
+
+          {/* Compliance Rate */}
+          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <span className="flex items-center gap-1 text-xs font-semibold text-green-600 dark:text-green-400">
+                <CheckCircle className="w-3 h-3" />
+              </span>
+            </div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Compliance Rate</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-white">100%</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">All transfers compliant</p>
           </div>
         </div>
 
@@ -448,116 +415,39 @@ export default function CreatorStep3() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-          {/* Collections Performance */}
-          <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
-            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Secondary Market Revenue by Collection
-            </h3>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Royalties captured from resales</p>
-
-            <div className="space-y-3">
-              {collections.map((collection, index) => (
-                <div key={index} className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-1">{collection.name}</h4>
-                      <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-                        <span className="flex items-center gap-1">
-                          <Shield className="w-4 h-4" />
-                          {collection.issued} issued
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <CheckCircle className="w-4 h-4 text-green-500" />
-                          {collection.active} active
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-lg font-bold text-gray-900 dark:text-white">CHF {collection.revenue.toLocaleString()}</p>
-                      <span className={`text-sm font-semibold ${
-                        collection.trend.startsWith('+') ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                      }`}>
-                        {collection.trend}
-                      </span>
-                    </div>
+        {/* Top Collections */}
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 mb-4">
+          <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+            <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            Top Collections by Royalties
+          </h3>
+          <div className="space-y-2.5">
+            {collections.slice(0, 3).map((collection, index) => (
+              <div key={index} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                    {index + 1}
                   </div>
-                  
-                  {/* Progress bar */}
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div 
-                      className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${(collection.active / collection.issued) * 100}%` }}
-                    ></div>
+                  <div>
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm">{collection.name}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{collection.issued} issued • {collection.active} active</p>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                    {((collection.active / collection.issued) * 100).toFixed(1)}% active ownership
-                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Market Intelligence */}
-          <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
-            <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Market Intelligence
-            </h3>
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Real-time secondary market data</p>
-
-            <div className="space-y-2">
-              {/* Total Revenue */}
-              <div className="p-3 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <DollarSign className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Total Royalties</p>
+                <div className="text-right">
+                  <p className="text-base font-bold text-gray-900 dark:text-white">CHF {collection.revenue.toLocaleString()}</p>
+                  <span className="text-xs font-semibold text-green-600 dark:text-green-400">{collection.trend}</span>
                 </div>
-                <p className="text-xl font-bold text-emerald-600 dark:text-emerald-400">CHF {stats.royaltiesEarned.toLocaleString()}</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">{timeRange === '7d' ? 'Last 7 days' : timeRange === '30d' ? 'Last 30 days' : 'Last 12 months'}</p>
               </div>
-
-              {/* Average Secondary Sale Price */}
-              <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <TrendingUp className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Avg. Secondary Price</p>
-                </div>
-                <p className="text-xl font-bold text-gray-900 dark:text-white">CHF {stats.averageResalePrice.toLocaleString()}</p>
-                <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5">+93% above retail</p>
-              </div>
-
-              {/* Enforcement Rate */}
-              <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <Shield className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
-                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Enforcement Rate</p>
-                </div>
-                <p className="text-xl font-bold text-gray-900 dark:text-white">100%</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">All transfers compliant</p>
-              </div>
-
-              {/* Platform Coverage */}
-              <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                <div className="flex items-center gap-2 mb-1">
-                  <Target className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                  <p className="text-xs font-semibold text-gray-900 dark:text-white">Platform Coverage</p>
-                </div>
-                <p className="text-xl font-bold text-gray-900 dark:text-white">5</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Major marketplaces</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Recent Activity */}
-        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-4">
+        <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-5">
           <h3 className="text-base font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
             <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             Recent Activity
           </h3>
-          <p className="text-xs text-gray-600 dark:text-gray-400 mb-4">Latest settlement and governance events</p>
 
           <div className="space-y-2">
             {activity.map((activityItem, index) => {
@@ -566,31 +456,31 @@ export default function CreatorStep3() {
                   case 'royalty':
                     return {
                       bgColor: 'bg-emerald-100 dark:bg-emerald-900/30',
-                      icon: <DollarSign className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+                      icon: <DollarSign className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
                       textColor: 'text-emerald-600 dark:text-emerald-400'
                     };
                   case 'lock':
                     return {
                       bgColor: 'bg-amber-100 dark:bg-amber-900/30',
-                      icon: <Lock className="w-5 h-5 text-amber-600 dark:text-amber-400" />,
+                      icon: <Lock className="w-4 h-4 text-amber-600 dark:text-amber-400" />,
                       textColor: 'text-amber-600 dark:text-amber-400'
                     };
                   case 'compliance':
                     return {
                       bgColor: 'bg-blue-100 dark:bg-blue-900/30',
-                      icon: <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+                      icon: <CheckCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />,
                       textColor: 'text-blue-600 dark:text-blue-400'
                     };
                   case 'activation':
                     return {
                       bgColor: 'bg-purple-100 dark:bg-purple-900/30',
-                      icon: <Zap className="w-5 h-5 text-purple-600 dark:text-purple-400" />,
+                      icon: <Zap className="w-4 h-4 text-purple-600 dark:text-purple-400" />,
                       textColor: 'text-purple-600 dark:text-purple-400'
                     };
                   default:
                     return {
                       bgColor: 'bg-green-100 dark:bg-green-900/30',
-                      icon: <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />,
+                      icon: <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />,
                       textColor: 'text-green-600 dark:text-green-400'
                     };
                 }
@@ -599,24 +489,24 @@ export default function CreatorStep3() {
               const style = getActivityStyle(activityItem.status);
 
               return (
-                <div key={index} className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${style.bgColor}`}>
+                <div key={index} className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${style.bgColor}`}>
                     {style.icon}
                   </div>
                   
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-900 dark:text-white">{activityItem.action}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+                    <p className="font-semibold text-sm text-gray-900 dark:text-white">{activityItem.action}</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 truncate">
                       {activityItem.collection} {activityItem.watch && `• ${activityItem.watch}`}
                     </p>
                   </div>
 
                   <div className="text-right flex-shrink-0">
-                    {activityItem.owner && (
-                      <p className="text-sm font-medium text-gray-900 dark:text-white">{activityItem.owner}</p>
-                    )}
                     {activityItem.amount && (
                       <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400">{activityItem.amount}</p>
+                    )}
+                    {activityItem.owner && !activityItem.amount && (
+                      <p className="text-xs font-medium text-gray-900 dark:text-white">{activityItem.owner}</p>
                     )}
                     <p className="text-xs text-gray-500 dark:text-gray-400">{activityItem.time}</p>
                   </div>
