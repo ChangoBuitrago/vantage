@@ -19,14 +19,9 @@ export default function MyCollections({ setCurrentStep }) {
             <ChevronRight className="w-4 h-4" />
             <span>{collectionName}</span>
           </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{collectionName}</h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">Reference: {reference} • Limited Edition Collection</p>
-            </div>
-            <span className="px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-semibold rounded-full">
-              Active
-            </span>
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{collectionName}</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-2">Reference: {reference} • Limited Edition Collection</p>
           </div>
         </div>
 
