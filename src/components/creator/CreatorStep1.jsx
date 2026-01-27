@@ -646,7 +646,7 @@ export default function CreatorStep1({ setCurrentStep }) {
           <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
             <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Ready to Create Collection</h4>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              This will create the "{collectionName}" collection with {editionSize} passports. You'll be able to issue individual passports to first owners after creation.
+              This will create the "{collectionName}" collection with {editionSize} passports and activated governance rules. You'll be able to issue individual passports to first owners after creation.
             </p>
             
             <button
