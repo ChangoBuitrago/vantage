@@ -28,15 +28,15 @@ export default function CollectorStep4({ navigate }) {
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Authorized payment hold before reviewing passport details</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
               <span className="text-lg text-gray-700 dark:text-gray-300">Reviewed and verified purchase price, serial number, asset rules, and owner benefits</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Approved transfer → instant atomic settlement captured payment and transferred passport</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Accepted passport → instant atomic settlement processed payment and transferred ownership</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
+              <span className="text-lg text-gray-700 dark:text-gray-300">Settlement protocol enforced reseller pays royalty to creator in parallel</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />

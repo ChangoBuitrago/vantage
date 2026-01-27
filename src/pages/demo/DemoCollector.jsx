@@ -21,7 +21,7 @@ export default function DemoCollector() {
     0: 'browse-chrono24',
     1: 'order-confirmed',
     2: 'inbox',
-    3: 'review-authorize',
+    3: 'review-passport',
     4: 'view-passport',
     5: 'summary'
   };
@@ -84,7 +84,7 @@ export default function DemoCollector() {
     { step: 0, emoji: '🛒', label: 'Product Page' },
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
-    { step: 3, emoji: '💳', label: 'Review & Authorize' },
+    { step: 3, emoji: '🔍', label: 'Review Passport' },
     { step: 4, emoji: '🎫', label: 'Digital Passport' },
     { step: 5, emoji: '🎯', label: 'Experience Complete' },
   ];

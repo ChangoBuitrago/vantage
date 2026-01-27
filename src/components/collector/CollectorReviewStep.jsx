@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { 
   Shield, AlertTriangle, CheckCircle, XCircle, 
-  Package, Tag, Calendar, ChevronDown, Percent, Lock, Heart, Wrench, Gift, Zap, CreditCard, ArrowRight
+  Package, Tag, Calendar, ChevronDown, Percent, Lock, Heart, Wrench, Gift, Zap
 } from 'lucide-react';
 
 export default function CollectorReviewStep({ 
   onApprove, 
   onReject
 }) {
-  const [paymentAuthorized, setPaymentAuthorized] = useState(false);
   const [showRejectModal, setShowRejectModal] = useState(false);
   const [rejectionReason, setRejectionReason] = useState('');
   const [selectedIssue, setSelectedIssue] = useState('');
@@ -43,70 +42,13 @@ export default function CollectorReviewStep({
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-[calc(100vh-73px)] px-6 py-8">
       <div className="max-w-6xl mx-auto">
-        
-        {/* STEP 1: Payment Authorization (shown first) */}
-        {!paymentAuthorized ? (
-          <>
-            <div className="mb-6">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Authorize Payment</h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Secure your purchase before reviewing passport details
-              </p>
-            </div>
-
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 mb-6">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full mb-4">
-                    <CreditCard className="w-8 h-8 text-white" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">💳 Authorize Payment</h2>
-                </div>
-                
-                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 mb-6">
-                  <div className="text-center mb-2">
-                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Your Purchase Price</div>
-                    <div className="text-4xl font-bold text-gray-900 dark:text-white">CHF 6,500</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Total amount you'll pay</div>
-                  </div>
-                </div>
-
-                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-6">
-                  <div className="flex gap-3">
-                    <Shield className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                    <div className="text-sm text-amber-900 dark:text-amber-100">
-                      <p className="font-semibold mb-1">How Payment Authorization Works</p>
-                      <p>We'll place a temporary hold on your account. Funds will ONLY be captured if you accept the passport after reviewing all details on the next step. The settlement protocol ensures the reseller pays royalties to the creator in parallel.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setPaymentAuthorized(true)}
-                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-                >
-                  <Shield className="w-5 h-5" />
-                  Authorize Payment & Review Passport
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </>
-        ) : (
-          <>
-            {/* STEP 2: Full Passport Review (shown after authorization) */}
-            <div className="mb-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                  <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
-                  <span className="text-sm font-semibold text-green-700 dark:text-green-400">Payment Authorized</span>
-                </div>
-              </div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Review Passport Before Accepting</h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
-                Verify passport details before accepting ownership transfer
-              </p>
-            </div>
+        {/* Page Header */}
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Review Passport Before Accepting</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
+            Verify passport details before accepting ownership transfer
+          </p>
+        </div>
 
         {/* Alert: Review Carefully */}
         <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-6">
@@ -359,8 +301,6 @@ export default function CollectorReviewStep({
             <span>Accept Passport & Complete Purchase</span>
           </button>
         </div>
-          </>
-        )}
       </div>
 
       {/* Reject Modal */}
