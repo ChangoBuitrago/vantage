@@ -4,6 +4,8 @@ import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, E
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
   const [expandedHistory, setExpandedHistory] = useState({});
+  const [expandedAssetRules, setExpandedAssetRules] = useState(false);
+  const [expandedOwnerBenefits, setExpandedOwnerBenefits] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFinalConfirmModal, setShowFinalConfirmModal] = useState(false);
   const [isStolen, setIsStolen] = useState(false);
@@ -270,59 +272,59 @@ export default function ResellerStep3({ setCurrentStep }) {
                 Asset Rules
               </h4>
               
-              {/* Transfer Lock */}
               <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Clock className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`} />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
-                        <span className={`text-sm font-bold ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`}>
-                          {isTransferLockActive ? 'Locked' : 'Unlocked'}
-                        </span>
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
+                  <button
+                    onClick={() => setExpandedAssetRules(!expandedAssetRules)}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                  >
+                    <Settings className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold text-purple-600 dark:text-purple-400">3 rules</span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedAssetRules ? 'rotate-180' : ''}`} />
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        6-month minimum hold period
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Protocol-enforced governance rules
                       </p>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </button>
 
-              {/* Base Resale Price */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Baseline className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">Base Resale Price</p>
-                        <span className="font-mono text-sm font-bold text-green-600 dark:text-green-400">CHF 3,000</span>
+                  {expandedAssetRules && (
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                      <div className="pt-3 space-y-2">
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Clock className={`w-4 h-4 ${isTransferLockActive ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400'}`} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">6-month minimum hold period</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Baseline className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Base Resale Price: CHF 3,000</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Minimum for royalty calculation</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Percent className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Dynamic Royalties: 90% → 60% → 15%</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Decreases over 3 years</p>
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Minimum resale value for calculating royalties
-                      </p>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dynamic Royalties */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Percent className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">Dynamic Royalties</p>
-                        <span className="text-sm font-bold text-green-600 dark:text-green-400">90% → 60% → 15%</span>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Creator royalty decreases over 3 years
-                      </p>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -334,57 +336,59 @@ export default function ResellerStep3({ setCurrentStep }) {
                 Owner Benefits
               </h4>
               
-              {/* Extended Warranty */}
               <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">Extended Warranty</p>
-                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Active</span>
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
+                  <button
+                    onClick={() => setExpandedOwnerBenefits(!expandedOwnerBenefits)}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                  >
+                    <Award className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold text-purple-600 dark:text-purple-400">3 benefits</span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedOwnerBenefits ? 'rotate-180' : ''}`} />
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        3-year international warranty coverage
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Exclusive perks for verified owners
                       </p>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </button>
 
-              {/* Exclusive Events */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Ticket className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">Exclusive Events</p>
-                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Enabled</span>
+                  {expandedOwnerBenefits && (
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                      <div className="pt-3 space-y-2">
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Shield className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Extended Warranty</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">3-year international warranty</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Ticket className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Exclusive Events</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">VIP access to brand events</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <ShoppingBag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Early Access</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">First access to new releases</p>
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        VIP access to brand events and collector gatherings
-                      </p>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Early Access */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <ShoppingBag className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">Early Access</p>
-                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Active</span>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        First opportunity to purchase new releases
-                      </p>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
