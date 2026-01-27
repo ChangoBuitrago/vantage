@@ -14,7 +14,7 @@ export default function CreatorStep4({ navigate }) {
             Creator Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Activate asset governance on every DPP. Capture royalties and maintain lifetime control.
+            You've activated governance for your collection. Every transfer now enforces your rules automatically.
           </p>
         </div>
 
@@ -24,19 +24,19 @@ export default function CreatorStep4({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Create collection and configure asset rules: tiered royalties, transfer locks, and owner benefits</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Created collection with asset rules (royalties, transfer locks, resell price floors)</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Issue individual passports to first owners as watches are sold</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Issued digital passport to first owner with embedded governance rules</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Monitor collection overview with issuance progress and retail pricing</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Viewed analytics dashboard showing secondary market revenue and market intelligence</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Set lifetime governance that follows every watch through all future transfers</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Your rules now follow every watch through all future resales, forever</span>
             </div>
           </div>
         </div>

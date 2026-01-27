@@ -14,7 +14,7 @@ export default function CollectorStep4({ navigate }) {
             Collector Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Verified authenticity with rule-enforced protection. Complete provenance and lifetime ownership benefits.
+            You now own an authenticated asset with verified provenance and lifetime benefits.
           </p>
         </div>
 
@@ -24,23 +24,23 @@ export default function CollectorStep4({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Purchased from secondary marketplace (Chrono24) with verified digital passport</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Found watch on secondary marketplace (Chrono24) with Faircut-verified passport</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Reviewed and verified purchase price, serial number, asset rules, and owner benefits</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Reviewed passport before purchase — verified price, serial number, and authenticity</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Accepted passport → instant atomic settlement processed payment and transferred ownership</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Accepted passport → settlement protocol processed transfer instantly</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Settlement protocol enforced reseller pays royalty to creator in parallel</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Protocol enforced seller paid royalty to creator automatically (you didn't have to)</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Received authenticated provenance, exclusive owner benefits, and asset rules protection</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Received full ownership with provenance history, benefits, and asset protection</span>
             </div>
           </div>
         </div>

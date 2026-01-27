@@ -14,7 +14,7 @@ export default function ResellerStep8({ navigate }) {
             Reseller Experience Complete!
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Navigate compliance-gated transfers. Settlement protocol handles asset rules automatically.
+            You've completed a compliance-gated transfer. All asset rules enforced automatically at settlement.
           </p>
         </div>
 
@@ -24,23 +24,23 @@ export default function ResellerStep8({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Purchased luxury watch with verified digital passport from official brand</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Purchased watch from creator with digital passport and embedded asset rules</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Viewed complete passport with ownership history, asset rules, and owner benefits</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Viewed passport showing ownership history, benefits, and resale requirements</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Initiated settlement transfer with buyer email and sale price</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Initiated transfer to buyer — sent for review before completing sale</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Buyer authorized payment and reviewed passport before approving</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Buyer reviewed and accepted → protocol enforced royalty payment automatically</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-purple-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Instant atomic settlement: payment captured, royalties distributed, passport transferred</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Transfer completed — received sale price, creator received royalty, buyer owns asset</span>
             </div>
           </div>
         </div>
