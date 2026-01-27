@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings, CheckCircle, Building, MessageSquare, Ticket, ShoppingBag, Send, AlertTriangle, X } from 'lucide-react';
+import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings, CheckCircle, Building, MessageSquare, Ticket, ShoppingBag, Send, AlertTriangle, X, Gift } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
   // State for expandable sections
@@ -7,8 +6,7 @@ export default function ResellerStep3({ setCurrentStep }) {
   const [expandedBasePrice, setExpandedBasePrice] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
   const [expandedRoyalties, setExpandedRoyalties] = useState(false);
-  const [expandedServiceLog, setExpandedServiceLog] = useState(false);
-  const [expandedCommunity, setExpandedCommunity] = useState(false);
+  const [expandedOwnerBenefits, setExpandedOwnerBenefits] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFinalConfirmModal, setShowFinalConfirmModal] = useState(false);
   const [isStolen, setIsStolen] = useState(false);
@@ -41,13 +39,8 @@ export default function ResellerStep3({ setCurrentStep }) {
   const transferLockEndDate = new Date('2025-07-28');
   const transferLockEndDateTimestamp = transferLockEndDate.getTime();
   
-  const threeYearsLater = new Date(watchMintTimestamp);
-  threeYearsLater.setFullYear(threeYearsLater.getFullYear() + 3);
-  const nextServiceDueTimestamp = threeYearsLater.getTime(); // 3 years after creation
   const isTransferLockActive = today.getTime() < transferLockEndDateTimestamp; // FALSE - lock expired
   const activeRoyaltyTier = 'Year 1';
-  const serviceLogStatus = "Verified";
-  const communityAccessStatus = "Enabled";
 
   // Ownership History Data
   const ownershipHistory = [
@@ -452,118 +445,58 @@ export default function ResellerStep3({ setCurrentStep }) {
             {/* Owner Benefits */}
             <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                <Package className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                <Award className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                 Owner Benefits
               </h4>
               
-              {/* Service Log */}
               <div className="mb-3">
                 <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
                   <button
-                    onClick={() => setExpandedServiceLog(!expandedServiceLog)}
+                    onClick={() => setExpandedOwnerBenefits(!expandedOwnerBenefits)}
                     className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
                   >
-                    <Wrench className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <Award className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
                     <div className="flex-1 text-left">
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Service Log</p>
-                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{serviceLogStatus}</span>
+                          <span className="text-sm font-bold text-purple-600 dark:text-purple-400">3 benefits</span>
                         </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedServiceLog ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedOwnerBenefits ? 'rotate-180' : ''}`} />
                       </div>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Verified maintenance history and service records
+                        Exclusive perks for verified owners
                       </p>
                     </div>
                   </button>
 
-                  {expandedServiceLog && (
+                  {expandedOwnerBenefits && (
                     <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
                       <div className="pt-3 space-y-2">
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <CheckCircle className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                            <Shield className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Last Service</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(watchMintTimestamp)}</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Building className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Service Center</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Louis Erard SA</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Clock className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Next Service Due</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">{formatDate(nextServiceDueTimestamp)}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Community Access */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedCommunity(!expandedCommunity)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <Users className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
-                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedCommunity ? 'rotate-180' : ''}`} />
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Owner community, exclusive events, and special offers
-                      </p>
-                    </div>
-                  </button>
-
-                  {expandedCommunity && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3 space-y-2">
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <MessageSquare className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Owner Forums</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Active</p>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Extended Warranty</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">3-year international warranty</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Ticket className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Exclusive Events</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Invited</p>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Exclusive Events</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">VIP access to brand events</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <ShoppingBag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Early Access Sales</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Enabled</p>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Early Access</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">First access to new releases</p>
                           </div>
                         </div>
                       </div>
