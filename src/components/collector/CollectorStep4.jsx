@@ -485,24 +485,6 @@ export default function CollectorStep3({ setCurrentStep }) {
                 Owner Benefits
               </h4>
               
-              {/* Extended Warranty */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <p className="font-semibold text-gray-900 dark:text-white">Extended Warranty</p>
-                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Active</span>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        3-year international warranty coverage
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {/* Exclusive Events */}
               <div className="mb-3">
                 <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
