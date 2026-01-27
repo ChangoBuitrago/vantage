@@ -485,6 +485,60 @@ export default function CollectorStep3({ setCurrentStep }) {
                 Owner Benefits
               </h4>
               
+              {/* Extended Warranty */}
+              <div className="mb-3">
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-900 dark:text-white">Extended Warranty</p>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Active</span>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        3-year international warranty coverage
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Exclusive Events */}
+              <div className="mb-3">
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <Ticket className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-900 dark:text-white">Exclusive Events</p>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Enabled</span>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        VIP access to brand events and collector gatherings
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Early Access */}
+              <div className="mb-3">
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <ShoppingBag className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <p className="font-semibold text-gray-900 dark:text-white">Early Access</p>
+                        <span className="text-sm font-bold text-green-600 dark:text-green-400">Active</span>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        First opportunity to purchase new releases
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Service Log */}
               <div className="mb-3">
                 <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
@@ -543,63 +597,6 @@ export default function CollectorStep3({ setCurrentStep }) {
                 </div>
               </div>
 
-              {/* Community Access */}
-              <div className="mb-3">
-                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300">
-                  <button
-                    onClick={() => setExpandedCommunity(!expandedCommunity)}
-                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
-                  >
-                    <Users className="w-5 h-5 text-purple-600 dark:text-purple-400 mt-0.5 flex-shrink-0" />
-                    <div className="flex-1 text-left">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-2">
-                          <p className="font-semibold text-gray-900 dark:text-white">Community Access</p>
-                          <span className="text-sm font-bold text-green-600 dark:text-green-400">{communityAccessStatus}</span>
-                        </div>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedCommunity ? 'rotate-180' : ''}`} />
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Owner community, exclusive events, and special offers
-                      </p>
-                    </div>
-                  </button>
-
-                  {expandedCommunity && (
-                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
-                      <div className="pt-3 space-y-2">
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <MessageSquare className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Owner Forums</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Active</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Ticket className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Exclusive Events</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Invited</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <ShoppingBag className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0 flex items-center justify-between">
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Early Access Sales</p>
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Enabled</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
             </div>
 
             {/* Ownership History */}
