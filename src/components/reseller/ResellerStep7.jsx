@@ -59,131 +59,64 @@ export default function ResellerStep7({ collectorEmail, salePrice: salePriceProp
 
         {/* Transfer Summary */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
-          <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Transfer Summary</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mt-0.5">
-                <Package className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div className="flex items-start gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+              <div className="flex-shrink-0 w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                <Package className="w-5 h-5 text-gray-600 dark:text-gray-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Sale Price</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">CHF {salePrice.toLocaleString()}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Sale Price</p>
+                <p className="text-xl font-bold text-gray-900 dark:text-white">CHF {salePrice.toLocaleString()}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">Transferred to {recipientEmail}</p>
               </div>
             </div>
             
-            <div className="flex items-start gap-3 p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-              <div className="flex-shrink-0 w-8 h-8 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Shield className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+            <div className="flex items-start gap-3 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
+              <div className="flex-shrink-0 w-10 h-10 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center">
+                <Shield className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Royalty Paid</p>
-                <p className="text-base font-bold text-purple-600 dark:text-purple-400">CHF {royaltyAmount.toLocaleString()}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Royalty Paid</p>
+                <p className="text-xl font-bold text-purple-600 dark:text-purple-400">CHF {royaltyAmount.toLocaleString()}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{Math.round(royaltyRate * 100)}% sent to Louis Erard</p>
               </div>
-            </div>
-            
-            <div className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Royalty Rate</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white">{Math.round(royaltyRate * 100)}%</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Mail className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Transferred To</p>
-                <p className="text-base font-bold text-gray-900 dark:text-white truncate" title={recipientEmail}>{recipientEmail}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
-            <div className="flex items-start gap-2">
-              <Shield className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-              <p className="text-xs text-gray-600 dark:text-gray-400">
-                Royalty payment of CHF {royaltyAmount.toLocaleString()} ({Math.round(royaltyRate * 100)}% of sale price) has been sent to Louis Erard
-              </p>
             </div>
           </div>
         </div>
 
-        {/* Transfer Details - Asset Rules Validation */}
+        {/* What Was Enforced */}
         <div className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 mb-6">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
             <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
-            Asset Rules
+            Compliance-Gated Transfer Complete
           </h3>
-          <div className="space-y-3">
-            {/* Transfer Lock */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Transfer Lock Cleared</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">6-month minimum holding period was completed. Asset governance rule satisfied.</p>
-              </div>
+          <div className="space-y-2.5">
+            <div className="flex items-start gap-3">
+              <Check className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">Transfer lock cleared</span> — 6-month minimum holding period satisfied
+              </p>
             </div>
             
-            {/* Ownership Verified */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Ownership Authenticated</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Digital passport confirmed ownership. On-chain verification completed successfully.</p>
-              </div>
+            <div className="flex items-start gap-3">
+              <Check className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">Buyer reviewed and accepted</span> — passport data verified before transfer
+              </p>
             </div>
             
-            {/* Royalty Structure */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Royalty Payment Processed</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">CHF {royaltyAmount.toLocaleString()} ({Math.round(royaltyRate * 100)}%) successfully sent to Louis Erard. Calculated on profit above base price CHF 3,000.</p>
-              </div>
+            <div className="flex items-start gap-3">
+              <Check className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">Royalty automatically paid</span> — CHF {royaltyAmount.toLocaleString()} sent to creator in parallel
+              </p>
             </div>
 
-            {/* Price Floor */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Price Floor Compliance</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Minimum resale price enforced at CHF 3,000 to protect brand value.</p>
-              </div>
-            </div>
-
-            {/* Passport Validity */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Passport Transferred</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">Digital passport successfully transferred to {recipientEmail}. New owner has full access to benefits.</p>
-              </div>
-            </div>
-
-            {/* Asset Rules Updated */}
-            <div className="flex items-start gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mt-0.5">
-                <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Asset Rules Updated</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">6-month transfer lock reset for new owner. Royalty rate adjusted to Year 2 (60%) for future resales.</p>
-              </div>
+            <div className="flex items-start gap-3">
+              <Check className="w-4 h-4 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">Asset rules reset for new owner</span> — 6-month lock and updated royalty rate applied
+              </p>
             </div>
           </div>
         </div>
