@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Home, ChevronRight, Shield, Calendar, Hash, Award, Package, FileText, Edit3, Tag, Baseline, Clock, Percent, Wrench, Users, ChevronDown, ChevronUp, ArrowRight, ArrowDown, Building2, User, MapPin, CreditCard, Settings, CheckCircle, Building, MessageSquare, Ticket, ShoppingBag, Send, AlertTriangle, X, Gift } from 'lucide-react';
 
 export default function ResellerStep3({ setCurrentStep }) {
