@@ -9,9 +9,8 @@ import ResellerStep1 from '../../components/reseller/ResellerStep1';
 import ResellerStep2 from '../../components/reseller/ResellerStep2';
 import ResellerStep3 from '../../components/reseller/ResellerStep3';
 import ResellerStep4 from '../../components/reseller/ResellerStep5';
-import ResellerStep5 from '../../components/reseller/ResellerStep6';
-import ResellerStep6 from '../../components/reseller/ResellerStep7';
-import ResellerStep7 from '../../components/reseller/ResellerStep8';
+import ResellerStep5 from '../../components/reseller/ResellerStep7';
+import ResellerStep6 from '../../components/reseller/ResellerStep8';
 
 export default function DemoReseller() {
   const navigate = useNavigate();
@@ -33,9 +32,8 @@ export default function DemoReseller() {
     2: 'email-received',
     3: 'view-passport',
     4: 'review-transfer',
-    5: 'awaiting-collector',
-    6: 'transfer-complete',
-    7: 'benefits'
+    5: 'transfer-complete',
+    6: 'benefits'
   };
 
   // Reverse mapping for fragment to step
@@ -89,7 +87,7 @@ export default function DemoReseller() {
 
   const navItems = [
     { icon: Package, label: 'My Passports', active: currentStep === 3 },
-    { icon: RefreshCw, label: 'Transfers', active: currentStep >= 4 && currentStep <= 6 },
+    { icon: RefreshCw, label: 'Transfers', active: currentStep >= 4 && currentStep <= 5 },
     { icon: Settings, label: 'Settings', active: false },
   ];
 
@@ -97,30 +95,21 @@ export default function DemoReseller() {
     setSalePrice(price);
     setRoyaltyAmount(royalty);
     setCollectorEmail(email);
-    setCollectorApproved(false); // Reset approval status
-    // Navigate directly to awaiting collector step - no payment yet
-    updateStep(5);
-  };
-
-  const handleCollectorApproval = () => {
-    // Simulate collector approval - show button to pay
-    setCollectorApproved(true);
-  };
-
-  const handlePayRoyaltyAfterApproval = () => {
-    // When reseller clicks to pay after collector approval
-    setShowPaymentModal(true);
-  };
-
-  const confirmPayment = () => {
-    setShowPaymentModal(false);
-    setShowSuccessModal(true);
+    
+    // Show toast that transfer was initiated
+    setShowSuccessToast(true);
+    
+    // Simulate instant atomic settlement after collector approves (3 seconds)
     setTimeout(() => {
-      setShowSuccessModal(false);
-      setShowSuccessToast(true);
-      updateStep(6);
-      setTimeout(() => setShowSuccessToast(false), 3000);
-    }, 2000);
+      setShowSuccessToast(false);
+      setShowSuccessModal(true);
+      
+      // After showing success modal, redirect to transfer complete
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        updateStep(5);
+      }, 2000);
+    }, 3000);
   };
 
   // Step navigation data for hover sidebar
@@ -130,23 +119,22 @@ export default function DemoReseller() {
     { step: 1, emoji: '✅', label: 'Order Confirmed' },
     { step: 2, emoji: '📧', label: 'Inbox' },
     { step: 3, emoji: '🎫', label: 'Digital Passport' },
-    { step: 4, emoji: '⚡', label: 'Settlement Protocol' },
-    { step: 5, emoji: '⏳', label: 'Awaiting Collector' },
-    { step: 6, emoji: '🎉', label: 'Transfer Complete' },
-    { step: 7, emoji: '✨', label: 'Experience Complete' },
+    { step: 4, emoji: '⚡', label: 'Initiate Transfer' },
+    { step: 5, emoji: '🎉', label: 'Transfer Complete' },
+    { step: 6, emoji: '✨', label: 'Experience Complete' },
   ];
 
   return (
     <div className={`min-h-screen ${currentStep >= 3 ? 'bg-slate-50 dark:bg-slate-950' : 'bg-white'}`}>
       {/* Success Toast */}
       {showSuccessToast && (
-        <div className="fixed top-24 right-6 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl z-50 animate-slide-in-right flex items-center gap-3">
+        <div className="fixed top-24 right-6 bg-blue-500 text-white px-6 py-4 rounded-xl shadow-2xl z-50 animate-slide-in-right flex items-center gap-3">
           <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-            <Check className="w-5 h-5" />
+            <RefreshCw className="w-5 h-5 animate-spin" />
           </div>
           <div>
-            <div className="font-semibold">Transfer Complete!</div>
-            <div className="text-sm text-white/90">Royalty paid and passport transferred</div>
+            <div className="font-semibold">Transfer Initiated</div>
+            <div className="text-sm text-white/90">Awaiting collector authorization...</div>
           </div>
         </div>
       )}
@@ -375,7 +363,7 @@ export default function DemoReseller() {
         )}
 
       {/* Main Content Area */}
-      <main className={currentStep >= 3 && currentStep < 7 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
+      <main className={currentStep >= 3 && currentStep < 6 ? "flex-1 min-h-[calc(100vh-73px)]" : "min-h-screen"}>
           
           {/* Step 0: Louis Erard Website - Product Page */}
           {currentStep === 0 && <ResellerStep0 setCurrentStep={updateStep} />}
@@ -389,17 +377,14 @@ export default function DemoReseller() {
           {/* Step 3: Digital Passport View (INSIDE FAIRCUT) */}
           {currentStep === 3 && <ResellerStep3 setCurrentStep={updateStep} />}
 
-          {/* Step 4: Settlement Protocol Enforcement */}
+          {/* Step 4: Initiate Transfer */}
           {currentStep === 4 && <ResellerStep4 setCurrentStep={updateStep} handleSendToCollector={handleSendToCollector} />}
 
-          {/* Step 5: Awaiting Collector Review */}
-          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} royaltyAmount={royaltyAmount} collectorApproved={collectorApproved} handleCollectorApproval={handleCollectorApproval} handlePayRoyaltyAfterApproval={handlePayRoyaltyAfterApproval} />}
+          {/* Step 5: Transfer Complete */}
+          {currentStep === 5 && <ResellerStep5 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} />}
 
-          {/* Step 6: Transfer Complete */}
-          {currentStep === 6 && <ResellerStep6 setCurrentStep={updateStep} collectorEmail={collectorEmail} salePrice={salePrice} />}
-
-          {/* Step 7: Benefits & Demo Complete */}
-          {currentStep === 7 && <ResellerStep7 navigate={navigate} />}
+          {/* Step 6: Benefits & Demo Complete */}
+          {currentStep === 6 && <ResellerStep6 navigate={navigate} />}
 
         </main>
       </div>

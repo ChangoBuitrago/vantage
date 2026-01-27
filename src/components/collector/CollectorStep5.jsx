@@ -24,23 +24,23 @@ export default function CollectorStep4({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Purchase from secondary marketplace (Chrono24) with verified digital passport</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Purchased from secondary marketplace (Chrono24) with verified digital passport</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Review passport data before accepting: verify purchase price, serial number, and product details</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Authorized payment hold before reviewing passport details</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Approve transfer and wait for reseller to complete settlement</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Reviewed and verified purchase price, serial number, asset rules, and owner benefits</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Receive authenticated provenance with complete ownership history after transfer completes</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Approved transfer → instant atomic settlement captured payment and transferred passport</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Access exclusive owner benefits, asset rules protection, and verified authenticity</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Received authenticated provenance, exclusive owner benefits, and asset rules protection</span>
             </div>
           </div>
         </div>
