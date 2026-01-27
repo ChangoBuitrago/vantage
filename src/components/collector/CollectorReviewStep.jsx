@@ -68,7 +68,7 @@ export default function CollectorReviewStep({
                   <div className="text-center mb-2">
                     <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Your Purchase Price</div>
                     <div className="text-4xl font-bold text-gray-900 dark:text-white">CHF 6,500</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">(includes 90% creator royalty)</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Total amount you'll pay</div>
                   </div>
                 </div>
 
