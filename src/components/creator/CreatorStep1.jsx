@@ -8,6 +8,7 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [expandedBasePrice, setExpandedBasePrice] = useState(false);
   const [expandedRoyalty, setExpandedRoyalty] = useState(false);
   const [expandedTransferLock, setExpandedTransferLock] = useState(false);
+  const [expandedCollectionDetails, setExpandedCollectionDetails] = useState(false);
   const [showImageGallery, setShowImageGallery] = useState(false);
   
   // Tiered royalties by year
@@ -243,13 +244,30 @@ export default function CreatorStep1({ setCurrentStep }) {
           </div>
 
           {/* Collection Details - Input Form */}
-          <div className="p-6 border-t border-gray-200 dark:border-gray-800">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-              <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-              Collection Details
-            </h3>
-            
-            <div className="space-y-4">
+          <div className="border-t border-gray-200 dark:border-gray-800">
+            <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
+              <button
+                onClick={() => setExpandedCollectionDetails(!expandedCollectionDetails)}
+                className="w-full p-6 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+              >
+                <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                <div className="flex-1 text-left">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">Collection Details</h3>
+                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">6 fields</span>
+                    </div>
+                    <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedCollectionDetails ? 'rotate-180' : ''}`} />
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    Configure collection metadata and product information
+                  </p>
+                </div>
+              </button>
+
+              {expandedCollectionDetails && (
+                <div className="px-6 pb-6 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900">
+                  <div className="pt-6 space-y-4">
               {/* Collection Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
@@ -368,6 +386,9 @@ export default function CreatorStep1({ setCurrentStep }) {
                   </p>
                 </div>
               </div>
+            </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
