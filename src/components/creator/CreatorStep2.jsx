@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Home, ChevronRight, Shield, Calendar, FileText, Edit3, Tag, Clock, Percent, Wrench, Users, ChevronDown, User, Mail, MapPin, Send, CheckCircle, Package, Award, MessageSquare, Ticket, ShoppingBag, Building, Baseline, CreditCard } from 'lucide-react';
+import { Home, ChevronRight, Shield, Calendar, FileText, Edit3, Tag, Clock, Percent, Wrench, Users, ChevronDown, User, Mail, MapPin, Send, CheckCircle, Package, Award, MessageSquare, Ticket, ShoppingBag, Building, Baseline, CreditCard, Lock, Settings } from 'lucide-react';
 
 export default function CreatorStep2({ setCurrentStep }) {
   const [issuing, setIssuing] = useState(false);
@@ -7,6 +7,7 @@ export default function CreatorStep2({ setCurrentStep }) {
   
   // State for expandable sections
   const [expandedBenefits, setExpandedBenefits] = useState(false);
+  const [expandedAssetRules, setExpandedAssetRules] = useState(false);
   
   // State for edition number (editable)
   const [watchNumber, setWatchNumber] = useState(42);
@@ -171,6 +172,75 @@ export default function CreatorStep2({ setCurrentStep }) {
                 <div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mb-0.5">Production Date</p>
                   <p className="text-base font-bold text-gray-900 dark:text-white">{formatDate(productionDate)}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Asset Rules */}
+            <div className="border-t border-gray-200 dark:border-gray-800 pt-6">
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <Settings className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                Asset Rules
+              </h4>
+              
+              <div className="mb-3">
+                <div className="bg-slate-50 dark:bg-slate-800/50 border-2 border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:border-emerald-400 dark:hover:border-emerald-500 transition-all duration-300">
+                  <button
+                    onClick={() => setExpandedAssetRules(!expandedAssetRules)}
+                    className="w-full p-4 flex items-start gap-3 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition-colors"
+                  >
+                    <Shield className="w-5 h-5 text-emerald-600 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">3 rules configured</span>
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 flex-shrink-0 ${expandedAssetRules ? 'rotate-180' : ''}`} />
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Governance rules enforced on every transfer
+                      </p>
+                    </div>
+                  </button>
+
+                  {expandedAssetRules && (
+                    <div className="px-4 pb-4 border-t border-gray-200 dark:border-gray-700 bg-slate-50 dark:bg-slate-900/50">
+                      <div className="pt-3 space-y-2">
+                        {/* Transfer Lock */}
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Lock className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Transfer Lock</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{Math.floor(transferLockDays / 30)} months minimum hold period</p>
+                          </div>
+                        </div>
+                        
+                        {/* Base Resell Price */}
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Baseline className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Base Resell Price</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">CHF {retailPrice.toLocaleString()} minimum</p>
+                          </div>
+                        </div>
+                        
+                        {/* Royalty Tiers */}
+                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                            <Percent className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Dynamic Royalties</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">90% → 60% → 15% over 3 years</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
