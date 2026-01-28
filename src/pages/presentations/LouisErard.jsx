@@ -171,7 +171,7 @@ export default function LouisErard() {
               Vantage
             </h1>
             <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-400 font-light">
-              The Secondary Market Problem
+              The Secondary Market Endgame
             </p>
           </div>
         </section>
