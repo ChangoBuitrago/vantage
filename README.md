@@ -4,7 +4,7 @@ Platform showcasing how Vantage enables brands to earn royalties on secondary ma
 
 ## Links
 
-- **Live Demo:** [https://changobuitrago.github.io/faircut/](https://changobuitrago.github.io/faircut/)
+- **Live Demo:** [https://changobuitrago.github.io/vantage/](https://changobuitrago.github.io/vantage/)
 - **Repository:** [https://github.com/ChangoBuitrago/faircut](https://github.com/ChangoBuitrago/faircut)
 
 ## Quick Start

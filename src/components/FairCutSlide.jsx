@@ -18,7 +18,7 @@ export default function FairCutSlide() {
 
         <div className="flex justify-center">
           <Link 
-            to="/faircut"
+            to="/vantage"
             className="group inline-flex items-center gap-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white text-lg font-semibold py-4 px-10 rounded-lg transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
           >
             <span>Explore FairCut</span>

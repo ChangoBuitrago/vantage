@@ -35,7 +35,7 @@ function PageTitle() {
 function App() {
   return (
     <DarkModeProvider>
-      <Router basename="/faircut/">
+      <Router basename="/vantage/">
         <PageTitle />
         <ConditionalDarkModeToggle />
         <Routes>
