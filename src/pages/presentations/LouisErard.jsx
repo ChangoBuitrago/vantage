@@ -167,7 +167,7 @@ export default function LouisErard() {
         {/* --- SLIDE 0: OPENING SLIDE --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-4xl mx-auto z-10 text-center">
-            <h1 className="text-7xl md:text-8xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent mb-8">
+            <h1 className="text-7xl md:text-8xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent mb-8 pb-2 leading-tight">
               Vantage
             </h1>
             <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-400 font-light">
