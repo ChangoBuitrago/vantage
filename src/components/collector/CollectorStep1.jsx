@@ -109,7 +109,7 @@ export default function CollectorStep1({ setCurrentStep }) {
           <div className="flex gap-6 pb-6 mb-6 border-b border-gray-200">
             <div className="w-24 h-24 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden p-2">
               <img
-                src="/faircut/watch-thumb-0.jpg"
+                src="/vantage/watch-thumb-0.jpg"
                 alt="Le Regulateur Louis Erard x Alain Silberstein"
                 className="w-full h-full object-contain"
               />

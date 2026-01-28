@@ -5,10 +5,10 @@ export default function CollectorStep0({ setCurrentStep }) {
   const [selectedImage, setSelectedImage] = useState(0);
   
   const watchImages = [
-    '/faircut/watch-thumb-0.jpg',
-    '/faircut/watch-thumb-1.jpg',
-    '/faircut/watch-thumb-2.webp',
-    '/faircut/watch-thumb-3.jpg'
+    '/vantage/watch-thumb-0.jpg',
+    '/vantage/watch-thumb-1.jpg',
+    '/vantage/watch-thumb-2.webp',
+    '/vantage/watch-thumb-3.jpg'
   ];
 
   return (

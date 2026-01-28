@@ -17,7 +17,7 @@ export default function CollectorReviewPassport({
       editionNumber: 42,
       editionSize: 178,
       productionDate: '2025-10-15',
-      image: '/faircut/watch-thumb-0.jpg'
+      image: '/vantage/watch-thumb-0.jpg'
     }
   },
   onApprove, 

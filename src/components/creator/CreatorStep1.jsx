@@ -25,10 +25,10 @@ export default function CreatorStep1({ setCurrentStep }) {
   
   // Available watch thumb images from public folder
   const availableWatchImages = [
-    '/faircut/watch-thumb-0.jpg',
-    '/faircut/watch-thumb-1.jpg',
-    '/faircut/watch-thumb-2.webp',
-    '/faircut/watch-thumb-3.jpg',
+    '/vantage/watch-thumb-0.jpg',
+    '/vantage/watch-thumb-1.jpg',
+    '/vantage/watch-thumb-2.webp',
+    '/vantage/watch-thumb-3.jpg',
   ];
   
   // Collection data state
@@ -39,7 +39,7 @@ export default function CreatorStep1({ setCurrentStep }) {
   const [currency, setCurrency] = useState('CHF');
   const [serialFormat, setSerialFormat] = useState('LE-AS-2024-');
   const [launchDate, setLaunchDate] = useState('2024-12-01');
-  const [watchImages, setWatchImages] = useState(['/faircut/watch-thumb-0.jpg']);
+  const [watchImages, setWatchImages] = useState(['/vantage/watch-thumb-0.jpg']);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const handleImageSelect = (imagePath) => {

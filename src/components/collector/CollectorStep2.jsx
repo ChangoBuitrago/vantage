@@ -159,7 +159,7 @@ export default function CollectorStep2({ setCurrentStep }) {
                       <div style={{backgroundColor: '#ffffff', borderRadius: '8px', padding: '20px', marginBottom: '16px', border: '1px solid #e5e7eb'}}>
                         <div style={{display: 'flex', gap: '16px', alignItems: 'flex-start'}}>
                           <img 
-                            src="/faircut/watch-thumb-0.jpg" 
+                            src="/vantage/watch-thumb-0.jpg" 
                             alt="Watch" 
                             style={{width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e5e7eb'}}
                           />

@@ -21,7 +21,7 @@ export default function CollectorReviewStep({
     editionSize: 178,
     retailPrice: 3000,
     purchasePrice: 6500,
-    image: '/faircut/watch-thumb-0.jpg'
+    image: '/vantage/watch-thumb-0.jpg'
   };
 
   const rejectionReasons = [
