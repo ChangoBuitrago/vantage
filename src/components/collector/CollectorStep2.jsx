@@ -117,7 +117,7 @@ export default function CollectorStep2({ setCurrentStep }) {
                     <div style={{flex: 1}}>
                       <div style={{display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px'}}>
                         <span style={{fontSize: '14px', fontWeight: 500, color: '#202124'}}>Vantage</span>
-                        <span style={{fontSize: '14px', color: '#5f6368'}}>&lt;no-reply@faircut.com&gt;</span>
+                        <span style={{fontSize: '14px', color: '#5f6368'}}>&lt;no-reply@vantage.com&gt;</span>
                       </div>
                       <div style={{fontSize: '12px', color: '#5f6368'}}>to me</div>
                     </div>
@@ -261,7 +261,7 @@ export default function CollectorStep2({ setCurrentStep }) {
                   {/* Footer */}
                   <div style={{borderTop: '1px solid #e5e7eb', paddingTop: '24px', marginTop: '32px'}}>
                     <p style={{fontSize: '13px', color: '#6b7280', textAlign: 'center', margin: '0 0 12px 0'}}>
-                      Questions? Contact us at <a href="mailto:support@faircut.com" style={{color: '#f59e0b', textDecoration: 'none'}}>support@faircut.com</a>
+                      Questions? Contact us at <a href="mailto:support@vantage.com" style={{color: '#f59e0b', textDecoration: 'none'}}>support@vantage.com</a>
                     </p>
                     <p style={{fontSize: '12px', color: '#9ca3af', textAlign: 'center', margin: 0}}>
                       © 2025 Vantage. All rights reserved.<br/>
