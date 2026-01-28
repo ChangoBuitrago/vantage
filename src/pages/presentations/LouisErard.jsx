@@ -166,22 +166,11 @@ export default function LouisErard() {
         
         {/* --- SLIDE 0: OPENING SLIDE --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
-          {/* Subtle background decoration */}
-          <div className="absolute inset-0 opacity-5 dark:opacity-10">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500 rounded-full blur-3xl"></div>
-          </div>
-          
-          <div className="w-full max-w-5xl mx-auto z-10 text-center">
-            <h1 className="text-8xl md:text-9xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent mb-12">
+          <div className="w-full max-w-4xl mx-auto z-10 text-center">
+            <h1 className="text-7xl md:text-8xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent mb-8">
               Vantage
             </h1>
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
-              <div className="w-2 h-2 bg-orange-500 dark:bg-orange-400 rounded-full"></div>
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
-            </div>
-            <p className="text-3xl md:text-4xl text-gray-700 dark:text-gray-300 font-medium tracking-tight">
+            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-400 font-light">
               The Secondary Market Problem Endgame
             </p>
           </div>
