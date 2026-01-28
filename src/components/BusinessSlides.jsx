@@ -56,7 +56,7 @@ export default function BusinessSlides() {
         <div className="max-w-6xl mx-auto w-full text-center">
           <h2 className="text-6xl font-black text-gray-900 dark:text-white tracking-tight">The Missing Revenue Layer</h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 mt-6 max-w-3xl mx-auto">
-            Faircut is a simple Shopify app that gives your physical products a digital life—unlocking royalties and guaranteeing authenticity.
+            Vantage is a simple Shopify app that gives your physical products a digital life—unlocking royalties and guaranteeing authenticity.
           </p>
           <div className="mt-12 grid md:grid-cols-3 gap-6 text-left">
             <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">

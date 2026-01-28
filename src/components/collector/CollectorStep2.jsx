@@ -116,7 +116,7 @@ export default function CollectorStep2({ setCurrentStep }) {
                     </div>
                     <div style={{flex: 1}}>
                       <div style={{display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px'}}>
-                        <span style={{fontSize: '14px', fontWeight: 500, color: '#202124'}}>Faircut</span>
+                        <span style={{fontSize: '14px', fontWeight: 500, color: '#202124'}}>Vantage</span>
                         <span style={{fontSize: '14px', color: '#5f6368'}}>&lt;no-reply@faircut.com&gt;</span>
                       </div>
                       <div style={{fontSize: '12px', color: '#5f6368'}}>to me</div>
@@ -128,14 +128,14 @@ export default function CollectorStep2({ setCurrentStep }) {
                 </div>
               </div>
 
-              {/* Email Body - Faircut Content */}
+              {/* Email Body - Vantage Content */}
               <div style={{width: '100%', minHeight: '100vh', backgroundColor: '#ffffff'}}>
                 <div style={{maxWidth: '800px', margin: '0 auto', padding: '40px 20px'}}>
-                  {/* Faircut Logo/Header */}
+                  {/* Vantage Logo/Header */}
                   <div style={{textAlign: 'center', marginBottom: '32px'}}>
                     <div style={{display: 'inline-flex', alignItems: 'center', gap: '12px', marginBottom: '24px'}}>
                       <Shield size={40} color="#1a1a1a" />
-                      <span style={{fontSize: '28px', fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.5px'}}>Faircut</span>
+                      <span style={{fontSize: '28px', fontWeight: 600, color: '#1a1a1a', letterSpacing: '-0.5px'}}>Vantage</span>
                     </div>
                     <div style={{width: '60px', height: '3px', backgroundColor: '#22c55e', margin: '0 auto'}}></div>
                   </div>
@@ -264,7 +264,7 @@ export default function CollectorStep2({ setCurrentStep }) {
                       Questions? Contact us at <a href="mailto:support@faircut.com" style={{color: '#f59e0b', textDecoration: 'none'}}>support@faircut.com</a>
                     </p>
                     <p style={{fontSize: '12px', color: '#9ca3af', textAlign: 'center', margin: 0}}>
-                      © 2025 Faircut. All rights reserved.<br/>
+                      © 2025 Vantage. All rights reserved.<br/>
                       You're receiving this email because a Digital Passport transfer requires your review.
                     </p>
                   </div>

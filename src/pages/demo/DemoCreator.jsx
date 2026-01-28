@@ -62,7 +62,7 @@ export default function DemoCreator() {
 
       {/* Main Content with conditional sidebar */}
       <div className={currentStep < 4 ? "flex" : ""}>
-        {/* Sidebar Navigation - Show for steps 0-3 (inside Faircut platform) */}
+        {/* Sidebar Navigation - Show for steps 0-3 (inside Vantage platform) */}
         {currentStep < 4 && (
           <aside className="w-64 bg-white dark:bg-slate-900 border-r border-gray-200 dark:border-gray-800 min-h-[calc(100vh-73px)] sticky top-[73px] hidden md:block">
           <nav className="p-4 space-y-1">

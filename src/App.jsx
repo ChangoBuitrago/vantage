@@ -26,7 +26,7 @@ function ConditionalDarkModeToggle() {
 
 function PageTitle() {
   useEffect(() => {
-    document.title = 'Faircut';
+    document.title = 'Vantage';
   }, []);
   
   return null;

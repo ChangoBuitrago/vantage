@@ -47,7 +47,7 @@ export default function DemoHeader({
               </div>
               <div>
                 <div className={`text-xl font-bold bg-gradient-to-r ${gradient.text} bg-clip-text text-transparent`}>
-                  Faircut
+                  Vantage
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400 -mt-0.5">{role}</div>
               </div>

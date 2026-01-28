@@ -24,7 +24,7 @@ export default function CollectorStep4({ navigate }) {
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
-              <span className="text-lg text-gray-700 dark:text-gray-300">Found watch on secondary marketplace (Chrono24) with Faircut-verified passport</span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">Found watch on secondary marketplace (Chrono24) with Vantage-verified passport</span>
             </div>
             <div className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />

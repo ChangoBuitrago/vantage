@@ -153,10 +153,10 @@ export default function ManuelEmch() {
         ))}
       </div>
       
-      {/* Faircut Logo */}
+      {/* Vantage Logo */}
       <div className="fixed top-6 left-6 z-50">
         <div className="text-3xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-          Faircut
+          Vantage
         </div>
       </div>
 
@@ -302,7 +302,7 @@ export default function ManuelEmch() {
             <div className="space-y-6">
               {/* Title Section */}
               <div className="text-center mb-10">
-                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Faircut Napkin Strategy</p>
+                <p className="text-base text-gray-500 dark:text-gray-500 mb-2 uppercase tracking-wider font-semibold">Vantage Napkin Strategy</p>
                 <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-3">
                   <span className="text-gray-900 dark:text-white">Selling And Distributing, </span>
                   <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">With A Smart-Certificate</span>

@@ -1,6 +1,6 @@
-# Faircut Platform
+# Vantage Platform
 
-Platform showcasing how Faircut enables brands to earn royalties on secondary market sales through digital certificates.
+Platform showcasing how Vantage enables brands to earn royalties on secondary market sales through digital certificates.
 
 ## Links
 

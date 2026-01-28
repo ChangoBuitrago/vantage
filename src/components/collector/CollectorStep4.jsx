@@ -75,7 +75,7 @@ export default function CollectorStep3({ setCurrentStep }) {
         seller: 'Louis Erard Authorized Dealer',
         dealerLocation: 'Bucherer New York',
         paymentMethod: 'Credit Card',
-        certificateIssued: 'Via Faircut',
+        certificateIssued: 'Via Vantage',
         purchasePrice: '3,000 CHF'
       }
     },
@@ -90,7 +90,7 @@ export default function CollectorStep3({ setCurrentStep }) {
         seller: 'Maria Reseller',
         platform: 'Chrono24',
         paymentMethod: 'Bank Transfer',
-        passportTransferred: 'Via Faircut',
+        passportTransferred: 'Via Vantage',
         purchasePrice: '6,500 CHF'
       }
     }

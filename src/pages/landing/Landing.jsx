@@ -208,10 +208,10 @@ export default function Landing() {
         ))}
       </div>
       
-      {/* Faircut Logo */}
+      {/* Vantage Logo */}
       <div className="fixed top-6 left-6 z-50">
         <div className="text-3xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-          Faircut
+          Vantage
         </div>
       </div>
 
@@ -269,7 +269,7 @@ export default function Landing() {
           <div className="w-full max-w-5xl mx-auto text-center">
             <h2 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">Unlock Royalties from Every Resale</h2>
             <p className="text-lg md:text-xl text-gray-700 dark:text-slate-100/80 leading-relaxed mb-12 max-w-3xl mx-auto">
-              Faircut attaches a digital passport to each item you create. This immutable link ensures resellers automatically pay you a royalty on every future resale—forever.
+              Vantage attaches a digital passport to each item you create. This immutable link ensures resellers automatically pay you a royalty on every future resale—forever.
             </p>
             
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 text-gray-900 dark:text-white mb-12">
@@ -313,7 +313,7 @@ export default function Landing() {
             {/* Before/After Comparison */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <div className="bg-red-50/50 dark:bg-red-900/10 rounded-2xl p-6 border-2 border-red-300 dark:border-red-700">
-                <h3 className="text-lg font-bold text-red-600 dark:text-red-400 mb-4">Without Faircut</h3>
+                <h3 className="text-lg font-bold text-red-600 dark:text-red-400 mb-4">Without Vantage</h3>
                 <div className="space-y-3 text-left">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600 dark:text-gray-400">Your share of resales:</span>
@@ -331,7 +331,7 @@ export default function Landing() {
               </div>
               
               <div className="bg-amber-50/50 dark:bg-amber-900/10 rounded-2xl p-6 border-2 border-amber-300 dark:border-amber-700">
-                <h3 className="text-lg font-bold text-amber-600 dark:text-amber-400 mb-4">With Faircut</h3>
+                <h3 className="text-lg font-bold text-amber-600 dark:text-amber-400 mb-4">With Vantage</h3>
                 <div className="space-y-3 text-left">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600 dark:text-gray-400">Your royalty share:</span>
@@ -429,7 +429,7 @@ export default function Landing() {
                   <p className="text-lg text-gray-600 dark:text-gray-400">Currently, you get <span className="font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">$0</span> of this.</p>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">Your Share with Faircut</h3>
+                  <h3 className="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">Your Share with Vantage</h3>
                   <div className="text-6xl md:text-7xl font-black bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent mb-2">
                     {formatCurrency(calculatedRevenue)}
                   </div>
@@ -505,7 +505,7 @@ export default function Landing() {
                         onChange={(e) => handleSliderChange('royaltyRate', e.target.value)} 
                         className="w-full h-2 bg-gradient-to-r from-amber-200 to-orange-200 dark:from-amber-800 dark:to-orange-800 rounded-lg appearance-none cursor-pointer slider"
                       />
-                      <p className="text-xs text-amber-600 dark:text-amber-400 font-medium mt-1">Powered by Faircut</p>
+                      <p className="text-xs text-amber-600 dark:text-amber-400 font-medium mt-1">Powered by Vantage</p>
                     </div>
                   </div>
 
@@ -632,7 +632,7 @@ export default function Landing() {
               <span>Docs</span>
             </a>
           </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400">© {new Date().getFullYear()} Faircut. All Rights Reserved.</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">© {new Date().getFullYear()} Vantage. All Rights Reserved.</p>
         </div>
       </div>
 

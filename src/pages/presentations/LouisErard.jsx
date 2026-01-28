@@ -153,10 +153,10 @@ export default function LouisErard() {
         ))}
       </div>
       
-      {/* Faircut Logo */}
+      {/* Vantage Logo */}
       <div className="fixed top-6 left-6 z-50">
         <div className="text-3xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-          Faircut
+          Vantage
         </div>
       </div>
 

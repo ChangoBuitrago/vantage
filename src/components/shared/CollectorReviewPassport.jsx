@@ -302,7 +302,7 @@ export default function CollectorReviewPassport({
             <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-400 space-y-2">
               <p>• <strong>Royalties:</strong> 90% in Year 1, 60% in Year 2, 15% in Year 3+</p>
               <p>• <strong>Transfer Lock:</strong> Cannot resell for 6 months after purchase</p>
-              <p>• <strong>Enforcement:</strong> Rules enforced by Faircut Settlement Protocol on every transfer</p>
+              <p>• <strong>Enforcement:</strong> Rules enforced by Vantage Settlement Protocol on every transfer</p>
             </div>
           )}
         </div>

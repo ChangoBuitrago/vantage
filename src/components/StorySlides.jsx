@@ -12,7 +12,7 @@ export default function StorySlides() {
               Jonas runs <span className="font-medium text-gray-900 dark:text-white">NOMAD</span>, a premium outerwear brand on Shopify. He wanted a way to capture the resale value his limited-edition drops create.
             </p>
              <p className="text-xl text-gray-600 dark:text-gray-400 font-light leading-relaxed mt-4">
-              He installed <span className="font-medium text-gray-900 dark:text-white">Faircut.</span>
+              He installed <span className="font-medium text-gray-900 dark:text-white">Vantage.</span>
             </p>
           </div>
           <div className="max-w-md bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8">
@@ -77,7 +77,7 @@ export default function StorySlides() {
                 <span className="text-6xl font-bold text-green-500">$1,200</span>
             </div>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                The transaction happens anywhere—Instagram, Grailed, or a DM. <span className="font-bold text-gray-900 dark:text-white">Faircut simply handles the transfer of the official certificate and enforces Jonas's royalty rule.</span>
+                The transaction happens anywhere—Instagram, Grailed, or a DM. <span className="font-bold text-gray-900 dark:text-white">Vantage simply handles the transfer of the official certificate and enforces Jonas's royalty rule.</span>
             </p>
         </div>
       </section>
@@ -110,7 +110,7 @@ export default function StorySlides() {
         <div className="max-w-3xl">
           <h2 className="text-6xl font-bold text-gray-900 dark:text-white tracking-tight">Magic in the Background</h2>
           <p className="text-xl text-gray-700 dark:text-gray-300 font-light leading-relaxed mt-8">
-            Jonas didn't change his workflow. He still sells through Shopify, just like always. Faircut handles the rest:
+            Jonas didn't change his workflow. He still sells through Shopify, just like always. Vantage handles the rest:
           </p>
           <div className="mt-12 max-w-md mx-auto text-left text-lg space-y-4">
             <p><span className="text-green-500 font-bold mr-2">✓</span> Issuing certificates</p>
