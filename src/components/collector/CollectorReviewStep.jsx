@@ -147,8 +147,7 @@ export default function CollectorReviewStep({
                     <p className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Asset Rules</p>
                     <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
                       <li>• Transfer Lock: 6 months minimum hold period</li>
-                      <li>• Base Resell Price: CHF 3,000 minimum</li>
-                      <li>• Dynamic Royalties: 90% → 60% → 15% over 3 years</li>
+                      <li>• Revenue Share: CHF 3,000 base + 90%→60%→15% royalty on profit</li>
                     </ul>
                   </div>
                   <div className="border-t border-gray-200 dark:border-gray-700 pt-3">

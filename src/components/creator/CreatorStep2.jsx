@@ -216,25 +216,14 @@ export default function CreatorStep2({ setCurrentStep }) {
                           </div>
                         </div>
                         
-                        {/* Base Resell Price */}
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Baseline className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Base Resell Price</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">CHF {retailPrice.toLocaleString()} minimum</p>
-                          </div>
-                        </div>
-                        
-                        {/* Royalty Tiers */}
+                        {/* Secondary Market Revenue Share */}
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Percent className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Dynamic Royalties</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">90% → 60% → 15% over 3 years</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Revenue Share</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">CHF {retailPrice.toLocaleString()} base + 90%→60%→15% on profit</p>
                           </div>
                         </div>
                       </div>

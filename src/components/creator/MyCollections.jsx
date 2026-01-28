@@ -74,10 +74,10 @@ export default function MyCollections({ setCurrentStep }) {
             <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
                 <Percent className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Dynamic Royalties</p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Revenue Share</p>
               </div>
-              <p className="text-base font-bold text-emerald-600 dark:text-emerald-400">90% → 60% → 15%</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Tiered over 3 years</p>
+              <p className="text-base font-bold text-emerald-600 dark:text-emerald-400">CHF 3,000 + 90%→15%</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">Base price + royalty on profit</p>
             </div>
 
             <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">

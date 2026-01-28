@@ -283,20 +283,11 @@ export default function ResellerStep3({ setCurrentStep }) {
                         </div>
                         <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                            <Baseline className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Base Resale Price: CHF 3,000</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Minimum for royalty calculation</p>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3 p-2.5 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-gray-700">
-                          <div className="flex-shrink-0 w-8 h-8 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
                             <Percent className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Dynamic Royalties: 90% → 60% → 15%</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">Decreases over 3 years</p>
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white">Revenue Share</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">CHF 3,000 base + 90%→60%→15% royalty on profit</p>
                           </div>
                         </div>
                       </div>
