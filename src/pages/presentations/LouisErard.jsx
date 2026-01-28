@@ -5,7 +5,7 @@ export default function LouisErard() {
   const containerRef = useRef(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isScrollingRef = useRef(false);
-  const totalSections = 3; // Control Gap, Settlement Protocol, Value Proposition
+  const totalSections = 4; // Opening, Control Gap, Settlement Protocol, Value Proposition
   
   // Effect to ensure page starts at the top on load
   useEffect(() => {
@@ -153,16 +153,30 @@ export default function LouisErard() {
         ))}
       </div>
       
-      {/* Vantage Logo */}
-      <div className="fixed top-6 left-6 z-50">
-        <div className="text-3xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-          Vantage
+      {/* Vantage Logo - Hidden on opening slide */}
+      {currentSection > 0 && (
+        <div className="fixed top-6 left-6 z-50">
+          <div className="text-3xl font-black tracking-tight bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+            Vantage
+          </div>
         </div>
-      </div>
+      )}
 
       <div ref={containerRef} className="smooth-scroll-container h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" style={{scrollBehavior: 'smooth'}}>
         
-        {/* --- SLIDE 0: THE CONTROL GAP --- */}
+        {/* --- SLIDE 0: OPENING SLIDE --- */}
+        <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
+          <div className="w-full max-w-4xl mx-auto z-10 text-center">
+            <h1 className="text-7xl md:text-8xl font-black tracking-tight text-gray-900 dark:text-white mb-8">
+              Vantage
+            </h1>
+            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-400 font-light">
+              The Secondary Market Problem
+            </p>
+          </div>
+        </section>
+        
+        {/* --- SLIDE 1: THE CONTROL GAP --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
@@ -220,7 +234,7 @@ export default function LouisErard() {
           </div>
         </section>
 
-        {/* --- SLIDE 1: SETTLEMENT PROTOCOL SOLUTION --- */}
+        {/* --- SLIDE 2: SETTLEMENT PROTOCOL SOLUTION --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
@@ -281,7 +295,7 @@ export default function LouisErard() {
           </div>
         </section>
 
-        {/* --- SLIDE 2: VALUE PROPOSITION --- */}
+        {/* --- SLIDE 3: VALUE PROPOSITION --- */}
         <section className="h-screen snap-start snap-always flex flex-col items-center justify-center p-6 md:p-8 bg-gradient-to-br from-slate-50 via-stone-50 to-zinc-50 dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950 relative overflow-hidden">
           <div className="w-full max-w-7xl mx-auto z-10 flex flex-col h-full justify-center gap-10 py-6">
             
