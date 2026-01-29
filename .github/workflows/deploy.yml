@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
           
       - name: Install dependencies
@@ -35,6 +35,7 @@ jobs:
       - name: Build
         run: npm run build
         
+      # SPA fallback: serve index for any path so /faircut/louis-erard and /faircut/demo work on direct open or refresh
       - name: Create 404.html for GitHub Pages
         run: cp dist/index.html dist/404.html
         
