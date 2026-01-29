@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: npm run build
         
-      # SPA fallback: serve index for any path so /faircut/louis-erard and /faircut/demo work on direct open or refresh
+      # SPA fallback: serve index for any path so /vantage/louis-erard and /vantage/demo work on direct open or refresh
       - name: Create 404.html for GitHub Pages
         run: cp dist/index.html dist/404.html
         

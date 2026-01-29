@@ -4,12 +4,12 @@ Platform showcasing how Vantage enables brands to earn royalties on secondary ma
 
 ## Links
 
-- **Landing:** [https://changobuitrago.github.io/faircut/](https://changobuitrago.github.io/faircut/)
-- **Louis Erard presentation:** [https://changobuitrago.github.io/faircut/louis-erard](https://changobuitrago.github.io/faircut/louis-erard)
-- **Demo (experience selector):** [https://changobuitrago.github.io/faircut/demo](https://changobuitrago.github.io/faircut/demo)
-- **Repository:** [https://github.com/ChangoBuitrago/faircut](https://github.com/ChangoBuitrago/faircut)
+- **Landing:** [https://changobuitrago.github.io/vantage/](https://changobuitrago.github.io/vantage/)
+- **Louis Erard presentation:** [https://changobuitrago.github.io/vantage/louis-erard](https://changobuitrago.github.io/vantage/louis-erard)
+- **Demo (experience selector):** [https://changobuitrago.github.io/vantage/demo](https://changobuitrago.github.io/vantage/demo)
+- **Repository:** [https://github.com/ChangoBuitrago/vantage](https://github.com/ChangoBuitrago/vantage)
 
-Direct links and page refresh work on GitHub Pages thanks to the deploy step that copies `index.html` to `404.html`, so the SPA is served for any path under `/faircut/`. (Repo must be public for GitHub Pages to serve the site.)
+Direct links and page refresh work on GitHub Pages thanks to the deploy step that copies `index.html` to `404.html`, so the SPA is served for any path under `/vantage/`. (Repo must be public for GitHub Pages to serve the site.)
 
 ## Quick Start
 
