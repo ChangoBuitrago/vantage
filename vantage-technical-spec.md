@@ -1,6 +1,6 @@
 # Vantage Settlement Protocol: Technical Specification
 
-**Project:** White-label Asset Governance Platform for Louis Erard  
+**Project:** White-label Asset Governance Platform  
 **Version:** 1.0 (Dev Ready)  
 **Date:** February 2, 2026  
 **Status:** MVP - Ready for Implementation
@@ -12,9 +12,10 @@
 Vantage is a **Sovereign Smart Contract** platform that handles **Issuance** (minting) and **Restricted Settlement** (compliance-gated resales) of digital passports for luxury assets. The protocol implements a **"Pay-to-Transfer"** model where resellers must pay an Exit Tax (royalty) before the blockchain transfer executes.
 
 **Key Characteristics:**
-- **Sovereign Contract:** Louis Erard owns the ERC-721 registry (no platform dependencies)
+- **Sovereign Contract:** Brand owns the ERC-721 registry (no platform dependencies)
 - **Reseller-Paid Royalties:** Current owner pays Exit Tax via Stripe to unlock transfer
-- **Dynamic Tiers:** Royalty rate adjusts based on holding duration (anti-flip mechanism)
+- **Dynamic Tiers:** Royalty rate adjusts based on holding duration (configurable for brand convenience)
+- **Transfer Locks:** Minimum holding period prevents premature resale (anti-flip mechanism)
 - **GDPR Compliant:** Twin data structure (on-chain state + off-chain PII)
 - **Chain Agnostic:** Polygon (public) with compatibility for private networks (Aura/Quorum)
 - **Orchestrated Workflow:** AWS Step Functions manages long-running, human-in-the-loop processes
@@ -183,11 +184,11 @@ const holdingPeriodDays = (Date.now() - lastTransfer.metadata.blockTimestamp * 1
 function calculateRoyalty(salePrice, holdingPeriodDays) {
   let tierRate;
   if (holdingPeriodDays < 365) {
-    tierRate = 0.10; // 10% - Flipping Tax
+    tierRate = 0.10; // 10% - Short-term holding
   } else if (holdingPeriodDays < 1095) {
     tierRate = 0.05; // 5% - Standard
   } else {
-    tierRate = 0.02; // 2% - Collector Reward
+    tierRate = 0.02; // 2% - Long-term holding
   }
   return salePrice * tierRate;
 }
@@ -233,7 +234,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/common/ERC2981.sol";
 import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
-contract LouisErardRegistry is ERC721, ERC2981 {
+contract VantageAssetRegistry is ERC721, ERC2981 {
     using ECDSA for bytes32;
     
     address public immutable COMPLIANCE_SIGNER; // Backend public key
@@ -241,7 +242,7 @@ contract LouisErardRegistry is ERC721, ERC2981 {
     
     mapping(uint256 => string) private _metadataHashes; // IPFS CID for off-chain data
     
-    constructor(address complianceSigner) ERC721("Louis Erard Excellence", "LERARD") {
+    constructor(address complianceSigner) ERC721("Brand Asset Registry", "BASSET") {
         COMPLIANCE_SIGNER = complianceSigner;
     }
     
@@ -335,7 +336,7 @@ sequenceDiagram
     participant App as Vantage App
     participant Magic as Magic
     participant Backend as Vantage Backend
-    participant Contract as LE_Registry (Polygon)
+    participant Contract as Vantage Registry (Polygon)
     participant S3 as AWS S3 (Off-Chain)
 
     rect rgb(230, 230, 250)
@@ -348,7 +349,7 @@ sequenceDiagram
         U->>Magic: Click magic link
         Magic->>App: Return DIDToken and publicAddress
         App->>Backend: POST /claim with serial, address, email
-        Backend->>Backend: Verify serial in Louis Erard DB
+        Backend->>Backend: Verify serial in Product DB
         Backend->>S3: Upload encrypted metadata
         S3-->>Backend: Return IPFS hash
         Backend->>Contract: Call mint function
@@ -374,7 +375,7 @@ sequenceDiagram
     participant SF as Step Functions
     participant AlchemyNFT as Alchemy NFT API
     participant AlchemyAA as Alchemy AA
-    participant Contract as LE_Registry (Polygon)
+    participant Contract as Vantage Registry (Polygon)
 
     rect rgb(240, 248, 255)
         Note over R, SF: PHASE 1: QUOTE & INITIATE
@@ -426,7 +427,7 @@ sequenceDiagram
         Backend-->>App: Return checkoutUrl
         App->>R: Open Stripe checkout
         R->>Stripe: Enter card and submit payment
-        Stripe->>Stripe: Process payment to Louis Erard account
+        Stripe->>Stripe: Process payment to Brand account
         Stripe->>Backend: Webhook checkout completed
         Backend->>Backend: Verify payment and update status
         Backend->>Backend: Generate permit signature
@@ -509,7 +510,7 @@ sequenceDiagram
 ## Implementation Checklist
 
 ### Phase 1: Genesis (Claiming)
-- [ ] Deploy Louis Erard Registry contract to Polygon testnet
+- [ ] Deploy Vantage Asset Registry contract to Polygon testnet
 - [ ] Integrate Magic SDK (frontend + backend validation)
 - [ ] Build `/claim` endpoint (verify serial, mint NFT)
 - [ ] Set up S3 bucket for off-chain metadata (encrypted)
@@ -630,8 +631,8 @@ A: Alchemy Gas Manager buffers volatility. For extreme cases, Step Functions can
 **Q: Is the backend a single point of failure?**  
 A: Yes, for permit generation. Mitigation: Deploy backend across multiple regions, use AWS KMS for key security, implement permit caching.
 
-**Q: Can Louis Erard switch providers later?**  
-A: Yes. The contract is sovereign (Louis Erard owns it). They can:
+**Q: Can the brand switch providers later?**  
+A: Yes. The contract is sovereign (brand owns it). They can:
   1. Deploy new backend with different permit signer
   2. Update `COMPLIANCE_SIGNER` in contract (via governance)
   3. Migrate orchestration to Temporal/Camunda if leaving AWS
