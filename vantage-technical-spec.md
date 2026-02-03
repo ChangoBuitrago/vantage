@@ -315,7 +315,333 @@ async function generatePermit(transferId, from, to, tokenId, salePrice) {
 - `POST /webhooks/stripe` → Payment confirmation (sends task success + generates permit)
 - `POST /transfer/:id/settle` → Executes on-chain settlement with permit
 
-### 6. OpenZeppelin Contracts (Smart Contract Framework)
+### 6. Analytics & Dashboard System (Creator Insights)
+**What it does:**
+- Aggregates secondary market data for brand dashboards
+- Tracks royalty revenue, geographic distribution, ownership patterns
+- Provides real-time and historical metrics
+- Powers creator/brand decision-making with actionable insights
+
+**Data Sources:**
+
+1. **On-Chain Events** (via Alchemy webhooks or polling)
+   - `TransferSettled` events from Vantage contract
+   - Transfer timestamps, from/to addresses, sale prices
+   - Token ownership history
+
+2. **Backend Records** (DynamoDB/PostgreSQL)
+   - Stripe payment records (royalty amounts captured)
+   - Transfer lifecycle states (initiated, approved, settled)
+   - Declared sale prices and holding periods
+   - Collector/reseller metadata (email, location if provided)
+
+3. **Alchemy NFT API**
+   - Current ownership distribution
+   - Transfer frequency by token
+   - Historical transfer prices
+
+**Architecture:**
+
+```
+┌─────────────────┐
+│ On-Chain Events │──┐
+│ (Alchemy Hook) │  │
+└─────────────────┘  │
+                     │
+┌─────────────────┐  │    ┌──────────────────┐
+│ Stripe Webhooks │──┼───▶│ Event Processor  │
+└─────────────────┘  │    │    (Lambda)      │
+                     │    └──────────────────┘
+┌─────────────────┐  │              │
+│ Transfer APIs   │──┘              │
+└─────────────────┘                 │
+                                    ▼
+                          ┌──────────────────┐
+                          │ Analytics DB     │
+                          │ (TimescaleDB/    │
+                          │  Redshift)       │
+                          └──────────────────┘
+                                    │
+                                    ▼
+                          ┌──────────────────┐
+                          │ Analytics API    │
+                          │ (Lambda/Express) │
+                          └──────────────────┘
+                                    │
+                                    ▼
+                          ┌──────────────────┐
+                          │ Creator Dashboard│
+                          │    (React)       │
+                          └──────────────────┘
+```
+
+**Data Models:**
+
+**1. Transfers Table (Raw Events)**
+```sql
+CREATE TABLE transfers (
+  transfer_id UUID PRIMARY KEY,
+  token_id INTEGER NOT NULL,
+  from_address VARCHAR(42) NOT NULL,
+  to_address VARCHAR(42) NOT NULL,
+  sale_price_cents INTEGER NOT NULL,
+  royalty_cents INTEGER NOT NULL,
+  holding_period_days INTEGER,
+  status VARCHAR(20), -- pending, settled, rejected
+  initiated_at TIMESTAMP NOT NULL,
+  settled_at TIMESTAMP,
+  tx_hash VARCHAR(66),
+  collector_country VARCHAR(2), -- ISO country code
+  INDEX idx_token_id (token_id),
+  INDEX idx_settled_at (settled_at)
+);
+```
+
+**2. Aggregated Metrics Table (Pre-computed)**
+```sql
+CREATE TABLE analytics_daily (
+  date DATE NOT NULL,
+  collection_id UUID NOT NULL,
+  total_transfers INTEGER DEFAULT 0,
+  total_revenue_cents INTEGER DEFAULT 0,
+  avg_sale_price_cents INTEGER,
+  unique_sellers INTEGER,
+  unique_buyers INTEGER,
+  PRIMARY KEY (date, collection_id)
+);
+
+CREATE TABLE analytics_by_country (
+  collection_id UUID NOT NULL,
+  country_code VARCHAR(2) NOT NULL,
+  total_transfers INTEGER DEFAULT 0,
+  total_revenue_cents INTEGER DEFAULT 0,
+  last_updated TIMESTAMP,
+  PRIMARY KEY (collection_id, country_code)
+);
+
+CREATE TABLE ownership_retention (
+  collection_id UUID NOT NULL,
+  holding_period_bucket VARCHAR(20), -- e.g., "0-6mo", "6-12mo", "1-3yr", "3yr+"
+  transfer_count INTEGER DEFAULT 0,
+  avg_holding_days INTEGER,
+  PRIMARY KEY (collection_id, holding_period_bucket)
+);
+```
+
+**Event Processing (Lambda):**
+```javascript
+// Listen to Alchemy webhook for on-chain events
+exports.handler = async (event) => {
+  const { activityType, fromAddress, toAddress, tokenId, value } = event;
+  
+  if (activityType === 'TRANSFER') {
+    // Fetch transfer record from backend DB
+    const transfer = await getTransferByTokenAndAddresses(tokenId, fromAddress, toAddress);
+    
+    if (transfer && transfer.status === 'settled') {
+      // Already processed, deduplicate
+      return { statusCode: 200, body: 'Already processed' };
+    }
+    
+    // Get sale price and royalty from backend
+    const { salePrice, royalty, holdingPeriod, collectorCountry } = transfer;
+    
+    // Insert raw transfer record
+    await db.query(`
+      INSERT INTO transfers (
+        transfer_id, token_id, from_address, to_address, 
+        sale_price_cents, royalty_cents, holding_period_days,
+        status, initiated_at, settled_at, tx_hash, collector_country
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    `, [
+      transfer.id, tokenId, fromAddress, toAddress,
+      salePrice, royalty, holdingPeriod,
+      'settled', transfer.initiatedAt, new Date(), event.txHash, collectorCountry
+    ]);
+    
+    // Trigger aggregation
+    await triggerDailyAggregation(transfer.collectionId);
+    await triggerCountryAggregation(transfer.collectionId, collectorCountry);
+    await triggerRetentionAggregation(transfer.collectionId, holdingPeriod);
+    
+    return { statusCode: 200, body: 'Analytics updated' };
+  }
+};
+
+// Aggregate daily metrics (runs on schedule or trigger)
+async function triggerDailyAggregation(collectionId) {
+  const today = new Date().toISOString().split('T')[0];
+  
+  await db.query(`
+    INSERT INTO analytics_daily (date, collection_id, total_transfers, total_revenue_cents, avg_sale_price_cents)
+    SELECT 
+      DATE(settled_at) as date,
+      $1 as collection_id,
+      COUNT(*) as total_transfers,
+      SUM(royalty_cents) as total_revenue_cents,
+      AVG(sale_price_cents) as avg_sale_price_cents
+    FROM transfers
+    WHERE collection_id = $1 AND DATE(settled_at) = $2 AND status = 'settled'
+    GROUP BY DATE(settled_at)
+    ON CONFLICT (date, collection_id) DO UPDATE SET
+      total_transfers = EXCLUDED.total_transfers,
+      total_revenue_cents = EXCLUDED.total_revenue_cents,
+      avg_sale_price_cents = EXCLUDED.avg_sale_price_cents
+  `, [collectionId, today]);
+}
+```
+
+**Analytics API Endpoints:**
+
+**1. Dashboard Overview**
+```javascript
+GET /api/analytics/dashboard?collectionId={id}
+
+// Response
+{
+  "collectionId": "uuid",
+  "totalRevenue": 125000, // Total royalties in cents
+  "totalTransfers": 48,
+  "avgSalePrice": 550000,
+  "avgHoldingPeriod": 287, // days
+  "revenueByMonth": [
+    { "month": "2025-10", "revenue": 45000, "transfers": 15 },
+    { "month": "2025-11", "revenue": 52000, "transfers": 18 },
+    { "month": "2025-12", "revenue": 28000, "transfers": 15 }
+  ],
+  "geographicDistribution": [
+    { "country": "CH", "countryName": "Switzerland", "transfers": 18, "revenue": 58000 },
+    { "country": "US", "countryName": "United States", "transfers": 12, "revenue": 38000 },
+    { "country": "DE", "countryName": "Germany", "transfers": 10, "revenue": 20000 },
+    { "country": "FR", "countryName": "France", "transfers": 8, "revenue": 9000 }
+  ],
+  "ownershipRetention": [
+    { "bucket": "Early (< 6mo)", "count": 22, "percentage": 45.8 },
+    { "bucket": "Standard (6mo - 1yr)", "count": 15, "percentage": 31.3 },
+    { "bucket": "Collector (1-3yr)", "count": 8, "percentage": 16.7 },
+    { "bucket": "Long-term (3yr+)", "count": 3, "percentage": 6.2 }
+  ]
+}
+```
+
+**2. Revenue Trends**
+```javascript
+GET /api/analytics/revenue?collectionId={id}&period=30d
+
+// Returns time-series data for charting
+{
+  "data": [
+    { "date": "2025-12-01", "revenue": 2500, "transfers": 3 },
+    { "date": "2025-12-02", "revenue": 1800, "transfers": 2 },
+    // ...
+  ]
+}
+```
+
+**3. Top Performing Assets**
+```javascript
+GET /api/analytics/top-assets?collectionId={id}&limit=10
+
+{
+  "assets": [
+    {
+      "tokenId": 88,
+      "serialNumber": "LE-88-2023",
+      "totalTransfers": 5,
+      "totalRevenue": 8500,
+      "avgSalePrice": 650000,
+      "lastSalePrice": 700000,
+      "currentOwner": "0x1234..."
+    },
+    // ...
+  ]
+}
+```
+
+**Implementation Stack:**
+
+| Component | Technology | Purpose |
+|-----------|-----------|---------|
+| **Event Ingestion** | Alchemy Webhooks + Lambda | Real-time on-chain event capture |
+| **Raw Data Store** | PostgreSQL or DynamoDB | Transfer records, Stripe payments |
+| **Analytics DB** | TimescaleDB or AWS Redshift | Time-series aggregations, fast queries |
+| **Aggregation Jobs** | Lambda (scheduled) or AWS Glue | Daily/hourly metric computation |
+| **Caching** | Redis or ElastiCache | Dashboard query results (TTL: 5min) |
+| **Analytics API** | Node.js/Lambda + API Gateway | REST endpoints for dashboard |
+| **Visualization** | React + Recharts/Chart.js | Frontend charts and tables |
+
+**Data Refresh Strategy:**
+
+- **Real-time:** On-chain events trigger immediate aggregation (< 30s latency)
+- **Batch:** Hourly job re-aggregates last 24h (corrects any missed events)
+- **Cache:** Dashboard queries cached for 5 minutes (reduce DB load)
+- **Historical:** Data older than 90 days archived to S3 (cost optimization)
+
+**Dev Implementation:**
+```javascript
+// Backend: Analytics API endpoint
+app.get('/api/analytics/dashboard', async (req, res) => {
+  const { collectionId } = req.query;
+  
+  // Check cache first
+  const cached = await redis.get(`analytics:${collectionId}`);
+  if (cached) {
+    return res.json(JSON.parse(cached));
+  }
+  
+  // Query aggregated data
+  const [revenue, geo, retention] = await Promise.all([
+    db.query('SELECT * FROM analytics_daily WHERE collection_id = $1 ORDER BY date DESC LIMIT 90', [collectionId]),
+    db.query('SELECT * FROM analytics_by_country WHERE collection_id = $1 ORDER BY total_revenue_cents DESC', [collectionId]),
+    db.query('SELECT * FROM ownership_retention WHERE collection_id = $1', [collectionId])
+  ]);
+  
+  const dashboard = {
+    totalRevenue: revenue.rows.reduce((sum, r) => sum + r.total_revenue_cents, 0),
+    totalTransfers: revenue.rows.reduce((sum, r) => sum + r.total_transfers, 0),
+    revenueByMonth: groupByMonth(revenue.rows),
+    geographicDistribution: geo.rows.map(formatGeoData),
+    ownershipRetention: retention.rows.map(formatRetentionData)
+  };
+  
+  // Cache for 5 minutes
+  await redis.setex(`analytics:${collectionId}`, 300, JSON.stringify(dashboard));
+  
+  res.json(dashboard);
+});
+```
+
+**Frontend: Dashboard Component**
+```jsx
+// React component for creator dashboard
+import { useEffect, useState } from 'react';
+import { LineChart, BarChart, PieChart } from 'recharts';
+
+function CreatorDashboard({ collectionId }) {
+  const [analytics, setAnalytics] = useState(null);
+  
+  useEffect(() => {
+    fetch(`/api/analytics/dashboard?collectionId=${collectionId}`)
+      .then(res => res.json())
+      .then(setAnalytics);
+  }, [collectionId]);
+  
+  if (!analytics) return <Loading />;
+  
+  return (
+    <div className="dashboard">
+      <MetricCard title="Total Revenue" value={formatCurrency(analytics.totalRevenue)} />
+      <MetricCard title="Total Transfers" value={analytics.totalTransfers} />
+      
+      <LineChart data={analytics.revenueByMonth} />
+      <BarChart data={analytics.geographicDistribution} />
+      <PieChart data={analytics.ownershipRetention} />
+    </div>
+  );
+}
+```
+
+### 7. OpenZeppelin Contracts (Smart Contract Framework)
 **What it does:**
 - Provides battle-tested, audited implementations of token standards
 - Reduces security risks by using community-vetted code
@@ -942,7 +1268,38 @@ sequenceDiagram
 - [ ] Collector: Quick Accept button (optional early approval)
 - [ ] Status tracker (pending_review, approved, captured, settled, rejected)
 
-### Phase 4: Testing
+### Phase 4: Analytics & Dashboard
+- [ ] Set up analytics database (TimescaleDB or PostgreSQL with time-series extension)
+- [ ] Create data models:
+  - [ ] Transfers table (raw events)
+  - [ ] analytics_daily table (aggregated metrics)
+  - [ ] analytics_by_country table (geographic distribution)
+  - [ ] ownership_retention table (holding period buckets)
+- [ ] Implement event processor Lambda:
+  - [ ] Listen to Alchemy webhooks for TransferSettled events
+  - [ ] Insert raw transfer records
+  - [ ] Trigger aggregation jobs
+- [ ] Build aggregation functions:
+  - [ ] Daily revenue and transfer counts
+  - [ ] Geographic distribution by country
+  - [ ] Ownership retention buckets
+  - [ ] Top performing assets
+- [ ] Implement Analytics API endpoints:
+  - [ ] GET /api/analytics/dashboard (overview metrics)
+  - [ ] GET /api/analytics/revenue (time-series data)
+  - [ ] GET /api/analytics/top-assets (best performers)
+  - [ ] GET /api/analytics/retention (holding patterns)
+- [ ] Set up caching layer (Redis/ElastiCache) for dashboard queries
+- [ ] Build Creator Dashboard UI:
+  - [ ] Revenue overview cards
+  - [ ] Line chart for revenue trends
+  - [ ] Bar chart for geographic distribution
+  - [ ] Pie chart for ownership retention
+  - [ ] Table for top performing assets
+- [ ] Implement scheduled aggregation job (hourly/daily)
+- [ ] Set up Alchemy webhook endpoint for real-time updates
+
+### Phase 5: Testing
 - [ ] Unit tests for royalty calculator
 - [ ] Contract tests (permit verification, transfer blocking)
 - [ ] Integration test: full flow on testnet
@@ -1266,6 +1623,37 @@ Writing custom implementations risks introducing vulnerabilities. We extend Open
 
 **Q: Which OpenZeppelin version should we use?**  
 A: For production, pin an exact version (e.g., `@openzeppelin/contracts@5.0.1` instead of `^5.0.0`) to ensure consistent behavior and prevent unexpected changes from updates. Check OpenZeppelin's security advisories before upgrading.
+
+**Q: How are analytics collected and updated?**  
+A: Real-time + batch hybrid approach:
+  1. **Real-time:** Alchemy webhooks trigger Lambda on each `TransferSettled` event (< 30s latency)
+  2. **Aggregation:** Event processor writes to raw transfers table, then updates aggregated metrics
+  3. **Batch:** Hourly job re-processes last 24h to catch any missed events
+  4. **Caching:** Dashboard queries cached in Redis for 5 minutes to reduce DB load
+  
+This ensures creators see near-instant updates while maintaining data consistency.
+
+**Q: What analytics data is tracked?**  
+A: The creator dashboard shows:
+  - **Revenue Metrics:** Total royalties collected, revenue by month, average sale price
+  - **Geographic Distribution:** Sales by country (from collector's declared location or IP)
+  - **Ownership Retention:** Buckets showing how long owners hold before reselling (< 6mo, 6mo-1yr, 1-3yr, 3yr+)
+  - **Transfer Volume:** Number of secondary sales over time
+  - **Top Assets:** Best performing tokens by revenue and transfer frequency
+  
+All based on declared sale prices (validated by negative consent), Stripe payments, and on-chain events.
+
+**Q: Can we get real-time analytics or is there a delay?**  
+A: Near real-time (< 30s) via Alchemy webhooks. When a transfer settles on-chain, the event triggers analytics update immediately. Dashboard shows latest data with 5-minute cache refresh.
+
+**Q: What if we need custom analytics or reports?**  
+A: The analytics database (TimescaleDB/Redshift) stores raw transfer events. You can:
+  1. Write custom SQL queries for ad-hoc reports
+  2. Add new aggregation tables for specific metrics
+  3. Export data to BI tools (Tableau, Looker) via API
+  4. Build custom dashboards using the Analytics API endpoints
+  
+All transfer data includes: timestamp, addresses, sale price, royalty, holding period, country.
 
 ---
 
