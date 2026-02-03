@@ -1309,6 +1309,32 @@ sequenceDiagram
 
 ---
 
+## Operations Cost Estimate
+
+**Assumptions:** Single brand, Polygon mainnet, ~500 transfers/month, ~2,000 MAU (Magic), US/EU region. All figures USD/month unless noted.
+
+| Component | Low (MVP) | Medium (Scale) | Notes |
+|-----------|-----------|----------------|--------|
+| **AWS Lambda** | $5–15 | $30–80 | API + event processors + Step Functions invocations |
+| **AWS Step Functions** | $5–20 | $25–100 | ~500 state transitions × 4–6 steps |
+| **AWS RDS/DynamoDB** | $25–50 | $80–200 | PostgreSQL or DynamoDB for transfers + analytics |
+| **AWS S3** | $2–5 | $10–30 | Metadata, backups |
+| **ElastiCache (Redis)** | $15–30 | $50–120 | Dashboard cache (optional for MVP) |
+| **Alchemy** | $0–49 | $199–499 | RPC + NFT API; free tier then Growth/Scale |
+| **Alchemy Gas Manager** | $50–150 | $200–500 | Sponsored gas (MATIC) for settle() calls |
+| **Stripe** | 2.9% + $0.30/txn | same | On exit tax only; ~500 × $0.30 ≈ $150 + % |
+| **Magic** | $0–99 | $299+ | Auth; free tier then paid by MAU |
+| **Domain + misc** | $10–20 | $20–50 | DNS, monitoring, logs |
+| **Total (approx)** | **$260–550** | **$950–2,200** | Excludes Stripe % on volume |
+
+**Per-transfer rough cost (MVP):** ~$0.50–1.10 (infra only).  
+**Stripe:** ~$0.30/txn + 2.9% of exit tax (e.g. $0.30 + ~$15 on 500 CHF royalty).  
+**Gas (Alchemy):** ~$0.10–0.30 per settle() on Polygon; budget via Gas Manager cap.
+
+**Savings:** Use single-region, no Redis at first, Alchemy/Magic free tiers, and Step Functions standard (not Express) to stay near the low end.
+
+---
+
 ## Configuration & Deployment
 
 ### Environment Variables
