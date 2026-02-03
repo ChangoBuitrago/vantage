@@ -45,6 +45,222 @@ Vantage is a **Sovereign Smart Contract** platform that handles **Issuance** (mi
 
 ---
 
+## Core Component Diagrams
+
+The following diagrams summarize the system from the **Master Technical Specification (v1.0)**: **System Context**, **Negative Consent State Machine**, **GDPR Twin Data Architecture**, **Analytics Pipeline**, and **Settle Gate Logic**. Use them in documentation or Wiki.
+
+### 1. High-Level System Architecture
+
+Vantage acts as **Governance Middleware** between users, the blockchain, and external infrastructure.
+
+```mermaid
+graph TD
+    subgraph Client_Layer [Client Layer]
+        Reseller[Reseller]
+        Collector[Collector]
+        App[Vantage Web App]
+        Reseller -->|Initiates Transfer| App
+        Collector -->|Reviews or Rejects| App
+    end
+
+    subgraph Governance_Layer [Vantage Governance Layer]
+        API[API Gateway]
+        Backend[Node.js or Lambda Backend]
+        PermitSigner[Permit Signer Service]
+        SF[AWS Step Functions]
+        
+        App <--> API
+        API <--> Backend
+        Backend -->|Triggers| SF
+        Backend -->|Request Sig| PermitSigner
+        SF -->|Callbacks| Backend
+    end
+
+    subgraph Data_Layer [Data and Storage]
+        DynamoDB[(DynamoDB State)]
+        S3[(AWS S3 Encrypted Metadata)]
+        Backend <--> DynamoDB
+        Backend <--> S3
+    end
+
+    subgraph External_Services [External Infrastructure]
+        Magic[Magic.link Auth]
+        Stripe[Stripe Payments]
+        Alchemy[Alchemy AA and NFT API]
+        
+        Backend <--> Magic
+        Backend <--> Stripe
+        Backend <--> Alchemy
+    end
+
+    subgraph On_Chain [Polygon Blockchain]
+        Contract[VantageRegistry.sol]
+        
+        PermitSigner -.->|Signs Permit| Backend
+        Alchemy -->|Relays UserOp| Contract
+        Contract -->|Emits Events| Backend
+    end
+```
+
+### 2. Negative Consent State Machine
+
+Orchestration logic in **AWS Step Functions**. **Timeout = Success** (auto-approve after 24h).
+
+```mermaid
+stateDiagram-v2
+    [*] --> AuthorizeExitTax
+    
+    state AuthorizeExitTax {
+        [*] --> CreateStripeHold
+        CreateStripeHold --> HoldCreated : Success
+        CreateStripeHold --> Failed : Card Declined
+    }
+
+    AuthorizeExitTax --> CollectorReviewWindow : Hold ID Generated
+    AuthorizeExitTax --> [*] : Payment Failed
+
+    state CollectorReviewWindow {
+        [*] --> NotifyCollector
+        NotifyCollector --> WaitForInput
+        note right of WaitForInput : Happy path is do nothing. System waits 24h.
+        WaitForInput --> AutoApprove : 24h Timeout
+        WaitForInput --> ExplicitReject : Collector Clicks Reject
+        WaitForInput --> QuickAccept : Collector Clicks Accept
+    }
+
+    AutoApprove --> CaptureExitTax
+    QuickAccept --> CaptureExitTax
+    
+    state CaptureExitTax {
+        [*] --> ChargeCard
+        ChargeCard --> GeneratePermit : Success
+        ChargeCard --> VoidHold : Failure
+    }
+
+    ExplicitReject --> VoidHold
+    
+    state VoidHold {
+        [*] --> ReleaseFunds
+        ReleaseFunds --> UnlockAsset
+    }
+
+    GeneratePermit --> SettleOnChain
+    SettleOnChain --> Settled : Success
+    
+    VoidHold --> Cancelled
+    Settled --> [*]
+    Cancelled --> [*]
+```
+
+### 3. GDPR Twin Data Architecture
+
+Separation between **Public Ledger** (pseudonymous) and **Private Vault** (PII), linked via an encrypted bridge.
+
+```mermaid
+classDiagram
+    class OnChain_Public {
+        +uint256 tokenId
+        +address owner
+        +string metadataHash
+        +uint256 salePrice
+    }
+
+    class OffChain_Private {
+        +string ownerEmail
+        +string ownerName
+        +string serialNumber
+        +string warrantyDetails
+        +image highResPhotos
+    }
+
+    class The_Bridge {
+        +IPFS CID
+        +AES-256 Encryption
+        +Access Control JWT
+    }
+
+    OnChain_Public ..> The_Bridge : Points to
+    The_Bridge ..> OffChain_Private : Decrypts to
+
+    note for OnChain_Public "Storage: Polygon. Visibility: Public. Identity: Anonymous"
+    note for OffChain_Private "Storage: AWS S3. Visibility: Brand Only. Identity: KYC or PII"
+```
+
+### 4. Analytics Pipeline
+
+How the **Creator Dashboard** is populated in near real-time from Alchemy webhooks and the aggregation engine.
+
+```mermaid
+sequenceDiagram
+    participant Chain as Polygon
+    participant Alchemy as Alchemy Webhook
+    participant Ingest as Lambda Ingest
+    participant RawDB as Raw Transfers DB
+    participant Aggregator as Aggregation Job
+    participant AnalyticsDB as TimescaleDB
+    participant Dash as Creator Dashboard
+
+    Note over Chain, Dash: Real-Time Event Processing
+
+    Chain->>Alchemy: Event TransferSettled
+    Alchemy->>Ingest: POST webhook
+    
+    rect rgb(240, 248, 255)
+        Note right of Ingest: Data Enrichment
+        Ingest->>RawDB: Fetch Transfer Context
+        Ingest->>RawDB: Insert Raw Record
+    end
+
+    Ingest->>Aggregator: Trigger Update
+    
+    rect rgb(255, 250, 240)
+        Note right of Aggregator: Dimensional Rolling
+        Aggregator->>AnalyticsDB: Update Daily Revenue
+        Aggregator->>AnalyticsDB: Update Geo Distribution
+        Aggregator->>AnalyticsDB: Update Retention Buckets
+    end
+
+    Dash->>AnalyticsDB: GET dashboard Cached
+    AnalyticsDB-->>Dash: JSON Metrics
+```
+
+### 5. Settle Gate Logic
+
+Smart contract checks inside `settle()` before transferring the NFT.
+
+```mermaid
+flowchart LR
+    subgraph Input
+        A[Transfer Request]
+    end
+
+    subgraph Smart_Contract_Gate
+        B{Is Sender Owner?}
+        C{Recover Signer from Permit}
+        D{Is Signer COMPLIANCE_SIGNER?}
+    end
+
+    subgraph Execution
+        E[Unlock Transfer]
+        F[Move NFT]
+        G[Emit TransferSettled]
+    end
+
+    subgraph Failure
+        X[Revert Transaction]
+    end
+
+    A --> B
+    B -- No --> X
+    B -- Yes --> C
+    C --> D
+    D -- No --> X
+    D -- Yes --> E
+    E --> F --> G
+```
+
+---
+
 ## Core Components
 
 ### 1. Magic (Identity & Wallet)
