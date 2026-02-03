@@ -40,7 +40,8 @@ Vantage is a **Sovereign Smart Contract** platform that handles **Issuance** (mi
 | **Backend API** | Node.js/Lambda + DynamoDB | Royalty calculator, compliance gate, permit generation |
 | **Payment Gateway** | Stripe | Fiat payment processing for royalties |
 | **Blockchain** | Polygon (EVM) | NFT registry, settlement execution |
-| **Smart Contract** | Solidity (ERC-721 + 2981) | Sovereign asset registry with permit-gated transfers |
+| **Smart Contract Framework** | OpenZeppelin Contracts | Secure, audited ERC-721, ERC-2981, ECDSA implementations |
+| **Smart Contract Language** | Solidity ^0.8.20 | Sovereign asset registry with permit-gated transfers |
 
 ---
 
@@ -314,7 +315,72 @@ async function generatePermit(transferId, from, to, tokenId, salePrice) {
 - `POST /webhooks/stripe` → Payment confirmation (sends task success + generates permit)
 - `POST /transfer/:id/settle` → Executes on-chain settlement with permit
 
-### 6. Vantage Contract (Sovereign ERC-721)
+### 6. OpenZeppelin Contracts (Smart Contract Framework)
+**What it does:**
+- Provides battle-tested, audited implementations of token standards
+- Reduces security risks by using community-vetted code
+- Saves development time with ready-to-use components
+- Regularly updated with security patches
+
+**Components used in Vantage:**
+
+1. **ERC721.sol** - NFT Standard Implementation
+   - Core NFT functionality (mint, transfer, burn)
+   - Ownership tracking
+   - Metadata URI management
+   - Transfer hooks and approvals
+
+2. **ERC2981.sol** - Royalty Standard
+   - `royaltyInfo()` function for marketplace compatibility
+   - Configurable royalty percentage and receiver
+   - While advisory-only, signals brand's expected royalty to compliant platforms
+
+3. **ECDSA.sol** - Signature Verification
+   - Cryptographic signature recovery
+   - Used to verify backend-signed permits
+   - Gas-efficient signature validation
+   - Prevents signature malleability attacks
+
+4. **Ownable.sol** (optional) - Access Control
+   - Restricts sensitive functions (mint, update compliance signer) to owner
+   - Ownership transfer mechanism
+   - Emergency controls
+
+**Why OpenZeppelin:**
+- ✅ **Security:** Audited by multiple firms, used in billions of dollars of assets
+- ✅ **Standards Compliance:** Strictly follows EIP specifications
+- ✅ **Gas Optimization:** Efficient implementations
+- ✅ **Community Support:** Extensive documentation and examples
+- ✅ **Upgradeability:** Compatible with proxy patterns (if needed later)
+
+**Installation:**
+```bash
+npm install @openzeppelin/contracts
+# or
+yarn add @openzeppelin/contracts
+```
+
+**Version used:** `^5.0.0` (or specify exact version for production)
+
+**Dev notes:**
+```solidity
+// Import only what you need
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/common/ERC2981.sol";
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+
+// Inherit and extend
+contract VantageAssetRegistry is ERC721, ERC2981 {
+    using ECDSA for bytes32; // Attach library functions
+    
+    // Override functions to add custom logic
+    function transferFrom(...) public override {
+        revert("Use settle() instead");
+    }
+}
+```
+
+### 7. Vantage Contract (Sovereign ERC-721)
 **What it does:**
 - Standard ERC-721 NFT contract
 - Overrides `transferFrom` to block direct transfers
@@ -326,40 +392,98 @@ async function generatePermit(transferId, from, to, tokenId, salePrice) {
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/common/ERC2981.sol";
-import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+// OpenZeppelin Imports
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";      // Base NFT implementation
+import "@openzeppelin/contracts/token/common/ERC2981.sol";     // Royalty standard
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol"; // Signature verification
+import "@openzeppelin/contracts/access/Ownable.sol";           // Access control
 
-contract VantageAssetRegistry is ERC721, ERC2981 {
-    using ECDSA for bytes32;
+/**
+ * @title VantageAssetRegistry
+ * @notice Sovereign NFT registry with permit-gated transfers
+ * @dev Extends OpenZeppelin's ERC721 and ERC2981 with custom transfer logic
+ */
+contract VantageAssetRegistry is ERC721, ERC2981, Ownable {
+    using ECDSA for bytes32; // Attach ECDSA library to bytes32
     
-    address public immutable COMPLIANCE_SIGNER; // Backend public key
+    // Backend's public address - verifies permits
+    address public immutable COMPLIANCE_SIGNER;
+    
+    // Token ID counter for sequential minting
     uint256 private _tokenIdCounter;
     
-    mapping(uint256 => string) private _metadataHashes; // IPFS CID for off-chain data
+    // Maps tokenId to IPFS CID (off-chain metadata)
+    mapping(uint256 => string) private _metadataHashes;
     
-    constructor(address complianceSigner) ERC721("Brand Asset Registry", "BASSET") {
+    /**
+     * @param complianceSigner Backend's public address for permit verification
+     */
+    constructor(address complianceSigner) 
+        ERC721("Brand Asset Registry", "BASSET") 
+        Ownable(msg.sender)
+    {
         COMPLIANCE_SIGNER = complianceSigner;
+        
+        // Set default royalty: 5% to contract owner (can be customized per token)
+        _setDefaultRoyalty(msg.sender, 500); // 500 basis points = 5%
     }
     
-    // GENESIS: Mint when user claims watch
-    function mint(address to, string memory metadataHash) external onlyOwner returns (uint256) {
+    // ==================== GENESIS: MINTING ====================
+    
+    /**
+     * @notice Mint new NFT when user claims physical asset
+     * @dev Only contract owner can mint (brand)
+     * @param to Recipient address (user's wallet)
+     * @param metadataHash IPFS CID for off-chain data
+     * @return tokenId The newly minted token ID
+     */
+    function mint(address to, string memory metadataHash) 
+        external 
+        onlyOwner // OpenZeppelin access control
+        returns (uint256) 
+    {
         uint256 tokenId = ++_tokenIdCounter;
-        _mint(to, tokenId);
+        _mint(to, tokenId); // OpenZeppelin internal mint
         _metadataHashes[tokenId] = metadataHash;
         return tokenId;
     }
     
-    // BLOCK DIRECT TRANSFERS
-    function transferFrom(address from, address to, uint256 tokenId) public override {
+    // ==================== BLOCK DIRECT TRANSFERS ====================
+    
+    /**
+     * @notice Override ERC721 transferFrom to block direct transfers
+     * @dev Forces all transfers through settle() which requires permit
+     */
+    function transferFrom(address, address, uint256) 
+        public 
+        pure 
+        override 
+    {
         revert("Direct transfers disabled. Use settle() with permit.");
     }
     
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public override {
+    /**
+     * @notice Override ERC721 safeTransferFrom to block direct transfers
+     */
+    function safeTransferFrom(address, address, uint256, bytes memory) 
+        public 
+        pure 
+        override 
+    {
         revert("Direct transfers disabled. Use settle() with permit.");
     }
     
-    // SETTLEMENT: Only path for secondary transfers
+    // ==================== SETTLEMENT: PERMIT-GATED TRANSFER ====================
+    
+    /**
+     * @notice Execute transfer with backend-signed permit (proving exit tax paid)
+     * @param transferId Unique transfer identifier (prevents replay)
+     * @param from Current owner
+     * @param to New owner
+     * @param tokenId Token to transfer
+     * @param salePrice Declared sale price (for provenance)
+     * @param permit Backend's ECDSA signature
+     */
     function settle(
         uint256 transferId,
         address from,
@@ -368,22 +492,73 @@ contract VantageAssetRegistry is ERC721, ERC2981 {
         uint256 salePrice,
         bytes memory permit
     ) external {
+        // Verify ownership (OpenZeppelin's ownerOf)
         require(ownerOf(tokenId) == from, "From address is not owner");
         
-        // Verify backend signed this transfer (proving royalty paid)
-        bytes32 message = keccak256(abi.encodePacked(transferId, from, to, tokenId, salePrice));
+        // Build message hash (same structure backend signed)
+        bytes32 message = keccak256(
+            abi.encodePacked(transferId, from, to, tokenId, salePrice)
+        );
+        
+        // Convert to Ethereum signed message format (OpenZeppelin ECDSA)
         bytes32 ethSignedMessage = message.toEthSignedMessageHash();
+        
+        // Recover signer from signature (OpenZeppelin ECDSA)
         address signer = ethSignedMessage.recover(permit);
         
-        require(signer == COMPLIANCE_SIGNER, "Invalid permit - royalty not paid");
+        // Verify signature came from authorized backend
+        require(
+            signer == COMPLIANCE_SIGNER, 
+            "Invalid permit - exit tax not paid"
+        );
         
-        // Execute transfer (internal, bypasses override)
-        _transfer(from, to, tokenId);
+        // Execute transfer using internal function (bypasses override)
+        _transfer(from, to, tokenId); // OpenZeppelin internal transfer
         
         emit TransferSettled(transferId, tokenId, from, to, salePrice);
     }
     
-    event TransferSettled(uint256 indexed transferId, uint256 indexed tokenId, address from, address to, uint256 salePrice);
+    // ==================== METADATA ====================
+    
+    /**
+     * @notice Get token metadata URI
+     * @dev Returns IPFS hash stored during minting
+     */
+    function tokenURI(uint256 tokenId) 
+        public 
+        view 
+        override 
+        returns (string memory) 
+    {
+        require(ownerOf(tokenId) != address(0), "Token does not exist");
+        return string(abi.encodePacked("ipfs://", _metadataHashes[tokenId]));
+    }
+    
+    // ==================== ROYALTY (ERC2981) ====================
+    
+    /**
+     * @notice Signals expected royalty to compliant marketplaces
+     * @dev Inherited from OpenZeppelin ERC2981
+     * Note: This is advisory only. Vantage enforces royalties via settle()
+     */
+    function supportsInterface(bytes4 interfaceId) 
+        public 
+        view 
+        override(ERC721, ERC2981) 
+        returns (bool) 
+    {
+        return super.supportsInterface(interfaceId);
+    }
+    
+    // ==================== EVENTS ====================
+    
+    event TransferSettled(
+        uint256 indexed transferId, 
+        uint256 indexed tokenId, 
+        address indexed from, 
+        address to, 
+        uint256 salePrice
+    );
 }
 ```
 
@@ -722,12 +897,27 @@ sequenceDiagram
 
 ## Implementation Checklist
 
+### Phase 0: Smart Contract Development
+- [ ] Install OpenZeppelin Contracts (`npm install @openzeppelin/contracts`)
+- [ ] Set up Hardhat or Foundry development environment
+- [ ] Write VantageAssetRegistry contract (extending OpenZeppelin ERC721/ERC2981)
+- [ ] Write unit tests for:
+  - [ ] Minting functionality
+  - [ ] Transfer blocking (transferFrom should revert)
+  - [ ] Permit verification (valid and invalid signatures)
+  - [ ] Settlement flow
+- [ ] Run security analysis (Slither, Mythril)
+- [ ] Deploy to testnet (Polygon Mumbai or Amoy)
+- [ ] Verify contract on Polygonscan
+- [ ] Test all functions on testnet
+
 ### Phase 1: Genesis (Claiming)
-- [ ] Deploy Vantage Asset Registry contract to Polygon testnet
 - [ ] Integrate Magic SDK (frontend + backend validation)
-- [ ] Build `/claim` endpoint (verify serial, mint NFT)
+- [ ] Build `/claim` endpoint (verify serial, mint NFT via contract)
 - [ ] Set up S3 bucket for off-chain metadata (encrypted)
+- [ ] Generate IPFS hashes for metadata
 - [ ] QR code generation for watch certificates
+- [ ] Test full claiming flow end-to-end
 
 ### Phase 2: Settlement (Reselling)
 - [ ] Integrate Alchemy NFT API (holding period calculation)
@@ -790,46 +980,238 @@ STEP_FUNCTIONS_ARN=arn:aws:states:...
 S3_BUCKET=le-passports-prod
 ```
 
-### Contract Deployment
+### Smart Contract Setup
+
+**1. Initialize Hardhat Project**
 ```bash
-# 1. Deploy contract
+mkdir vantage-contracts && cd vantage-contracts
+npm init -y
+npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
+npx hardhat init
+```
+
+**2. Install OpenZeppelin Contracts**
+```bash
+npm install @openzeppelin/contracts
+```
+
+**3. Project Structure**
+```
+vantage-contracts/
+├── contracts/
+│   └── VantageAssetRegistry.sol
+├── scripts/
+│   └── deploy.js
+├── test/
+│   └── VantageAssetRegistry.test.js
+├── hardhat.config.js
+└── package.json
+```
+
+**4. Configure Hardhat (`hardhat.config.js`)**
+```javascript
+require("@nomicfoundation/hardhat-toolbox");
+require("@nomicfoundation/hardhat-verify");
+
+module.exports = {
+  solidity: {
+    version: "0.8.20",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
+  networks: {
+    polygonMumbai: {
+      url: process.env.POLYGON_MUMBAI_RPC || "https://rpc-mumbai.maticvigil.com",
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY],
+      chainId: 80001
+    },
+    polygon: {
+      url: process.env.POLYGON_RPC || "https://polygon-rpc.com",
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY],
+      chainId: 137
+    }
+  },
+  etherscan: {
+    apiKey: {
+      polygon: process.env.POLYGONSCAN_API_KEY,
+      polygonMumbai: process.env.POLYGONSCAN_API_KEY
+    }
+  }
+};
+```
+
+**5. Deployment Script (`scripts/deploy.js`)**
+```javascript
+const hre = require("hardhat");
+
+async function main() {
+  // Get deployer account
+  const [deployer] = await hre.ethers.getSigners();
+  console.log("Deploying with account:", deployer.address);
+  
+  // Backend signer address (for permit verification)
+  const complianceSigner = process.env.COMPLIANCE_SIGNER_ADDRESS;
+  if (!complianceSigner) {
+    throw new Error("COMPLIANCE_SIGNER_ADDRESS not set");
+  }
+  
+  // Deploy contract
+  const VantageAssetRegistry = await hre.ethers.getContractFactory("VantageAssetRegistry");
+  const registry = await VantageAssetRegistry.deploy(complianceSigner);
+  await registry.waitForDeployment();
+  
+  const address = await registry.getAddress();
+  console.log("VantageAssetRegistry deployed to:", address);
+  console.log("Compliance Signer:", complianceSigner);
+  
+  // Wait for block confirmations before verifying
+  console.log("Waiting for block confirmations...");
+  await registry.deploymentTransaction().wait(5);
+  
+  // Verify on Polygonscan
+  console.log("Verifying contract on Polygonscan...");
+  await hre.run("verify:verify", {
+    address: address,
+    constructorArguments: [complianceSigner]
+  });
+  
+  console.log("Deployment complete!");
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+**6. Deploy to Testnet**
+```bash
+# Set environment variables
+export DEPLOYER_PRIVATE_KEY=0x...
+export COMPLIANCE_SIGNER_ADDRESS=0x...
+export POLYGON_MUMBAI_RPC=https://...
+export POLYGONSCAN_API_KEY=...
+
+# Deploy
+npx hardhat run scripts/deploy.js --network polygonMumbai
+
+# Example output:
+# Deploying with account: 0x1234...
+# VantageAssetRegistry deployed to: 0xABCD...
+# Compliance Signer: 0x5678...
+# Verifying contract on Polygonscan...
+# Deployment complete!
+```
+
+**7. Test Contract**
+```bash
+# Run unit tests
+npx hardhat test
+
+# Run specific test
+npx hardhat test test/VantageAssetRegistry.test.js
+
+# Check gas usage
+REPORT_GAS=true npx hardhat test
+```
+
+**8. Deploy to Mainnet (Polygon)**
+```bash
+# Same as testnet but use polygon network
 npx hardhat run scripts/deploy.js --network polygon
+```
 
-# 2. Verify on Polygonscan
-npx hardhat verify --network polygon <CONTRACT_ADDRESS> <BACKEND_ADDRESS>
+**9. Configure Alchemy Gas Manager**
+```bash
+# Via Alchemy Dashboard:
+# 1. Go to Gas Manager → Create Policy
+# 2. Add CONTRACT_ADDRESS to allowed contracts
+# 3. Whitelist settle() function selector
+# 4. Set spending limit: 1000 MATIC/month
+# 5. Fund paymaster with MATIC
+```
 
-# 3. Configure Alchemy Gas Manager
-# - Add CONTRACT_ADDRESS to allowed contracts
-# - Whitelist settle() function selector: 0x...
-# - Set spending limit: 1000 MATIC/month
+**10. Post-Deployment Verification**
+```bash
+# Interact with deployed contract
+npx hardhat console --network polygonMumbai
 
-# 4. Fund Gas Manager paymaster
-# - Transfer MATIC to paymaster address
+# In console:
+const registry = await ethers.getContractAt(
+  "VantageAssetRegistry", 
+  "0xYOUR_CONTRACT_ADDRESS"
+);
+
+# Test mint (only owner can call)
+await registry.mint("0xUSER_ADDRESS", "QmIPFS_HASH");
+
+# Verify compliance signer
+console.log(await registry.COMPLIANCE_SIGNER());
 ```
 
 ---
 
 ## Security Considerations
 
-### Smart Contract
-- ✅ Only `settle()` can transfer (direct transfers blocked)
-- ✅ Permit signature verification prevents replay attacks
-- ✅ `transferId` in permit ensures single-use (backend tracks used IDs)
-- ⚠️ Backend private key security: Use AWS KMS or HSM for production
-- ⚠️ Rate limiting on mint() to prevent abuse
+### Smart Contract (OpenZeppelin Security)
+- ✅ **OpenZeppelin Contracts:** Battle-tested, audited implementations reduce attack surface
+- ✅ **Only `settle()` can transfer:** Direct transfers blocked via `override` + `revert`
+- ✅ **Permit signature verification:** ECDSA prevents replay attacks and unauthorized transfers
+- ✅ **`transferId` uniqueness:** Backend tracks used IDs to prevent replay
+- ✅ **Access control:** `onlyOwner` modifier (OpenZeppelin) restricts minting to brand
+- ✅ **Integer overflow protection:** Solidity 0.8+ has built-in checks
+- ✅ **Reentrancy protection:** Not needed (no external calls during transfer)
+- ⚠️ **Backend private key security:** Use AWS KMS or Hardware Security Module (HSM) for production
+- ⚠️ **Rate limiting on mint():** Implement off-chain checks to prevent abuse
+- ⚠️ **Contract upgradeability:** Current design is immutable. Consider OpenZeppelin's proxy pattern if future upgrades needed
+- ⚠️ **Emergency pause:** Consider adding OpenZeppelin's `Pausable` for critical bugs
+
+**OpenZeppelin-specific best practices:**
+```solidity
+// Pin exact version for production (no ^)
+import "@openzeppelin/contracts@5.0.1/token/ERC721/ERC721.sol";
+
+// Use OpenZeppelin's ReentrancyGuard if adding payable functions
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+
+// Consider Pausable for emergency stops
+import "@openzeppelin/contracts/security/Pausable.sol";
+
+contract VantageAssetRegistry is ERC721, ERC2981, Ownable, Pausable {
+    function settle(...) external whenNotPaused {
+        // Transfer logic
+    }
+}
+```
+
+**Security audit recommendations:**
+- [ ] Run Slither static analysis: `slither contracts/`
+- [ ] Run Mythril symbolic execution: `myth analyze contracts/VantageAssetRegistry.sol`
+- [ ] Use OpenZeppelin Defender for monitoring and alerts
+- [ ] Consider professional audit before mainnet (Trail of Bits, ConsenSys Diligence)
 
 ### Backend
 - ✅ DIDToken validation for all authenticated endpoints
-- ✅ Stripe webhook signature verification
+- ✅ Stripe webhook signature verification (prevents fake payment events)
 - ✅ CORS configuration (only allow vantage.com)
-- ⚠️ Step Functions execution throttling (prevent DoS)
-- ⚠️ Database encryption for PII (email, name)
+- ✅ Rate limiting on permit generation (prevent DoS)
+- ⚠️ Step Functions execution throttling (prevent workflow spam)
+- ⚠️ Database encryption for PII (email, name, serial numbers)
+- ⚠️ Permit generation key rotation policy (rotate every 90 days)
 
 ### GDPR
 - ✅ Right to erasure: Delete off-chain data (on-chain remains pseudonymous)
 - ✅ Data portability: Export user data via API
 - ✅ Consent management: User agrees to T&C during claiming
-- ⚠️ Data retention: Define policy for unclaimed watches
+- ✅ Data minimization: Only store necessary PII
+- ⚠️ Data retention: Define policy for unclaimed watches (suggest 2 years)
+- ⚠️ Cross-border transfers: Ensure compliance if users in EU
 
 ---
 
@@ -870,6 +1252,20 @@ A: Yes. The contract is sovereign (brand owns it). They can:
 
 **Q: What prevents a reseller from lying about the sale price?**  
 A: The collector. If reseller under-declares, collector rejects (loses their royalty-inclusive valuation). If reseller over-declares, collector also rejects (false provenance). Both parties have aligned incentives for accuracy.
+
+**Q: Why use OpenZeppelin instead of writing custom ERC-721?**  
+A: Security and reliability. OpenZeppelin contracts are:
+  - Audited by multiple security firms
+  - Used in billions of dollars of assets
+  - Community-tested across thousands of projects
+  - Regularly updated with security patches
+  - Gas-optimized
+  - Standards-compliant (EIP-721, EIP-2981)
+  
+Writing custom implementations risks introducing vulnerabilities. We extend OpenZeppelin and only override where necessary (transfer blocking).
+
+**Q: Which OpenZeppelin version should we use?**  
+A: For production, pin an exact version (e.g., `@openzeppelin/contracts@5.0.1` instead of `^5.0.0`) to ensure consistent behavior and prevent unexpected changes from updates. Check OpenZeppelin's security advisories before upgrading.
 
 ---
 
