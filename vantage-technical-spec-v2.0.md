@@ -47,7 +47,7 @@ Vantage is a **Sovereign Smart Contract** platform that handles **Issuance** (mi
 
 ## Core Component Diagrams
 
-The following diagrams summarize the system from the **Master Technical Specification (v1.0)**: **System Context**, **Negative Consent State Machine**, **GDPR Twin Data Architecture**, **Analytics Pipeline**, and **Settle Gate Logic**. Use them in documentation or Wiki.
+The following diagrams summarize the system from the **Master Technical Specification (v2.0)**: **System Context**, **Payment → Settlement State Machine**, **GDPR Twin Data Architecture**, **Analytics Pipeline**, and **Settle Gate Logic**. Use them in documentation or Wiki.
 
 ### 1. High-Level System Architecture
 
@@ -1099,45 +1099,41 @@ To ensure GDPR compliance, data is strictly separated:
 - Collector verifies the declaration is accurate
 - NFT transfers on-chain with permanent record of sale price
 
-### The "Negative Consent" Model
-
-**Why collector review matters (even though they're not paying):**
-
-1. **Provenance Protection:**
-   - Declared sale price becomes permanent on-chain record
-   - If reseller lies ("I sold it for 1 CHF" to avoid tax), it pollutes asset history
-   - Future buyers see false price data, affecting appraisals and insurance
-
-2. **Tax Evasion Prevention:**
-   - Reseller might under-declare to pay lower royalty
-   - Collector has incentive to report honestly (correct valuation benefits their asset)
-   - Example: Watch sold for 10,000 CHF, reseller declares 1,000 CHF → Collector rejects
-
-3. **Fraud Detection:**
-   - Reseller might over-declare to inflate asset value artificially
-   - Collector rejects: "I only paid 2,000 CHF, not 8,000 CHF"
-   - Prevents wash trading and price manipulation
-
-4. **Data Integrity:**
-   - Wrong serial number, mismatched photos, incorrect warranty status
-   - Collector can reject if passport data doesn't match physical watch received
+### The Trust-Based Transfer Model
 
 **How it works:**
 ```
-Reseller: "I sold Watch #88 for 5,000 CHF to collector@example.com"
-System: Creates Stripe hold for 500 CHF (10% royalty)
-Collector: Receives email "Incoming NFT, declared value 5,000 CHF"
-
-Option A (99% of cases): Collector does nothing → 24h passes → Auto-approve
-Option B (fraud/error): Collector clicks "Reject - Wrong price" → Hold voided
-Option C (fast track): Collector clicks "Quick Accept" → Immediate capture
+Reseller: "I sold Watch #88 for 5,000 CHF to 0xCollectorAddress"
+System: Calculates exit tax (e.g., 500 CHF based on holding period)
+Reseller: Pays 500 CHF via Stripe
+System: Generates permit and executes on-chain transfer immediately
+Collector: NFT appears in their vault
 ```
 
 **Benefits:**
-- ✅ Low friction: Most transfers auto-complete
-- ✅ Fraud protection: Collector can block false declarations
-- ✅ Provenance integrity: On-chain records are trustworthy
-- ✅ Brand revenue: Tax evasion is difficult
+- ✅ **Simple:** No waiting periods, no multi-party approvals
+- ✅ **Fast:** Payment → Settlement in < 2 minutes
+- ✅ **Lower friction:** Collector doesn't need to take any action
+- ✅ **Good UX:** Reseller completes entire flow in one session
+
+**Trade-offs:**
+- ⚠️ **Trust required:** Reseller self-declares sale price (no collector verification)
+- ⚠️ **Fraud risk:** Reseller could under-declare to pay lower royalty
+- ⚠️ **Provenance risk:** False declarations pollute on-chain history
+
+**Fraud mitigation strategies:**
+1. **Analytics monitoring:** Backend flags suspicious price declarations (e.g., 90% below market average)
+2. **Pattern detection:** Multiple low-value transfers from same reseller trigger review
+3. **Reputation system:** Resellers with verified history get trust badges
+4. **Spot checks:** Brand randomly audits transactions (request invoices, receipts)
+5. **Account suspension:** Confirmed fraud results in permanent ban
+6. **Future enhancement:** Optional collector attestation signature can be added later
+
+**When to use this model:**
+- Early MVP with trusted reseller networks
+- Lower-value assets where fraud risk is acceptable
+- Prioritizing UX over maximum fraud protection
+- Can always add collector review layer later if fraud becomes an issue
 
 ### The Exit Tax Calculation
 
@@ -1164,8 +1160,8 @@ function calculateExitTax(declaredSalePrice, holdingPeriodDays) {
 - Watch held for 6 months (< 1 year) → 10% rate
 - Declared sale: 5,000 CHF
 - Exit tax: 500 CHF
-- Reseller authorizes 500 CHF → Stripe hold
-- After 24h (if no rejection) → Capture 500 CHF → Transfer NFT
+- Reseller pays 500 CHF via Stripe
+- Transfer executes immediately after payment confirmation
 
 ---
 
@@ -1205,9 +1201,9 @@ sequenceDiagram
     end
 ```
 
-### Flow 2: Settlement (Reselling with Exit Tax & Negative Consent)
+### Flow 2: Settlement (Reselling with Exit Tax)
 
-**Context:** Physical watch was already sold outside Vantage (eBay, private sale, etc.). This flow only governs the NFT transfer and exit tax collection.
+**Context:** Physical watch was already sold outside Vantage (eBay, private sale, etc.). This flow only governs the NFT transfer and exit tax collection. Trust-based model—no collector approval required.
 
 ```mermaid
 sequenceDiagram
@@ -1221,16 +1217,16 @@ sequenceDiagram
     participant SF as Step Functions
     participant AlchemyNFT as Alchemy NFT API
     participant AlchemyAA as Alchemy AA
-    participant Contract as Vantage Registry (Polygon)
+    participant Contract as Vantage Registry (Polygon or Base)
 
     rect rgb(240, 248, 255)
-        Note over R, Stripe: PHASE 1: EXIT TAX PRE-AUTHORIZATION
+        Note over R, Backend: PHASE 1: INITIATE TRANSFER AND GET QUOTE
         R->>App: Open My Vault
         App->>Magic: Call getMetadata to get resellerAddress
         App->>AlchemyNFT: Call getNftsForOwner
         AlchemyNFT->>App: Return NFT list with transfer history
         R->>App: Select Watch 88 to transfer
-        R->>App: Enter collector email and DECLARED sale price
+        R->>App: Enter collector address and DECLARED sale price
         App->>Backend: GET /quote with tokenId and declaredSalePrice
         Backend->>AlchemyNFT: Get transfer history to calculate holding period
         AlchemyNFT->>Backend: Return lastTransferDate
@@ -1238,54 +1234,30 @@ sequenceDiagram
         Backend->>Backend: Calculate exit tax amount
         Backend-->>App: Return exitTax amount and tier
         App->>R: Display Exit Tax quote
-        R->>App: Confirm and authorize payment
-        App->>Backend: POST /transfer/initiate with details
-        Backend->>Stripe: Create PaymentIntent with manual capture
-        Stripe->>R: Authorize card for exit tax amount
-        Stripe-->>Backend: Return hold confirmation
-        Backend->>Backend: Lock asset, create transfer record
-        Backend->>SF: Start workflow with holdId
-        Backend-->>App: Return transferId and status
     end
 
     rect rgb(255, 250, 240)
-        Note over C, SF: PHASE 2: NEGATIVE CONSENT WINDOW (24h)
-        SF->>Backend: Invoke NotifyCollector Lambda
-        Backend->>C: Email with declared price and passport link
-        C->>App: Click email link to review (optional)
-        App->>Magic: Call loginWithMagicLink
-        Magic->>App: Return DIDToken and collectorAddress
-        App->>Backend: GET /transfer with transferId
-        Backend->>S3: Fetch passport metadata
-        Backend-->>App: Return passport data and declared price
-        
-        alt Collector Rejects (Wrong Price or Data)
-            C->>App: Click Reject Transfer
-            App->>Backend: POST /transfer reject with reason
-            Backend->>SF: SendTaskFailure with CollectorRejection
-            SF->>Stripe: Cancel PaymentIntent and void hold
-            SF->>Backend: Unlock asset
-            Backend->>R: Notify transfer rejected with reason
-        else 24h Timeout (Auto-Approve)
-            SF->>SF: Timeout reached, no rejection received
-            SF->>Backend: Invoke CaptureExitTax Lambda
-        else Explicit Quick Accept
-            C->>App: Click Quick Accept
-            App->>Backend: POST /transfer approve
-            Backend->>SF: SendTaskSuccess early
-            SF->>Backend: Invoke CaptureExitTax Lambda
-        end
+        Note over R, Stripe: PHASE 2: PAYMENT PROCESSING
+        R->>App: Confirm and pay exit tax
+        App->>Backend: POST /transfer/initiate with details
+        Backend->>Backend: Create transfer record
+        Backend->>SF: Start workflow
+        Backend->>Stripe: Create PaymentIntent
+        Stripe-->>Backend: Return checkout URL
+        Backend-->>App: Return checkout URL and transferId
+        App->>R: Redirect to Stripe checkout
+        R->>Stripe: Complete payment
+        Stripe->>Stripe: Process payment to Brand account
+        Stripe->>Backend: Webhook payment succeeded
+        Backend->>SF: SendTaskSuccess with payment confirmation
     end
 
     rect rgb(240, 255, 240)
-        Note over Backend, Stripe: PHASE 3: CAPTURE EXIT TAX
-        Backend->>Stripe: Capture PaymentIntent
-        Stripe->>Stripe: Charge reseller card
-        Stripe->>Stripe: Transfer to Brand account
-        Stripe-->>Backend: Payment captured successfully
+        Note over Backend, SF: PHASE 3: GENERATE PERMIT
+        SF->>Backend: Invoke GeneratePermit Lambda
         Backend->>Backend: Generate permit signature
         Backend->>Backend: Store permit and update status
-        Backend->>SF: SendTaskSuccess with permit
+        Backend->>SF: Return permit
     end
 
     rect rgb(255, 245, 245)
@@ -1326,54 +1298,57 @@ sequenceDiagram
 
 ## Error Handling & Rollback
 
-### Timeout Scenarios (Negative Consent Model)
+### Timeout Scenarios
 
 | State | Timeout | Action |
 |-------|---------|--------|
-| `CollectorReviewWindow` | 24 hours | **Success:** Auto-approve, capture exit tax, proceed to settlement |
-| `SettlementPending` | 5 minutes | Retry 3x, then manual intervention (payment already captured) |
+| `ProcessPayment` | 10 minutes | Fail workflow, cancel transfer, notify reseller |
+| `SettleOnChain` | 5 minutes | Retry 3x with exponential backoff, then manual intervention |
 
-**Note:** Unlike traditional flows, timeout in `CollectorReviewWindow` is the HAPPY PATH (auto-approve), not an error.
+### Payment Failures
 
-### Rejection Scenarios
+**Payment declined during checkout:**
+1. Stripe returns error (insufficient funds, card declined, etc.)
+2. Backend receives webhook `payment_failed`
+3. Backend calls `SendTaskFailure(taskToken, "PaymentFailed")`
+4. Step Functions transitions to `PaymentFailed` terminal state
+5. Notify reseller: "Payment declined. Please update payment method and retry"
+6. Transfer record marked as `failed` - reseller can re-initiate
 
-**Collector explicitly rejects transfer:**
-1. Collector clicks "Reject" with reason (wrong price, wrong asset, etc.)
-2. Backend calls `SendTaskFailure(taskToken, "CollectorRejection")`
-3. Step Functions → `VoidHoldAndUnlock` parallel branches:
-   - Cancel Stripe PaymentIntent (void hold on reseller's card)
-   - Unlock asset in database
-4. Notify reseller: "Transfer rejected by collector - Reason: [price mismatch]"
-5. Reseller can re-initiate with corrected information
+**Payment timeout:**
+1. Reseller doesn't complete Stripe checkout within 10 minutes
+2. Step Functions timeout triggers
+3. Backend marks transfer as `timed_out`
+4. Notify reseller: "Transfer cancelled due to timeout. Please re-initiate"
 
-**Reseller's card authorization fails:**
-1. Stripe returns error on PaymentIntent creation
-2. Backend returns 402 Payment Required to frontend
-3. Prompt reseller: "Payment method declined. Update card and retry"
-4. No Step Functions workflow started (pre-flight check)
+### Settlement Failures
 
-**Reseller's card capture fails (after 24h):**
-1. Stripe capture attempt fails (insufficient funds, card expired, etc.)
-2. Backend calls `SendTaskFailure(taskToken, "CaptureFailure")`
-3. Step Functions → `VoidHoldAndUnlock`
-4. Notify reseller: "Payment capture failed. Transfer cancelled"
-5. Notify collector: "Transfer cancelled - reseller payment issue"
-
-**On-chain settlement fails:**
-1. Contract reverts (e.g., invalid permit, asset already transferred)
+**On-chain settlement fails (after payment succeeded):**
+1. Contract reverts (e.g., invalid permit, asset already transferred, transfer lock not expired)
 2. UserOp fails, Alchemy returns error
-3. Backend logs error, marks transfer as `failed`
-4. **Critical:** Exit tax already captured → initiate Stripe refund to reseller
-5. Notify both parties, manual review required
+3. Backend logs error, marks transfer as `settlement_failed`
+4. **Critical:** Exit tax already captured → **initiate Stripe refund to reseller**
+5. Notify reseller: "Settlement failed. Refund initiated. Error: [contract revert reason]"
+6. Notify collector: "Transfer cancelled due to on-chain error"
+7. Manual review required
 
-### Provenance Fraud Detection
+**Alchemy Gas Manager insufficient funds:**
+1. Gas Manager runs out of MATIC
+2. UserOp submission fails
+3. Step Functions retry logic attempts 3x
+4. If all retries fail → refund reseller, alert operations team
+5. Operations team funds Gas Manager, reseller can re-initiate
 
-**Scenario: Collector claims declared price is wrong**
-1. Collector rejects with reason: "Declared 5000 CHF but I only paid 2000 CHF"
-2. System logs rejection reason and both parties' info
-3. Manual review: Check off-chain evidence (invoices, messages)
-4. If fraud confirmed: Ban reseller, potential legal action
-5. If collector lying: Note on collector's record (reputation system)
+### Trust Model Considerations
+
+**Reseller declares false sale price:**
+- Risk: Reseller could under-declare to pay lower royalty or over-declare to inflate provenance
+- Mitigation: 
+  - Analytics track average sale prices for assets
+  - Brand can flag suspicious transactions for review
+  - Repeated anomalies trigger account suspension
+  - Future: Optional collector attestation (signature) before transfer
+- Note: v2.0 uses trust-based model for simplicity. Collector review can be re-added if needed.
 
 ---
 
@@ -1404,25 +1379,24 @@ sequenceDiagram
 ### Phase 2: Settlement (Reselling)
 - [ ] Integrate Alchemy NFT API (holding period calculation)
 - [ ] Build royalty calculator with tier logic and declared price input
-- [ ] Set up Stripe account with manual capture enabled
-- [ ] Implement Stripe PaymentIntent creation (capture_method: manual)
-- [ ] Implement Stripe capture and cancel/void logic
-- [ ] Deploy Step Functions workflow with negative consent logic
+- [ ] Set up Stripe account for immediate payments
+- [ ] Implement Stripe PaymentIntent creation (immediate capture)
+- [ ] Implement Stripe webhook handler for payment confirmation
+- [ ] Deploy Step Functions workflow (Payment → Permit → Settle)
 - [ ] Implement permit generation (backend signer)
 - [ ] Integrate Alchemy AA (Gas Manager setup)
 - [ ] Build settlement Lambda (UserOp builder)
-- [ ] Build collector notification email template with review link
+- [ ] Build collector notification email (simple: "NFT transferred to your vault")
 
 ### Phase 3: Frontend
 - [ ] Magic login flow
 - [ ] "My Vault" (list NFTs via Alchemy)
-- [ ] Transfer initiation UI (collector email, DECLARED sale price)
+- [ ] Transfer initiation UI (collector address, DECLARED sale price)
 - [ ] Exit tax quote display (show tier and amount)
-- [ ] Reseller: Stripe card authorization UI (pre-auth, not capture)
-- [ ] Collector review screen (passport data + declared price verification)
-- [ ] Collector: Reject transfer modal (with reason selection)
-- [ ] Collector: Quick Accept button (optional early approval)
-- [ ] Status tracker (pending_review, approved, captured, settled, rejected)
+- [ ] Reseller: Stripe checkout integration (redirect to payment)
+- [ ] Transfer status tracker (pending_payment, paid, settling, settled, failed)
+- [ ] Success/failure screens with clear messaging
+- [ ] Notification system (in-app + email for transfer complete)
 
 ### Phase 4: Analytics & Dashboard
 - [ ] Set up analytics database (TimescaleDB or PostgreSQL with time-series extension)
@@ -1472,7 +1446,7 @@ sequenceDiagram
 | Component | Low (MVP) | Medium (Scale) | Notes |
 |-----------|-----------|----------------|--------|
 | **AWS Lambda** | $5–15 | $30–80 | API + event processors + Step Functions invocations |
-| **AWS Step Functions** | $5–20 | $25–100 | ~500 state transitions × 4–6 steps |
+| **AWS Step Functions** | $3–10 | $15–50 | ~500 state transitions × 3–4 steps (simplified) |
 | **AWS RDS/DynamoDB** | $25–50 | $80–200 | PostgreSQL or DynamoDB for transfers + analytics |
 | **AWS S3** | $2–5 | $10–30 | Metadata, backups |
 | **ElastiCache (Redis)** | $15–30 | $50–120 | Dashboard cache (optional for MVP) |
@@ -1481,9 +1455,9 @@ sequenceDiagram
 | **Stripe** | 2.9% + $0.30/txn | same | On exit tax only; ~500 × $0.30 ≈ $150 + % |
 | **Magic** | $0–99 | $299+ | Auth; free tier then paid by MAU |
 | **Domain + misc** | $10–20 | $20–50 | DNS, monitoring, logs |
-| **Total (approx)** | **$260–550** | **$950–2,200** | Excludes Stripe % on volume |
+| **Total (approx)** | **$250–540** | **$930–2,150** | Excludes Stripe % on volume |
 
-**Per-transfer rough cost (MVP):** ~$0.50–1.10 (infra only).  
+**Per-transfer rough cost (MVP):** ~$0.45–1.00 (infra only, simplified flow).  
 **Stripe:** ~$0.30/txn + 2.9% of exit tax (e.g. $0.30 + ~$15 on 500 CHF royalty).  
 **Gas (Alchemy):** ~$0.10–0.30 per settle() on Polygon; budget via Gas Manager cap.
 
@@ -1762,11 +1736,18 @@ A: No. Vantage is a **governance layer**, not a marketplace. Physical assets are
 **Q: Does the collector pay anything through Vantage?**  
 A: No. The collector pays the reseller for the physical watch outside Vantage (cash, Venmo, wire, etc.). Only the reseller pays through Vantage (the exit tax/royalty).
 
-**Q: Why does the collector need to review if they're not paying?**  
-A: To verify the declared sale price is accurate. If reseller under-declares ("I sold for 1 CHF" to avoid tax), collector can reject. This protects provenance integrity and prevents tax evasion.
+**Q: How do you prevent resellers from declaring false sale prices?**  
+A: v2.0 uses a trust-based model for simplicity. Fraud mitigation includes:
+  - Analytics monitoring (flag suspicious prices)
+  - Pattern detection (repeated anomalies trigger review)
+  - Reputation system (verified resellers get badges)
+  - Spot checks (random audits by brand)
+  - Account suspension for confirmed fraud
+  
+Collector review/approval can be added later if fraud becomes an issue.
 
-**Q: What happens if the collector does nothing for 24 hours?**  
-A: The transfer auto-approves (negative consent). This is the normal flow - collector only acts if something is wrong.
+**Q: What happens immediately after payment?**  
+A: Settlement executes automatically. No waiting period, no collector approval. Payment confirmation → Permit generation → On-chain transfer → Complete (< 2 minutes total).
 
 **Q: Why not use standard ERC-721 royalty enforcement?**  
 A: ERC-2981 is advisory only. Marketplaces can ignore it. Vantage's `settle()` function makes payment **mandatory** before transfer.
