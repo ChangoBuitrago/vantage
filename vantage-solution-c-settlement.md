@@ -13,6 +13,57 @@ Solution C is the **settlement orchestration** layer: it computes the exit tax (
 
 ---
 
+## Sequence Flow
+
+End-to-end: initiate, pay, webhook, permit, settle. Depends on A for signing and NFT data, B for contract.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant R as Reseller
+    participant App as App
+    participant API as Backend API
+    participant DB as DynamoDB
+    participant Stripe as Stripe
+    participant Webhook as Webhook Lambda
+    participant AlchemyAA as Alchemy AA
+    participant Contract as Vantage Registry
+
+    rect rgb(240, 248, 255)
+        Note over R, Stripe: INITIATE
+        R->>App: Start transfer with tokenId and sale price
+        App->>API: GET /quote then POST /transfer/initiate
+        API->>DB: Create transfer pending_payment
+        API->>Stripe: Create PaymentIntent or Checkout
+        Stripe-->>API: Checkout URL
+        API-->>App: transferId and checkout URL
+        App->>R: Redirect to Stripe
+    end
+
+    rect rgb(255, 250, 240)
+        Note over R, Webhook: PAY AND WEBHOOK
+        R->>Stripe: Complete payment
+        Stripe->>Webhook: POST /webhooks/stripe payment_intent.succeeded
+        Webhook->>DB: Load transfer by paymentIntentId
+        Webhook->>DB: Update status to paid
+    end
+
+    rect rgb(240, 255, 240)
+        Note over Webhook, Contract: PERMIT AND SETTLE
+        Webhook->>Webhook: Generate permit with backend signer
+        Webhook->>App: Request sign UserOp (via A)
+        App->>Webhook: Return signature
+        Webhook->>AlchemyAA: Submit UserOp with Gas Manager
+        AlchemyAA->>Contract: settle with permit
+        Contract->>Contract: Verify permit and transfer NFT
+        Contract-->>AlchemyAA: Success
+        AlchemyAA-->>Webhook: Receipt
+        Webhook->>DB: Update status to settled
+    end
+```
+
+---
+
 ## Tech Stack
 
 | Component | Technology | Purpose |

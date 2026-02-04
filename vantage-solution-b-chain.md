@@ -13,6 +13,39 @@ Solution B delivers the **on-chain governance layer**: the sovereign ERC-721 ass
 
 ---
 
+## Sequence Flow
+
+Two flows: Genesis (mint) and Settlement (permit-gated transfer).
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Brand as Brand Backend
+    participant Contract as VantageAssetRegistry
+    participant Caller as Settle Caller (e.g. C or UserOp)
+
+    rect rgb(230, 230, 250)
+        Note over Brand, Contract: GENESIS - MINT
+        Brand->>Contract: mint(to, metadataHash)
+        Contract->>Contract: onlyOwner check
+        Contract->>Contract: _mint and store metadataHash
+        Contract-->>Brand: tokenId
+    end
+
+    rect rgb(255, 250, 240)
+        Note over Caller, Contract: SETTLEMENT - PERMIT-GATED TRANSFER
+        Caller->>Contract: settle(transferId, from, to, tokenId, salePrice, permit)
+        Contract->>Contract: Require ownerOf(tokenId) eq from
+        Contract->>Contract: Build message hash and recover signer
+        Contract->>Contract: Require signer eq COMPLIANCE_SIGNER
+        Contract->>Contract: _transfer(from, to, tokenId)
+        Contract->>Contract: Emit TransferSettled
+        Contract-->>Caller: Success
+    end
+```
+
+---
+
 ## Tech Stack
 
 | Component | Technology | Purpose |

@@ -13,6 +13,50 @@ Solution A delivers the **identity and wallet layer** for Vantage: passwordless 
 
 ---
 
+## Sequence Flow
+
+Standalone flow: login, My Vault (NFT list), and sign UserOp (for when combined with C).
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant App as App or SDK
+    participant Magic as Magic
+    participant AlchemyNFT as Alchemy NFT API
+    participant AlchemyAA as Alchemy AA
+
+    rect rgb(240, 248, 255)
+        Note over U, Magic: LOGIN
+        U->>App: Enter email
+        App->>Magic: loginWithMagicLink
+        Magic->>U: Magic link email
+        U->>Magic: Click link
+        Magic->>App: DIDToken and publicAddress
+        App->>App: Store session
+    end
+
+    rect rgb(255, 250, 240)
+        Note over App, AlchemyNFT: MY VAULT
+        U->>App: Open My Vault
+        App->>AlchemyNFT: getNftsForOwner with contract address
+        AlchemyNFT->>App: NFT list
+        App->>U: Display NFTs
+    end
+
+    rect rgb(240, 255, 240)
+        Note over App, AlchemyAA: SIGN USEROP (e.g. for settle)
+        App->>App: Build or receive UserOp
+        App->>Magic: signUserOperation
+        Magic->>App: Signature
+        App->>AlchemyAA: sendUserOperation with signature
+        AlchemyAA->>AlchemyAA: Paymaster sponsors gas
+        AlchemyAA-->>App: UserOp hash or receipt
+    end
+```
+
+---
+
 ## Tech Stack
 
 | Component | Technology | Purpose |
