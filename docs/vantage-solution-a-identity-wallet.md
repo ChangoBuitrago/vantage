@@ -3,7 +3,7 @@
 **Vantage Settlement Protocol — Build Independently, Combine Later**  
 **Scope:** Auth, embedded wallet, gasless signing, NFT list and transfer history  
 **Depends on:** Nothing (standalone)  
-**Reference:** [vantage-technical-spec-v2.0.md](./vantage-technical-spec-v2.0.md)
+**Reference:** [vantage-technical-spec.md](../vantage-technical-spec.md)
 
 ---
 
@@ -139,4 +139,4 @@ Magic wallet is the signer/owner of the Smart Account. Backend (C) builds the Us
 ## When Combined With B and C
 
 - Full app uses A for all auth, vault, and signing
-- C uses A (or Alchemy directly with same config) for identity and NFT data; C uses B’s contract address and ABI to build and submit `settle()` UserOps
+- C uses A (or Alchemy directly with same config) for identity and NFT data; C uses B's contract address and ABI to build and submit `settle()` UserOps

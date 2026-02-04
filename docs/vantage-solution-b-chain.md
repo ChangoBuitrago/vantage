@@ -3,13 +3,13 @@
 **Vantage Settlement Protocol — Build Independently, Combine Later**  
 **Scope:** Smart contracts, deployment, permit-gated transfers  
 **Depends on:** Nothing (standalone)  
-**Reference:** [vantage-technical-spec-v2.0.md](./vantage-technical-spec-v2.0.md)
+**Reference:** [vantage-technical-spec.md](../vantage-technical-spec.md)
 
 ---
 
 ## Purpose
 
-Solution B delivers the **on-chain governance layer**: the sovereign ERC-721 asset registry with permit-gated `settle()` so that transfers are only allowed after the backend has verified payment and signed a permit. No Stripe, Magic, or settlement backend required to develop and test B. When combined with C, the settlement service calls B’s contract to execute transfers.
+Solution B delivers the **on-chain governance layer**: the sovereign ERC-721 asset registry with permit-gated `settle()` so that transfers are only allowed after the backend has verified payment and signed a permit. No Stripe, Magic, or settlement backend required to develop and test B. When combined with C, the settlement service calls B's contract to execute transfers.
 
 ---
 
@@ -103,12 +103,12 @@ function settle(
 ### To Settlement (C)
 
 - **Contract address** and **ABI** (after deployment)
-- **Permit payload:** Same as above so C’s backend signer produces a signature the contract accepts
+- **Permit payload:** Same as above so C's backend signer produces a signature the contract accepts
 - No runtime dependency from B to C; B is an on-chain artifact C calls via RPC
 
 ### To Identity / Frontend (A)
 
-- Contract address and (if needed) ABI for NFT listing and transfer history (Alchemy NFT API uses the address; A doesn’t need to call the contract directly for normal flows)
+- Contract address and (if needed) ABI for NFT listing and transfer history (Alchemy NFT API uses the address; A doesn't need to call the contract directly for normal flows)
 
 ---
 

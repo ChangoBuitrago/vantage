@@ -3,7 +3,7 @@
 **Vantage Settlement Protocol — Build Independently, Combine Later**  
 **Scope:** Quote API, Stripe payment, permit generation, on-chain settlement (Lambda + DynamoDB + EventBridge)  
 **Depends on:** Solution A (identity, signing, NFT data), Solution B (contract address, ABI, permit format)  
-**Reference:** [vantage-technical-spec-v2.0.md](./vantage-technical-spec-v2.0.md)
+**Reference:** [vantage-technical-spec.md](../vantage-technical-spec.md)
 
 ---
 
@@ -104,7 +104,7 @@ sequenceDiagram
 
 - **Auth:** Validate DIDToken; get reseller/collector `publicAddress` (and Smart Account if AA)
 - **Signing:** Request "sign this UserOp" for `settle()`; receive signature and submit via Alchemy Bundler
-- **NFT data:** Holding period for royalty — C calls Alchemy NFT API (or A’s API) with owner and contract address to get last transfer date
+- **NFT data:** Holding period for royalty — C calls Alchemy NFT API (or A's API) with owner and contract address to get last transfer date
 
 ### From B (Chain)
 
@@ -142,5 +142,5 @@ sequenceDiagram
 ## When Combined With A and B
 
 - Frontend uses A for login and "My Vault"; when C needs to run settle, frontend uses A (Magic) to sign UserOp; C submits via Alchemy AA
-- C uses B’s deployed contract address and ABI; C’s permit signer matches B’s `COMPLIANCE_SIGNER`
+- C uses B's deployed contract address and ABI; C's permit signer matches B's `COMPLIANCE_SIGNER`
 - Full flow: Reseller pays exit tax → C captures payment and generates permit → C triggers settle (gas sponsored) → Collector receives NFT
