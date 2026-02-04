@@ -23,7 +23,7 @@ Vantage is a **Sovereign Smart Contract** platform that handles **Issuance** (mi
 - **Provenance Protection:** Declared sale prices become permanent on-chain record
 - **GDPR Compliant:** Twin data structure (on-chain state + off-chain PII)
 - **Chain Agnostic:** Polygon or Base (EVM-compatible)
-- **Orchestrated Workflow:** AWS Step Functions manages payment → settlement flow
+- **Lambda + DynamoDB:** Stripe webhook triggers permit generation and on-chain settlement; EventBridge schedule handles payment timeout
 
 ---
 
@@ -36,12 +36,57 @@ Vantage is a **Sovereign Smart Contract** platform that handles **Issuance** (mi
 | **Auth & Wallet** | Magic (magic.link) | Passwordless login, embedded wallets, signing |
 | **Account Abstraction** | Alchemy AA (ERC-4337) | Gasless transactions, smart contract accounts |
 | **NFT Indexing** | Alchemy NFT API | Query ownership, transfer history, holding period |
-| **Workflow Engine** | AWS Step Functions | Orchestrate async flows with timeouts and callbacks |
+| **Orchestration** | Lambda + DynamoDB + EventBridge | Webhook-triggered settlement; scheduled timeout for unpaid transfers |
 | **Backend API** | Node.js/Lambda + DynamoDB | Royalty calculator, compliance gate, permit generation |
 | **Payment Gateway** | Stripe | Fiat payment processing for royalties |
 | **Blockchain** | Polygon (EVM) | NFT registry, settlement execution |
 | **Smart Contract Framework** | OpenZeppelin Contracts | Secure, audited ERC-721, ERC-2981, ECDSA implementations |
 | **Smart Contract Language** | Solidity ^0.8.20 | Sovereign asset registry with permit-gated transfers |
+
+---
+
+## Solution Split: Build Independently, Combine Later
+
+The system can be split into **three smaller solutions** that can be developed and tested independently, then combined into the full Vantage product. Each solution has clear boundaries, interfaces, and no circular dependencies.
+
+### Overview
+
+| Solution | Name | Scope | Depends On | Delivers |
+|----------|------|--------|------------|----------|
+| **A** | Identity & Wallet | Magic, Alchemy AA, Alchemy NFT API | Nothing | Auth, embedded wallet, gasless signing, NFT list + transfer history |
+| **B** | Chain / Governance | Smart contracts, deployment | Nothing | Mint, permit-gated `settle()`, transfer locks, royalty config |
+| **C** | Settlement Orchestration | Backend API, Stripe, Lambda, DynamoDB, EventBridge | A (wallet, signing, NFT data), B (contract) | Quote, payment, permit generation, calling `settle()` |
+
+**Delivery order:** B first → A second → C third. B and A can be built in parallel; C glues them together.
+
+### Interfaces Between Solutions
+
+**A → C (Identity & Wallet to Settlement):**
+- **Auth:** Backend validates `DIDToken` from Magic; gets `publicAddress` (and Smart Account address if using AA).
+- **Signing:** Settlement service requests "sign this UserOp" via frontend; frontend uses Magic + (optionally) Alchemy AA; returns signature so C can submit settle via Alchemy Bundler.
+- **NFT data:** C calls Alchemy NFT API (or an API exposed by A) to get transfer history for a token/owner → holding period for royalty quote.
+
+**B → C (Chain to Settlement):**
+- **Contract:** Deployed contract address and ABI. C needs `settle(transferId, from, to, tokenId, salePrice, permit)` signature and permit payload format (e.g. `keccak256(abi.encodePacked(transferId, from, to, tokenId, salePrice))` signed by backend).
+- **No runtime dependency from B to C** — B is just the on-chain artifact C calls.
+
+**C → A, C → B:** C invokes A (auth, signing, NFT data) and B (RPC call to contract). No reverse dependency.
+
+### How They Combine
+
+- **Frontend (full app):** Uses **A** for login, "My Vault" (NFT list), and "sign UserOp" when C requests it. Calls **C** for `GET /quote`, `POST /transfer/initiate`, `GET /transfer/:id/status`.
+- **Backend (C):** Uses **A** for identity and for obtaining user signatures; uses **B** (contract address + ABI) to submit `settle()` via Alchemy AA.
+- There is **no single codebase merge** — the "merge" is integration: same config (contract address, Magic keys, Alchemy keys), and C calling A's APIs or SDK and B's contract.
+
+### Solution Briefs
+
+Detailed briefs for each solution (scope, tech stack, interfaces, deliverables) are in:
+
+- **[vantage-solution-a-identity-wallet.md](./vantage-solution-a-identity-wallet.md)** — Auth & Wallet (Magic, Alchemy AA, Alchemy NFT API)
+- **[vantage-solution-b-chain.md](./vantage-solution-b-chain.md)** — Chain / Governance (contracts, deploy, permit format)
+- **[vantage-solution-c-settlement.md](./vantage-solution-c-settlement.md)** — Settlement (Stripe, Lambda, DynamoDB, EventBridge, permit signer)
+
+Use these for parallel teams or phased rollout; the main spec (this document) remains the single source of truth for the combined system.
 
 ---
 
@@ -60,20 +105,22 @@ graph TD
         Collector[Collector]
         App[Vantage Web App]
         Reseller -->|Initiates Transfer| App
-        Collector -->|Reviews or Rejects| App
+        Collector -->|Views Vault| App
     end
 
     subgraph Governance_Layer [Vantage Governance Layer]
         API[API Gateway]
         Backend[Node.js or Lambda Backend]
         PermitSigner[Permit Signer Service]
-        SF[AWS Step Functions]
+        Webhook[Stripe Webhook Lambda]
+        Timeout[EventBridge + Timeout Lambda]
         
         App <--> API
         API <--> Backend
-        Backend -->|Triggers| SF
         Backend -->|Request Sig| PermitSigner
-        SF -->|Callbacks| Backend
+        Stripe -->|payment_intent.succeeded| Webhook
+        Webhook -->|permit then settle| Backend
+        Timeout -->|scan pending_payment| Backend
     end
 
     subgraph Data_Layer [Data and Storage]
@@ -102,44 +149,25 @@ graph TD
     end
 ```
 
-### 2. Payment → Settlement State Machine
+### 2. Payment → Settlement Flow (Lambda + DynamoDB)
 
-Simple orchestration logic in **AWS Step Functions**. Payment → Permit → Settle.
+Orchestration lives in **Lambda + DynamoDB**. Stripe webhook drives permit → settle; EventBridge handles timeout.
 
 ```mermaid
 stateDiagram-v2
-    [*] --> ProcessPayment
-    
-    state ProcessPayment {
-        [*] --> InitiateStripe
-        InitiateStripe --> WaitForWebhook : Payment Intent Created
-        note right of WaitForWebhook : Reseller completes Stripe checkout
-        WaitForWebhook --> PaymentConfirmed : Webhook Success
-        WaitForWebhook --> PaymentDeclined : Webhook Failed or Timeout
-    }
+    [*] --> pending_payment : POST /transfer/initiate
 
-    PaymentConfirmed --> GeneratePermit
-    PaymentDeclined --> [*] : Transfer Cancelled
-    
-    state GeneratePermit {
-        [*] --> SignTransfer
-        SignTransfer --> PermitReady : Backend Signs
-    }
+    pending_payment --> paid : Stripe webhook payment_intent.succeeded
+    pending_payment --> timed_out : EventBridge schedule (e.g. 10 min)
 
-    PermitReady --> SettleOnChain
-    
-    state SettleOnChain {
-        [*] --> BuildUserOp
-        BuildUserOp --> SubmitToChain : Via Alchemy AA
-        SubmitToChain --> TransferComplete : Contract Executes
-        SubmitToChain --> OnChainFailed : Contract Reverts
-    }
+    paid --> GeneratePermit : Same webhook Lambda
+    GeneratePermit --> SettleOnChain : In-code sequence
+    SettleOnChain --> settled : Contract executes (retry 3x in Lambda)
+    SettleOnChain --> settlement_failed : All retries fail, trigger refund
 
-    TransferComplete --> Settled
-    OnChainFailed --> SettlementFailed : Refund Required
-    
-    Settled --> [*]
-    SettlementFailed --> [*]
+    settled --> [*]
+    settlement_failed --> [*]
+    timed_out --> [*]
 ```
 
 ### 3. GDPR Twin Data Architecture
@@ -328,102 +356,53 @@ const lastTransfer = transfers[0]; // Most recent
 const holdingPeriodDays = (Date.now() - lastTransfer.metadata.blockTimestamp * 1000) / (1000 * 60 * 60 * 24);
 ```
 
-### 4. AWS Step Functions (Orchestration)
-**What it does:**
-- Manages async payment → settlement workflow
-- Callback pattern for Stripe webhooks
-- Compensation logic for payment failures
+### 4. Settlement Orchestration (Lambda + DynamoDB)
 
-**Workflow states:**
-1. `ProcessPayment` (charge reseller via Stripe)
-2. `GeneratePermit` (create cryptographic signature)
-3. `SettleOnChain` (execute on-chain transfer with permit)
-4. `Settled` (terminal success) or `PaymentFailed` (terminal failure)
+**What it does:**
+- **No Step Functions.** Stripe webhook Lambda runs permit generation and on-chain settlement in sequence.
+- **State in DynamoDB:** Transfer record holds `status` (`pending_payment`, `paid`, `settled`, `settlement_failed`, `timed_out`).
+- **Payment timeout:** EventBridge scheduled rule (e.g. every 10 min) invokes a Lambda that marks `pending_payment` transfers older than 10 min as `timed_out`.
+
+**Flow:**
+1. **POST /transfer/initiate** — Create transfer (`pending_payment`), create Stripe Checkout Session or PaymentIntent, return URL. No workflow started.
+2. **Stripe webhook** `payment_intent.succeeded` (or `checkout.session.completed`) — One Lambda: load transfer by `paymentIntentId`, set `paid`, generate permit, call settle (in-code retry 3x with backoff). On success set `settled`; on permanent failure set `settlement_failed` and trigger Stripe refund.
+3. **EventBridge schedule** — Rule every 10 min invokes Timeout Lambda; query DynamoDB for `status = pending_payment` and `createdAt` older than 10 min; set `timed_out`.
 
 **Integration points:**
-- Backend API calls `StartExecution` with transfer data
-- Stripe processes payment immediately (no hold/capture)
-- Stripe webhook calls `SendTaskSuccess` on payment confirmation
-- Settlement executes automatically after payment
+- API creates transfer and Stripe session; returns checkout URL.
+- Stripe calls `POST /webhooks/stripe`; Lambda updates transfer and runs permit + settle.
+- EventBridge triggers Timeout Lambda; Lambda updates transfer status only.
 
-**Dev notes:**
-```json
-{
-  "Comment": "Vantage Exit Tax & Transfer Workflow (Immediate Settlement)",
-  "StartAt": "ProcessPayment",
-  "States": {
-    "ProcessPayment": {
-      "Type": "Task",
-      "Resource": "arn:aws:states:::lambda:invoke.waitForTaskToken",
-      "Parameters": {
-        "FunctionName": "InitiateStripePayment",
-        "Payload": {
-          "taskToken.$": "$$.Task.Token",
-          "reseller.$": "$.resellerId",
-          "royaltyAmount.$": "$.royaltyAmount",
-          "transferId.$": "$.transferId"
-        }
-      },
-      "TimeoutSeconds": 600,
-      "Catch": [
-        {
-          "ErrorEquals": ["States.Timeout", "PaymentFailed"],
-          "ResultPath": "$.error",
-          "Next": "PaymentFailed"
-        }
-      ],
-      "Next": "GeneratePermit"
-    },
-    "GeneratePermit": {
-      "Type": "Task",
-      "Resource": "arn:aws:lambda:invoke",
-      "Parameters": {
-        "FunctionName": "GenerateTransferPermit",
-        "Payload.$": "$"
-      },
-      "ResultPath": "$.permit",
-      "Next": "SettleOnChain"
-    },
-    "SettleOnChain": {
-      "Type": "Task",
-      "Resource": "arn:aws:lambda:invoke",
-      "Parameters": {
-        "FunctionName": "ExecuteBlockchainSettlement",
-        "Payload.$": "$"
-      },
-      "Retry": [
-        {
-          "ErrorEquals": ["States.ALL"],
-          "IntervalSeconds": 2,
-          "MaxAttempts": 3,
-          "BackoffRate": 2.0
-        }
-      ],
-      "Catch": [
-        {
-          "ErrorEquals": ["States.ALL"],
-          "ResultPath": "$.error",
-          "Next": "SettlementFailed"
-        }
-      ],
-      "Next": "Settled"
-    },
-    "Settled": {
-      "Type": "Succeed"
-    },
-    "PaymentFailed": {
-      "Type": "Fail",
-      "Error": "PaymentFailed",
-      "Cause": "Stripe payment declined or timeout"
-    },
-    "SettlementFailed": {
-      "Type": "Fail",
-      "Error": "SettlementFailed",
-      "Cause": "On-chain settlement failed after payment captured"
+**Dev notes (webhook Lambda pseudocode):**
+```javascript
+// Stripe webhook handler (payment_intent.succeeded)
+async function handlePaymentSuccess(event) {
+  const paymentIntentId = event.data.object.id;
+  const transfer = await getTransferByPaymentIntentId(paymentIntentId);
+  if (!transfer || transfer.status !== 'pending_payment') return { received: true };
+
+  await updateTransfer(transfer.id, { status: 'paid' });
+  const permit = await generatePermit(transfer); // backend signer
+  let settled = false;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      await executeSettlement(transfer, permit);
+      settled = true;
+      break;
+    } catch (e) {
+      if (attempt === 3) {
+        await updateTransfer(transfer.id, { status: 'settlement_failed' });
+        await stripe.refunds.create({ payment_intent: paymentIntentId });
+      } else await sleep(1000 * Math.pow(2, attempt));
     }
   }
+  if (settled) await updateTransfer(transfer.id, { status: 'settled' });
+  return { received: true };
 }
 ```
+
+**DynamoDB transfer item (minimal):**
+- `transferId`, `status`, `paymentIntentId`, `resellerId`, `tokenId`, `collectorAddress`, `declaredSalePrice`, `royaltyAmount`, `createdAt`, `permit` (after paid), `txHash` (after settled).
 
 ### 5. Vantage Backend (Compliance Gate & Royalty Engine)
 **What it does:**
@@ -467,8 +446,8 @@ async function generatePermit(transferId, from, to, tokenId, salePrice) {
 
 **API Endpoints:**
 - `GET /quote?tokenId=88&salePrice=5000` → Returns royalty amount
-- `POST /transfer/initiate` → Initiates payment and starts Step Functions workflow
-- `POST /webhooks/stripe` → Payment confirmation (sends task success to Step Functions)
+- `POST /transfer/initiate` → Create transfer (pending_payment), create Stripe session, return checkout URL
+- `POST /webhooks/stripe` → Stripe calls this; Lambda updates transfer, generates permit, runs settlement (retry 3x); on settlement failure triggers refund
 - `POST /transfer/:id/status` → Check transfer status (pending, paid, settled, failed)
 
 ### 6. Analytics & Dashboard System (Creator Insights)
@@ -1214,7 +1193,7 @@ sequenceDiagram
     participant Magic as Magic
     participant Backend as Vantage Backend
     participant Stripe as Stripe
-    participant SF as Step Functions
+    participant Webhook as Stripe Webhook Lambda
     participant AlchemyNFT as Alchemy NFT API
     participant AlchemyAA as Alchemy AA
     participant Contract as Vantage Registry (Polygon or Base)
@@ -1240,31 +1219,22 @@ sequenceDiagram
         Note over R, Stripe: PHASE 2: PAYMENT PROCESSING
         R->>App: Confirm and pay exit tax
         App->>Backend: POST /transfer/initiate with details
-        Backend->>Backend: Create transfer record
-        Backend->>SF: Start workflow
-        Backend->>Stripe: Create PaymentIntent
+        Backend->>Backend: Create transfer record in DynamoDB
+        Backend->>Stripe: Create PaymentIntent or Checkout Session
         Stripe-->>Backend: Return checkout URL
         Backend-->>App: Return checkout URL and transferId
         App->>R: Redirect to Stripe checkout
         R->>Stripe: Complete payment
         Stripe->>Stripe: Process payment to Brand account
-        Stripe->>Backend: Webhook payment succeeded
-        Backend->>SF: SendTaskSuccess with payment confirmation
+        Stripe->>Webhook: POST /webhooks/stripe payment_intent.succeeded
     end
 
     rect rgb(240, 255, 240)
-        Note over Backend, SF: PHASE 3: GENERATE PERMIT
-        SF->>Backend: Invoke GeneratePermit Lambda
-        Backend->>Backend: Generate permit signature
-        Backend->>Backend: Store permit and update status
-        Backend->>SF: Return permit
-    end
-
-    rect rgb(255, 245, 245)
-        Note over SF, Contract: PHASE 4: ON-CHAIN SETTLEMENT
-        SF->>Backend: Invoke ExecuteSettlement Lambda
-        Backend->>Backend: Fetch transfer details and permit
-        Backend->>Backend: Build UserOp for settle function
+        Note over Webhook, Contract: PHASE 3 and 4: PERMIT AND SETTLE (same Lambda)
+        Webhook->>Backend: Load transfer by paymentIntentId
+        Webhook->>Backend: Generate permit signature
+        Webhook->>Backend: Store permit and set status paid
+        Webhook->>Backend: Build UserOp for settle
         Backend->>App: Request signature via Magic
         App->>Magic: Call signUserOperation
         Magic->>App: Return signature
@@ -1272,15 +1242,10 @@ sequenceDiagram
         Backend->>AlchemyAA: Submit UserOperation with Gas Manager
         AlchemyAA->>AlchemyAA: Paymaster sponsors gas
         AlchemyAA->>Contract: Execute settle with permit
-        Contract->>Contract: Verify permit signature
-        Contract->>Contract: Verify owner of tokenId
-        Contract->>Contract: Execute internal transfer
-        Contract->>Contract: Emit TransferSettled with declared price
+        Contract->>Contract: Verify permit and transfer NFT
         Contract-->>AlchemyAA: Return success
         AlchemyAA-->>Backend: Return UserOp receipt
-        Backend->>Backend: Update status to settled
-        Backend->>SF: SendTaskSuccess
-        SF->>SF: State set to Settled terminal
+        Webhook->>Backend: Update status to settled
         Backend->>R: Send transfer complete notification
         Backend->>C: Send NFT now in vault notification
     end
@@ -1302,24 +1267,24 @@ sequenceDiagram
 
 | State | Timeout | Action |
 |-------|---------|--------|
-| `ProcessPayment` | 10 minutes | Fail workflow, cancel transfer, notify reseller |
-| `SettleOnChain` | 5 minutes | Retry 3x with exponential backoff, then manual intervention |
+| `pending_payment` | 10 minutes | EventBridge schedule invokes Timeout Lambda; marks transfer as `timed_out` |
+| Settle (in webhook Lambda) | — | Retry 3x with exponential backoff in code; on final failure set `settlement_failed` and trigger refund |
 
 ### Payment Failures
 
 **Payment declined during checkout:**
 1. Stripe returns error (insufficient funds, card declined, etc.)
-2. Backend receives webhook `payment_failed`
-3. Backend calls `SendTaskFailure(taskToken, "PaymentFailed")`
-4. Step Functions transitions to `PaymentFailed` terminal state
-5. Notify reseller: "Payment declined. Please update payment method and retry"
-6. Transfer record marked as `failed` - reseller can re-initiate
+2. Backend receives webhook `payment_intent.payment_failed` (or equivalent)
+3. Webhook Lambda marks transfer as `failed` (or leaves `pending_payment` for timeout)
+4. Notify reseller: "Payment declined. Please update payment method and retry"
+5. Reseller can re-initiate a new transfer
 
 **Payment timeout:**
 1. Reseller doesn't complete Stripe checkout within 10 minutes
-2. Step Functions timeout triggers
-3. Backend marks transfer as `timed_out`
-4. Notify reseller: "Transfer cancelled due to timeout. Please re-initiate"
+2. EventBridge scheduled rule (e.g. every 10 min) invokes Timeout Lambda
+3. Timeout Lambda queries DynamoDB for `status = pending_payment` and `createdAt` older than 10 min
+4. Timeout Lambda sets `status: timed_out` for those transfers
+5. Optional: notify reseller "Transfer cancelled due to timeout. Please re-initiate"
 
 ### Settlement Failures
 
@@ -1335,8 +1300,8 @@ sequenceDiagram
 **Alchemy Gas Manager insufficient funds:**
 1. Gas Manager runs out of MATIC
 2. UserOp submission fails
-3. Step Functions retry logic attempts 3x
-4. If all retries fail → refund reseller, alert operations team
+3. Webhook Lambda retry logic (3x with backoff) attempts settle again
+4. If all retries fail → refund reseller, mark `settlement_failed`, alert operations team
 5. Operations team funds Gas Manager, reseller can re-initiate
 
 ### Trust Model Considerations
@@ -1382,7 +1347,9 @@ sequenceDiagram
 - [ ] Set up Stripe account for immediate payments
 - [ ] Implement Stripe PaymentIntent creation (immediate capture)
 - [ ] Implement Stripe webhook handler for payment confirmation
-- [ ] Deploy Step Functions workflow (Payment → Permit → Settle)
+- [ ] Implement Stripe webhook Lambda (payment_intent.succeeded → permit → settle with in-code retry 3x)
+- [ ] Implement EventBridge scheduled rule (e.g. every 10 min) + Timeout Lambda (mark pending_payment older than 10 min as timed_out)
+- [ ] DynamoDB: transfer table with status (pending_payment, paid, settled, settlement_failed, timed_out)
 - [ ] Implement permit generation (backend signer)
 - [ ] Integrate Alchemy AA (Gas Manager setup)
 - [ ] Build settlement Lambda (UserOp builder)
@@ -1434,7 +1401,7 @@ sequenceDiagram
 - [ ] Contract tests (permit verification, transfer blocking)
 - [ ] Integration test: full flow on testnet
 - [ ] Stripe test mode validation
-- [ ] Step Functions timeout testing
+- [ ] Webhook Lambda and EventBridge Timeout Lambda testing (timeout scan, retry logic)
 - [ ] Gas Manager budget limits
 
 ---
@@ -1445,8 +1412,8 @@ sequenceDiagram
 
 | Component | Low (MVP) | Medium (Scale) | Notes |
 |-----------|-----------|----------------|--------|
-| **AWS Lambda** | $5–15 | $30–80 | API + event processors + Step Functions invocations |
-| **AWS Step Functions** | $3–10 | $15–50 | ~500 state transitions × 3–4 steps (simplified) |
+| **AWS Lambda** | $8–20 | $35–90 | API + Stripe webhook + Timeout Lambda + event processors |
+| **EventBridge** | $0–1 | $1–5 | Scheduled rule for payment timeout (e.g. every 10 min) |
 | **AWS RDS/DynamoDB** | $25–50 | $80–200 | PostgreSQL or DynamoDB for transfers + analytics |
 | **AWS S3** | $2–5 | $10–30 | Metadata, backups |
 | **ElastiCache (Redis)** | $15–30 | $50–120 | Dashboard cache (optional for MVP) |
@@ -1461,7 +1428,7 @@ sequenceDiagram
 **Stripe:** ~$0.30/txn + 2.9% of exit tax (e.g. $0.30 + ~$15 on 500 CHF royalty).  
 **Gas (Alchemy):** ~$0.10–0.30 per settle() on Polygon; budget via Gas Manager cap.
 
-**Savings:** Use single-region, no Redis at first, Alchemy/Magic free tiers, and Step Functions standard (not Express) to stay near the low end.
+**Savings:** Use single-region, no Redis at first, Alchemy/Magic free tiers; no Step Functions (Lambda + DynamoDB + EventBridge only).
 
 ---
 
@@ -1714,7 +1681,7 @@ contract VantageAssetRegistry is ERC721, ERC2981, Ownable, Pausable {
 - ✅ Stripe webhook signature verification (prevents fake payment events)
 - ✅ CORS configuration (only allow vantage.com)
 - ✅ Rate limiting on permit generation (prevent DoS)
-- ⚠️ Step Functions execution throttling (prevent workflow spam)
+- ⚠️ Webhook Lambda concurrency and rate limiting (prevent duplicate processing; use idempotency keys)
 - ⚠️ Database encryption for PII (email, name, serial numbers)
 - ⚠️ Permit generation key rotation policy (rotate every 90 days)
 
@@ -1759,7 +1726,7 @@ A: No. Direct transfers are blocked. They must use Vantage to transfer the NFT (
 A: Backend initiates refund via Stripe API. Manual review logs the incident for reconciliation.
 
 **Q: How do we handle chain congestion (high gas)?**  
-A: Alchemy Gas Manager buffers volatility. For extreme cases, Step Functions can retry with exponential backoff.
+A: Alchemy Gas Manager buffers volatility. For extreme cases, the webhook Lambda retries settle with exponential backoff (3x in code).
 
 **Q: Is the backend a single point of failure?**  
 A: Yes, for permit generation. Mitigation: Deploy backend across multiple regions, use AWS KMS for key security, implement permit caching.
