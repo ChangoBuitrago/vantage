@@ -52,26 +52,23 @@ The system is split into three parts you can build and test **separately**, then
 
 ## How They Work Together
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  User (Reseller / Collector)                                     │
-└────────────────────────────┬────────────────────────────────────┘
-                             │
-     ┌───────────────────────┼───────────────────────┐
-     │                       │                       │
-     ▼                       ▼                       ▼
-┌─────────┐             ┌─────────┐             ┌─────────┐
-│    A    │             │    C    │             │    B    │
-│Identity │────────────▶│Settlement│────────────▶│ Chain   │
-│& Wallet │  auth,      │         │  call       │         │
-│         │  sign,      │  quote, │  settle()   │  mint,  │
-│         │  NFT list   │  pay,   │             │  settle │
-│         │             │  permit │             │         │
-└─────────┘             └─────────┘             └─────────┘
-     │                       │                       │
-     │   No dependency        │   Depends on A & B    │   No dependency
-     │   on B or C            │                       │   on A or C
-     └───────────────────────┴───────────────────────┘
+```mermaid
+graph LR
+    subgraph User_Layer [User]
+        U[Reseller or Collector]
+    end
+
+    subgraph Solutions [Solutions]
+        A[A. Identity and Wallet]
+        C[C. Settlement]
+        B[B. Chain]
+    end
+
+    U --> A
+    U --> C
+    U --> B
+    A -->|auth, sign, NFT list| C
+    C -->|call settle| B
 ```
 
 - **A** and **B** are independent. Build either first (or in parallel).
@@ -85,9 +82,3 @@ The system is split into three parts you can build and test **separately**, then
 2. **A** (Identity & Wallet) — Login, My Vault, sign UserOp. Can run in parallel with B.
 3. **C** (Settlement) — Quote, Stripe, webhook, permit, call B's `settle()` using A for signing.
 
----
-
-## Need More Detail?
-
-- **Per solution:** Use the links above to open each solution brief (scope, interfaces, sequence flows, acceptance criteria).
-- **Full system:** See [vantage-technical-spec.md](../vantage-technical-spec.md) for the complete technical specification, diagrams, API, and implementation checklist.
