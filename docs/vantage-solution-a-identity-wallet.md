@@ -128,6 +128,53 @@ const transfers = await alchemy.nft.getTransfersForOwner(ownerAddress, {
 **Alchemy AA:**  
 Magic wallet is the signer/owner of the Smart Account. Frontend (A) builds the UserOp for `settle()`, uses Magic to sign, and submits via Alchemy Bundler with Gas Manager policy (e.g. sponsor only `settle()` on Vantage contract). Backend (C) does not submit transactions; it only generates permits.
 
+**Account Abstraction Flow (How Gasless Transactions Work):**
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant User as User (Magic Wallet)
+    participant Frontend as Frontend (Solution A)
+    participant Bundler as Alchemy Bundler
+    participant Paymaster as Alchemy Gas Manager
+    participant Chain as Polygon/Base
+
+    Note over User, Chain: User wants to call settle() but has no MATIC
+    
+    Frontend->>Frontend: Build UserOp for settle(permit)
+    Frontend->>User: Request signature via Magic
+    User->>Frontend: Sign UserOp (ECDSA)
+    
+    Frontend->>Bundler: sendUserOperation(userOp, signature)
+    Bundler->>Paymaster: Check policy (settle on Vantage only?)
+    
+    alt Policy Approved
+        Paymaster->>Bundler: Approve (sponsor gas)
+        Bundler->>Chain: Submit transaction (Paymaster pays gas)
+        Chain->>Chain: Execute settle()
+        Chain-->>Frontend: Receipt (success)
+    else Policy Rejected or Rate Limited
+        Paymaster-->>Bundler: Reject
+        Bundler-->>Frontend: Error (not sponsored)
+    end
+    
+    note right of Paymaster
+        Gas Manager Policy Should Include:
+        - Only sponsor settle() function
+        - Only on Vantage contract address
+        - Rate limit per address (e.g. 10 tx/day)
+        - Daily spending cap (e.g. 10 MATIC/day)
+    end note
+```
+
+**Gas Manager Security:** Configure Alchemy Gas Manager with strict policies to prevent abuse:
+- **Function allowlist:** Only sponsor `settle()` calls on the Vantage contract
+- **Rate limiting:** Max operations per address per day (e.g., 10 transfers/day/user)
+- **Spending cap:** Daily budget limit to prevent gas tank draining
+- **Monitoring:** Alert if spending spikes unexpectedly
+
+Without these limits, malicious users could spam invalid `settle()` calls to drain your gas budget (even failed transactions can incur bundler overhead costs).
+
 ---
 
 ## Acceptance Criteria (Standalone)

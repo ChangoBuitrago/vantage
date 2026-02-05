@@ -77,6 +77,7 @@ sequenceDiagram
    - `GET /quote?tokenId=...&salePrice=...` — returns royalty amount (uses holding period from A or Alchemy NFT API)
    - `POST /transfer/initiate` — create transfer (`pending_payment`), create Stripe Checkout, return checkout URL and transferId
    - `GET /transfer/:id/permit` — (auth required) if status is `paid`, generate and return permit + settle params (transferId, from, to, tokenId, salePrice)
+   - `GET /transfers?status=paid&resellerId={userId}` — (auth required) list incomplete transfers for user (for "stuck state" recovery when user returns after paying)
    - `POST /transfer/:id/complete` — (optional) frontend calls after settle succeeds; updates status to `settled` and stores txHash
    - `GET /transfer/:id/status` — return transfer status
 
@@ -112,6 +113,11 @@ sequenceDiagram
 4. Frontend (A) builds UserOp and calls `settle()` via Alchemy AA (gasless) → Contract executes
 5. (Optional) Frontend calls `POST /transfer/:id/complete` with txHash → C sets `settled`
 
+**Recovery flow (if user closes browser after paying):**
+1. User logs back in → Frontend (A) calls `GET /transfers?status=paid&resellerId={userId}`
+2. If incomplete transfers exist → show "Complete Your Transfer" banner
+3. User clicks → Frontend calls `GET /permit` and executes `settle()` (steps 3-5 above)
+
 ---
 
 ## Royalty Logic (Time-Based Tiers)
@@ -119,6 +125,43 @@ sequenceDiagram
 - Holding period from chain (Alchemy NFT API or A)
 - &lt; 1 year: 10%; 1–3 years: 5%; &gt; 3 years: 2%
 - `royaltyAmount = declaredSalePrice * tierRate`
+
+---
+
+## Transfer State Machine
+
+Visualization of transfer lifecycle and state transitions in DynamoDB:
+
+```mermaid
+stateDiagram-v2
+    [*] --> pending_payment: POST /transfer/initiate
+    
+    pending_payment --> paid: Stripe webhook (payment success)
+    pending_payment --> timed_out: No payment after X hours
+    
+    paid --> settled: Frontend calls settle() then POST /complete
+    paid --> paid: Frontend can retry (idempotent permit)
+    
+    settled --> [*]
+    timed_out --> [*]
+    
+    note right of paid
+        Frontend claims permit via GET /permit
+        User can close browser and return later
+        Status remains "paid" until settle completes
+    end note
+    
+    note right of timed_out
+        Optional cleanup state
+        Could trigger Stripe refund
+        Or simply mark as abandoned
+    end note
+```
+
+**Key insights:**
+- `paid` is the "safe" state — user has paid, permit is claimable anytime
+- Frontend is responsible for moving from `paid` → `settled` (execution)
+- If user closes browser after paying, they can return and resume from `paid` state
 
 ---
 
@@ -130,6 +173,7 @@ sequenceDiagram
 - [ ] GET /permit returns permit if status is `paid`; 402 or error if `pending_payment`
 - [ ] Permit is idempotent (same permit for same transfer, or deterministic generation)
 - [ ] Auth check on GET /permit (only reseller can claim it)
+- [ ] GET /transfers?status=paid returns incomplete transfers for authenticated user (stuck state recovery)
 - [ ] POST /complete (optional) updates status to `settled` and stores txHash
 
 ---
