@@ -40,11 +40,11 @@ The system is split into three parts you can build and test **separately**, then
 
 ### Solution C — Settlement Orchestration
 
-**What it does:** Calculates the royalty (exit tax), collects payment from the reseller (Stripe), signs the **permit**, and triggers the on-chain `settle()` so the NFT moves. Handles timeouts for unpaid transfers.
+**What it does:** Calculates the royalty (exit tax), collects payment from the reseller (Stripe), and generates the **permit** (the "Permit Vending Machine"). The **frontend (Solution A) executes the on-chain `settle()`** with the permit. Backend stays stateless.
 
-**Tech:** Lambda, DynamoDB, EventBridge, Stripe. Uses A for auth/signing/NFT data and B's contract to execute the transfer.
+**Tech:** Lambda, DynamoDB, Stripe. Uses A for auth and NFT data (holding period).
 
-**Depends on:** A and B (or their interfaces).
+**Depends on:** A (auth, NFT data) and B (contract address, permit format).
 
 **→ Full brief:** [vantage-solution-c-settlement.md](./vantage-solution-c-settlement.md)
 
@@ -66,19 +66,20 @@ graph LR
 
     U --> A
     U --> C
-    U --> B
-    A -->|auth, sign, NFT list| C
-    C -->|call settle| B
+    A -->|auth, NFT data| C
+    C -->|permit| A
+    A -->|execute settle| B
 ```
 
 - **A** and **B** are independent. Build either first (or in parallel).
-- **C** needs A (for who the user is, signing, and holding period) and B (for the contract and permit format). Build C last to wire everything together.
+- **C** needs A (for auth and holding period) and B (for contract address and permit format). Build C last to wire everything together.
+- **Flow:** Reseller pays (C) → C generates permit → Frontend (A) claims permit from C → Frontend (A) executes `settle()` on B.
 
 ---
 
 ## Build Order
 
 1. **B** (Chain) — Deploy contract, test mint and `settle()` with a test permit.
-2. **A** (Identity & Wallet) — Login, My Vault, sign UserOp. Can run in parallel with B.
-3. **C** (Settlement) — Quote, Stripe, webhook, permit, call B's `settle()` using A for signing.
+2. **A** (Identity & Wallet) — Login, My Vault, sign and execute UserOps. Can run in parallel with B.
+3. **C** (Settlement) — Quote, Stripe, webhook, permit generation. Frontend (A) claims permit from C and executes `settle()` on B.
 

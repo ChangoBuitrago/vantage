@@ -9,7 +9,7 @@
 
 ## Purpose
 
-Solution A delivers the **identity and wallet layer** for Vantage: passwordless login, embedded wallets, gasless transactions (Account Abstraction), and NFT indexing. It can be developed and tested without the settlement backend or smart contracts. When combined with Solutions B and C, the full app uses A for login, "My Vault," and signing settlement UserOps.
+Solution A delivers the **identity and wallet layer** for Vantage: passwordless login, embedded wallets, gasless transactions (Account Abstraction), and NFT indexing. It can be developed and tested without the settlement backend or smart contracts. When combined with Solutions B and C, the full app uses A for login, "My Vault," and **executing the on-chain `settle()` call** (frontend claims the permit from C and executes the transaction).
 
 ---
 
@@ -83,11 +83,15 @@ sequenceDiagram
 
 ### To Settlement (C)
 
-- **Auth:** Backend receives `DIDToken` from frontend; validates via Magic and gets `publicAddress` (and Smart Account address if using AA).
-- **Signing:** When C needs to execute `settle()`, it sends a UserOp (or raw tx) to the frontend; frontend uses Magic to sign and returns the signature (or C receives it via callback). C then submits to Alchemy Bundler.
+- **Auth:** Backend receives `DIDToken` from frontend; validates via Magic and gets `publicAddress`.
 - **NFT data:** C needs transfer history for a given token/owner to compute holding period for the royalty quote. Either:
   - C calls Alchemy NFT API directly with contract address and owner, or
   - A exposes an API/SDK method such as `getTransferHistory(ownerAddress, contractAddress)` that wraps Alchemy.
+
+### To Chain (B) — "Permit Vending Machine" Model
+
+- **Execution:** After reseller pays (C sets status to `paid`), the **frontend (A) calls `GET /permit` from C**, receives the permit and settle params, then **executes `settle()` on the contract (B)** via Alchemy AA (gasless).
+- C does **not** execute settle; frontend does.
 
 ### To Frontend (Full App)
 
@@ -122,7 +126,7 @@ const transfers = await alchemy.nft.getTransfersForOwner(ownerAddress, {
 ```
 
 **Alchemy AA:**  
-Magic wallet is the signer/owner of the Smart Account. Backend (C) builds the UserOp; frontend uses Magic to sign; C submits via Alchemy Bundler with Gas Manager policy (e.g. sponsor only `settle()` on Vantage contract).
+Magic wallet is the signer/owner of the Smart Account. Frontend (A) builds the UserOp for `settle()`, uses Magic to sign, and submits via Alchemy Bundler with Gas Manager policy (e.g. sponsor only `settle()` on Vantage contract). Backend (C) does not submit transactions; it only generates permits.
 
 ---
 
@@ -138,5 +142,6 @@ Magic wallet is the signer/owner of the Smart Account. Backend (C) builds the Us
 
 ## When Combined With B and C
 
-- Full app uses A for all auth, vault, and signing
-- C uses A (or Alchemy directly with same config) for identity and NFT data; C uses B's contract address and ABI to build and submit `settle()` UserOps
+- Full app uses A for all auth, vault, and **executing settle()**
+- After reseller pays via C, frontend (A) calls `GET /permit` from C, receives the permit, then uses Alchemy AA SDK (from A) to execute `settle()` on B (gasless)
+- C uses Alchemy NFT API (same config as A) for NFT data (holding period for royalty quotes); C generates permits but does not submit transactions

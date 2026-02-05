@@ -1,64 +1,60 @@
 # Solution C: Settlement Orchestration
 
 **Vantage Settlement Protocol — Build Independently, Combine Later**  
-**Scope:** Quote API, Stripe payment, permit generation, on-chain settlement (Lambda + DynamoDB + EventBridge)  
-**Depends on:** Solution A (identity, signing, NFT data), Solution B (contract address, ABI, permit format)  
+**Scope:** Quote API, Stripe payment, permit generation (stateless "Permit Vending Machine")  
+**Depends on:** Solution A (identity, NFT data), Solution B (contract address, permit format)  
 **Reference:** [vantage-technical-spec.md](../vantage-technical-spec.md)
 
 ---
 
 ## Purpose
 
-Solution C is the **settlement orchestration** layer: it computes the exit tax (royalty), collects payment from the reseller via Stripe, generates the cryptographic permit, and triggers the on-chain `settle()` call. It uses Lambda + DynamoDB + EventBridge (no Step Functions). It depends on A for auth, user addresses, and (optionally) NFT data for holding period; and on B for the contract and permit format.
+Solution C is the **permit generation layer** (the "Permit Vending Machine"): it computes the exit tax (royalty), collects payment from the reseller via Stripe, and generates the cryptographic permit. The **frontend (Solution A) executes the on-chain `settle()`**, not the backend. This keeps the backend stateless and simple. C depends on A for auth and NFT data (holding period); and on B for the contract address and permit format.
 
 ---
 
 ## Sequence Flow
 
-End-to-end: initiate, pay, webhook, permit, settle. Depends on A for signing and NFT data, B for contract.
+**"Permit Vending Machine" model:** Backend verifies payment and generates permit; frontend executes settle.
 
 ```mermaid
 sequenceDiagram
     autonumber
     participant R as Reseller
-    participant App as App
-    participant API as Backend API
+    participant App as App (Solution A)
+    participant API as Backend API (Solution C)
     participant DB as DynamoDB
     participant Stripe as Stripe
-    participant Webhook as Webhook Lambda
-    participant AlchemyAA as Alchemy AA
-    participant Contract as Vantage Registry
+    participant Contract as Vantage Registry (Solution B)
 
     rect rgb(240, 248, 255)
-        Note over R, Stripe: INITIATE
+        Note over R, Stripe: PART 1: PAYMENT
         R->>App: Start transfer with tokenId and sale price
         App->>API: GET /quote then POST /transfer/initiate
         API->>DB: Create transfer pending_payment
-        API->>Stripe: Create PaymentIntent or Checkout
+        API->>Stripe: Create Checkout Session
         Stripe-->>API: Checkout URL
         API-->>App: transferId and checkout URL
         App->>R: Redirect to Stripe
+        R->>Stripe: Complete payment
+        Stripe->>API: Webhook payment_intent.succeeded
+        API->>DB: Update status to paid
     end
 
     rect rgb(255, 250, 240)
-        Note over R, Webhook: PAY AND WEBHOOK
-        R->>Stripe: Complete payment
-        Stripe->>Webhook: POST /webhooks/stripe payment_intent.succeeded
-        Webhook->>DB: Load transfer by paymentIntentId
-        Webhook->>DB: Update status to paid
-    end
-
-    rect rgb(240, 255, 240)
-        Note over Webhook, Contract: PERMIT AND SETTLE
-        Webhook->>Webhook: Generate permit with backend signer
-        Webhook->>App: Request sign UserOp (via A)
-        App->>Webhook: Return signature
-        Webhook->>AlchemyAA: Submit UserOp with Gas Manager
-        AlchemyAA->>Contract: settle with permit
+        Note over R, Contract: PART 2: CLAIM PERMIT AND EXECUTE
+        R->>App: Return from Stripe redirect
+        App->>API: GET /transfer/:id/permit
+        API->>DB: Check status eq paid
+        API->>API: Generate permit with backend signer
+        API-->>App: Return permit and settle params
+        App->>App: Build UserOp for settle (via A)
+        App->>Contract: Submit settle with permit (gasless via Alchemy AA)
         Contract->>Contract: Verify permit and transfer NFT
-        Contract-->>AlchemyAA: Success
-        AlchemyAA-->>Webhook: Receipt
-        Webhook->>DB: Update status to settled
+        Contract-->>App: Success
+        App->>API: POST /transfer/:id/complete with txHash
+        API->>DB: Update status to settled
+        App->>R: Show Transfer Complete
     end
 ```
 
@@ -68,33 +64,28 @@ sequenceDiagram
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
-| **Orchestration** | Lambda + DynamoDB + EventBridge | Webhook-triggered settlement; scheduled timeout for unpaid transfers |
-| **Backend API** | Node.js/Lambda + API Gateway | Quote, initiate, status |
+| **Backend API** | Node.js/Lambda + API Gateway | Quote, initiate, permit generation, status |
+| **State** | DynamoDB | Transfer records (pending_payment, paid, settled) |
 | **Payment** | Stripe | Fiat payment for reseller exit tax (immediate capture) |
-| **Permit signer** | Backend key (e.g. ethers Wallet) | ECDSA signature for contract |
-| **Chain** | Alchemy AA (RPC + Bundler + Gas Manager) | Submit `settle()` UserOp |
+| **Permit signer** | Backend key (e.g. ethers Wallet) | ECDSA signature for contract (stateless) |
 
 ---
 
 ## Deliverables
 
-1. **API**
+1. **API endpoints:**
    - `GET /quote?tokenId=...&salePrice=...` — returns royalty amount (uses holding period from A or Alchemy NFT API)
-   - `POST /transfer/initiate` — create transfer in DynamoDB (`pending_payment`), create Stripe Checkout Session or PaymentIntent, return checkout URL
+   - `POST /transfer/initiate` — create transfer (`pending_payment`), create Stripe Checkout, return checkout URL and transferId
+   - `GET /transfer/:id/permit` — (auth required) if status is `paid`, generate and return permit + settle params (transferId, from, to, tokenId, salePrice)
+   - `POST /transfer/:id/complete` — (optional) frontend calls after settle succeeds; updates status to `settled` and stores txHash
    - `GET /transfer/:id/status` — return transfer status
 
 2. **Stripe webhook** `POST /webhooks/stripe` (e.g. `payment_intent.succeeded`):
    - Load transfer by `paymentIntentId`
    - Set status `paid`
-   - Generate permit (same format as B)
-   - Call `settle()` via Alchemy AA (request Magic signature from frontend if needed; retry 3x with backoff)
-   - On success: set `settled`; on permanent failure: set `settlement_failed` and trigger Stripe refund
+   - **That's it.** Backend does not execute settle; frontend will claim the permit and execute.
 
-3. **EventBridge schedule** (e.g. every 10 min) + **Timeout Lambda**:
-   - Query DynamoDB for `status = pending_payment` and `createdAt` older than 10 min
-   - Set `status = timed_out`
-
-4. **DynamoDB:** Transfer table with at least: `transferId`, `status`, `paymentIntentId`, `resellerId`, `tokenId`, `collectorAddress`, `declaredSalePrice`, `royaltyAmount`, `createdAt`, `permit`, `txHash`
+3. **DynamoDB:** Transfer table with at least: `transferId`, `status`, `paymentIntentId`, `resellerId`, `resellerAddress`, `tokenId`, `collectorAddress`, `declaredSalePrice`, `royaltyAmount`, `createdAt`, (optional) `txHash` if frontend reports it
 
 ---
 
@@ -102,9 +93,9 @@ sequenceDiagram
 
 ### From A (Identity & Wallet)
 
-- **Auth:** Validate DIDToken; get reseller/collector `publicAddress` (and Smart Account if AA)
-- **Signing:** Request "sign this UserOp" for `settle()`; receive signature and submit via Alchemy Bundler
+- **Auth:** Validate DIDToken; get reseller/collector `publicAddress`
 - **NFT data:** Holding period for royalty — C calls Alchemy NFT API (or A's API) with owner and contract address to get last transfer date
+- **Execution (frontend):** A (frontend) executes `settle()` with permit from C; backend doesn't need to sign or submit UserOps
 
 ### From B (Chain)
 
@@ -116,8 +107,10 @@ sequenceDiagram
 ## Flow Summary
 
 1. Reseller initiates → C creates transfer (`pending_payment`) and Stripe session → returns checkout URL
-2. Reseller pays → Stripe webhook → C sets `paid`, generates permit, calls settle (3x retry) → sets `settled` or `settlement_failed` (refund if failed)
-3. EventBridge + Timeout Lambda → mark old `pending_payment` as `timed_out`
+2. Reseller pays → Stripe webhook → C sets `paid` (does not execute settle)
+3. Reseller (frontend) calls `GET /permit` → C returns permit if status is `paid`
+4. Frontend (A) builds UserOp and calls `settle()` via Alchemy AA (gasless) → Contract executes
+5. (Optional) Frontend calls `POST /transfer/:id/complete` with txHash → C sets `settled`
 
 ---
 
@@ -133,14 +126,16 @@ sequenceDiagram
 
 - [ ] Quote returns correct royalty for a given token and sale price (with mocked or real holding period)
 - [ ] Initiate creates transfer and Stripe session; redirect to checkout
-- [ ] On payment success webhook: permit generated, settle() called; transfer status `settled` and NFT moves on-chain (or `settlement_failed` + refund on permanent failure)
-- [ ] Timeout Lambda marks stale `pending_payment` as `timed_out`
-- [ ] Idempotency / duplicate webhook handling (e.g. by transfer status or idempotency key)
+- [ ] On payment success webhook: status set to `paid`
+- [ ] GET /permit returns permit if status is `paid`; 402 or error if `pending_payment`
+- [ ] Permit is idempotent (same permit for same transfer, or deterministic generation)
+- [ ] Auth check on GET /permit (only reseller can claim it)
+- [ ] POST /complete (optional) updates status to `settled` and stores txHash
 
 ---
 
 ## When Combined With A and B
 
-- Frontend uses A for login and "My Vault"; when C needs to run settle, frontend uses A (Magic) to sign UserOp; C submits via Alchemy AA
-- C uses B's deployed contract address and ABI; C's permit signer matches B's `COMPLIANCE_SIGNER`
-- Full flow: Reseller pays exit tax → C captures payment and generates permit → C triggers settle (gas sponsored) → Collector receives NFT
+- Frontend (A) uses Magic for login and "My Vault"; after reseller pays (C), frontend calls `GET /permit` from C, then uses A's Alchemy AA SDK to execute `settle()` (gasless)
+- C's permit signer matches B's `COMPLIANCE_SIGNER` so the contract accepts the permit
+- Full flow: Reseller pays exit tax via C → C sets `paid` → Frontend (A) claims permit from C → Frontend executes `settle()` on B (gas sponsored) → Collector receives NFT
